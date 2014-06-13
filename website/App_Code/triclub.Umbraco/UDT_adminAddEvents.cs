@@ -1,24 +1,8 @@
 using System;
-using System.Data;
-using System;
-using System.Data;
-using MySql.Data;
-using MySql.Data.MySqlClient; 
-using System.Web;
-using System.IO;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using System.Text.RegularExpressions;
-
-using umbraco.BusinessLogic;
-using umbraco.cms.businesslogic.web;
-using umbraco.cms.businesslogic.property;
 
 namespace triclub.Umbraco
 {
@@ -50,10 +34,10 @@ namespace triclub.Umbraco
 		protected void addEvent(Object s, EventArgs e)
 		{
 			{
-				using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
-					MySqlCommand objCmd = objConn.CreateCommand();
+					SqlCommand objCmd = objConn.CreateCommand();
 					objCmd.CommandText = 
 @"
 INSERT INTO Events (eventTitle, eventDate, eventType, eventDistance, eventDescription, eventLink, eventLocation, resultsLink, newsLink, photoLink) 

@@ -1,15 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
-using MySql.Data; 
-using MySql.Data.MySqlClient; 
-using System.Web;
-using System.IO;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using System.Collections;
-
 using cFront.Umbraco.Membership;
 
 namespace cFront.Projects.CFSL.Web.UI.UserControls
@@ -52,10 +46,10 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 				phEventDetail.Visible = false; // hide event detail
 				
 				{
-					using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+					using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 					{
 						objConn.Open();
-						MySqlCommand objCmd = objConn.CreateCommand();
+						SqlCommand objCmd = objConn.CreateCommand();
 						objCmd.CommandText = 
 	@"
 	SELECT E.IID, E.eventTitle, E.eventDate, T.eventTypeDefinition AS eventType, D.eventDistanceDefinition AS eventDistance, E.eventLocation FROM Events E
@@ -64,7 +58,7 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 	WHERE eventDate >= NOW()
 	ORDER BY eventDate
 	";
-						using(MySqlDataReader objRdr = objCmd.ExecuteReader())
+						using(SqlDataReader objRdr = objCmd.ExecuteReader())
 						{
 							rpEvents.DataSource = objRdr;
 							rpEvents.DataBind();
@@ -87,10 +81,10 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 			phEventDetail.Visible = false; // hide event detail
 				
 			{
-				using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
-					MySqlCommand objCmd = objConn.CreateCommand();
+					SqlCommand objCmd = objConn.CreateCommand();
 					objCmd.CommandText = 
 @"
 SELECT E.IID, E.eventTitle, E.eventDate, T.eventTypeDefinition AS eventType, D.eventDistanceDefinition AS eventDistance, E.eventLocation FROM Events E
@@ -99,7 +93,7 @@ INNER JOIN eventDistanceDefinitions D ON E.eventDistance = D.eventDistanceID
 WHERE eventDate < NOW()
 ORDER BY eventDate desc
 ";
-					using(MySqlDataReader objRdr = objCmd.ExecuteReader())
+					using(SqlDataReader objRdr = objCmd.ExecuteReader())
 					{
 						rpEvents.DataSource = objRdr;
 						rpEvents.DataBind();
@@ -115,10 +109,10 @@ ORDER BY eventDate desc
 			phEventDetail.Visible = false; // hide event detail
 			
 			{
-				using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
-					MySqlCommand objCmd = objConn.CreateCommand();
+					SqlCommand objCmd = objConn.CreateCommand();
 					objCmd.CommandText = 
 @"
 SELECT E.IID, E.eventTitle, E.eventDate, T.eventTypeDefinition AS eventType, D.eventDistanceDefinition AS eventDistance, E.eventLocation FROM Events E
@@ -132,7 +126,7 @@ ORDER BY eventDate
 					objCmd.Parameters.AddWithValue("?eventTypeID", intEventTypeID);
 					objCmd.Parameters.AddWithValue("?eventDistanceID", intEventDistanceID);
 					
-					using(MySqlDataReader objRdr = objCmd.ExecuteReader())
+					using(SqlDataReader objRdr = objCmd.ExecuteReader())
 					{
 						rpEvents.DataSource = objRdr;
 						rpEvents.DataBind();
@@ -148,10 +142,10 @@ ORDER BY eventDate
 			phEventDetail.Visible = false; // hide event detail
 			
 			{
-				using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
-					MySqlCommand objCmd = objConn.CreateCommand();
+					SqlCommand objCmd = objConn.CreateCommand();
 					objCmd.CommandText = 
 @"
 SELECT E.IID, E.eventTitle, E.eventDate, T.eventTypeDefinition AS eventType, D.eventDistanceDefinition AS eventDistance, E.eventLocation FROM Events E
@@ -162,7 +156,7 @@ ORDER BY eventDate
 ";
 					objCmd.Parameters.AddWithValue("?eventSearch", strSearchEvents);
 					
-					using(MySqlDataReader objRdr = objCmd.ExecuteReader())
+					using(SqlDataReader objRdr = objCmd.ExecuteReader())
 					{
 						rpEvents.DataSource = objRdr;
 						rpEvents.DataBind();
@@ -178,10 +172,10 @@ ORDER BY eventDate
 			phEventDetail.Visible = true; // show event detail placeholder
 			
 			{
-				using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
-					MySqlCommand objCmd = objConn.CreateCommand();
+					SqlCommand objCmd = objConn.CreateCommand();
 					objCmd.CommandText = 
 @"
 SELECT E.IID, E.eventTitle, E.eventDate, T.eventTypeDefinition AS eventType, D.eventDistanceDefinition AS eventDistance, E.eventLocation, E.eventDescription, E.eventLink, E.resultsLink, 
@@ -193,7 +187,7 @@ WHERE E.IID = ?eventID
 ";
 					objCmd.Parameters.AddWithValue("?eventID", intEventID);
 					
-					using(MySqlDataReader objRdr = objCmd.ExecuteReader())
+					using(SqlDataReader objRdr = objCmd.ExecuteReader())
 					{
 						if(objRdr.Read())
 						{
@@ -231,10 +225,10 @@ WHERE E.IID = ?eventID
 		protected void getMemberIsDoingEvent()
 		{
 			{
-				using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
-					MySqlCommand objCmd = objConn.CreateCommand();
+					SqlCommand objCmd = objConn.CreateCommand();
 					objCmd.CommandText = 
 @"
 SELECT * FROM MemberEvents 
@@ -243,7 +237,7 @@ where memberid = ?memberID and eventid = ?eventID
 					objCmd.Parameters.AddWithValue("?eventID", intEventID);
 					objCmd.Parameters.AddWithValue("?memberID",  Convert.ToInt32(System.Web.Security.Membership.GetUser().ProviderUserKey));
 					
-					using(MySqlDataReader objRdr = objCmd.ExecuteReader())
+					using(SqlDataReader objRdr = objCmd.ExecuteReader())
 					{
 						if(objRdr.Read())
 						{
@@ -267,10 +261,10 @@ where memberid = ?memberID and eventid = ?eventID
 		protected void addEvent(Object s, EventArgs e)
 		{
 			{
-				using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
-					MySqlCommand objCmd = objConn.CreateCommand();
+					SqlCommand objCmd = objConn.CreateCommand();
 					objCmd.CommandText = 
 @"
 INSERT INTO Events (eventTitle, eventDate, eventType, eventDistance, eventDescription, eventLink, eventLocation) 
@@ -295,10 +289,10 @@ VALUES (?eventTitle, ?eventDate, ?eventType, ?eventDistance, ?eventDescription, 
 		protected void addResults(Object s, EventArgs e)
 		{
 			{
-				using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
-					MySqlCommand objCmd = objConn.CreateCommand();
+					SqlCommand objCmd = objConn.CreateCommand();
 					objCmd.CommandText = 
 @"
 UPDATE Events SET resultsLink = ?resultsLink WHERE IID = ?eventID
@@ -319,10 +313,10 @@ UPDATE Events SET resultsLink = ?resultsLink WHERE IID = ?eventID
 			
 			// Create record in db to link event ID to Member ID in MemberEvents table
 			{
-				using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
-					MySqlCommand objCmd = objConn.CreateCommand();
+					SqlCommand objCmd = objConn.CreateCommand();
 					objCmd.CommandText = 
 @"
 INSERT INTO MemberEvents (eventID, memberID) 
@@ -346,10 +340,10 @@ VALUES (?eventID, ?memberID)
 			
 			// Remove record in db to link event ID to Member ID in MemberEvents table
 			{
-				using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
-					MySqlCommand objCmd = objConn.CreateCommand();
+					SqlCommand objCmd = objConn.CreateCommand();
 					objCmd.CommandText = 
 @"
 DELETE FROM MemberEvents
@@ -370,10 +364,10 @@ AND memberID = ?memberID
 		protected void getEventMembers()
 		{
 			{
-				using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
-					MySqlCommand objCmd = objConn.CreateCommand();
+					SqlCommand objCmd = objConn.CreateCommand();
 
                     // Get everyone who isn't the curretn member who is doing this event
 					objCmd.CommandText = 
@@ -388,7 +382,7 @@ WHERE EventID = ?eventID
 
                     List<IDictionary<String, object>> memdetails = new List<IDictionary<String, object>>();
 
-					using(MySqlDataReader objRdr = objCmd.ExecuteReader())
+					using(SqlDataReader objRdr = objCmd.ExecuteReader())
 					{
                         while (objRdr.Read())
                         {

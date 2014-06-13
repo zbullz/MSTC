@@ -1,13 +1,8 @@
 using System;
-using MySql.Data;
-using MySql.Data.MySqlClient; 
-using System.Web;
-using System.IO;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using System.Net.Mail;
-using System.Collections;
 
 namespace cFront.Projects.CFSL.Web.UI.UserControls
 {
@@ -24,11 +19,11 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 		
 		protected void getEntries()
 		{
-			using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+			using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 			{
 				objConn.Open();
 				
-				MySqlCommand objCmd = objConn.CreateCommand();
+				SqlCommand objCmd = objConn.CreateCommand();
 				objCmd.CommandText =
 @"
 SELECT FirstName, UPPER(LastName) AS ULastName, Club, Mins, Secs, T.eventtypename AS EventType 
@@ -36,7 +31,7 @@ FROM Entries E INNER JOIN entrieseventtype T ON E.EventType = T.eventtypeid
 WHERE Accept = 1
 ORDER BY LastName ASC
 ";
-				using(MySqlDataReader objRdr = objCmd.ExecuteReader())
+				using(SqlDataReader objRdr = objCmd.ExecuteReader())
 				{
 
 					rpEntries.DataSource = objRdr;
@@ -50,7 +45,7 @@ ORDER BY LastName ASC
 @"
 SELECT count(*) AS TotalEntries from Entries WHERE Accept=1
 ";
-				using(MySqlDataReader objRdr = objCmd.ExecuteReader())
+				using(SqlDataReader objRdr = objCmd.ExecuteReader())
 				{
 
 					objRdr.Read();

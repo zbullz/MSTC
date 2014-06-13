@@ -1,13 +1,7 @@
-using System;
-using System.Data;
-using MySql.Data; 
-using MySql.Data.MySqlClient; 
-using System.Web;
-using System.IO;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using System.Collections;
 
 namespace cFront.Projects.CFSL.Web.UI.UserControls
 {
@@ -25,10 +19,10 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 		protected void getEventsHome()
 		{
 			{
-				using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
-					MySqlCommand objCmd = objConn.CreateCommand();
+					SqlCommand objCmd = objConn.CreateCommand();
 					objCmd.CommandText = 
 @"
 SELECT E.IID as eventID, E.eventTitle, E.eventDate, T.eventTypeDefinition AS eventType, D.eventDistanceDefinition AS eventDistance FROM Events E
@@ -38,7 +32,7 @@ WHERE eventDate >= NOW()
 ORDER BY eventDate
 LIMIT 7
 ";
-					using(MySqlDataReader objRdr = objCmd.ExecuteReader())
+					using(SqlDataReader objRdr = objCmd.ExecuteReader())
 					{
 						rpEventsHome.DataSource = objRdr;
 						rpEventsHome.DataBind();

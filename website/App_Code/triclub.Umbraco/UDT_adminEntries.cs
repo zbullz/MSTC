@@ -1,23 +1,9 @@
 using System;
-using System.Data;
-using MySql.Data;
-using MySql.Data.MySqlClient; 
-using System.Web;
-using System.IO;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Net.Mail;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using System.Text.RegularExpressions;
-
-using umbraco.BusinessLogic;
-using umbraco.cms.businesslogic.web;
-using umbraco.cms.businesslogic.property;
 
 namespace triclub.Umbraco
 {
@@ -59,10 +45,10 @@ namespace triclub.Umbraco
 		
 		protected void getEntries()
 		{
-			using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+			using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 			{
 				objConn.Open();
-				MySqlCommand objCmd = objConn.CreateCommand();
+				SqlCommand objCmd = objConn.CreateCommand();
 				objCmd.CommandText=
 @"
 SELECT IID, FirstName, UPPER(LastName) AS ULastName, Club, EntryDate, Payment, Accept, Mins, Secs, Email, Phone, E.EventType, T.eventtypename AS EventTypeName,  
@@ -74,7 +60,7 @@ CASE Accept
 FROM Entries E INNER JOIN entrieseventtype T ON E.EventType = T.eventtypeid
 ORDER BY EntryDate DESC
 ";
-				using(MySqlDataReader objRdr = objCmd.ExecuteReader())
+				using(SqlDataReader objRdr = objCmd.ExecuteReader())
 				{
 					dlEntries.DataSource = objRdr;
 					dlEntries.DataBind();
@@ -112,11 +98,11 @@ ORDER BY EntryDate DESC
 			strPayment = ((TextBox)e.Item.FindControl("etxtPayment")).Text;
 			boolAccepted = Convert.ToBoolean(((CheckBox)e.Item.FindControl("ecbAccept")).Checked);
 				
-			using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+			using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 			{	
 				objConn.Open();
 				
-				MySqlCommand objCmd = objConn.CreateCommand();
+				SqlCommand objCmd = objConn.CreateCommand();
 				objCmd.CommandText =
 @"
 UPDATE Entries 
@@ -148,10 +134,10 @@ WHERE IID=?ID
 			
 			intID = Convert.ToInt32(dlEntries.DataKeys[e.Item.ItemIndex]);
 			
-			using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+			using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 			{
 				objConn.Open();
-				MySqlCommand objCmd = objConn.CreateCommand();
+				SqlCommand objCmd = objConn.CreateCommand();
 				objCmd.CommandText=
 @"DELETE FROM Entries WHERE IID=?ID";
 				objCmd.Parameters.AddWithValue("?ID", intID);
@@ -174,10 +160,10 @@ WHERE IID=?ID
 			else	
 				txtClub.Text = txtClub.Text;
 			
-			using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+			using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 			{
 				objConn.Open();
-				MySqlCommand objCmd = objConn.CreateCommand();
+				SqlCommand objCmd = objConn.CreateCommand();
 				objCmd.CommandText=
 @"
 INSERT INTO Entries 

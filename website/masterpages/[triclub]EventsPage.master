@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/RunwayMaster.master" AutoEventWireup="true" %>
+<%@ Register TagPrefix="cf" Namespace="cFront.WebControls" Assembly="cfWebControls" %>
 <asp:Content ContentPlaceHolderID="PageScripts" runat="server">
 	<link rel="stylesheet" type="text/css" href="/css/events-page.css" />
 </script>

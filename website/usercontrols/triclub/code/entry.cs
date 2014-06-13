@@ -1,9 +1,5 @@
 using System;
-using System.Data;
-using MySql.Data; 
-using MySql.Data.MySqlClient; 
-using System.Web;
-using System.IO;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
@@ -87,10 +83,10 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 					intEventType = 2;
 				}
 			
-				using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
-					MySqlCommand objCmd = objConn.CreateCommand();
+					SqlCommand objCmd = objConn.CreateCommand();
 					objCmd.CommandText = 
 @"
 INSERT INTO Entries (FirstName, LastName, Gender, DOB, Addr1, Addr2, Addr3, Addr4, Postcode, 
@@ -159,16 +155,16 @@ VALUES (?FirstName, ?LastName, ?Gender, ?DOB, ?Addr1, ?Addr2, ?Addr3, ?Addr4, ?P
 		
 		protected void getEntries()
 		{
-			using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+			using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 			{
 				objConn.Open();
 				
-				MySqlCommand objCmd = objConn.CreateCommand();
+				SqlCommand objCmd = objConn.CreateCommand();
 				objCmd.CommandText =
 @"
 select count(*) AS TotalEntries from Entries WHERE Accept=1
 ";
-				using(MySqlDataReader objRdr = objCmd.ExecuteReader())
+				using(SqlDataReader objRdr = objCmd.ExecuteReader())
 				{
 					objRdr.Read();
 					

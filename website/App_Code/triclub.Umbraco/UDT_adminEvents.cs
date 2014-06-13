@@ -1,24 +1,8 @@
 using System;
-using System.Data;
-using System;
-using System.Data;
-using MySql.Data;
-using MySql.Data.MySqlClient; 
-using System.Web;
-using System.IO;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using System.Text.RegularExpressions;
-
-using umbraco.BusinessLogic;
-using umbraco.cms.businesslogic.web;
-using umbraco.cms.businesslogic.property;
 
 namespace triclub.Umbraco
 {
@@ -61,10 +45,10 @@ namespace triclub.Umbraco
 			int intEventID = Convert.ToInt32(dlEvents.DataKeys[e.Item.ItemIndex]);
 			
 			{
-				using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
-					MySqlCommand objCmd = objConn.CreateCommand();
+					SqlCommand objCmd = objConn.CreateCommand();
 					objCmd.CommandText = 
 @"
 UPDATE Events 
@@ -94,15 +78,15 @@ WHERE IID = ?eventID
 		protected void getEvents()
 		{
 			{
-				using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
-					MySqlCommand objCmd = objConn.CreateCommand();
+					SqlCommand objCmd = objConn.CreateCommand();
 					objCmd.CommandText = 
 @"
 SELECT * FROM Events ORDER BY eventTitle ASC
 ";
-					using(MySqlDataReader objRdr = objCmd.ExecuteReader())
+					using(SqlDataReader objRdr = objCmd.ExecuteReader())
 					{
 						dlEvents.DataSource = objRdr;
 						dlEvents.DataBind();
@@ -117,10 +101,10 @@ SELECT * FROM Events ORDER BY eventTitle ASC
 			int intEventID = Convert.ToInt32(dlEvents.DataKeys[e.Item.ItemIndex]);
 			
 			{
-				using(MySqlConnection objConn = new MySqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
-					MySqlCommand objCmd = objConn.CreateCommand();
+					SqlCommand objCmd = objConn.CreateCommand();
 					objCmd.CommandText = 
 @"
 DELETE FROM Events WHERE IID = ?eventID
