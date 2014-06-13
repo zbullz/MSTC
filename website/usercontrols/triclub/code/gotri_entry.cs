@@ -74,34 +74,34 @@ INSERT INTO gotrientries (FirstName, LastName, DOB, Age, Gender, School, SchoolY
 MedicalNotes, DietNotes, TriExperienceNotes, 
 ParentFirstName, ParentLastName, Address1, Address2, Address3, Address4, Postcode, 
 Phone, ParentEmail, TandCName, TandCAgree, EntryDate, Accept) 
-VALUES (?FirstName, ?LastName, ?DOB, ?Age, ?Gender, ?School, ?SchoolYear, ?Email, 
-?MedicalNotes, ?DietNotes, ?TriExperienceNotes, 
-?ParentFirstName, ?ParentLastName, ?Address1, ?Address2, ?Address3, ?Address4, ?Postcode, 
-?Phone, ?ParentEmail, ?TandCName, 1, ?Now, 0)
+VALUES (@FirstName, @LastName, @DOB, @Age, @Gender, @School, @SchoolYear, @Email, 
+@MedicalNotes, @DietNotes, @TriExperienceNotes, 
+@ParentFirstName, @ParentLastName, @Address1, @Address2, @Address3, @Address4, @Postcode, 
+@Phone, @ParentEmail, @TandCName, 1, @Now, 0)
 ";
 				
-				objCmd.Parameters.AddWithValue("?FirstName", txtFirstName.Text);
-				objCmd.Parameters.AddWithValue("?LastName", txtLastName.Text);
-				objCmd.Parameters.AddWithValue("?DOB", strDOB);
-				objCmd.Parameters.AddWithValue("?Age", strDOB);
-				objCmd.Parameters.AddWithValue("?Gender", ddlGender.SelectedItem.Value);
-				objCmd.Parameters.AddWithValue("?School", txtSchool.Text);
-				objCmd.Parameters.AddWithValue("?SchoolYear", txtSchoolYear.Text);
-				objCmd.Parameters.AddWithValue("?Email", txtYPEmail.Text);
-				objCmd.Parameters.AddWithValue("?MedicalNotes", txtMedical.Text);
-				objCmd.Parameters.AddWithValue("?DietNotes", txtDiet.Text);
-				objCmd.Parameters.AddWithValue("?TriExperienceNotes", txtExperience.Text);
-				objCmd.Parameters.AddWithValue("?ParentFirstName", txtParentFirstName.Text);
-				objCmd.Parameters.AddWithValue("?ParentLastName", txtParentLastName.Text);
-				objCmd.Parameters.AddWithValue("?Address1", txtAddr1.Text);
-				objCmd.Parameters.AddWithValue("?Address2", txtAddr2.Text);
-				objCmd.Parameters.AddWithValue("?Address3", txtAddr3.Text);
-				objCmd.Parameters.AddWithValue("?Address4", txtAddr4.Text);
-				objCmd.Parameters.AddWithValue("?Postcode", txtPostcode.Text);
-				objCmd.Parameters.AddWithValue("?Phone", txtPhone.Text);
-				objCmd.Parameters.AddWithValue("?ParentEmail", txtEmail.Text);
-				objCmd.Parameters.AddWithValue("?TandCName", txtName.Text);
-				objCmd.Parameters.AddWithValue("?Now", DateTime.Now);
+				objCmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
+				objCmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
+				objCmd.Parameters.AddWithValue("@DOB", strDOB);
+				objCmd.Parameters.AddWithValue("@Age", strDOB);
+				objCmd.Parameters.AddWithValue("@Gender", ddlGender.SelectedItem.Value);
+				objCmd.Parameters.AddWithValue("@School", txtSchool.Text);
+				objCmd.Parameters.AddWithValue("@SchoolYear", txtSchoolYear.Text);
+				objCmd.Parameters.AddWithValue("@Email", txtYPEmail.Text);
+				objCmd.Parameters.AddWithValue("@MedicalNotes", txtMedical.Text);
+				objCmd.Parameters.AddWithValue("@DietNotes", txtDiet.Text);
+				objCmd.Parameters.AddWithValue("@TriExperienceNotes", txtExperience.Text);
+				objCmd.Parameters.AddWithValue("@ParentFirstName", txtParentFirstName.Text);
+				objCmd.Parameters.AddWithValue("@ParentLastName", txtParentLastName.Text);
+				objCmd.Parameters.AddWithValue("@Address1", txtAddr1.Text);
+				objCmd.Parameters.AddWithValue("@Address2", txtAddr2.Text);
+				objCmd.Parameters.AddWithValue("@Address3", txtAddr3.Text);
+				objCmd.Parameters.AddWithValue("@Address4", txtAddr4.Text);
+				objCmd.Parameters.AddWithValue("@Postcode", txtPostcode.Text);
+				objCmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
+				objCmd.Parameters.AddWithValue("@ParentEmail", txtEmail.Text);
+				objCmd.Parameters.AddWithValue("@TandCName", txtName.Text);
+				objCmd.Parameters.AddWithValue("@Now", DateTime.Now);
 				
 				objCmd.ExecuteNonQuery();
 			}
