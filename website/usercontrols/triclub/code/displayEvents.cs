@@ -55,7 +55,7 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 	SELECT E.IID, E.eventTitle, E.eventDate, T.eventTypeDefinition AS eventType, D.eventDistanceDefinition AS eventDistance, E.eventLocation FROM Events E
 	INNER JOIN eventTypeDefinitions T ON E.eventType = T.eventTypeID
 	INNER JOIN eventDistanceDefinitions D ON E.eventDistance = D.eventDistanceID
-	WHERE eventDate >= NOW()
+	WHERE eventDate >= GetDate()
 	ORDER BY eventDate
 	";
 						using(SqlDataReader objRdr = objCmd.ExecuteReader())
@@ -90,7 +90,7 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 SELECT E.IID, E.eventTitle, E.eventDate, T.eventTypeDefinition AS eventType, D.eventDistanceDefinition AS eventDistance, E.eventLocation FROM Events E
 INNER JOIN eventTypeDefinitions T ON E.eventType = T.eventTypeID
 INNER JOIN eventDistanceDefinitions D ON E.eventDistance = D.eventDistanceID
-WHERE eventDate < NOW()
+WHERE eventDate < GetDate()
 ORDER BY eventDate desc
 ";
 					using(SqlDataReader objRdr = objCmd.ExecuteReader())
@@ -118,7 +118,7 @@ ORDER BY eventDate desc
 SELECT E.IID, E.eventTitle, E.eventDate, T.eventTypeDefinition AS eventType, D.eventDistanceDefinition AS eventDistance, E.eventLocation FROM Events E
 INNER JOIN eventTypeDefinitions T ON E.eventType = T.eventTypeID
 INNER JOIN eventDistanceDefinitions D ON E.eventDistance = D.eventDistanceID
-WHERE eventDate >= NOW()
+WHERE eventDate >= GetDate()
 AND
 (E.eventType = ?eventTypeID OR E.eventDistance = ?eventDistanceID)
 ORDER BY eventDate

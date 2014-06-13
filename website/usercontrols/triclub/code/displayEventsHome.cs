@@ -28,7 +28,7 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 SELECT E.IID as eventID, E.eventTitle, E.eventDate, T.eventTypeDefinition AS eventType, D.eventDistanceDefinition AS eventDistance FROM Events E
 INNER JOIN eventTypeDefinitions T ON E.eventType = T.eventTypeID
 INNER JOIN eventDistanceDefinitions D ON E.eventDistance = D.eventDistanceID
-WHERE eventDate >= NOW()
+WHERE eventDate >= GetDate()
 ORDER BY eventDate
 LIMIT 7
 ";
