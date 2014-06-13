@@ -206,8 +206,8 @@ VALUES (?FirstName, ?LastName, ?Gender, ?Dob, ?Addr1, ?Addr2, ?Addr3, ?Addr4, ?P
 			
 			objMail.Body = "<p>Dear " + txtFirstName.Text + " " + txtLastName.Text + "</p><p>Thank you for entering the Mid Sussex Triathlon. We can confirm that your entry has been accepted.</p>" +
 							"<p>Please visit <a href='http://www.midsussextriclub.com/the-mid-sussex-triathlon/'>www.midsussextriclub.com/the-mid-sussex-triathlon</a> for more information.<p>Mid Sussex Triathlon Club</p>";
-			SmtpClient smtpClient = new SmtpClient();
-			smtpClient.Send(objMail);
+			GmailSmtpClient GmailSmtpClient = new GmailSmtpClient();
+			GmailSmtpClient.Send(objMail);
 			
 			ViewState["ViewEntryForm"] = 1;
 		}
