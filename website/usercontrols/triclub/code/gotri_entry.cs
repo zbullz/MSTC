@@ -147,8 +147,8 @@ VALUES (?FirstName, ?LastName, ?DOB, ?Age, ?Gender, ?School, ?SchoolYear, ?Email
 				strTCAgree = "Terms and conditions not accepted";
 			}
 			
-			MailMessage objMail = new MailMessage();
-			objMail.To.Add("juniors@midsussextriclub.com");
+			MailMessage objMail = new MailMessage();			
+			objMail.To.Add(ConfigurationManager.AppSettings["gotriEntryEmailTo"] ?? "juniors@midsussextriclub.com");
 			objMail.From = new MailAddress("noreply@midsussextriclub.com");
 			objMail.Subject = "GoTri! Junior Training Camp - Entry Received";
 			
