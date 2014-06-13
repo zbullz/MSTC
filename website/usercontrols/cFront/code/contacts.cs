@@ -41,9 +41,10 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 			if(Page.IsValid)
 			{
 				MailMessage objMail = new MailMessage();
-				objMail.To.Add("pete081259@aol.com");
-				objMail.To.Add("stephen.mcmenamin@domesticandgeneral.com");
-				objMail.To.Add("info@midsussextriclub.com");
+                objMail.To.Add("hook.mike@gmail.com");
+				//objMail.To.Add("pete081259@aol.com");
+				//objMail.To.Add("stephen.mcmenamin@domesticandgeneral.com");
+				//objMail.To.Add("info@midsussextriclub.com");
 				objMail.From = new MailAddress(txtEmail.Text);
 				objMail.Subject = "[Website Enquiry]";
 				
