@@ -147,8 +147,8 @@ VALUES (?FirstName, ?LastName, ?Gender, ?DOB, ?Addr1, ?Addr2, ?Addr3, ?Addr4, ?P
 			
 			objMail.Body = "<p>" + txtFirstName.Text + " " + txtLastName.Text +" has entered the event.</p><p><a href='http://www.midsussextriclub.com' target='_blank'>Go to Mid Sussex Tri Club site</a></p>";
 			
-			SmtpClient smtpClient = new SmtpClient();
-			smtpClient.Send(objMail);
+			GmailSmtpClient GmailSmtpClient = new GmailSmtpClient();
+			GmailSmtpClient.Send(objMail);
 				
 			ViewState["ViewEntryForm"] = 1;
 		}

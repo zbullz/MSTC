@@ -203,7 +203,7 @@ VALUES (?FirstName, ?LastName, ?Gender, ?DOB, ?Addr1, ?Addr2, ?Addr3, ?Addr4, ?P
 			"<p>Name: " +  txtName.Text + "</p>" +
 			"<p>" + strTCAgree + "</p>";
 			
-			SmtpClient smtpClient = new SmtpClient();
+			GmailSmtpClient smtpClient = new GmailSmtpClient();
 			smtpClient.Send(objMail);
 				
 			ViewState["ViewEntryForm"] = 1;
@@ -252,8 +252,8 @@ VALUES (?FirstName, ?LastName, ?Gender, ?DOB, ?Addr1, ?Addr2, ?Addr3, ?Addr4, ?P
 			"<p>Name" +  txtName.Text + "</p>" +
 			"<p>" + strTCAgree + "</p>";
 			
-			SmtpClient smtpClient = new SmtpClient();
-			smtpClient.Send(objMail);
+			GmailSmtpClient GmailSmtpClient = new GmailSmtpClient();
+			GmailSmtpClient.Send(objMail);
 			
 		}
 		

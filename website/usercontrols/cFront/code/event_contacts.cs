@@ -54,8 +54,8 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 			
 			objMail.Body = "<p>" + txtMsg.Text + "</p><p>Message from: " + txtName.Text + "</p><p>Email: " + txtEmail.Text + "</p>";
 			
-			SmtpClient smtpClient = new SmtpClient();
-			smtpClient.Send(objMail);
+			GmailSmtpClient GmailSmtpClient = new GmailSmtpClient();
+			GmailSmtpClient.Send(objMail);
 				
 			ViewState["ViewContactForm"] = 1;
 			

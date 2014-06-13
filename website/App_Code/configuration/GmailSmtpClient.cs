@@ -6,9 +6,6 @@ using System.Net.Mail;
 using System.Net;
 using System.Configuration;
 
-/// <summary>
-/// Summary description for GmailSmtpClient
-/// </summary>
 public class GmailSmtpClient : SmtpClient
 {
 	public GmailSmtpClient()
