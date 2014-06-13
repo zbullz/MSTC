@@ -52,19 +52,19 @@ namespace triclub.Umbraco
 					objCmd.CommandText = 
 @"
 UPDATE Events 
-SET eventTitle=?eventTitle, eventDate=?eventDate, eventDescription = ?eventDescription, 
-eventLink = ?eventLink, eventLocation = ?eventLocation, resultsLink = ?resultsLink, newsLink = ?newsLink, photoLink = ?photoLink  
-WHERE IID = ?eventID
+SET eventTitle=@eventTitle, eventDate=@eventDate, eventDescription = @eventDescription, 
+eventLink = @eventLink, eventLocation = @eventLocation, resultsLink = @resultsLink, newsLink = @newsLink, photoLink = @photoLink  
+WHERE IID = @eventID
 ";
-					objCmd.Parameters.AddWithValue("?eventTitle", ((TextBox)e.Item.FindControl("etxtEventTitle")).Text);
-					objCmd.Parameters.AddWithValue("?eventDate", ((TextBox)e.Item.FindControl("etxtEventDate")).Text);
-					objCmd.Parameters.AddWithValue("?eventDescription", ((TextBox)e.Item.FindControl("etxtEventDescription")).Text);
-					objCmd.Parameters.AddWithValue("?eventLink", ((TextBox)e.Item.FindControl("etxtEventLink")).Text);
-					objCmd.Parameters.AddWithValue("?eventLocation", ((TextBox)e.Item.FindControl("etxtEventLocation")).Text);
-					objCmd.Parameters.AddWithValue("?resultsLink", ((TextBox)e.Item.FindControl("etxtResultsLink")).Text);
-					objCmd.Parameters.AddWithValue("?newsLink", ((TextBox)e.Item.FindControl("etxtNewsLink")).Text);
-					objCmd.Parameters.AddWithValue("?photoLink", ((TextBox)e.Item.FindControl("etxtPhotoLink")).Text);
-					objCmd.Parameters.AddWithValue("?eventID", intEventID);
+					objCmd.Parameters.AddWithValue("@eventTitle", ((TextBox)e.Item.FindControl("etxtEventTitle")).Text);
+					objCmd.Parameters.AddWithValue("@eventDate", ((TextBox)e.Item.FindControl("etxtEventDate")).Text);
+					objCmd.Parameters.AddWithValue("@eventDescription", ((TextBox)e.Item.FindControl("etxtEventDescription")).Text);
+					objCmd.Parameters.AddWithValue("@eventLink", ((TextBox)e.Item.FindControl("etxtEventLink")).Text);
+					objCmd.Parameters.AddWithValue("@eventLocation", ((TextBox)e.Item.FindControl("etxtEventLocation")).Text);
+					objCmd.Parameters.AddWithValue("@resultsLink", ((TextBox)e.Item.FindControl("etxtResultsLink")).Text);
+					objCmd.Parameters.AddWithValue("@newsLink", ((TextBox)e.Item.FindControl("etxtNewsLink")).Text);
+					objCmd.Parameters.AddWithValue("@photoLink", ((TextBox)e.Item.FindControl("etxtPhotoLink")).Text);
+					objCmd.Parameters.AddWithValue("@eventID", intEventID);
 
 					objCmd.ExecuteNonQuery();
 				}
@@ -107,9 +107,9 @@ SELECT * FROM Events ORDER BY eventTitle ASC
 					SqlCommand objCmd = objConn.CreateCommand();
 					objCmd.CommandText = 
 @"
-DELETE FROM Events WHERE IID = ?eventID
+DELETE FROM Events WHERE IID = @eventID
 ";
-					objCmd.Parameters.AddWithValue("?eventID", intEventID);
+					objCmd.Parameters.AddWithValue("@eventID", intEventID);
 
 					objCmd.ExecuteNonQuery();
 				}

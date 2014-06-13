@@ -106,20 +106,20 @@ ORDER BY EntryDate DESC
 				objCmd.CommandText =
 @"
 UPDATE Entries 
-SET FirstName=?FirstName, LastName=?LastName, Email=?Email, Club=?Club, EventType=?EventType, Mins = ?Mins, Secs = ?Secs, Payment=?Payment, Accept=?Accept
-WHERE IID=?ID
+SET FirstName=@FirstName, LastName=@LastName, Email=@Email, Club=@Club, EventType=@EventType, Mins = @Mins, Secs = @Secs, Payment=@Payment, Accept=@Accept
+WHERE IID=@ID
 ";
 				
-				objCmd.Parameters.AddWithValue("?FirstName", strFirstName);
-				objCmd.Parameters.AddWithValue("?LastName", strLastName);
-				objCmd.Parameters.AddWithValue("?Email", strEmail);
-				objCmd.Parameters.AddWithValue("?Club", strClub);
-				objCmd.Parameters.AddWithValue("?EventType", intEventType);
-				objCmd.Parameters.AddWithValue("?Mins", strMins);
-				objCmd.Parameters.AddWithValue("?Secs", strSecs);
-				objCmd.Parameters.AddWithValue("?Payment", strPayment);
-				objCmd.Parameters.AddWithValue("?Accept", boolAccepted);
-				objCmd.Parameters.AddWithValue("?ID", intID);
+				objCmd.Parameters.AddWithValue("@FirstName", strFirstName);
+				objCmd.Parameters.AddWithValue("@LastName", strLastName);
+				objCmd.Parameters.AddWithValue("@Email", strEmail);
+				objCmd.Parameters.AddWithValue("@Club", strClub);
+				objCmd.Parameters.AddWithValue("@EventType", intEventType);
+				objCmd.Parameters.AddWithValue("@Mins", strMins);
+				objCmd.Parameters.AddWithValue("@Secs", strSecs);
+				objCmd.Parameters.AddWithValue("@Payment", strPayment);
+				objCmd.Parameters.AddWithValue("@Accept", boolAccepted);
+				objCmd.Parameters.AddWithValue("@ID", intID);
 				
 				objCmd.ExecuteNonQuery();
 			}
@@ -139,8 +139,8 @@ WHERE IID=?ID
 				objConn.Open();
 				SqlCommand objCmd = objConn.CreateCommand();
 				objCmd.CommandText=
-@"DELETE FROM Entries WHERE IID=?ID";
-				objCmd.Parameters.AddWithValue("?ID", intID);
+@"DELETE FROM Entries WHERE IID=@ID";
+				objCmd.Parameters.AddWithValue("@ID", intID);
 				objCmd.ExecuteNonQuery();
 			}
 			
@@ -168,26 +168,26 @@ WHERE IID=?ID
 @"
 INSERT INTO Entries 
 (FirstName, LastName, Gender, Dob, Addr1, Addr2, Addr3, Addr4, Postcode, Phone, Email, Club, BTFNum, Mins, Secs, Declaration, Payment, Accept, Comments) 
-VALUES (?FirstName, ?LastName, ?Gender, ?Dob, ?Addr1, ?Addr2, ?Addr3, ?Addr4, ?Postcode, ?Phone, ?Email, ?Club, ?BTFNum, ?Mins, ?Secs, 'Y', 
-?Payment, 'Y', ?Comments)
+VALUES (@FirstName, @LastName, @Gender, @Dob, @Addr1, @Addr2, @Addr3, @Addr4, @Postcode, @Phone, @Email, @Club, @BTFNum, @Mins, @Secs, 'Y', 
+@Payment, 'Y', @Comments)
 ";
-				objCmd.Parameters.AddWithValue("?FirstName", txtFirstName.Text);
-				objCmd.Parameters.AddWithValue("?LastName", txtLastName.Text);
-				objCmd.Parameters.AddWithValue("?Gender", ddlGender.SelectedItem.Value);
-				objCmd.Parameters.AddWithValue("?Dob", strDob);
-				objCmd.Parameters.AddWithValue("?Addr1", txtAddr1.Text);
-				objCmd.Parameters.AddWithValue("?Addr2", txtAddr2.Text);
-				objCmd.Parameters.AddWithValue("?Addr3", txtAddr3.Text);
-				objCmd.Parameters.AddWithValue("?Addr4", txtAddr4.Text);
-				objCmd.Parameters.AddWithValue("?Postcode", txtPostcode.Text);
-				objCmd.Parameters.AddWithValue("?Phone", txtPhone.Text);
-				objCmd.Parameters.AddWithValue("?Email", txtEmail.Text);
-				objCmd.Parameters.AddWithValue("?Club", txtClub.Text);
-				objCmd.Parameters.AddWithValue("?BTFNum", txtBTANum.Text);
-				objCmd.Parameters.AddWithValue("?Mins", txtMins.Text);
-				objCmd.Parameters.AddWithValue("?Secs", txtSecs.Text);
-				objCmd.Parameters.AddWithValue("?Payment", txtPayment.Text);
-				objCmd.Parameters.AddWithValue("?Comments", txtComments.Text);
+				objCmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
+				objCmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
+				objCmd.Parameters.AddWithValue("@Gender", ddlGender.SelectedItem.Value);
+				objCmd.Parameters.AddWithValue("@Dob", strDob);
+				objCmd.Parameters.AddWithValue("@Addr1", txtAddr1.Text);
+				objCmd.Parameters.AddWithValue("@Addr2", txtAddr2.Text);
+				objCmd.Parameters.AddWithValue("@Addr3", txtAddr3.Text);
+				objCmd.Parameters.AddWithValue("@Addr4", txtAddr4.Text);
+				objCmd.Parameters.AddWithValue("@Postcode", txtPostcode.Text);
+				objCmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
+				objCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+				objCmd.Parameters.AddWithValue("@Club", txtClub.Text);
+				objCmd.Parameters.AddWithValue("@BTFNum", txtBTANum.Text);
+				objCmd.Parameters.AddWithValue("@Mins", txtMins.Text);
+				objCmd.Parameters.AddWithValue("@Secs", txtSecs.Text);
+				objCmd.Parameters.AddWithValue("@Payment", txtPayment.Text);
+				objCmd.Parameters.AddWithValue("@Comments", txtComments.Text);
 				objCmd.ExecuteNonQuery();
 			}
 			

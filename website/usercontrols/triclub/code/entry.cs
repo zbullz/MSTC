@@ -91,27 +91,27 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 @"
 INSERT INTO Entries (FirstName, LastName, Gender, DOB, Addr1, Addr2, Addr3, Addr4, Postcode, 
 Phone, Email, Club, BTFNum, Mins, Secs, Declaration, Accept, EntryDate, EventType) 
-VALUES (?FirstName, ?LastName, ?Gender, ?DOB, ?Addr1, ?Addr2, ?Addr3, ?Addr4, ?Postcode, 
-?Phone, ?Email, ?Club, ?BTFNum, ?Mins, ?Secs, 1, 0, ?Now, ?EventType)
+VALUES (@FirstName, @LastName, @Gender, @DOB, @Addr1, @Addr2, @Addr3, @Addr4, @Postcode, 
+@Phone, @Email, @Club, @BTFNum, @Mins, @Secs, 1, 0, @Now, @EventType)
 ";
 					
-					objCmd.Parameters.AddWithValue("?FirstName", txtFirstName.Text);
-					objCmd.Parameters.AddWithValue("?LastName", txtLastName.Text);
-					objCmd.Parameters.AddWithValue("?Gender", ddlGender.SelectedItem.Value);
-					objCmd.Parameters.AddWithValue("?DOB", strDOB);
-					objCmd.Parameters.AddWithValue("?Addr1", txtAddr1.Text);
-					objCmd.Parameters.AddWithValue("?Addr2", txtAddr2.Text);
-					objCmd.Parameters.AddWithValue("?Addr3", txtAddr3.Text);
-					objCmd.Parameters.AddWithValue("?Addr4", txtAddr4.Text);
-					objCmd.Parameters.AddWithValue("?Postcode", txtPostcode.Text);
-					objCmd.Parameters.AddWithValue("?Phone", txtPhone.Text);
-					objCmd.Parameters.AddWithValue("?Email", txtEmail.Text);
-					objCmd.Parameters.AddWithValue("?Club", strClub);
-					objCmd.Parameters.AddWithValue("?BTFNum", txtBTF.Text);
-					objCmd.Parameters.AddWithValue("?Mins", ddlSwimMins.SelectedItem.Text);
-					objCmd.Parameters.AddWithValue("?Secs", ddlSwimSecs.SelectedItem.Text);
-					objCmd.Parameters.AddWithValue("?Now", DateTime.Now);
-					objCmd.Parameters.AddWithValue("?EventType", intEventType);
+					objCmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
+					objCmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
+					objCmd.Parameters.AddWithValue("@Gender", ddlGender.SelectedItem.Value);
+					objCmd.Parameters.AddWithValue("@DOB", strDOB);
+					objCmd.Parameters.AddWithValue("@Addr1", txtAddr1.Text);
+					objCmd.Parameters.AddWithValue("@Addr2", txtAddr2.Text);
+					objCmd.Parameters.AddWithValue("@Addr3", txtAddr3.Text);
+					objCmd.Parameters.AddWithValue("@Addr4", txtAddr4.Text);
+					objCmd.Parameters.AddWithValue("@Postcode", txtPostcode.Text);
+					objCmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
+					objCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+					objCmd.Parameters.AddWithValue("@Club", strClub);
+					objCmd.Parameters.AddWithValue("@BTFNum", txtBTF.Text);
+					objCmd.Parameters.AddWithValue("@Mins", ddlSwimMins.SelectedItem.Text);
+					objCmd.Parameters.AddWithValue("@Secs", ddlSwimSecs.SelectedItem.Text);
+					objCmd.Parameters.AddWithValue("@Now", DateTime.Now);
+					objCmd.Parameters.AddWithValue("@EventType", intEventType);
 				
 					objCmd.ExecuteNonQuery();
 				}

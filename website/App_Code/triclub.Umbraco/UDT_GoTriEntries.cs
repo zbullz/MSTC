@@ -101,16 +101,16 @@ ORDER BY EntryDate DESC
 				objCmd.CommandText =
 @"
 UPDATE gotrientries 
-SET FirstName=?FirstName, LastName=?LastName, Email=?Email, PaymentRef=?Payment, Accept=?Accept
-WHERE IID=?ID
+SET FirstName=@FirstName, LastName=@LastName, Email=@Email, PaymentRef=@Payment, Accept=@Accept
+WHERE IID=@ID
 ";
 				
-				objCmd.Parameters.AddWithValue("?FirstName", strFirstName);
-				objCmd.Parameters.AddWithValue("?LastName", strLastName);
-				objCmd.Parameters.AddWithValue("?Email", strEmail);
-				objCmd.Parameters.AddWithValue("?Payment", strPayment);
-				objCmd.Parameters.AddWithValue("?Accept", boolAccepted);
-				objCmd.Parameters.AddWithValue("?ID", intID);
+				objCmd.Parameters.AddWithValue("@FirstName", strFirstName);
+				objCmd.Parameters.AddWithValue("@LastName", strLastName);
+				objCmd.Parameters.AddWithValue("@Email", strEmail);
+				objCmd.Parameters.AddWithValue("@Payment", strPayment);
+				objCmd.Parameters.AddWithValue("@Accept", boolAccepted);
+				objCmd.Parameters.AddWithValue("@ID", intID);
 				
 				objCmd.ExecuteNonQuery();
 			}
@@ -130,8 +130,8 @@ WHERE IID=?ID
 				objConn.Open();
 				SqlCommand objCmd = objConn.CreateCommand();
 				objCmd.CommandText=
-@"DELETE FROM gotrientries WHERE IID=?ID";
-				objCmd.Parameters.AddWithValue("?ID", intID);
+@"DELETE FROM gotrientries WHERE IID=@ID";
+				objCmd.Parameters.AddWithValue("@ID", intID);
 				objCmd.ExecuteNonQuery();
 			}
 			
