@@ -1,2 +1,2 @@
 [config]
-DEPLOYMENT_SOURCE = D:\home\site\repository\website
+DEPLOYMENT_SOURCE = .\website
