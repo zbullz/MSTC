@@ -1,1 +1,2 @@
-azure site deploymentscript -y --no-dot-deployment -r "D:\home\site\repository" -o "D:\home\site\deployments\tools" --aspWebSite --solutionFile "D:\home\site\repository\MSTC.sln" --sitePath "D:\home\site\repository\\website"
+[config]
+sitePath = "D:\home\site\repository\website"
