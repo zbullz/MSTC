@@ -1,0 +1,22 @@
+<imageIndex>
+  <image>
+    <originalFileName>uk_ironman_wimbleball_final.jpg</originalFileName>
+    <size>24290</size>
+    <dateLastModified>2014-02-10 04:57:25</dateLastModified>
+    <cachedImage>
+      <fileName>hjckyz1a.jpeg</fileName>
+      <dateCreated>2014-04-11 10:23:50</dateCreated>
+      <dateLastAccessed>2014-04-14 07:58:27</dateLastAccessed>
+      <imageFormat>jpeg</imageFormat>
+      <compression>80</compression>
+      <width>700</width>
+      <height>358</height>
+      <bgColor>#FFFFFF</bgColor>
+      <transparent>True</transparent>
+      <border>0</border>
+      <borderColor>#000000</borderColor>
+      <constrain>True</constrain>
+      <pad>False</pad>
+    </cachedImage>
+  </image>
+</imageIndex>

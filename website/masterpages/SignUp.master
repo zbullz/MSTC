@@ -1,0 +1,35 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/RunwayMaster.master" AutoEventWireup="true" %>
+<asp:Content ContentPlaceHolderID="RunwayMasterContentPlaceHolder" runat="server">
+ <div id="signin-content">
+    <div id="leftNav">
+
+    </div>
+    <div id="middle-content" class="member-registration">
+      <form runat="server">
+      <script runat="server">
+
+protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
+{
+    Roles.AddUserToRole(CreateUserWizard1.UserName, "Member");
+}
+
+protected void CreateUserWizard1_ContinueButtonClick(object sender, EventArgs e)
+{
+  CreateUserWizard1.ContinueDestinationPageUrl="/about-MSTC/member-area.aspx"; 
+}
+
+</script>
+
+<asp:CreateUserWizard ID="CreateUserWizard1" OnContinueButtonClick="CreateUserWizard1_ContinueButtonClick" OnCreatedUser="CreateUserWizard1_CreatedUser" runat="server">
+    <WizardSteps>
+        <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server"></asp:CreateUserWizardStep>
+        <asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server"></asp:CompleteWizardStep>
+    </WizardSteps>
+</asp:CreateUserWizard>
+      </form>
+    </div>
+    <div id="rightFeatures">
+
+    </div>
+  </div>
+</asp:Content>

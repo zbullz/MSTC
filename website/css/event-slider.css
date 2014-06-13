@@ -1,0 +1,152 @@
+* {margin: 0; padding: 0; outline: none;}
+img {border: none;}
+h1 {
+	font: 3em normal Georgia, "Times New Roman", Times, serif;
+	color: #fff;
+	text-align: center;
+	background: url(h1_bg.gif) no-repeat;
+	text-indent: -99999px;
+	margin: 100px 0 10px;
+}
+.container {
+	overflow: hidden;
+	width: 986px;
+	margin: 0 auto;
+	float:	left;
+}
+/*
+#main {
+	padding: 10px;
+	background: #f0f0f0;
+	border: 1px solid #ccc;
+}
+*/
+a {
+	color: #fff;
+	text-decoration:none;
+}
+ 
+/*--Main Image Preview--*/
+.main_image {
+	width: 668px; height: 456px;
+	float: left;
+	background: #333;
+	position: relative;
+	overflow: hidden;
+	color: #fff;
+}
+.main_image h2 {
+	width:648px;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 0 0 5px;	
+	padding: 10px;
+}
+.main_image p {
+	font-size: 1.2em;
+	padding: 10px;	margin: 0;
+	line-height: 1.6em;
+}
+
+.main_image a, .main_image a:visited {
+	font-size: 14px;
+	font-weight:bold;
+	color:#cd035d;
+}
+
+.main_image a:hover {
+	font-size: 14px;
+	font-weight:bold;
+	color:#74CC1C;
+}
+
+.block small { 
+	padding: 0 0 0 0px; 
+	background: url(icon_calendar.gif) no-repeat 0 center; 
+	font-size: 9px; 
+}
+.main_image .block small {margin-left: 10px;}
+
+.main_image .desc{
+	position: absolute;
+	bottom: 0;	left: 0;
+	width: 100%;
+	display: none;
+}
+.main_image .block{
+	width: 100%;
+	background: #111;
+	border-top: 1px solid #000;
+	position:absolute;
+	bottom:0;
+}
+.main_image a.collapse {
+	background: url(btn_collapse.gif) no-repeat left top;
+	height: 27px; width: 93px;
+	text-indent: -99999px;
+	position: absolute; 
+	top: -27px; right: 20px; 
+}
+.main_image a.show {background-position: left bottom;} 
+ 
+ 
+.image_thumb {
+	float: left;
+	width: 300px;
+}
+
+.image_thumb img {
+	position:absolute;
+	top:0;
+	left:0;
+	height:76px;
+	float: left;
+}
+.image_thumb ul {
+	margin: 0; padding: 0;
+	list-style: none;
+}
+.image_thumb ul li{
+	height:52px;
+	position:relative;
+	margin: 0; 
+	padding: 12px 10px;
+	background: #f0f0f0 url(/images/event-home-right-bg.png) repeat-x;
+	width: 279px;
+	float: left;
+}
+.image_thumb ul li.hover {
+	background: #cd035d;
+	cursor: pointer;
+	color:#FFFFFF;
+}
+.image_thumb ul li.active {
+	background: #fff;
+	cursor: default;
+	color:	#212121;
+}
+
+html .image_thumb ul li h2 {
+	font-size: 14px; 
+	margin: 0px 0; 
+	padding: 0;
+	color:			#212121;
+}
+
+html .image_thumb ul li.active.hover h2 {
+	color:			#212121;
+}
+
+html .image_thumb ul li.hover h2 {
+	color:			#FFFFFF;
+}
+
+
+.image_thumb ul li .block {
+	float: left; 
+	margin-left: 100px;
+	padding: 0;
+	width: 180px;
+}	
+.image_thumb ul li p{display: none;}
+

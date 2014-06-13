@@ -1,0 +1,81 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/JuniorsMaster.master" AutoEventWireup="true" %>
+<%@ Register TagPrefix="cf" Assembly="cfWebControls" Namespace="cFront.WebControls" %>
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+  <link rel="stylesheet" type="text/css" href="/css/slider-style.css" />
+  <link rel="stylesheet" type="text/css" href="/css/home.css" />
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" ></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.5.3/jquery-ui.min.js" ></script>
+  
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $("#slider-featured").tabs({fx:{opacity: "toggle"}}).tabs("rotate", 5000, true); 
+  });
+</script>
+</asp:Content>
+<asp:Content id="RunwayHomepagecontent" ContentPlaceHolderID="RunwayMasterContentPlaceHolder" runat="server">
+	<div id="content" class="clearfix">
+		<div class="image_link">
+			<a href="/mid-sussex-triathlon-juniors/about-mid-sussex-juniors.aspx">
+				<img src="igen.axd?vpath=/media/30742/MidSussexGoTri_July13_303.jpg&size=imageLink" />
+				<div class="info about-us">
+					<h4>About Us</h4>
+					<p>Find out more about Mid Sussex Tri Club Juniors</p>
+				</div>
+			</a>
+		</div>
+		<div class="image_link">
+			<a href="/mid-sussex-triathlon-juniors/tri-hub.aspx">
+				<div class="info tri-hub">
+					<h4>Tri Hub - Junior Training</h4>
+					<p>Triathlon skills training for junior triathletes...</p>
+				</div>
+				<img src="igen.axd?vpath=/media/30762/MidSussexGoTri_July13_358.jpg&size=imageLink" />
+			</a>
+		</div>
+		<div class="image_link">
+			<a href="/mid-sussex-triathlon-juniors/gotri!.aspx">
+				<img src="igen.axd?vpath=/media/30737/MidSussexGoTri_July13_228.jpg&size=imageLink" />
+				<div class="info go-tri">
+					<h4>Go Tri!</h4>
+					<p>More information about our Go Tri! event will be available soon...</p>
+				</div>
+			</a>
+		</div>
+   	</div>
+  <div id="low-content" class="frontPage">
+    <div id="sponsors">
+      <div class="home-lC-title">
+        Sponsors
+      </div>
+      <div id="sponsors-box">
+        <a href="http://www.nuffieldhealth.com/Individuals/Centres/H/Haywards-Heath/" target="_blank"><img src="/images/sponsors-nuffield-health.png" border="0" alt="Nuffield Health" /></a><br />
+    <a href="http://www.sheactive.co.uk/" target="_blank"><img src="/images/sponsors-sheactive.png" border="0" alt="Sheactive" /></a>
+      </div>
+    </div>
+    <div id="tri-links">
+      <div class="home-lC-title">
+        Links
+      </div>
+    <div id="charity-box">
+      <a href="http://www.thedtgroup.org/" title="Visit The Disabilities Trust website" target="_blank"><img src="/images/disabilities-trust-logo.png" alt="Disabilities Trust Logo" title="Supporters of The Disabilities Trust" /></a>
+      <span class="charity-note">As Mid Sussex Triathlon Clubs we support <a href="http://www.thedtgroup.org/" title="Visit The Disabilities Trust website" target="_blank">The Disabilities Trust</a></span>
+    </div>
+    <div id="tri-links-box">
+      <img src="/images/itu.png" />
+      <img src="/images/tri-links-tri-talk.png" />
+      <img src="/images/tri-links-btf.png" style="margin-right:0;" />
+    </div>
+  </div>
+    <div id="connect">
+      <div class="home-lC-title">
+        Connect with us
+      </div>
+      <div id="connect-box">
+        <a href="http://www.facebook.com/group.php?gid=2363043378" target="_blank"><img src="/images/facebook-16.png" border="0" /></a>
+        <a href="http://www.flickr.com/groups/midsussextriclub/" target="_blank"><img src="/images/flickr-16.png" border="0" /></a>
+        <a href="#" target="_blank"><img src="/images/twitter-16.png" border="0" /></a>
+        <a href="#" target="_blank"><img src="/images/youtube-16.png" border="0" /></a>
+      </div>
+    </div>
+  </div>
+</asp:Content>

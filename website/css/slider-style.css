@@ -1,0 +1,119 @@
+ul, ol {
+	margin:0;
+	}
+
+#slider-featured{ 
+	height:250px; 
+	overflow: hidden;
+}
+
+#slider-featured div.ui-tabs-nav { 
+	position:relative;
+	top:-30px;
+	height:22px;
+}
+
+#slider-featured ul.ui-tabs-nav { 
+	float:left;
+	list-style:none; 
+	padding:0; 
+	z-index:10;
+}
+#slider-featured ul.ui-tabs-nav li {
+	display:block; 
+	float:left;
+	padding:0px 0; 
+	padding-left:13px;  
+	font-size:12px; 
+	color:#666; 
+	font-weight:bold;
+}
+#slider-featured ul.ui-tabs-nav li img { 
+	float:left; 
+	margin:2px 5px; 
+	background:#fff; 
+	padding:2px; 
+	border:1px solid #eee;
+	
+}
+
+#slider-featured ul.ui-tabs-nav li.img-cover { 
+	background-image:url('/images/slider-image-colour.png');
+	display:block; 
+	float:left;
+	padding:0px 0; 
+	font-size:12px; 
+	color:#666; 
+	font-weight:bold;
+	height:30px;
+	width:440px;
+	
+	
+}
+#slider-featured ul.ui-tabs-nav li span { 
+	font-size:11px; 
+	font-family:Verdana; 
+	padding-top:12px;
+	display:block;
+	float:left;
+	padding-right:10px;
+}
+#slider-featured li.ui-tabs-nav-item a { 
+	display:block; 
+	color:#999999;  
+	background:#F6F6F6;
+	padding:2px 8px 2px 8px;
+	text-decoration:none; 
+	background-color:	
+}
+#slider-featured li.ui-tabs-nav-item a:hover{ 
+	background:#FFF10A;
+}
+#slider-featured li.ui-tabs-selected{ 
+	background:none;  
+}
+#slider-featured ul.ui-tabs-nav li.ui-tabs-selected a { 
+	background:#FFF10A;
+	color: #212121;
+}
+#slider-featured .ui-tabs-panel { 
+	height:250px; 
+	float:left;
+	z-index:0;
+}
+
+#slider-featured .ui-tabs-panel img { 
+	float:left;
+	width:440px;
+	/*height:250px;*/
+}
+
+#slider-featured .ui-tabs-panel .info { 
+	float:left;
+	width:225px;
+	margin: 15px 5px 0px 10px;
+	height: 200px;
+	z-index:0;
+}
+#slider-featured .info h2 { 
+	font-size:20px; 
+	font-family: 		'Arvo', arial, serif;
+	color:#fff; padding:5px; margin:0;
+	overflow:hidden;
+	font-weight:bold;
+}
+#slider-featured .info p { 
+	margin:0 5px; 
+	font-family:Verdana; font-size:11px; 
+	line-height:15px; 
+}
+#slider-featured .info a { 
+	text-decoration:none; 
+}
+#slider-featured .info a:hover { 
+	text-decoration:underline; 
+}
+#slider-featured .ui-tabs-hide{ 
+	display:none;
+	z-index:0; 
+}

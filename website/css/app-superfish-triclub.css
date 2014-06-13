@@ -1,0 +1,159 @@
+/*
+The default Runway stylesheet sets the padding for ul links using an element id, which overrides
+the Superfish padding and makes menu items (particularly with dropdown arrows) ugly; this fixes that.
+*/
+#top ul li a {
+  padding: 0.75em 1em;
+}
+
+#top ul li a.sf-with-ul {
+  padding-right: 2.25em;
+}
+
+/*
+Class added by cfNavigator to the menu item for the current page
+*/
+.sf-menu {
+	float:				left;
+	margin-bottom:		0px;
+	background:	none;
+}
+
+.sf-menu ul 		{ width:260px; /* left offset of submenus need to match (see below) */ }
+
+.sf-menu li.currentMenuItem {
+	background: 	none;
+}
+
+.sf-menu li {
+	border:				0;
+	margin:				0;
+	font-family: 		'Avenir LT Std', arial, serif;
+	font-size:			16px;
+	text-transform:		uppercase;
+	text-align:			center;
+	background:			none;
+}
+
+.sf-menu li a {
+	color: 					#FFFFFF;
+}
+
+.sf-menu li a:hover {
+	color: 				#000000;
+	background: 		#FFF10A; /*url('/images/menu-bg.png');*/
+}
+
+/* 
+	Main menu text indent to get equal spacing between the menu items and the fleur de lis icons 
+*/
+
+.sf-menu li.mi-home {text-indent:40px;}
+.sf-menu li.mi-profile {text-indent:20px;}
+.sf-menu li.mi-services {text-indent:14px;}
+.sf-menu li.mi-products {text-indent:11px;}
+.sf-menu li.mi-clients {text-indent:17px;}
+.sf-menu li.mi-contacts {text-indent:10px;}
+
+.sf-menu li a:visited {
+	color: 					#FFFFFF;
+}
+
+.sf-menu li a:visited:hover {
+	color: 					#000000;
+}
+
+.sf-menu li:hover, .sf-menu li.sfHover,
+.sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
+	outline:				0;
+	background-color:		#FFF10A;
+	color:					#000000;
+}
+
+.sf-menu li.sfHover a, .sf-menu a:active {
+	color:					#000000;
+}
+
+.sf-menu li ul li.child a, .sf-menu li ul li.child a:visited {
+	color:					#FFF10A;
+	text-align:left;
+}
+
+.sf-menu li ul li.child a:hover {
+	color:					#000000;
+}
+
+.sf-menu a {
+	border:			0;
+	padding: 		.75em 1em;
+	text-decoration:none;
+	background:		none;
+}
+
+.sf-sub-indicator {
+	position:		absolute;
+	display:		block;
+	right:			.75em;
+	top:			1.05em; /* IE6 only */
+	width:			10px;
+	height:			10px;
+	text-indent: 	-999em;
+	overflow:		hidden;
+	background:		0;/*url('../images/arrows-ffffff.png') no-repeat -10px -100px; / 8-bit indexed alpha png. IE6 gets solid image only */
+}
+
+.sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
+	background: 		#FFF10A; /*url('/images/menu-bg.png');*/
+	outline:			0;
+	color:				#000000;
+}
+
+.sf-menu li li 				{ background:rgba(0,0,0,0.5) url('/images/menu-bg.png'); font-size:14px; color:#FFF10A; }
+.sf-menu li li li {
+	background-image: 		url('/images/menu-bg.png');
+	font-size:				14px;
+	color:					#FFF10A;
+}
+
+.sf-menu li li a, .sf-menu li li a:visited {
+	color:					#FFF10A;
+}
+.sf-menu li li li a {
+	color:					#FFF10A;
+}
+
+div.entry-meta {
+	clear:left;
+	font-size:85%;
+	line-height:1.4em;
+	padding-top:5px;
+	text-align:left;
+}
+
+div#menu ul.sf-menu li.sfHover {
+	color:					#000000;
+}
+
+.sf-menu li {
+	padding: 0px 10px;
+	min-width:		1px; /* trigger IE7 hasLayout so spans position accurately */
+}
+
+div.forum-link {
+	display:none;
+}
+
+ul.sf-menu li li:hover ul,
+ul.sf-menu li li.sfHover ul {
+	left:			200px; /* match ul width */
+	top:			0;
+}
+
+ul.sf-menu li li li:hover ul,
+ul.sf-menu li li li.sfHover ul {
+	left:			200px; /* match ul width */
+	top:			0;
+}
+
+
+/* EDITOR PROPERTIES - PLEASE DON'T DELETE THIS LINE TO AVOID DUPLICATE PROPERTIES */

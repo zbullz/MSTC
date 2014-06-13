@@ -1,0 +1,14 @@
+input, textarea, select { background:#333; color:#FFF; border:none; padding: 4px 6px; border-radius:4px;  font-size: 14px; font-family: verdana; }
+
+label 					{font-family:'Avenir LT Std', verdana, arial, serif; font-weight:bold; float:left; width:210px; font-size: 17px; margin-top:6px; }
+
+textarea 				{ height:140px; width:400px;}
+
+p.contacts_form_button {
+	font-weight:bold; 
+	font-size:120%; 
+	color:#00519E; 
+	padding-top:14px; 
+	border-top:1px dashed #333333; 
+	text-align:right;
+}

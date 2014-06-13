@@ -1,0 +1,133 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/umbraco/masterpages/default.master" AutoEventWireup="true" %>
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderDefault" runat="server">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"[]> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head id="head" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title><asp:placeholder runat="server"><umbraco:Item runat="server" field="pageName" /> - <umbraco:Item runat="server" field="siteName" recursive="true" /></asp:placeholder></title>
+    <link rel="stylesheet" type="text/css" href="/css/runway.css" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+  <meta property="og:image" content="http://www.midsussextriclub.com/images/MSTC_logo.png"/>
+  
+  <!-- NAVIGATION MENU STYLES -->
+  <link href='http://fonts.googleapis.com/css?family=Arvo:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/css/superfish.css" />
+    <link rel="stylesheet" type="text/css" href="/css/superfish-vertical.css" />
+    <!--<link rel="stylesheet" type="text/css" href="/css/superfish-navbar.css" />-->
+    <link rel="stylesheet" type="text/css" href="/css/app-superfish-main.css" />
+    <!-- /NAVIGATION MENU STYLES -->
+  
+  <!-- COMMON SCRIPTS -->
+  <script type="text/javascript" src="/scripts/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="/scripts/jquery.hoverIntent.js"></script>
+    <script type="text/javascript" src="/scripts/jquery.bgiframe.min.js"></script>
+    <!-- /COMMON SCRIPTS -->    
+    <!-- NAVIGATION MENU SCRIPTS -->
+    <script type="text/javascript" src="/scripts/superfish.js"></script>
+    <!-- Super subs - advances width handling for sub menus. See http://users.tpg.com.au/j_birch/plugins/superfish/#sample5 -->
+    <!--<script type="text/javascript" src="/scripts/supersubs.js"></script>-->
+    <!-- /NAVIGATION MENU SCRIPTS -->
+    
+    <!-- CORE APPLICATION SCRIPTS -->
+    <script type="text/javascript" src="/scripts/app-core.js"></script>
+    <!-- /CORE APPLICATION SCRIPTS -->
+  
+  <!-- Google Analytics script -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-16134591-11']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+        
+  <asp:ContentPlaceHolder ID="PageScripts" runat="server"></asp:ContentPlaceHolder>
+  </head>
+  <body>
+  <div id="verytop">
+    <div id="verytop-menu">
+      <ul class="verytop-menu">
+        <li class="mstc-site">
+        <a href="/">MSTC SITE</a>
+        </li>
+        <li class="splitter">
+        |
+        </li>
+        <li>
+        <a href="/the-mid-sussex-triathlon.aspx">THE MID SUSSEX TRIATHLON</a>
+        </li>
+        <li>
+        <a href="/mid-sussex-triathlon-juniors.aspx">JUNIORS</a>
+        </li>
+      </ul>
+    </div>
+    <div id="verytop-search-form">
+      <form id="RunwayMasterForm" method="get" action="/search.aspx">
+        <a href="http://www.facebook.com/group.php?gid=2363043378" target="_blank" title="Connect with Mid Sussex Triathlon Club on Facebook" ><img src="/images/facebook-16.png" border="0" alt="Facebook Icon" /></a>
+        <a href="http://www.flickr.com/groups/midsussextriclub/" target="_blank" title="View Mid Sussex Triathlon Club's photos on Flickr" ><img src="/images/flickr-16.png" border="0" alt="Flickr Icon" /></a>
+        <a href="#" target="_blank"><img src="/images/twitter-16.png" border="0" alt="Twitter Icon" title="NOT LIVE YET - Follow Mid Sussex Triathlon Club on Twitter" /></a>
+        <a href="#" target="_blank"><img src="/images/youtube-16.png" border="0" alt="You Tube Icon" title="NOT LIVE YET - Watch Mid Sussex Triathlon Club Videos on You Tube" /></a>
+        <a href="http://www.midsussextriclub.com/news/rss.aspx" title="Subscribe to the Mid Sussex Triathlon Club News Feed - RSS" ><img src="/images/rss-16.png" border="0" alt="RSS Feed" /></a>
+          <input name="search" type="text" class="input" value="" />
+          <input type="submit" value="Fetch!" class="submit" />
+      </form>
+    </div>
+  </div>
+    <div id="main">
+    <div id="white-shadow">
+      <div id="logo-header">
+        <div id="MSTC-logo">
+        <a href="/"><img src="/images/MSTC_logo.png" alt="Mid Sussex Triathlon Club Logo" title="Mid Sussex Triathlon Club Logo" /></a>
+        </div>
+        <div id="header-text">
+        <h4>Triathlon</h4>, Duathlon, Aquathlon, Swimming, <br />
+        Running, <h4>Cycling</h4>, Time Trials, <h4 style="color:white">Open Water</h4> <br />
+        <h4 style="color:white">Swimming</h4>, Cross Country, Road Racing club <br />
+        for <h4 style="color:white">Mid Sussex</h4> and beyond... 
+        </div>
+        <div id="top-ads">
+          Sponsored by<br />
+          <a href="http://www.nuffieldhealth.com/Individuals/Centres/H/Haywards-Heath/" target="_blank" title="Visit the website for your local Nuffield Hospital"><img src="/images/nuffield-health.png" alt="Nuffield Health" border="0" /></a>
+        </div>
+        <!--<h1 id="siteName"><a href="/"><umbraco:Item runat="server" field="siteName" recursive="true" /></a></h1>
+        <h2 id="siteDescription"><umbraco:Item runat="server" field="siteDescription" recursive="true" /></h2>-->
+      </div>
+      <div id="menu">
+        <umbraco:Macro Alias="cfNavigation" skipFirstLevel="True" startNodeId="1048" runat="server"></umbraco:Macro>
+        <div class="forum-link"><a href="http://forums.midsussextriclub.com">FORUMS</a></div>
+      </div>
+      <div id="body">
+        <asp:ContentPlaceHolder ID="RunwayMasterContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+      </div>
+      <div id="footer">
+        <div class="footer-left">
+        © Mid Sussex Triathlon Club <SCRIPT LANGUAGE="JAVASCRIPT">
+    <!--
+
+    var dt = new Date();
+    var crnt_year = dt.getFullYear();
+
+    document.write(crnt_year);
+
+    //-->
+    </SCRIPT>.
+        </div>
+        <div class="footer-middle">
+        <a href="/sitemap.aspx">Sitemap</a> | 
+        <a href="/terms-conditions.aspx">Terms of use</a> | 
+        <a href="/contact-us.aspx">Contact us</a>
+        </div>
+        <div class="footer-right">
+        website by <a href="http://www.cfront.co.uk" target="_blank">cFront Software</a> - Brighton.
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+</html> 
+</asp:content>

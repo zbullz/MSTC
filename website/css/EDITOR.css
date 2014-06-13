@@ -1,0 +1,35 @@
+
+
+/* EDITOR PROPERTIES - PLEASE DON'T DELETE THIS LINE TO AVOID DUPLICATE PROPERTIES */
+.pageSubtitle {
+font-weight:bold; color:#74CC1C; font-size:18px; font-family:'Avenir LT 65 Medium', arial, serif;
+}
+
+.imageLeft {
+float:left margin:10px 10px 10px 0; border:0;
+}
+
+.imageRight {
+float:right; margin:0px 10px 10px 10px; border:0;
+}
+
+.clearLine {
+display:block; width:100%; clear:both;
+}
+
+h2 {
+font-family: 'Arvo', arial, serif; font-size: 16px; color: #333; font-weight: bold; margin: 0;
+}
+
+.eventtype {
+font-weight: bold; background-color: #CCC;
+}
+
+.record_title {
+font-weight: bold;
+}
+
+.standard-text {
+font-size: 12px; font-family:Verdana, "Lucida Grande", Arial, sans-serif; color:#000000;
+}
+

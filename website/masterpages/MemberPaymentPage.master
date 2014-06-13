@@ -1,0 +1,132 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/RunwayMaster.master" AutoEventWireup="true" %>
+<%@ Register TagPrefix="cf" Assembly="cfWebControls" Namespace="cFront.WebControls" %>
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+  <!-- CSS STYLES -->
+  <link rel="stylesheet" type="text/css" href="/css/events-page.css" />
+  <link rel="stylesheet" type="text/css" href="/umbraco_client/DateTimePicker/datetimepicker.css?cdv=1" />
+  <!-- SCRIPTS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js" type="text/javascript"></script> 
+  <script src="http://jquery-ui.googlecode.com/svn/tags/latest/external/jquery.bgiframe-2.1.2.js" type="text/javascript"></script> 
+  
+  <style>
+	div#rightFeatures #memberSubs a {display:none;}
+  </style>
+  
+</asp:Content>
+<asp:Content ContentPlaceHolderID="RunwayMasterContentPlaceHolder" runat="server">
+<form runat="server">
+  <!--<div id="feature">
+    <div id="home-mashedlogo">
+      <asp:LoginView ID="UmbracoLoginView" runat="server">
+        <AnonymousTemplate>
+          <cf:Login ID="Login1" TitleText="Members Login" runat="server"></cf:Login>
+        </AnonymousTemplate>
+        <LoggedInTemplate>
+          Welcome
+          <asp:LoginName ID="LoginName1" runat="server" />
+          <a href="/about-MSTC/member-area.aspx">My details</a><br />
+          <asp:LoginStatus ID="LoginStatus1" runat="server" />
+        </LoggedInTemplate>
+      </asp:LoginView>
+    </div>
+    <div id="textpage-feature">
+      <img src='<umbraco:item id="ImageItem1" runat="server" field="mainImg" xslt="umbraco.library:GetMedia({0}, 0)/umbracoFile" textIfEmpty="/media/2027/default.jpg"></umbraco:item>'/>
+      <div class="feature-info" >
+        <h2><umbraco:Item runat="server" field="featureTitle" /></h2>
+        <umbraco:Item runat="server" field="featureText" />
+      </div>
+      <div id="img-yellow-title"><h2><umbraco:Item runat="server" field="pageName"/></h2></div>
+    </div>
+  </div>-->
+</form>  
+  <div id="memberContent">
+    <div id="leftNav">
+      <h2>
+        Secret Stuff
+      </h2>
+        <umbraco:Macro Alias="cfNavigation" startNodeId="1347" customCssClass="pageSubMenu" orientation="vertical" runat="server" />
+    </div>
+    <div id="middle-content">
+		<div class="help clearfix">
+			<p>
+				Click <strong>Add to cart</strong> for the membership and swim subs you require. You may select as many items as you need.
+			</p>
+			<p>
+				In the Paypal checkout process please add your name and any other notes in the "Notes to seller" section.
+			</p>
+		</div>
+      <div class="paypal_basket">
+			<h2>Annual Membership</h2>
+			<table class="membership_payment">
+				<tr>
+					<td class="type">Individual (18 years or above)</td>
+					<td class="price">£30</td>
+					<td class="control">
+						<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+							<input type="hidden" name="cmd" value="_s-xclick">
+							<input type="hidden" name="hosted_button_id" value="6TESTNWRWG93W">
+							<button border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">Add to cart</button>
+							<img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+						</form>
+					</td>
+				</tr>
+				<tr>
+					<td class="type">Couple</td>
+					<td class="price">£50</td>
+					<td class="control">
+						<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+							<input type="hidden" name="cmd" value="_s-xclick">
+							<input type="hidden" name="hosted_button_id" value="4RTNKHCC5C7GA">
+							<button border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">Add to cart</button>
+							<img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+						</form>
+					</td>
+				</tr>
+				<tr>
+					<td class="type">Unemployed/full-time student (18 years or above)</td>
+					<td class="price">£20</td>
+					<td class="control">
+						<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+							<input type="hidden" name="cmd" value="_s-xclick">
+							<input type="hidden" name="hosted_button_id" value="K45EJJFLBV57Y">
+							<button border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">Add to cart</button>
+							<img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+						</form>
+					</td>
+				</tr>
+			</table>
+			
+			<h2>Swim Subs</h2>
+			<table class="membership_payment">
+				<tr>
+					<td class="type">Swim subs (Jan – Jun)</td>
+					<td class="price">£30</td>
+					<td class="control">
+						<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+							<input type="hidden" name="cmd" value="_s-xclick">
+							<input type="hidden" name="hosted_button_id" value="RABT6A2MHF9SA">
+							<button border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">Add to cart</button>
+							<img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+						</form>
+					</td>
+				</tr>
+				<tr>
+					<td class="type">Swim subs (Jul – Dec)</td>
+					<td class="price">£30</td>
+					<td class="control">
+						<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+							<input type="hidden" name="cmd" value="_s-xclick">
+							<input type="hidden" name="hosted_button_id" value="KN5PFTTX36HFS">
+							<button border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">Add to cart</button>
+							<img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+						</form>
+					</td>
+				</tr>
+			</table>
+      </div>
+    </div>
+    <div id="rightFeatures">
+      <umbraco:Macro Alias="triclubEditMemberExtraInfo" runat="server" />
+    </div>
+  </div>
+</asp:Content>

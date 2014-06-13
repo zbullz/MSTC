@@ -1,0 +1,59 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/RunwayMaster.master" AutoEventWireup="true" %>
+<%@ Register TagPrefix="cf" Assembly="cfWebControls" Namespace="cFront.WebControls" %>
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+  <!-- CSS STYLES -->
+  <link rel="stylesheet" type="text/css" href="/css/events-page.css" />
+  <link rel="stylesheet" type="text/css" href="/css/flickrbadgelight.css" />
+  <link rel="stylesheet" type="text/css" href="/umbraco_client/DateTimePicker/datetimepicker.css?cdv=1" />
+  <!-- SCRIPTS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js" type="text/javascript"></script> 
+  <script src="http://jquery-ui.googlecode.com/svn/tags/latest/external/jquery.bgiframe-2.1.2.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    $.getJSON("http://api.flickr.com/services/feeds/groups_pool.gne?id=642144@N20&lang=en-us&format=json&jsoncallback=?", function(data){
+      $.each(data.items, function(i, item) {
+        $("<img/>").attr("src", item.media.m).appendTo("#images")
+        .wrap("<a href='" + item.link + "'></a>");
+        if ( i == 19 ) return false;
+      });
+    });
+  </script> 
+</asp:Content>
+<asp:Content ContentPlaceHolderID="RunwayMasterContentPlaceHolder" runat="server">
+  <div id="feature">
+    <div id="home-mashedlogo">
+      <form runat="server">
+      <asp:LoginView ID="UmbracoLoginView" runat="server">
+        <AnonymousTemplate>
+          <cf:Login ID="Login1" TitleText="Members Login" runat="server"></cf:Login>
+        </AnonymousTemplate>
+        <LoggedInTemplate>
+          Welcome
+          <asp:LoginName ID="LoginName1" runat="server" />
+          <a href="/about-MSTC/member-area.aspx">My details</a><br />
+          <asp:LoginStatus ID="LoginStatus1" runat="server" />
+        </LoggedInTemplate>
+      </asp:LoginView>
+      </form>
+    </div>
+    <div id="textpage-feature">
+      <img src='<umbraco:item id="ImageItem1" runat="server" field="mainImg" xslt="umbraco.library:GetMedia({0}, 0)/umbracoFile" textIfEmpty="/media/5750/default.jpg"></umbraco:item>'/>
+      <div class="feature-info" >
+        <h2><umbraco:Item runat="server" field="featureTitle" /></h2>
+        <p><umbraco:Item runat="server" field="featureText" />
+        </p>
+      </div>
+      <div id="img-yellow-title"><h2><umbraco:Item runat="server" field="pageName"/></h2></div>
+    </div>
+  </div>
+  <div id="content">
+    <div id="leftNav">
+      <umbraco:Item runat="server" field="leftNav" textIfEmpty="&nbsp;" />
+    </div>
+    <div id="middle-content">
+      <umbraco:Item runat="server" field="bodyText" />
+    </div>
+    <div id="rightFeatures">
+      <umbraco:Item runat="server" field="rightFeatures" textIfEmpty="&nbsp;" />
+    </div>
+  </div>
+</asp:Content>

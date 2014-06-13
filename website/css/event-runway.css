@@ -1,0 +1,391 @@
+/*LAYOUT*/
+/* CSS Document 
+COLORS:
+Yellow:#FFF10A;
+
+*/
+html {
+	overflow-y:			scroll;
+}
+
+body {
+	text-align: center; 
+	padding: 0px; 
+	margin: 0px; 
+	background: #F6F7F9;
+}
+
+#main {
+	margin: 		auto; 
+	text-align: 	left;
+	width: 			968px;
+}
+
+#top	{
+	
+}
+
+#top ul{list-style: none; padding: 0px 0px 15px 0px; margin: 0px;}
+#top ul li{display: inline; margin: 0px; padding: 0xp;}
+#top ul li a{padding: 10px;}
+
+#body{margin: auto; padding: 2em 0em 2em 0em;}
+
+/* Subpages layout */
+#content{text-align: left;}
+
+#subNavigation{width: 20em; float: right;}
+#subNavigation ul{list-style: none; border: 1px solid #FFE8CD; background: #FFF9D8;}
+
+/* FONTS standards */
+body {font-size: 13px; background:#fff; 
+		font-family: Verdana, "Lucida Grande", Arial, sans-serif;}
+
+h1, h2, h3, h4, h5, h6 {color: #426FC8; font-weight: 500;}
+h1 {font-size:60px; line-height: 1; margin-bottom:0.5em; font-weight: bold; text-align: center; letter-spacing: -1px; width: auto; color: #666;}
+h2 {font-size:25px; margin-bottom:0.75em;}
+
+h3 {font-size: 18px;line-height:1;margin-bottom:1em;}
+h4 {font-size:1.2em;line-height:1.25;margin-bottom:1.25em;height:1.25em;}
+h5 {font-size:1em;font-weight:bold;margin-bottom:1.5em;}
+h6 {font-size:1em;font-weight:bold;}
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {margin:0;}
+
+p {
+	color: #FFFFFF;
+}
+
+p img.right {float:right;margin:1.5em 0 1.5em 1.5em;}
+
+/* LINKS standards */
+a:focus, a:hover {color:#000;}
+a {color: #14223E;text-decoration:underline;}
+h1 a{color: #666; text-decoration: none;}
+
+/* ELEMENTS standards */
+blockquote {margin:1.5em;color:#666;font-style:italic;}
+strong {font-weight:bold;}
+em, dfn {font-style:italic;}
+dfn {font-weight:bold;}
+sup, sub {line-height:0;}
+abbr, acronym {border-bottom:1px dotted #666;}
+address {margin:0 0 1.5em;font-style:italic;}
+del {color:#666;}
+pre, code {margin:1.5em 0;white-space:pre;}
+pre, code, tt {font:1em 'andale mono', 'lucida console', monospace;line-height:1.5;}
+li ul, li ol {margin:0 1.5em;}
+ul, ol {margin:0 1.5em 1.5em 1.5em;}
+ul {list-style-type:disc;}
+ol {list-style-type:decimal;}
+dl {margin:0 0 1.5em 0;}
+dl dt {font-weight:bold;}
+dd {margin-left:1.5em;}
+table {margin-bottom:1.4em;width:100%;}
+th {font-weight:bold;background:#C3D9FF;}
+th, td {padding:4px 10px 4px 5px;}
+tr.even td {background:#E5ECF9;}
+tfoot {font-style:italic;}
+caption {background:#eee;}
+
+/* FORM ELEMENTS */
+label {font-weight:bold;}
+fieldset {padding:1.4em;margin:0 0 1.5em 0;border:1px solid #ccc;}
+legend {font-weight:bold;font-size:1.2em;}
+input.text, input.title, textarea, select {margin:0.5em 0;border:1px solid #bbb;}
+input.text:focus, input.title:focus, textarea:focus, select:focus {border:1px solid #666;}
+input.text, input.title {width:300px;padding:5px;}
+input.title {font-size:1.5em;}
+textarea {width:300px;height:250px;padding:5px;}
+.error, .notice, .success {padding:.8em;margin-bottom:1em;border:2px solid #ddd;}
+.error {background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4;}
+.notice {background:#FFF6BF;color:#514721;border-color:#FFD324;}
+.success {background:#E6EFC2;color:#264409;border-color:#C6D880;}
+.error a {color:#8a1f11;}
+.notice a {color:#514721;}
+.success a {color:#264409;}
+
+.error ul{margin-bottom: 0; padding-bottom: 0;}
+
+/* MID SUSSEX TRIATHLON SPECIFIC CLUB STYLES */
+
+/* colors
+yellow: #FFF10A
+*/
+
+#verytop {
+	font-family: 		'Arvo', arial, serif;
+	color:				#FFFFFF;
+	background-color:	#333333;
+	text-align:			left;
+	background-image:	url('/images/yellow-band.png');
+	background-repeat:	no-repeat;
+	background-position: 40% 0;
+	margin-bottom:		0;
+	height:				28px;
+	float:				left;
+	width:				100%;
+	padding:0;
+}
+
+#verytop a {
+	text-decoration:	none;
+	color:				#999999;
+}
+
+#verytop a:hover {
+	text-decoration:	none;
+	color:				#FFF10A;
+}
+
+div#verytop-menu {
+	float:left;
+	width: 67%;
+	padding:			6px 0px 0px 6px;
+}
+
+div#verytop-search-form {
+	float:				left;
+	margin-top:			5px;
+}
+
+div#verytop-search-form input {
+	background-color:	#999999;
+	border:				1px solid #999999;
+	font-size:			10px;
+	padding:			1px 2px;
+	letter-spacing:		1px;
+	color:				#EFEFEF;
+}
+
+div#verytop-search-form input.submit {
+	background-color:	#999999;
+	border:				1px solid #999999;
+	font-size:			10px;
+	font-weight:		bold;
+	padding:			1px 4px 2px 4px;
+	letter-spacing:		1px;
+	color:				#EFEFEF;
+}
+
+div#verytop-search-form input.submit:hover {
+	background-color:	#FFF10A;
+	border:				1px solid #FFF10A;
+	color:				#111111;
+}
+
+
+div#verytop-search-form img {
+	vertical-align:		bottom;
+	margin:				0px 3px 0px 0px;
+	border:				0;
+}
+
+ul.verytop-menu {
+	margin:				0;
+	padding:			0;
+	list-style:			none;
+}
+
+ul.verytop-menu li {
+	display:			inline;
+	padding:			0px 20px 0px 0px;
+	font-size:			12px;
+}
+
+ul.verytop-menu li.mstc-site {
+	font-weight:		bold;
+}
+
+ul.verytop-menu li.splitter {
+	
+}
+
+div#logo-header {
+	width:				100%;
+	float:				left;
+	display:			block;
+	height:				140px;
+}
+
+div#logo-header > #MSTC-logo {
+	width:				240px;
+	float:				left;
+}
+
+div#logo-header > #social-search {
+	float:				left;
+	text-align:			right;
+	width:				728px;
+}
+
+div#logo-header > #social-search img {
+	margin:				2px 4px 0px 0px;
+	border:				0;
+	vertical-align:		top;
+}
+
+div#logo-header > #social-search input {
+	font-family:		verdana;
+	font-size:			11px;
+	margin:				0;
+	padding:			1px 2px;
+}
+
+div#logo-header > #social-search .submit {
+	font-family:		verdana, 'Avenir LT Std', arial, serif;
+	font-size:			10px;
+	font-weight:		bold;
+	color:				#cccccc;
+	background-color:	#000000;
+	border:				1px solid #000000;
+	margin:				0;
+	padding:			2px 3px;
+}
+
+div#logo-header > #social-search .submit:hover {
+	color:				#FFF10A;
+	border:				1px solid #999999;
+}
+
+
+div#xsltsearch {
+	float:				right;
+	margin:				0px 0px 0px 6px;
+}
+
+div#logo-header > #top-ads {
+	color:				#55AB24;
+	font-size:			14px;
+	font-weight:		bold;
+	float:				left;
+	width:				688px;
+	margin:				20px 0 0 40px;
+}
+
+div#logo-header > #top-ads img {
+	border:				0;
+	margin:				8px 0px 0px 10px;
+}
+
+
+#menu {
+	float:				left;
+	width:				100%;
+	border-top:			3px solid #FFF10A;
+}
+
+
+div.forum-link a {
+	color:				#E2B424;
+	font-family: 		'Avenir LT Std', arial, serif;
+	text-decoration:	none;
+	text-align:			right;
+	float:				right;
+	font-size:			16px;
+}
+
+/* feature styles */
+
+#feature {
+	border:				0;
+	height:				300px;
+	width:				100%;
+	float:				left;
+	margin:				0px 0px 20px 0px;
+	background:			#000000;
+}
+
+
+/* Content styles */
+
+#contentLeft {
+	float:				left;
+	width:				638px;
+	padding-right:		15px;
+}
+
+#contentRight {
+	float:				left;
+	width:				300px;
+	padding-left:		15px;
+}
+
+div.home-cL-title {
+	margin:				0px 0px 10px 0px;
+}
+
+span.cL-feature-title {
+	font-family: 		'Avenir LT 65 Medium', arial, serif;
+	font-weight:		bold;
+	font-size:			36px;
+	margin-right:		10px;
+}
+
+span.cL-feature-title-y {
+	font-family: 		'Avenir LT 65 Medium', arial, serif;
+	font-weight:		bold;
+	font-size:			36px;
+	color:				#FFF10A;
+}
+
+/* FOOTER STYLES */
+
+div#footer {
+	clear:				both;
+	border-top:			1px solid #EDEDED;
+	padding:			10px 4px;
+	color:				#999999;
+	font-size:			10px;
+	margin-top:			10px;
+}
+
+div#footer .footer-left {
+	width:				220px;
+	float:				left;
+	margin-top:			2px;
+}
+
+div#footer .footer-middle {
+	width:				400px;
+	float:				left;
+}
+
+div#footer .footer-middle img {
+	border:				1px solid EDEDED;
+	margin-right:		4px;
+}
+
+div#footer .footer-right {
+	width:				338px;
+	float:				left;
+	text-align:			right;
+	background-image:	url('/themes/triclub/cfront-16.png');
+	background-position: 35px 0px;
+	background-repeat:	no-repeat;
+	height:				18px;
+	padding-top:			2px;
+}
+
+div#footer .footer-right a {
+	color:				#06B6CB;
+	text-decoration:	none;
+}
+
+div#footer .footer-right a:hover {
+	color:				#07808F;
+	text-decoration:	none;
+}
+
+/* clearfix */
+
+.clearfix:before,
+.clearfix:after {
+  content: ".";    
+  display: block;    
+  height: 0;    
+  overflow: hidden; 
+}
+.clearfix:after {clear: both;}
+.clearfix {zoom: 1;} /* IE < 8 */
+
+/* EDITOR PROPERTIES - PLEASE DON'T DELETE THIS LINE TO AVOID DUPLICATE PROPERTIES */

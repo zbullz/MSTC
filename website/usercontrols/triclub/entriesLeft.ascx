@@ -1,0 +1,2 @@
+<%@ Control Inherits="cFront.Projects.CFSL.Web.UI.UserControls.EntriesLeft" AutoEventWireup="true" Src="code/entriesLeft.cs" %>
+<label>Places left: </label><span class="entries-number"><%= strEntriesLeft %></span>

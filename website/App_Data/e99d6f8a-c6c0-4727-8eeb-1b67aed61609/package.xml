@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<umbPackage>
+  <files>
+    <file>
+      <guid>ShowGallery.ascx</guid>
+      <orgPath>~/usercontrols/Designit.Gallery</orgPath>
+      <orgName>ShowGallery.ascx</orgName>
+    </file>
+    <file>
+      <guid>Designit.Umb.Gallery.WebUi.dll</guid>
+      <orgPath>/bin</orgPath>
+      <orgName>Designit.Umb.Gallery.WebUi.dll</orgName>
+    </file>
+    <file>
+      <guid>jquery.lightbox-0.5.css</guid>
+      <orgPath>/css/Designit.Gallery</orgPath>
+      <orgName>jquery.lightbox-0.5.css</orgName>
+    </file>
+    <file>
+      <guid>lightbox-blank.gif</guid>
+      <orgPath>/images/Designit.Gallery</orgPath>
+      <orgName>lightbox-blank.gif</orgName>
+    </file>
+    <file>
+      <guid>lightbox-btn-close.gif</guid>
+      <orgPath>/images/Designit.Gallery</orgPath>
+      <orgName>lightbox-btn-close.gif</orgName>
+    </file>
+    <file>
+      <guid>lightbox-btn-next.gif</guid>
+      <orgPath>/images/Designit.Gallery</orgPath>
+      <orgName>lightbox-btn-next.gif</orgName>
+    </file>
+    <file>
+      <guid>lightbox-btn-prev.gif</guid>
+      <orgPath>/images/Designit.Gallery</orgPath>
+      <orgName>lightbox-btn-prev.gif</orgName>
+    </file>
+    <file>
+      <guid>lightbox-ico-loading.gif</guid>
+      <orgPath>/images/Designit.Gallery</orgPath>
+      <orgName>lightbox-ico-loading.gif</orgName>
+    </file>
+    <file>
+      <guid>f7c7f9c0-ecac-4b8e-8c97-45b37b8e0e02_ShowGallery.ascx</guid>
+      <orgPath>/usercontrols/Designit.Gallery</orgPath>
+      <orgName>ShowGallery.ascx</orgName>
+    </file>
+    <file>
+      <guid>jquery.lightbox-0.5.min.js</guid>
+      <orgPath>/scripts/Designit.Gallery</orgPath>
+      <orgName>jquery.lightbox-0.5.min.js</orgName>
+    </file>
+    <file>
+      <guid>jquery.js</guid>
+      <orgPath>/scripts/Designit.Gallery</orgPath>
+      <orgName>jquery.js</orgName>
+    </file>
+  </files>
+  <info>
+    <package>
+      <name>Designit Gallery</name>
+      <version>1.1.1</version>
+      <license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
+      <url>http://umbgallery.codeplex.com/</url>
+      <requirements>
+        <major>3</major>
+        <minor>0</minor>
+        <patch>0</patch>
+      </requirements>
+    </package>
+    <author>
+      <name>Designit A/S</name>
+      <website>http://designit.com</website>
+    </author>
+    <readme><![CDATA[This package has only been tested on version 4.5.2
+
+You need to install ImageGen to get this package to work correctly.
+http://our.umbraco.org/projects/website-utilities/imagegen
+ImageGen needs to be installed manually to work on version 4.5.2
+extract the following files from the zip and place them here: 
+/bin/ImageGen.dll 
+/umbraco/ImageGen.ashx 
+/config/ImageGen.sample.config ]]></readme>
+  </info>
+  <DocumentTypes />
+  <Templates />
+  <Stylesheets />
+  <Macros>
+    <macro>
+      <name>Designit.Gallery</name>
+      <alias>Designit.Gallery</alias>
+      <scriptType>usercontrols/Designit.Gallery/ShowGallery.ascx</scriptType>
+      <scriptAssembly>
+      </scriptAssembly>
+      <xslt>
+      </xslt>
+      <useInEditor>True</useInEditor>
+      <refreshRate>0</refreshRate>
+      <scriptingFile>
+      </scriptingFile>
+      <properties>
+        <property name="Folder Id" alias="folderId" show="True" propertyType="number" />
+        <property name="Thumb Width" alias="ThumbWidth" show="True" propertyType="number" />
+        <property name="Thumb Height" alias="ThumbHeight" show="True" propertyType="number" />
+        <property name="Light Box Width" alias="LightBoxWidth" show="True" propertyType="number" />
+        <property name="Light Box Height" alias="LightBoxHeight" show="True" propertyType="number" />
+      </properties>
+    </macro>
+  </Macros>
+  <DictionaryItems />
+  <Languages />
+  <DataTypes />
+</umbPackage>

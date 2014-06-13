@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<umbPackage>
+  <files>
+    <file>
+      <guid>RunwaySitemap.xslt</guid>
+      <orgPath>/xslt</orgPath>
+      <orgName>RunwaySitemap.xslt</orgName>
+    </file>
+  </files>
+  <info>
+    <package>
+      <name>Runway Sitemap</name>
+      <version>1.0</version>
+      <license url="http://umbraco.org/gpl.aspx">umbraco gpl</license>
+      <url>http://umbraco.org</url>
+      <requirements>
+        <major>3</major>
+        <minor>0</minor>
+        <patch>0</patch>
+      </requirements>
+    </package>
+    <author>
+      <name>Umbraco</name>
+      <website>http://umbraco.org</website>
+    </author>
+    <readme><![CDATA[A simple sitemap]]></readme>
+  </info>
+  <Documents>
+    <DocumentSet importMode="root">
+      <node id="1167" version="0c9dee63-12b3-4bfe-903f-18a48edce151" parentID="1157" level="2" writerID="0" creatorID="0" nodeType="1161" template="1152" sortOrder="4" createDate="2008-05-07T10:48:00" 
+	  updateDate="2008-05-07T13:12:23" nodeName="Sitemap" urlName="sitemap" writerName="Administrator" creatorName="Administrator" nodeTypeAlias="RunwayTextpage" path="-1,1157,1167">
+        <data alias="bodyText"><![CDATA[<p>
+This is the websites sitemap.
+</p>
+<?UMBRACO_MACRO macroalias="RunwaySitemap" />]]></data>
+        <data alias="umbracoNaviHide">1</data>
+      </node>
+    </DocumentSet>
+  </Documents>
+  <DocumentTypes />
+  <Templates />
+  <Stylesheets />
+  <Macros>
+    <macro>
+      <name>[Runway] Sitemap</name>
+      <alias>RunwaySitemap</alias>
+      <scriptType />
+      <scriptAssembly />
+      <xslt>RunwaySitemap.xslt</xslt>
+      <useInEditor>True</useInEditor>
+      <refreshRate>0</refreshRate>
+      <properties />
+    </macro>
+  </Macros>
+  <Actions>
+    <Action runat="install" alias="moveRootDocument" documentName="Sitemap" parentDocumentType="RunwayHomepage"/> 
+	<Action runat="install" alias="addStringToHtmlElement" templateAlias="RunwayMaster" htmlElementId="footer" position="end"><![CDATA[<a href="/sitemap.aspx">Sitemap</a>]]></Action>
+  </Actions>
+</umbPackage>

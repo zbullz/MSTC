@@ -1,0 +1,26 @@
+div#diGallery {
+	margin-top:10px;
+}
+
+div#diGallery img {
+	margin:0px 10px 10px 0px;
+	padding:4px;
+	border:1px solid #CCCCCC;
+	background-color:#FFFFFF;
+}
+
+#gallery-content {
+	border-top: 3px solid #E6E6E6;
+	width: 100%;
+	float: left;
+	margin: 0px 0px 0px 0px;
+	padding-top: 10px;
+	margin-left: 17px;
+	width:991px;
+	z-index:100;
+}
+
+div#gallery-middle-content {
+	float:left;
+	width:700px;
+}

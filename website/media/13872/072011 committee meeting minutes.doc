@@ -1,0 +1,112 @@
+{\rtf1\adeflang1025\ansi\ansicpg1252\uc1\adeff0\deff0\stshfdbch37\stshfloch37\stshfhich37\stshfbi0\deflang1033\deflangfe1033{\fonttbl{\f0\froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}{\f37\fswiss\fcharset0\fprq2{\*\panose 020f0502020204030204}Calibri{\*\falt Arial Rounded MT Bold};}
+{\f186\froman\fcharset238\fprq2 Times New Roman CE;}{\f187\froman\fcharset204\fprq2 Times New Roman Cyr;}{\f189\froman\fcharset161\fprq2 Times New Roman Greek;}{\f190\froman\fcharset162\fprq2 Times New Roman Tur;}
+{\f191\fbidi \froman\fcharset177\fprq2 Times New Roman (Hebrew);}{\f192\fbidi \froman\fcharset178\fprq2 Times New Roman (Arabic);}{\f193\froman\fcharset186\fprq2 Times New Roman Baltic;}{\f194\froman\fcharset163\fprq2 Times New Roman (Vietnamese);}
+{\f556\fswiss\fcharset238\fprq2 Calibri CE{\*\falt Arial Rounded MT Bold};}{\f557\fswiss\fcharset204\fprq2 Calibri Cyr{\*\falt Arial Rounded MT Bold};}{\f559\fswiss\fcharset161\fprq2 Calibri Greek{\*\falt Arial Rounded MT Bold};}
+{\f560\fswiss\fcharset162\fprq2 Calibri Tur{\*\falt Arial Rounded MT Bold};}{\f563\fswiss\fcharset186\fprq2 Calibri Baltic{\*\falt Arial Rounded MT Bold};}{\f564\fswiss\fcharset163\fprq2 Calibri (Vietnamese){\*\falt Arial Rounded MT Bold};}}
+{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;
+\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;}{\stylesheet{\ql \li0\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0 \rtlch\fcs1 
+\af0\afs22\alang1025 \ltrch\fcs0 \f37\fs22\lang2057\langfe1033\cgrid\langnp2057\langfenp1033 \snext0 \styrsid10842774 Normal;}{\*\cs10 \additive \ssemihidden Default Paragraph Font;}{\*
+\ts11\tsrowd\trftsWidthB3\trpaddl108\trpaddr108\trpaddfl3\trpaddft3\trpaddfb3\trpaddfr3\trcbpat1\trcfpat1\tblind0\tblindtype3\tscellwidthfts0\tsvertalt\tsbrdrt\tsbrdrl\tsbrdrb\tsbrdrr\tsbrdrdgl\tsbrdrdgr\tsbrdrh\tsbrdrv 
+\ql \li0\ri0\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \fs20\lang1024\langfe1024\loch\f37\hich\af37\dbch\af37\cgrid\langnp1024\langfenp1024 \snext11 \ssemihidden Normal Table;}{
+\s15\ql \li720\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin720\itap0\contextualspace \rtlch\fcs1 \af0\afs22\alang1025 \ltrch\fcs0 \f37\fs22\lang2057\langfe1033\cgrid\langnp2057\langfenp1033 
+\sbasedon0 \snext15 \styrsid7961967 List Paragraph;}}
+{\*\latentstyles\lsdstimax156\lsdlockeddef0{\lsdlockedexcept Normal;heading 1;heading 2;heading 3;heading 4;heading 5;heading 6;heading 7;heading 8;heading 9;toc 1;toc 2;toc 3;toc 4;toc 5;toc 6;toc 7;toc 8;toc 9;caption;Title;Default Paragraph Font;Subtitle;Strong;Emphasis;Table Grid;}}
+{\*\listtable{\list\listtemplateid1853764140\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\leveltemplateid134807567\'02\'00.;}{\levelnumbers\'01;}\rtlch\fcs1 \af0 \ltrch\fcs0 
+\fbias0 \fi-360\li720\lin720 }{\listlevel\levelnfc4\levelnfcn4\leveljc0\leveljcn0\levelfollow0\levelstartat1\lvltentative\levelspace0\levelindent0{\leveltext\leveltemplateid134807577\'02\'01.;}{\levelnumbers\'01;}\rtlch\fcs1 \af0 \ltrch\fcs0 
+\fi-360\li1440\lin1440 }{\listlevel\levelnfc2\levelnfcn2\leveljc2\leveljcn2\levelfollow0\levelstartat1\lvltentative\levelspace0\levelindent0{\leveltext\leveltemplateid134807579\'02\'02.;}{\levelnumbers\'01;}\rtlch\fcs1 \af0 \ltrch\fcs0 
+\fi-180\li2160\lin2160 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\lvltentative\levelspace0\levelindent0{\leveltext\leveltemplateid134807567\'02\'03.;}{\levelnumbers\'01;}\rtlch\fcs1 \af0 \ltrch\fcs0 
+\fi-360\li2880\lin2880 }{\listlevel\levelnfc4\levelnfcn4\leveljc0\leveljcn0\levelfollow0\levelstartat1\lvltentative\levelspace0\levelindent0{\leveltext\leveltemplateid134807577\'02\'04.;}{\levelnumbers\'01;}\rtlch\fcs1 \af0 \ltrch\fcs0 
+\fi-360\li3600\lin3600 }{\listlevel\levelnfc2\levelnfcn2\leveljc2\leveljcn2\levelfollow0\levelstartat1\lvltentative\levelspace0\levelindent0{\leveltext\leveltemplateid134807579\'02\'05.;}{\levelnumbers\'01;}\rtlch\fcs1 \af0 \ltrch\fcs0 
+\fi-180\li4320\lin4320 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\lvltentative\levelspace0\levelindent0{\leveltext\leveltemplateid134807567\'02\'06.;}{\levelnumbers\'01;}\rtlch\fcs1 \af0 \ltrch\fcs0 
+\fi-360\li5040\lin5040 }{\listlevel\levelnfc4\levelnfcn4\leveljc0\leveljcn0\levelfollow0\levelstartat1\lvltentative\levelspace0\levelindent0{\leveltext\leveltemplateid134807577\'02\'07.;}{\levelnumbers\'01;}\rtlch\fcs1 \af0 \ltrch\fcs0 
+\fi-360\li5760\lin5760 }{\listlevel\levelnfc2\levelnfcn2\leveljc2\leveljcn2\levelfollow0\levelstartat1\lvltentative\levelspace0\levelindent0{\leveltext\leveltemplateid134807579\'02\'08.;}{\levelnumbers\'01;}\rtlch\fcs1 \af0 \ltrch\fcs0 
+\fi-180\li6480\lin6480 }{\listname ;}\listid1112552568}}{\*\listoverridetable{\listoverride\listid1112552568\listoverridecount0\ls1}}{\*\rsidtbl \rsid1070448\rsid1983254\rsid2697503\rsid3934116\rsid6306941\rsid7961967\rsid9516210\rsid10842774\rsid12865630
+\rsid14227586\rsid15994864}{\*\generator Microsoft Word 11.0.0000;}{\info{\title MSTC committee meeting 27 July 2011}{\author Callum Murray}{\operator Steve McMenamin}{\creatim\yr2011\mo7\dy29\hr9\min35}{\revtim\yr2011\mo7\dy29\hr9\min35}{\version2}
+{\edmins1}{\nofpages2}{\nofwords630}{\nofchars3597}{\*\company Microsoft}{\nofcharsws4219}{\vern24615}{\*\password 00000000}}{\*\xmlnstbl {\xmlns1 http://schemas.microsoft.com/office/word/2003/wordml}}
+\paperw11906\paperh16838\margl1440\margr1440\margt1440\margb1440\gutter0\ltrsect 
+\widowctrl\ftnbj\aenddoc\donotembedsysfont1\donotembedlingdata0\grfdocevents0\validatexml1\showplaceholdtext0\ignoremixedcontent0\saveinvalidxml0\showxmlerrors1\noxlattoyen\expshrtn\noultrlspc\dntblnsbdb\nospaceforul\formshade\horzdoc\dgmargin\dghspace180
+\dgvspace180\dghorigin1440\dgvorigin1440\dghshow1\dgvshow1
+\jexpand\viewkind1\viewscale130\pgbrdrhead\pgbrdrfoot\splytwnine\ftnlytwnine\htmautsp\nolnhtadjtbl\useltbaln\alntblind\lytcalctblwd\lyttblrtgr\lnbrkrule\nobrkwrptbl\snaptogridincell\allowfieldendsel\wrppunct
+\asianbrkrule\rsidroot7961967\newtblstyruls\nogrowautofit \fet0{\*\wgrffmtfilter 2450}\ilfomacatclnup0\ltrpar \sectd \ltrsect\linex0\headery708\footery708\colsx708\endnhere\sectlinegrid360\sectdefaultcl\sectrsid10842774\sftnbj {\*\pnseclvl1
+\pnucrm\pnstart1\pnindent720\pnhang {\pntxta .}}{\*\pnseclvl2\pnucltr\pnstart1\pnindent720\pnhang {\pntxta .}}{\*\pnseclvl3\pndec\pnstart1\pnindent720\pnhang {\pntxta .}}{\*\pnseclvl4\pnlcltr\pnstart1\pnindent720\pnhang {\pntxta )}}{\*\pnseclvl5
+\pndec\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl6\pnlcltr\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl7\pnlcrm\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl8\pnlcltr\pnstart1\pnindent720\pnhang 
+{\pntxtb (}{\pntxta )}}{\*\pnseclvl9\pnlcrm\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}\pard\plain \ltrpar\ql \li0\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs22\alang1025 
+\ltrch\fcs0 \f37\fs22\lang2057\langfe1033\cgrid\langnp2057\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \b\insrsid3934116\charrsid12865630 MSTC committee meeting 27 July 2011
+\par 
+\par Minutes
+\par }{\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+\par Present: Mark, Steve A, Rose, Julie, Kay, Steve Mac, Claire, Steve B, Callum
+\par Apologies: Rachel, Rob, James
+\par 
+\par {\listtext\pard\plain\ltrpar \s15 \rtlch\fcs1 \af0\afs22 \ltrch\fcs0 \fs22\lang2057\langfe1033\loch\af37\hich\af37\dbch\af0\langnp2057\insrsid3934116 \hich\af37\dbch\af0\loch\f37 1.\tab}}\pard\plain \ltrpar\s15\ql \fi-360\li720\ri0\sa200\sl276\slmult1
+\widctlpar\wrapdefault\aspalpha\aspnum\faauto\ls1\adjustright\rin0\lin720\itap0\pararsid7961967\contextualspace \rtlch\fcs1 \af0\afs22\alang1025 \ltrch\fcs0 \f37\fs22\lang2057\langfe1033\cgrid\langnp2057\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 
+\insrsid3934116  Minutes from last meeting approved
+\par }\pard \ltrpar\s15\ql \li720\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin720\itap0\pararsid12865630\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+\par {\listtext\pard\plain\ltrpar \s15 \rtlch\fcs1 \af0\afs22 \ltrch\fcs0 \fs22\lang2057\langfe1033\loch\af37\hich\af37\dbch\af0\langnp2057\insrsid3934116 \hich\af37\dbch\af0\loch\f37 2.\tab}}\pard \ltrpar\s15\ql \fi-360\li720\ri0\sa200\sl276\slmult1
+\widctlpar\wrapdefault\aspalpha\aspnum\faauto\ls1\adjustright\rin0\lin720\itap0\pararsid7961967\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 Mid Sussex Triathlon.  Possibility of adding extra places, given that 40 competitors didn\rquote 
+t turn up?  So we could offer 330 places, expecting 290 to compete.  But we would need extra racking.  There is space for it on the tennis courts.  Referees\rquote  report circulated \endash 
+ mainly favourable.  Frustrations with their attitude, but there was a value having them there to ratify the event and 
+give us legal protection.  Proposal from Kay to use their quotes in our publicity materials and on the website.  Mark to book rugby club for after-party next year.  Next year\rquote s race: 10 June 2012.
+\par }\pard \ltrpar\s15\ql \li720\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin720\itap0\pararsid7961967\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+\par {\listtext\pard\plain\ltrpar \s15 \rtlch\fcs1 \af0\afs22 \ltrch\fcs0 \fs22\lang2057\langfe1033\loch\af37\hich\af37\dbch\af0\langnp2057\insrsid3934116 \hich\af37\dbch\af0\loch\f37 3.\tab}}\pard \ltrpar\s15\ql \fi-360\li720\ri0\sa200\sl276\slmult1
+\widctlpar\wrapdefault\aspalpha\aspnum\faauto\ls1\adjustright\rin0\lin720\itap0\pararsid7961967\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 Training.  Steve A to revert to leading training runs from
+ August.  Participants at Ardingly Reservoir swimming to decide among themselves who will spot and go in canoe, to relieve Mark of job.  If there are six or fewer only the canoeist is required.  Club funds to be used to purchase our own canoe, which will 
+b
+e stored at the reservoir.  Steve Mac will stay in charge of Southwater swimming.  Steve B to be in charge of Dolphin swimming.  Steve A and Mark to continue in charge of Ardingly Reservoir swimming.  Callum to circulate email asking for volunteer to take
+ charge of Ardingly College pool swimming.
+\par }\pard \ltrpar\s15\ql \li720\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin720\itap0\pararsid2697503\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+\par {\listtext\pard\plain\ltrpar \s15 \rtlch\fcs1 \af0\afs22 \ltrch\fcs0 \fs22\lang2057\langfe1033\loch\af37\hich\af37\dbch\af0\langnp2057\insrsid3934116 \hich\af37\dbch\af0\loch\f37 4.\tab}}\pard \ltrpar\s15\ql \fi-360\li720\ri0\sa200\sl276\slmult1
+\widctlpar\wrapdefault\aspalpha\aspnum\faauto\ls1\adjustright\rin0\lin720\itap0\pararsid7961967\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+Mark to order swimming wristbands.  Kay to send him details of info that should be printed on them (probably MSTC + sequential numbers on yellow band).
+\par }\pard \ltrpar\s15\ql \li720\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin720\itap0\pararsid2697503\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+\par {\listtext\pard\plain\ltrpar \s15 \rtlch\fcs1 \af0\afs22 \ltrch\fcs0 \fs22\lang2057\langfe1033\loch\af37\hich\af37\dbch\af0\langnp2057\insrsid3934116 \hich\af37\dbch\af0\loch\f37 5.\tab}}\pard \ltrpar\s15\ql \fi-360\li720\ri0\sa200\sl276\slmult1
+\widctlpar\wrapdefault\aspalpha\aspnum\faauto\ls1\adjustright\rin0\lin720\itap0\pararsid7961967\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 Swim camera.  Decision not to purchase as too expensive and 
+question mark over how much it would be used.  Proposal to purchase one or two swim buoys for Ardingly Reservoir swimming instead @ \'a397.99 each.  Mark and Steve A to speak to Chris Kinsman at the reservoir first to see if he can get them cheaper.
+
+\par }\pard \ltrpar\s15\ql \li720\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin720\itap0\pararsid2697503\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+\par {\listtext\pard\plain\ltrpar \s15 \rtlch\fcs1 \af0\afs22 \ltrch\fcs0 \fs22\lang2057\langfe1033\loch\af37\hich\af37\dbch\af0\langnp2057\insrsid3934116 \hich\af37\dbch\af0\loch\f37 6.\tab}}\pard \ltrpar\s15\ql \fi-360\li720\ri0\sa200\sl276\slmult1
+\widctlpar\wrapdefault\aspalpha\aspnum\faauto\ls1\adjustright\rin0\lin720\itap0\pararsid7961967\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 Club mem
+bers insurance.  We need full copy of public liability insurance from BTF.  Individuals fully insured if competing in UK, but not abroad.  Kay to give full update at next meeting and post on website.  Question about competence of any risk assessments we c
+arry out.  Pippa and Mark are qualified and will review any assessments, including for the Mid Sussex Triathlon.
+\par }\pard \ltrpar\s15\ql \li720\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin720\itap0\pararsid2697503\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+\par {\listtext\pard\plain\ltrpar \s15 \rtlch\fcs1 \af0\afs22 \ltrch\fcs0 \fs22\lang2057\langfe1033\loch\af37\hich\af37\dbch\af0\langnp2057\insrsid3934116 \hich\af37\dbch\af0\loch\f37 7.\tab}}\pard \ltrpar\s15\ql \fi-360\li720\ri0\sa200\sl276\slmult1
+\widctlpar\wrapdefault\aspalpha\aspnum\faauto\ls1\adjustright\rin0\lin720\itap0\pararsid7961967\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 Steve Mac and Steve B have posted group cycling etiquette on website.  All to review.
+\par }\pard \ltrpar\s15\ql \li720\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin720\itap0\pararsid2697503\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+\par {\listtext\pard\plain\ltrpar \s15 \rtlch\fcs1 \af0\afs22 \ltrch\fcs0 \fs22\lang2057\langfe1033\loch\af37\hich\af37\dbch\af0\langnp2057\insrsid3934116 \hich\af37\dbch\af0\loch\f37 8.\tab}}\pard \ltrpar\s15\ql \fi-360\li720\ri0\sa200\sl276\slmult1
+\widctlpar\wrapdefault\aspalpha\aspnum\faauto\ls1\adjustright\rin0\lin720\itap0\pararsid2697503\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 Kit.  Endura k
+it to be ready for September 9 (about 25 items ordered).  Spiuk tri-suits order planned for end of season.  Extra small stock running vests to be distributed as spot prizes at GoTri! juniors event.  We need to change official club colours from yellow/blac
+k to gold/black before ordering Ron Hill running kit.
+\par }\pard \ltrpar\s15\ql \li720\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin720\itap0\pararsid15994864\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+\par {\listtext\pard\plain\ltrpar \s15 \rtlch\fcs1 \af0\afs22 \ltrch\fcs0 \fs22\lang2057\langfe1033\loch\af37\hich\af37\dbch\af0\langnp2057\insrsid3934116 \hich\af37\dbch\af0\loch\f37 9.\tab}}\pard \ltrpar\s15\ql \fi-360\li720\ri0\sa200\sl276\slmult1
+\widctlpar\wrapdefault\aspalpha\aspnum\faauto\ls1\adjustright\rin0\lin720\itap0\pararsid2697503\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+Committee roles.  Mark and Callum to step down as chair/president and secretary, respectively, at AGM on November 17.  Mark will still be available to help with risk assessments etc.  James co-opted to 
+join new events team, along with Steve A and Rob, so new social secretary also required.  Possibility of social events team?  Callum to email club members with date of AGM and positions to be filled, linking to same document on forum and job descriptions 
+on site (done).  We also need to ask for volunteers to help with GoTri! juniors event next year (request at AGM?).
+\par }\pard \ltrpar\s15\ql \li720\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin720\itap0\pararsid15994864\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+\par {\listtext\pard\plain\ltrpar \s15 \rtlch\fcs1 \af0\afs22 \ltrch\fcs0 \fs22\lang2057\langfe1033\loch\af37\hich\af37\dbch\af0\langnp2057\insrsid3934116 \hich\af37\dbch\af0\loch\f37 10.\tab}}\pard \ltrpar\s15\ql \fi-360\li720\ri0\sa200\sl276\slmult1
+\widctlpar\wrapdefault\aspalpha\aspnum\faauto\ls1\adjustright\rin0\lin720\itap0\pararsid2697503\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 Steve Mac to check with Rachel whether there is money in budget for more books and DVDs.
+\par }\pard \ltrpar\s15\ql \li720\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin720\itap0\pararsid15994864\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+\par {\listtext\pard\plain\ltrpar \s15 \rtlch\fcs1 \af0\afs22 \ltrch\fcs0 \fs22\lang2057\langfe1033\loch\af37\hich\af37\dbch\af0\langnp2057\insrsid3934116 \hich\af37\dbch\af0\loch\f37 11.\tab}}\pard \ltrpar\s15\ql \fi-360\li720\ri0\sa200\sl276\slmult1
+\widctlpar\wrapdefault\aspalpha\aspnum\faauto\ls1\adjustright\rin0\lin720\itap0\pararsid2697503\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 Club middle-distance race (August 28) is authorised
+. Steve A to send out entry forms earlier than for Olympic-distance race, to ensure that paperwork is completed in plenty of time.  Mark to email blank entry form to Steve A.  Mark to send More Mile contact details to Steve B for him to order race T shirt
+.  Entry fee \'a322 for BTF members, \'a325 non-members.  Participants to bring own food and drink to after-party \endash  Claire to co-ordinate.
+\par }\pard \ltrpar\s15\ql \li720\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin720\itap0\pararsid9516210\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+\par {\listtext\pard\plain\ltrpar \s15 \rtlch\fcs1 \af0\afs22 \ltrch\fcs0 \fs22\lang2057\langfe1033\loch\af37\hich\af37\dbch\af0\langnp2057\insrsid3934116 \hich\af37\dbch\af0\loch\f37 12.\tab}}\pard \ltrpar\s15\ql \fi-360\li720\ri0\sa200\sl276\slmult1
+\widctlpar\wrapdefault\aspalpha\aspnum\faauto\ls1\adjustright\rin0\lin720\itap0\pararsid2697503\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+Swimming at Ardingly College pool agreed: Tuesday 6 September to Tuesday 24 April, with two-week Christmas break. 8-9pm.
+\par }\pard \ltrpar\s15\ql \li720\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin720\itap0\pararsid9516210\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+\par {\listtext\pard\plain\ltrpar \s15 \rtlch\fcs1 \af0\afs22 \ltrch\fcs0 \fs22\lang2057\langfe1033\loch\af37\hich\af37\dbch\af0\langnp2057\insrsid3934116 \hich\af37\dbch\af0\loch\f37 13.\tab}}\pard \ltrpar\s15\ql \fi-360\li720\ri0\sa200\sl276\slmult1
+\widctlpar\wrapdefault\aspalpha\aspnum\faauto\ls1\adjustright\rin0\lin720\itap0\pararsid2697503\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 New club charity (after members\rquote  vote) will be St Peter and St James Hospice.
+\par }\pard \ltrpar\s15\ql \li720\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin720\itap0\pararsid9516210\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+\par {\listtext\pard\plain\ltrpar \s15 \rtlch\fcs1 \af0\afs22 \ltrch\fcs0 \fs22\lang2057\langfe1033\loch\af37\hich\af37\dbch\af0\langnp2057\insrsid3934116 \hich\af37\dbch\af0\loch\f37 14.\tab}}\pard \ltrpar\s15\ql \fi-360\li720\ri0\sa200\sl276\slmult1
+\widctlpar\wrapdefault\aspalpha\aspnum\faauto\ls1\adjustright\rin0\lin720\itap0\pararsid2697503\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 Open water swimming at Ardingly Reservoir will finish at end of September.  Steve
+{\*\bkmkstart _GoBack}{\*\bkmkend _GoBack} A to send email saying swimming is on as usual this Saturday.
+\par }\pard \ltrpar\s15\ql \li720\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin720\itap0\pararsid9516210\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+\par {\listtext\pard\plain\ltrpar \s15 \rtlch\fcs1 \af0\afs22 \ltrch\fcs0 \fs22\lang2057\langfe1033\loch\af37\hich\af37\dbch\af0\langnp2057\insrsid3934116 \hich\af37\dbch\af0\loch\f37 15.\tab}}\pard \ltrpar\s15\ql \fi-360\li720\ri0\sa200\sl276\slmult1
+\widctlpar\wrapdefault\aspalpha\aspnum\faauto\ls1\adjustright\rin0\lin720\itap0\pararsid2697503\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 Steve Mac to post details of 5K fun league on website.  Saturdays at 9am.
+\par }\pard \ltrpar\s15\ql \li720\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin720\itap0\pararsid9516210\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+\par {\listtext\pard\plain\ltrpar \s15 \rtlch\fcs1 \af0\afs22 \ltrch\fcs0 \fs22\lang2057\langfe1033\loch\af37\hich\af37\dbch\af0\langnp2057\insrsid3934116 \hich\af37\dbch\af0\loch\f37 16.\tab}}\pard \ltrpar\s15\ql \fi-360\li720\ri0\sa200\sl276\slmult1
+\widctlpar\wrapdefault\aspalpha\aspnum\faauto\ls1\adjustright\rin0\lin720\itap0\pararsid2697503\contextualspace {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 Next committee meeting switches to a Monday night: September 26.
+\par }\pard\plain \ltrpar\ql \li0\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0\pararsid2697503 \rtlch\fcs1 \af0\afs22\alang1025 \ltrch\fcs0 \f37\fs22\lang2057\langfe1033\cgrid\langnp2057\langfenp1033 {
+\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid3934116 
+\par }}

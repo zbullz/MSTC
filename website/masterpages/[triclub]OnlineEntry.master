@@ -1,0 +1,28 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/[triclub]EventMaster.master" AutoEventWireup="true" %>
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="/css/triclub-entry.css" />
+</asp:Content>
+<asp:Content ContentPlaceHolderID="triclubMasterContentPlaceHolder" runat="server">
+   <div id="content">
+      <div id="contentHeader">
+		<h2><umbraco:Item runat="server" field="pageName"/></h2>
+          <div class="contentHeader-left">
+				<umbraco:Item runat="server" field="headerTextLeft" />
+			</div>
+			<div class="contentHeader-right">
+				<div class="entry-form"><umbraco:Macro Alias="entriesLeft" runat="server"></umbraco:Macro></div>
+				<umbraco:Item runat="server" field="headerTextRight" />
+			</div>
+      </div>
+	  <div id="leftContent">
+			<umbraco:Item runat="server" field="bodyText" />
+			<form id="RunwayMasterForm" runat="server">
+				<umbraco:Macro Alias="[triclub]TriEntryForm" runat="server"></umbraco:Macro>
+			</form>
+		</div>
+		<div id="rightContent" class="online-entry">
+			<umbraco:Item runat="server" field="rightText" />
+		</div>
+  </div>
+ </asp:Content>

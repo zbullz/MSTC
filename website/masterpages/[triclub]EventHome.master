@@ -1,0 +1,120 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/[triclub]EventMaster.master" AutoEventWireup="true" %>
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+<link rel="stylesheet" type="text/css" href="/css/event-slider.css" />
+<!--Call jQuery--> 
+<script type="text/javascript" src="/scripts/jquery-1.4.2.min.js"></script> 
+<script type="text/javascript"> 
+$(document).ready(function() {	
+ 
+	//Show Banner
+	$(".main_image .desc").show(); //Show Banner
+	$(".main_image .block").animate({ opacity: 0.85 }, 1 ); //Set Opacity
+ 
+	//Click and Hover events for thumbnail list
+	$(".image_thumb ul li:first").addClass('active'); 
+	$(".image_thumb ul li").click(function(){ 
+		//Set Variables
+		var imgAlt = $(this).find('img').attr("alt"); //Get Alt Tag of Image
+		var imgTitle = $(this).find('a').attr("href"); //Get Main Image URL
+		var imgDesc = $(this).find('.block').html(); 	//Get HTML of block
+		var imgDescHeight = $(".main_image").find('.block').height();	//Calculate height of block	
+		
+		if ($(this).is(".active")) {  //If it's already active, then...
+			return false; // Don't click through
+		} else {
+			//Animate the Teaser				
+			$(".main_image .block").animate({ opacity: 0, marginBottom: -imgDescHeight }, 250 , function() {
+				$(".main_image .block").html(imgDesc).animate({ opacity: 0.85,	marginBottom: "0" }, 250 );
+				$(".main_image img").attr({ src: imgTitle , alt: imgAlt});
+			});
+		}
+		
+		$(".image_thumb ul li").removeClass('active'); //Remove class of 'active' on all lists
+		$(this).addClass('active');  //add class of 'active' on this list only
+		return false;
+		
+	}) .hover(function(){
+		$(this).addClass('hover');
+		}, function() {
+		$(this).removeClass('hover');
+	});
+			
+	//Toggle Teaser
+	$("a.collapse").click(function(){
+		$(".main_image .block").slideToggle();
+		$("a.collapse").toggleClass("show");
+	});
+	
+});//Close Function
+</script> 
+
+</asp:Content>
+<asp:Content id="triclubHomepagecontent" ContentPlaceHolderID="triclubMasterContentPlaceHolder" runat="server">
+	<div id="feature">
+<!-- start of slider -->
+		<div id="main" class="container"> 
+			<div class="main_image"> 
+				<img src="/images/event-home-triathlon.jpg" alt="Mid Sussex Triathlon 2011 - Entries Open" /> 
+				<div class="desc"> 
+					<a href="#" class="collapse">Close Me!</a> 
+					<div class="block"> 
+						<h2><umbraco:Item runat="server" field="slide1Title"/></h2> 
+						<umbraco:Item runat="server" field="slide1Content"/>
+					</div> 
+				</div> 
+			</div> 
+			<div class="image_thumb"> 
+				<ul> 
+					<li> 
+						<a href="/images/event-home-triathlon.jpg"><img src="/images/event-home-triathlon-thumb.jpg" alt="Mid Sussex Triathlon 2011 - Entries Open" /></a> 
+						<div class="block"> 
+							<h2><umbraco:Item runat="server" field="slide1Title"/></h2>
+							<small><umbraco:Item runat="server" field="slide1Sub"/></small>
+							<umbraco:Item runat="server" field="slide1Content"/>
+						</div> 
+					</li> 
+					<li> 
+						<a href="/images/event-home-instructions.jpg"><img src="/images/event-home-instructions-thumb.jpg" alt="Mid Sussex Triathlon 2011 - Race Instructions" /></a> 
+						<div class="block"> 
+							<h2><umbraco:Item runat="server" field="slide2Title"/></h2>
+							<small><umbraco:Item runat="server" field="slide2Sub"/></small>
+							<umbraco:Item runat="server" field="slide2Content"/> 
+						</div> 
+					</li> 
+					<li> 
+						<a href="/images/event-home-news.jpg"><img src="/images/event-home-news-thumb.jpg" alt="Mid Sussex Triathlon 2011 - Race News & Updates" /></a> 
+						<div class="block"> 
+							<h2><umbraco:Item runat="server" field="slide3Title"/></h2>
+							<small><umbraco:Item runat="server" field="slide3Sub"/></small>
+							<umbraco:Item runat="server" field="slide3Content"/>
+						</div> 
+					</li> 
+					<li> 
+						<a href="/images/event-home-pool.jpg"><img src="/images/event-home-pool-thumb.jpg" alt="Evolution" /></a> 
+						<div class="block"> 
+							<h2><umbraco:Item runat="server" field="slide4Title"/></h2>
+							<small><umbraco:Item runat="server" field="slide4Sub"/></small>
+							<umbraco:Item runat="server" field="slide4Content"/>
+						</div> 
+					</li> 
+					<li> 
+						<a href="/images/event-home-tips.jpg"><img src="/images/event-home-tips-thumb.jpg" alt="Mid Sussex Triathlon 2011 - Tips for Beginners" /></a> 
+						<div class="block"> 
+							<h2><umbraco:Item runat="server" field="slide5Title"/></h2>
+							<small><umbraco:Item runat="server" field="slide5Sub"/></small>
+							<umbraco:Item runat="server" field="slide5Content"/>
+						</div> 
+					</li>
+					<li> 
+						<a href="/images/event-home-winners.jpg"><img src="/images/event-home-winners-thumb.jpg" alt="Puzzled Putter" /></a> 
+						<div class="block"> 
+							<h2><umbraco:Item runat="server" field="slide6Title"/></h2>
+							<small><umbraco:Item runat="server" field="slide6Sub"/></small>
+							<umbraco:Item runat="server" field="slide6Content"/>
+						</div> 
+					</li>
+				</ul> 
+			</div> 
+		</div> 
+	</div>
+</asp:Content>

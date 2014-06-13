@@ -1,0 +1,22 @@
+<imageIndex>
+  <image>
+    <originalFileName>Wimereux3.jpg</originalFileName>
+    <size>38724</size>
+    <dateLastModified>2014-02-10 05:01:29</dateLastModified>
+    <cachedImage>
+      <fileName>nk5w422p.jpeg</fileName>
+      <dateCreated>2014-04-11 09:26:31</dateCreated>
+      <dateLastAccessed>2014-04-14 08:28:23</dateLastAccessed>
+      <imageFormat>jpeg</imageFormat>
+      <compression>80</compression>
+      <width>700</width>
+      <height>525</height>
+      <bgColor>#FFFFFF</bgColor>
+      <transparent>True</transparent>
+      <border>0</border>
+      <borderColor>#000000</borderColor>
+      <constrain>True</constrain>
+      <pad>False</pad>
+    </cachedImage>
+  </image>
+</imageIndex>

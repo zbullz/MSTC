@@ -1,0 +1,11 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/RunwayMaster.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="RunwayMasterContentPlaceHolder" runat="server">
+	<div id="content">
+	<div id="contentHeader">
+		<h2><umbraco:Item field="questionText" htmlEncode="true" stripParagraph="true" runat="server"></umbraco:Item>
+</h2>
+	</div>
+    	<umbraco:Item field="bodyText" runat="server"></umbraco:Item>
+	</div>
+</asp:content>

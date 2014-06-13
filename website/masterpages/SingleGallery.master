@@ -1,0 +1,46 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/RunwayMaster.master" AutoEventWireup="true" %>
+<%@ Register TagPrefix="cf" Assembly="cfWebControls" Namespace="cFront.WebControls" %>
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+	<link rel="stylesheet" type="text/css" href="/css/gallery.css" />
+	
+<style>
+	#feature {
+	width:					100%;
+	float:					left;
+	margin:					0px 0px 0px 0px;
+	padding-top:			10px;
+	margin-left: 			14px;
+	width: 					998px;
+	background:				url('/images/main-feature-bg-top.png') no-repeat;
+}
+</style>
+</asp:Content>
+<asp:Content ContentPlaceHolderID="RunwayMasterContentPlaceHolder" runat="server">
+	<div id="feature">
+		<div id="home-mashedlogo">
+			<form runat="server">
+			<asp:LoginView ID="UmbracoLoginView" runat="server">
+				<AnonymousTemplate>
+					<cf:Login ID="Login1" TitleText="Members Login" runat="server"></cf:Login>
+				</AnonymousTemplate>
+				<LoggedInTemplate>
+					Welcome
+					<asp:LoginName ID="LoginName1" runat="server" />
+					<a href="/about-MSTC/member-area.aspx">My details</a><br />
+					<asp:LoginStatus ID="LoginStatus1" runat="server" />
+				</LoggedInTemplate>
+			</asp:LoginView>
+		</div>
+		<div id="gallery-feature">
+			<div id="gallery-middle-content">
+				<h2>
+				  <a href='<umbraco:Item runat="server" field="pageName" xslt="umbraco.library:NiceUrl($currentPage/../@id)" />'><umbraco:Item runat="server" field="pageName" xslt="$currentPage/../@nodeName" /></a>
+				  /
+				  <umbraco:Item runat="server" field="pageName" xslt="umbraco.library:GetMedia(umbraco.library:RequestQueryString('galleryId'), 0)/@nodeName" />
+				</h2>
+				<umbraco:Macro folderId="[@galleryId]" ThumbWidth="240" ThumbHeight="120" LightBoxWidth="700" LightBoxHeight="700" Alias="Designit.Gallery" runat="server"></umbraco:Macro>
+			</div>
+		</div>
+	</div>
+ </form>
+</asp:Content>

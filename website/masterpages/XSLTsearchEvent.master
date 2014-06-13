@@ -1,0 +1,30 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/[triclub]EventMaster.master" AutoEventWireup="true" %>
+<asp:Content ContentPlaceHolderID="RunwayMasterContentPlaceHolder" runat="server">
+<div id="content">
+    	<div id="contentHeader">	
+        	<h2><umbraco:Item runat="server" field="pageName"/></h2>
+    	</div>
+
+	<div>
+		<umbraco:Macro runat="server" Alias="XSLTsearch"
+			macroAlias="XSLTsearch"
+			source="-1"
+			searchFields="@nodeName,metaKeywords,metaDescription,bodyText"
+			previewFields="bodyText,metaDescription"
+			previewType="beginning"
+			resultsPerPage="5"
+			previewChars="255"
+			showPageRange="0"
+			showOrdinals="0"
+			showScores="0"
+			showStats="1"
+			searchBoxLocation="NONE"
+			>
+		</umbraco:Macro>
+	</div>
+</div>
+
+<div id="subNavigation">
+	
+</div>
+</asp:Content>

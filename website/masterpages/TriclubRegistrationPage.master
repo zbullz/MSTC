@@ -1,0 +1,43 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/RunwayMaster.master" AutoEventWireup="true" %>
+<%@ Register TagPrefix="cf" Assembly="cfWebControls" Namespace="cFront.WebControls" %>
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+  <!-- CSS STYLES -->
+  <link rel="stylesheet" type="text/css" href="/css/events-page.css" />
+  <link rel="stylesheet" type="text/css" href="/css/flickrbadgelight.css" />
+  <link rel="stylesheet" type="text/css" href="/umbraco_client/DateTimePicker/datetimepicker.css?cdv=1" />
+  <!-- SCRIPTS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js" type="text/javascript"></script> 
+  <script src="http://jquery-ui.googlecode.com/svn/tags/latest/external/jquery.bgiframe-2.1.2.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    $.getJSON("http://api.flickr.com/services/feeds/groups_pool.gne?id=642144@N20&lang=en-us&format=json&jsoncallback=?", function(data){
+      $.each(data.items, function(i, item) {
+        $("<img/>").attr("src", item.media.m).appendTo("#images")
+        .wrap("<a href='" + item.link + "'></a>");
+        if ( i == 19 ) return false;
+      });
+    });
+  </script> 
+  <!-- STYLE OVERRIDE -->
+<style>
+  #feature {
+  width:          100%;
+  float:          left;
+  margin:          0px 0px 0px 0px;
+  padding-top:      10px;
+  margin-left:       14px;
+  width:           998px;
+  background:        url('/images/main-feature-bg-top.png') no-repeat;
+}
+</style>
+
+</asp:Content>
+<asp:Content ContentPlaceHolderID="RunwayMasterContentPlaceHolder" runat="server">
+  <div id="feature">
+    <div id="home-mashedlogo">
+      
+    </div>
+    <div id="simple-content">
+      <umbraco:Item runat="server" field="bodyText" />
+    </div>
+  </div>
+</asp:Content>

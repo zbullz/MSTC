@@ -1,0 +1,13 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/JuniorsMaster.master" AutoEventWireup="true" %>
+<%@ Register TagPrefix="cf" Assembly="cfWebControls" Namespace="cFront.WebControls" %>
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+  <!-- CSS STYLES -->
+  <link rel="stylesheet" type="text/css" href="/umbraco_client/DateTimePicker/datetimepicker.css?cdv=1" />
+
+</asp:Content>
+<asp:Content ContentPlaceHolderID="RunwayMasterContentPlaceHolder" runat="server">
+    <div id="content">
+      <h1><umbraco:Item field="pageName" runat="server" /></h1>
+    <umbraco:Item runat="server" field="bodyText" />
+    </div>
+</asp:Content>

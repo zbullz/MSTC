@@ -1,0 +1,127 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/RunwayMaster.master" AutoEventWireup="true" %>
+<%@ Register TagPrefix="cf" Assembly="cfWebControls" Namespace="cFront.WebControls" %>
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+  <link rel="stylesheet" type="text/css" href="/css/slider-style.css" />
+  <link rel="stylesheet" type="text/css" href="/css/home.css" />
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" ></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.5.3/jquery-ui.min.js" ></script>
+  
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $("#slider-featured").tabs({fx:{opacity: "toggle"}}).tabs("rotate", 5000, true); 
+  });
+</script>
+</asp:Content>
+<asp:Content id="RunwayHomepagecontent" ContentPlaceHolderID="RunwayMasterContentPlaceHolder" runat="server">
+  <div id="feature">
+    <div id="home-mashedlogo">
+      <form runat="server">
+      <asp:LoginView ID="UmbracoLoginView" runat="server">
+        <AnonymousTemplate>
+          <cf:Login ID="Login1" TitleText="Members Login" runat="server"></cf:Login>
+        </AnonymousTemplate>
+        <LoggedInTemplate>
+          Welcome
+          <asp:LoginName ID="LoginName1" runat="server" />
+		  <a href="/about-MSTC/member-area.aspx">My details</a><br />
+          <asp:LoginStatus ID="LoginStatus1" runat="server" />
+        </LoggedInTemplate>
+      </asp:LoginView>
+      </form>
+    </div>
+    <div id="slider">
+      <div id="slider-featured" >
+			<umbraco:Macro Alias="triclubHomeFeature" runat="server"></umbraco:Macro>
+      </div>
+    </div>
+  </div>
+  <div id="content" class="frontPage">
+    <div id="content1">
+      <div class="home-cL-title">
+        <h2>MID SUSSEX TRIATHLON</h2>
+      </div>
+      <div class="content1-box">
+        <umbraco:Item runat="server" field="bodyText"/>
+      </div>
+	  <div class="home-cLa-title">
+        <h2>STUFF</h2>
+      </div>
+      <div class="content1a-box">
+        <umbraco:Item runat="server" field="bodyTextStuff"/>
+      </div>
+    </div>
+
+    <div id="content2">
+      <div class="home-cL-title">
+        <h2>NEWS</h2>
+      </div>
+      <div class="content2-box">
+        <umbraco:Macro Alias="triclubListNews" runat="server"></umbraco:Macro>
+      </div>
+      <div class="more-news">
+        <a href="news.aspx">More news »</a>
+      </div>
+    </div>
+    <div id="content3">
+      <div class="home-cL-title">
+        <h2><a href="events.aspx">EVENTS</a></h2>
+      </div>
+      <div class="content3-box">
+        <umbraco:Macro Alias="triclubEventsHome" runat="server"></umbraco:Macro>
+      </div>
+      <div class="more-stuff">
+        <a href="events.aspx">More events »</a>
+      </div>
+    </div>
+    <div id="content4">
+      <div class="home-cL-title">
+        <h2>MSTC JUNIORS</h2>
+      </div>
+      <div class="content4-box">
+        <a href="http://www.midsussextriclub.com/mid-sussex-triathlon-juniors.aspx"><img src="/images/mstc-juniors.png" border="0" /></a>
+      </div>
+	  <div class="home-cL-title2">
+        <h2>PHOTO GALLERIES</h2>
+      </div>
+      <div class="content4-box2">
+        <umbraco:Macro Alias="MSTCLatestGallery" runat="server"></umbraco:Macro>
+      </div>
+    </div>
+  </div>
+  <div id="low-content" class="frontPage">
+    <div id="sponsors">
+      <div class="home-lC-title">
+        Sponsors
+      </div>
+      <div id="sponsors-box">
+        <a href="http://www.nuffieldhealth.com/Individuals/Centres/H/Haywards-Heath/" target="_blank"><img src="/images/sponsors-nuffield-health.png" border="0" alt="Nuffield Health" /></a><br />
+		<a href="http://www.sheactive.co.uk/" target="_blank"><img src="/images/sponsors-sheactive.png" border="0" alt="Sheactive" /></a>
+      </div>
+    </div>
+    <div id="tri-links">
+      <div class="home-lC-title">
+        Links
+      </div>
+		<div id="charity-box">
+			<a href="http://www.thedtgroup.org/" title="Visit The Disabilities Trust website" target="_blank"><img src="/images/disabilities-trust-logo.png" alt="Disabilities Trust Logo" title="Supporters of The Disabilities Trust" /></a>
+			<span class="charity-note">As Mid Sussex Triathlon Clubs we support <a href="http://www.thedtgroup.org/" title="Visit The Disabilities Trust website" target="_blank">The Disabilities Trust</a></span>
+		</div>
+		<div id="tri-links-box">
+			<img src="/images/itu.png" />
+			<img src="/images/tri-links-tri-talk.png" />
+			<img src="/images/tri-links-btf.png" style="margin-right:0;" />
+		</div>
+	</div>
+    <div id="connect">
+      <div class="home-lC-title">
+        Connect with us
+      </div>
+      <div id="connect-box">
+        <a href="http://www.facebook.com/group.php?gid=2363043378" target="_blank"><img src="/images/facebook-16.png" border="0" /></a>
+        <a href="http://www.flickr.com/groups/midsussextriclub/" target="_blank"><img src="/images/flickr-16.png" border="0" /></a>
+        <a href="#" target="_blank"><img src="/images/twitter-16.png" border="0" /></a>
+        <a href="#" target="_blank"><img src="/images/youtube-16.png" border="0" /></a>
+      </div>
+    </div>
+  </div>
+</asp:Content>

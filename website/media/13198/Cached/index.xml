@@ -1,0 +1,39 @@
+<imageIndex>
+  <image>
+    <originalFileName>Claire IM 2011.JPG</originalFileName>
+    <size>304773</size>
+    <dateLastModified>2014-02-10 04:57:23</dateLastModified>
+    <cachedImage>
+      <fileName>rvqbvucx.jpeg</fileName>
+      <dateCreated>2014-02-10 08:39:09</dateCreated>
+      <dateLastAccessed>2014-06-11 11:19:29</dateLastAccessed>
+      <imageFormat>jpeg</imageFormat>
+      <compression>80</compression>
+      <width>70</width>
+      <height>50</height>
+      <bgColor>#FFFFFF</bgColor>
+      <transparent>True</transparent>
+      <border>0</border>
+      <borderColor>#000000</borderColor>
+      <constrain>False</constrain>
+      <pad>False</pad>
+      <align>left</align>
+      <valign>middle</valign>
+    </cachedImage>
+    <cachedImage>
+      <fileName>ncxphais.jpeg</fileName>
+      <dateCreated>2014-04-12 12:03:09</dateCreated>
+      <dateLastAccessed>2014-04-14 10:27:04</dateLastAccessed>
+      <imageFormat>jpeg</imageFormat>
+      <compression>80</compression>
+      <width>393</width>
+      <height>700</height>
+      <bgColor>#FFFFFF</bgColor>
+      <transparent>True</transparent>
+      <border>0</border>
+      <borderColor>#000000</borderColor>
+      <constrain>True</constrain>
+      <pad>False</pad>
+    </cachedImage>
+  </image>
+</imageIndex>

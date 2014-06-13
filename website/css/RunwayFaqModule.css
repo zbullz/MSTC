@@ -1,0 +1,62 @@
+.faqQuestion
+{
+	cursor:pointer;
+	margin-bottom:20px;
+}
+.faqQuestion span
+{
+	display:block;
+	margin:0px;
+	padding:0px;
+	margin-bottom:10px;
+}
+.faqQuestion div.answer
+{
+	display: block;
+	margin:0px;
+	padding:0px;
+	padding-left: 10px;
+}
+
+div.Positive
+{
+	padding: 10px;
+	border: 1px solid green;
+	background-color: #CCFE94;
+}
+
+div.Negative
+{
+	padding: 10px;
+	border: 1px solid red;
+	background-color: #FA5850;
+}
+
+div.answer p
+{
+	padding: 0px;
+	margin: 0px;
+	padding-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* EDITOR PROPERTIES - PLEASE DON'T DELETE THIS LINE TO AVOID DUPLICATE PROPERTIES */

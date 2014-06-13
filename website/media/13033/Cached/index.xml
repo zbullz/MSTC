@@ -1,0 +1,39 @@
+<imageIndex>
+  <image>
+    <originalFileName>photo2.JPG</originalFileName>
+    <size>52177</size>
+    <dateLastModified>2014-02-10 04:57:18</dateLastModified>
+    <cachedImage>
+      <fileName>zpba4lft.jpeg</fileName>
+      <dateCreated>2014-02-10 08:39:10</dateCreated>
+      <dateLastAccessed>2014-06-12 01:45:12</dateLastAccessed>
+      <imageFormat>jpeg</imageFormat>
+      <compression>80</compression>
+      <width>70</width>
+      <height>50</height>
+      <bgColor>#FFFFFF</bgColor>
+      <transparent>True</transparent>
+      <border>0</border>
+      <borderColor>#000000</borderColor>
+      <constrain>False</constrain>
+      <pad>False</pad>
+      <align>left</align>
+      <valign>middle</valign>
+    </cachedImage>
+    <cachedImage>
+      <fileName>gjp3bzi0.jpeg</fileName>
+      <dateCreated>2014-04-11 03:33:39</dateCreated>
+      <dateLastAccessed>2014-04-14 08:55:18</dateLastAccessed>
+      <imageFormat>jpeg</imageFormat>
+      <compression>80</compression>
+      <width>525</width>
+      <height>700</height>
+      <bgColor>#FFFFFF</bgColor>
+      <transparent>True</transparent>
+      <border>0</border>
+      <borderColor>#000000</borderColor>
+      <constrain>True</constrain>
+      <pad>False</pad>
+    </cachedImage>
+  </image>
+</imageIndex>

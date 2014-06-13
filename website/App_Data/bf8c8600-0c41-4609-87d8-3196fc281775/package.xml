@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<umbPackage>
+  <files>
+    <file>
+      <guid>RunwayTopNavigation.xslt</guid>
+      <orgPath>/xslt</orgPath>
+      <orgName>RunwayTopNavigation.xslt</orgName>
+    </file>
+  </files>
+  <info>
+    <package>
+      <name>Runway Top navigation</name>
+      <version>1.0</version>
+      <license url="http://umbraco.org/gpl.aspx">umbraco gpl</license>
+      <url>http://umbraco.org</url>
+      <requirements>
+        <major>3</major>
+        <minor>0</minor>
+        <patch>0</patch>
+      </requirements>
+    </package>
+    <author>
+      <name>Umbraco</name>
+      <website>http://umbraco.org</website>
+    </author>
+    <readme><![CDATA[Simple top navigation for Runway]]></readme>
+  </info>
+  <DocumentTypes />
+  <Templates />
+  <Stylesheets />
+  <Macros>
+    <macro>
+      <name>[Runway] Top Navigation</name>
+      <alias>RunwayTopNavigation</alias>
+      <scriptType />
+      <scriptAssembly />
+      <xslt>RunwayTopNavigation.xslt</xslt>
+      <useInEditor>False</useInEditor>
+      <refreshRate>0</refreshRate>
+      <properties />
+    </macro>
+  </Macros>
+  <Actions>
+	<Action runat="uninstall" alias="removeStringFromHtmlElement" templateAlias="RunwayMaster" htmlElementId="top"><![CDATA[<umbraco:Macro Alias="RunwayTopNavigation" runat="server"></umbraco:Macro>]]></Action>
+	<Action runat="install" alias="addStringToHtmlElement" templateAlias="RunwayMaster" htmlElementId="top" position="end"><![CDATA[<umbraco:Macro Alias="RunwayTopNavigation" runat="server"></umbraco:Macro>]]></Action>
+  </Actions>
+</umbPackage>

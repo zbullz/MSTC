@@ -1,0 +1,48 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/RunwayMaster.master" AutoEventWireup="true" %>
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+	<link rel="stylesheet" type="text/css" href="/css/events-page.css" />
+</script>
+</asp:Content>
+<asp:Content ContentPlaceHolderID="RunwayMasterContentPlaceHolder" runat="server">
+  <div id="feature">
+    <div id="home-mashedlogo">
+		<form runat="server">
+			<asp:LoginView ID="UmbracoLoginView" runat="server">
+				<AnonymousTemplate>
+					<cf:Login ID="Login1" TitleText="Members Login" runat="server"></cf:Login>
+				</AnonymousTemplate>
+				<LoggedInTemplate>
+					Welcome
+					<asp:LoginName ID="LoginName1" runat="server" />
+					<a href="/about-MSTC/member-area.aspx">My details</a><br />
+					<asp:LoginStatus ID="LoginStatus1" runat="server" />
+				</LoggedInTemplate>
+			</asp:LoginView>
+		</form>
+    </div>
+    <div id="textpage-feature">
+      <img src='<umbraco:item id="ImageItem1" runat="server" field="mainImg" xslt="umbraco.library:GetMedia({0}, 0)/umbracoFile" textIfEmpty="/media/2027/default.jpg"></umbraco:item>'/>
+      <div class="feature-info" >
+        <h2><umbraco:Item runat="server" field="featureTitle" /></h2>
+        <umbraco:Item runat="server" field="featureText" />
+      </div>
+      <div id="img-yellow-title"><h2><umbraco:Item runat="server" field="pageName"/></h2></div>
+    </div>
+  </div>
+  <div id="content">
+    <div id="leftNav">
+		<p>
+			Search
+		</p>
+		<p>
+			Filters
+		</p>
+    </div>
+    <div id="middle-content">
+		<umbraco:Macro Alias="triclubEventsList" runat="server" />
+    </div>
+    <div id="rightFeatures">
+		
+    </div>
+  </div>
+</asp:Content>

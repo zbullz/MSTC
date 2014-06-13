@@ -1,0 +1,14 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/BlogMaster.master" AutoEventWireup="true" %>
+
+<asp:Content ContentPlaceHolderID="body" runat="server">
+<div id="content" class="narrowcolumn">
+<div class="post">
+<h2><umbraco:Item field="pageName" runat="server"></umbraco:Item></h2>
+<div class="entrytext">
+<umbraco:Item field="bodyText" runat="server"></umbraco:Item>
+</div>
+
+</div>
+</div>
+
+</asp:Content>

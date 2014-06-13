@@ -1,0 +1,5 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/BlogMaster.master" AutoEventWireup="true" %>
+
+<asp:Content ContentPlaceHolderID="body" runat="server">
+		<umbraco:Macro Alias="BlogListPosts" runat="server"></umbraco:Macro>
+</asp:Content>

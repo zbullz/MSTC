@@ -1,0 +1,17 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/JuniorsMaster.master" AutoEventWireup="true" %>
+<%@ Register TagPrefix="cf" Assembly="cfWebControls" Namespace="cFront.WebControls" %>
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+  <!-- CSS STYLES -->
+  <link rel="stylesheet" type="text/css" href="/css/events-page.css" />
+  <link rel="stylesheet" type="text/css" href="/css/flickrbadgelight.css" />
+  <link rel="stylesheet" type="text/css" href="/umbraco_client/DateTimePicker/datetimepicker.css?cdv=1" />
+  <!-- SCRIPTS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js" type="text/javascript"></script> 
+  <script src="http://jquery-ui.googlecode.com/svn/tags/latest/external/jquery.bgiframe-2.1.2.js" type="text/javascript"></script>
+
+</asp:Content>
+<asp:Content ContentPlaceHolderID="RunwayMasterContentPlaceHolder" runat="server">
+	<div id="content">
+      <umbraco:Item runat="server" field="bodyText" />
+    </div>
+</asp:Content>

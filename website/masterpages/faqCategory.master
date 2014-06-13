@@ -1,0 +1,14 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/RunwayMaster.master" AutoEventWireup="true" %>
+
+<asp:Content ContentPlaceHolderId="RunwayMasterContentPlaceHolder" runat="server">
+<div id="content">
+	<div id="contentHeader">
+		<h2><umbraco:Item field="pageName" runat="server"></umbraco:Item></h2>
+	</div>
+    	<umbraco:Item field="bodyText" htmlEncode="true" stripParagraph="true" runat="server"></umbraco:Item>
+
+	<umbraco:Macro animation="1" Alias="FaqListQuestions" title="Questions:" runat="server"></umbraco:Macro>
+	
+	<umbraco:Macro questionLabel="Your Question:" thankyouMessage="Thanks for your input, we will review your question as soon as possible." questionButtonText="Submit" Alias="FaqAskquestion" runat="server"></umbraco:Macro>
+</div>
+</asp:Content>

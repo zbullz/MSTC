@@ -1,0 +1,11 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/RunwayMaster.master" AutoEventWireup="true" %>
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+<meta http-equiv="REFRESH" content='0;url=<umbraco:Item field="mediaLink" xslt="umbraco.library:GetMedia({0}, 0)/umbracoFile" runat="server"></umbraco:Item>'>  
+  
+</asp:Content>
+<asp:Content ContentPlaceHolderID="RunwayMasterContentPlaceHolder" runat="server">
+<div id="download-link">
+  <p>Your download should begin shortly.</p>
+  <p>If it doesn't please <a href='<umbraco:Item field="mediaLink" xslt="umbraco.library:GetMedia({0}, 0)/umbracoFile" runat="server"></umbraco:Item>'>click here to download</a></p>
+</div>
+</asp:Content>
