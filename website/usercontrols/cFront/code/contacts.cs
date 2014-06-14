@@ -40,12 +40,11 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 		{	
 			if(Page.IsValid)
 			{
-				MailMessage objMail = new MailMessage();
-                //objMail.To.Add("hook.mike@gmail.com");
+				MailMessage objMail = new MailMessage();                
 				objMail.To.Add("pete081259@aol.com");
 				objMail.To.Add("stephen.mcmenamin@domesticandgeneral.com");
 				objMail.To.Add("info@midsussextriclub.com");
-				objMail.From = new MailAddress(txtEmail.Text);
+				objMail.From = new MailAddress(txtEmail.Text, txtEmail.Text);
 				objMail.Subject = "[Website Enquiry]";
 				
 				objMail.IsBodyHtml = true;

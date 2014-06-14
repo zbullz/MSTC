@@ -149,7 +149,7 @@ VALUES (@FirstName, @LastName, @DOB, @Age, @Gender, @School, @SchoolYear, @Email
 			
 			MailMessage objMail = new MailMessage();			
 			objMail.To.Add(ConfigurationManager.AppSettings["gotriEntryEmailTo"] ?? "juniors@midsussextriclub.com");
-			objMail.From = new MailAddress("noreply@midsussextriclub.com");
+			objMail.From = new MailAddress("noreply@midsussextriclub.com", "noreply@midsussextriclub.com");
 			objMail.Subject = "GoTri! Junior Training Camp - Entry Received";
 			
 			objMail.IsBodyHtml = true;

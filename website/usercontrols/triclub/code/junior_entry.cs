@@ -105,7 +105,7 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 			
 			MailMessage objMail = new MailMessage();
 			objMail.To.Add(ConfigurationManager.AppSettings["juniorEntryEmailTo"] ?? "juniors@midsussextriclub.com");
-			objMail.From = new MailAddress("noreply@midsussextriclub.com");
+			objMail.From = new MailAddress("noreply@midsussextriclub.com", "noreply@midsussextriclub.com");
 			objMail.Subject = "TriHub Junior Training - Entry Received";
 			
 			objMail.IsBodyHtml = true;
