@@ -44,7 +44,7 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 				objMail.To.Add("pete081259@aol.com");
 				objMail.To.Add("stephen.mcmenamin@domesticandgeneral.com");
 				objMail.To.Add("info@midsussextriclub.com");
-				objMail.From = new MailAddress(txtEmail.Text, txtEmail.Text);
+				objMail.From = new MailAddress(txtEmail.Text);
 				objMail.Subject = "[Website Enquiry]";
 				
 				objMail.IsBodyHtml = true;
