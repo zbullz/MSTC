@@ -136,10 +136,8 @@ VALUES (@FirstName, @LastName, @Gender, @DOB, @Addr1, @Addr2, @Addr3, @Addr4, @P
 
 		protected void SendMessage()
 		{
-			MailMessage objMail = new MailMessage();
-			objMail.To.Add("stunisbett@gmail.com");
-			objMail.To.Add("sales@midsussextriclub.com");
-			objMail.To.Add("stephen.mcmenamin@domesticandgeneral.com");
+			MailMessage objMail = new MailMessage();		
+			objMail.To.Add(ConfigurationManager.AppSettings["midSussexTriEntryEmailTo"] ?? "sales@midsussextriclub.com");			
 			objMail.From = new MailAddress("noreply@midsussextriclub.com");
 			objMail.Subject = "Mid Sussex Triathlon - Entry Received";
 			
