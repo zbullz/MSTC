@@ -1,2 +1,4 @@
 *.suo
 website/App_Data/*
+packages/*
+!/packages/repositories.config
