@@ -41,19 +41,16 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 			if(Page.IsValid)
 			{
 				MailMessage objMail = new MailMessage();
-                objMail.To.Add("hook.mike@gmail.com");
-				//objMail.To.Add("pete081259@aol.com");
-				//objMail.To.Add("stephen.mcmenamin@domesticandgeneral.com");
-				//objMail.To.Add("info@midsussextriclub.com");
+				objMail.To.Add(ConfigurationManager.AppSettings["contactFormEmailTo"] ?? "info@midsussextriclub.com");
 				objMail.From = new MailAddress(txtEmail.Text);
 				objMail.Subject = "[Website Enquiry]";
 				
 				objMail.IsBodyHtml = true;
 				
 				objMail.Body = "<p>" + txtMsg.Text + "</p><p>Message from: " + txtName.Text + "</p><p>Email: " + txtEmail.Text + "</p>";
-				
-				SmtpClient smtpClient = new SmtpClient();
-				smtpClient.Send(objMail);
+
+				var GmailSmtpClient = new GmailSmtpClient();
+				GmailSmtpClient.Send(objMail);
 					
 				ViewState["ViewContactForm"] = 1;
 				

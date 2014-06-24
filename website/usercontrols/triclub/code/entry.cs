@@ -91,27 +91,27 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 @"
 INSERT INTO Entries (FirstName, LastName, Gender, DOB, Addr1, Addr2, Addr3, Addr4, Postcode, 
 Phone, Email, Club, BTFNum, Mins, Secs, Declaration, Accept, EntryDate, EventType) 
-VALUES (?FirstName, ?LastName, ?Gender, ?DOB, ?Addr1, ?Addr2, ?Addr3, ?Addr4, ?Postcode, 
-?Phone, ?Email, ?Club, ?BTFNum, ?Mins, ?Secs, 1, 0, ?Now, ?EventType)
+VALUES (@FirstName, @LastName, @Gender, @DOB, @Addr1, @Addr2, @Addr3, @Addr4, @Postcode, 
+@Phone, @Email, @Club, @BTFNum, @Mins, @Secs, 1, 0, @Now, @EventType)
 ";
 					
-					objCmd.Parameters.AddWithValue("?FirstName", txtFirstName.Text);
-					objCmd.Parameters.AddWithValue("?LastName", txtLastName.Text);
-					objCmd.Parameters.AddWithValue("?Gender", ddlGender.SelectedItem.Value);
-					objCmd.Parameters.AddWithValue("?DOB", strDOB);
-					objCmd.Parameters.AddWithValue("?Addr1", txtAddr1.Text);
-					objCmd.Parameters.AddWithValue("?Addr2", txtAddr2.Text);
-					objCmd.Parameters.AddWithValue("?Addr3", txtAddr3.Text);
-					objCmd.Parameters.AddWithValue("?Addr4", txtAddr4.Text);
-					objCmd.Parameters.AddWithValue("?Postcode", txtPostcode.Text);
-					objCmd.Parameters.AddWithValue("?Phone", txtPhone.Text);
-					objCmd.Parameters.AddWithValue("?Email", txtEmail.Text);
-					objCmd.Parameters.AddWithValue("?Club", strClub);
-					objCmd.Parameters.AddWithValue("?BTFNum", txtBTF.Text);
-					objCmd.Parameters.AddWithValue("?Mins", ddlSwimMins.SelectedItem.Text);
-					objCmd.Parameters.AddWithValue("?Secs", ddlSwimSecs.SelectedItem.Text);
-					objCmd.Parameters.AddWithValue("?Now", DateTime.Now);
-					objCmd.Parameters.AddWithValue("?EventType", intEventType);
+					objCmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
+					objCmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
+					objCmd.Parameters.AddWithValue("@Gender", ddlGender.SelectedItem.Value);
+					objCmd.Parameters.AddWithValue("@DOB", strDOB);
+					objCmd.Parameters.AddWithValue("@Addr1", txtAddr1.Text);
+					objCmd.Parameters.AddWithValue("@Addr2", txtAddr2.Text);
+					objCmd.Parameters.AddWithValue("@Addr3", txtAddr3.Text);
+					objCmd.Parameters.AddWithValue("@Addr4", txtAddr4.Text);
+					objCmd.Parameters.AddWithValue("@Postcode", txtPostcode.Text);
+					objCmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
+					objCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+					objCmd.Parameters.AddWithValue("@Club", strClub);
+					objCmd.Parameters.AddWithValue("@BTFNum", txtBTF.Text);
+					objCmd.Parameters.AddWithValue("@Mins", ddlSwimMins.SelectedItem.Text);
+					objCmd.Parameters.AddWithValue("@Secs", ddlSwimSecs.SelectedItem.Text);
+					objCmd.Parameters.AddWithValue("@Now", DateTime.Now);
+					objCmd.Parameters.AddWithValue("@EventType", intEventType);
 				
 					objCmd.ExecuteNonQuery();
 				}
@@ -136,10 +136,8 @@ VALUES (?FirstName, ?LastName, ?Gender, ?DOB, ?Addr1, ?Addr2, ?Addr3, ?Addr4, ?P
 
 		protected void SendMessage()
 		{
-			MailMessage objMail = new MailMessage();
-			objMail.To.Add("stunisbett@gmail.com");
-			objMail.To.Add("sales@midsussextriclub.com");
-			objMail.To.Add("stephen.mcmenamin@domesticandgeneral.com");
+			MailMessage objMail = new MailMessage();		
+			objMail.To.Add(ConfigurationManager.AppSettings["midSussexTriEntryEmailTo"] ?? "sales@midsussextriclub.com");
 			objMail.From = new MailAddress("noreply@midsussextriclub.com");
 			objMail.Subject = "Mid Sussex Triathlon - Entry Received";
 			
@@ -147,8 +145,8 @@ VALUES (?FirstName, ?LastName, ?Gender, ?DOB, ?Addr1, ?Addr2, ?Addr3, ?Addr4, ?P
 			
 			objMail.Body = "<p>" + txtFirstName.Text + " " + txtLastName.Text +" has entered the event.</p><p><a href='http://www.midsussextriclub.com' target='_blank'>Go to Mid Sussex Tri Club site</a></p>";
 			
-			SmtpClient smtpClient = new SmtpClient();
-			smtpClient.Send(objMail);
+			GmailSmtpClient GmailSmtpClient = new GmailSmtpClient();
+			GmailSmtpClient.Send(objMail);
 				
 			ViewState["ViewEntryForm"] = 1;
 		}

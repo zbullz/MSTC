@@ -41,18 +41,18 @@ namespace triclub.Umbraco
 					objCmd.CommandText = 
 @"
 INSERT INTO Events (eventTitle, eventDate, eventType, eventDistance, eventDescription, eventLink, eventLocation, resultsLink, newsLink, photoLink) 
-VALUES (?eventTitle, ?eventDate, ?eventType, ?eventDistance, ?eventDescription, ?eventLink, ?eventLocation, ?resultsLink, ?newsLink, ?photoLink)
+VALUES (@eventTitle, @eventDate, @eventType, @eventDistance, @eventDescription, @eventLink, @eventLocation, @resultsLink, @newsLink, @photoLink)
 ";
-					objCmd.Parameters.AddWithValue("?eventTitle", txtEventTitle.Text);
-					objCmd.Parameters.AddWithValue("?eventDate", txtEventDate.Text);
-					objCmd.Parameters.AddWithValue("?eventType", ddlEventType.SelectedItem.Value);
-					objCmd.Parameters.AddWithValue("?eventDistance", ddlEventDistance.SelectedItem.Value);
-					objCmd.Parameters.AddWithValue("?eventDescription", txtEventDescription.Text);
-					objCmd.Parameters.AddWithValue("?eventLink", txtEventLink.Text);
-					objCmd.Parameters.AddWithValue("?eventLocation", txtEventLocation.Text);
-					objCmd.Parameters.AddWithValue("?resultsLink", txtResultsLink.Text);
-					objCmd.Parameters.AddWithValue("?newsLink", txtNewsLink.Text);
-					objCmd.Parameters.AddWithValue("?photoLink", txtPhotoLink.Text);
+					objCmd.Parameters.AddWithValue("@eventTitle", txtEventTitle.Text);
+					objCmd.Parameters.AddWithValue("@eventDate", txtEventDate.Text);
+					objCmd.Parameters.AddWithValue("@eventType", ddlEventType.SelectedItem.Value);
+					objCmd.Parameters.AddWithValue("@eventDistance", ddlEventDistance.SelectedItem.Value);
+					objCmd.Parameters.AddWithValue("@eventDescription", txtEventDescription.Text);
+					objCmd.Parameters.AddWithValue("@eventLink", txtEventLink.Text);
+					objCmd.Parameters.AddWithValue("@eventLocation", txtEventLocation.Text);
+					objCmd.Parameters.AddWithValue("@resultsLink", txtResultsLink.Text);
+					objCmd.Parameters.AddWithValue("@newsLink", txtNewsLink.Text);
+					objCmd.Parameters.AddWithValue("@photoLink", txtPhotoLink.Text);
 
 					objCmd.ExecuteNonQuery();
 				}

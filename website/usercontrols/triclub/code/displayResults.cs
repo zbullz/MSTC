@@ -84,11 +84,11 @@ INNER JOIN eventTypeDefinitions T ON E.eventType = T.eventTypeID
 INNER JOIN eventDistanceDefinitions D ON E.eventDistance = D.eventDistanceID
 WHERE E.resultsLink != ''
 AND
-(E.eventType = ?eventTypeID OR E.eventDistance = ?eventDistanceID)
+(E.eventType = @eventTypeID OR E.eventDistance = @eventDistanceID)
 ORDER BY eventDate
 ";
-					objCmd.Parameters.AddWithValue("?eventTypeID", intEventTypeID);
-					objCmd.Parameters.AddWithValue("?eventDistanceID", intEventDistanceID);
+					objCmd.Parameters.AddWithValue("@eventTypeID", intEventTypeID);
+					objCmd.Parameters.AddWithValue("@eventDistanceID", intEventDistanceID);
 					
 					using(SqlDataReader objRdr = objCmd.ExecuteReader())
 					{
@@ -117,10 +117,10 @@ INNER JOIN eventTypeDefinitions T ON E.eventType = T.eventTypeID
 INNER JOIN eventDistanceDefinitions D ON E.eventDistance = D.eventDistanceID
 WHERE E.resultsLink != ''
 AND
-(E.eventTitle LIKE CONCAT('%',?eventSearch,'%'))
+(E.eventTitle LIKE CONCAT('%',@eventSearch,'%'))
 ORDER BY eventDate
 ";
-					objCmd.Parameters.AddWithValue("?eventSearch", strSearchEvents);
+					objCmd.Parameters.AddWithValue("@eventSearch", strSearchEvents);
 					
 					using(SqlDataReader objRdr = objCmd.ExecuteReader())
 					{
@@ -147,9 +147,9 @@ ORDER BY eventDate
 SELECT E.IID, E.eventTitle, E.eventDate, E.resultsLink, T.eventTypeDefinition AS eventType, D.eventDistanceDefinition AS eventDistance, E.eventLocation, E.eventLink FROM Events E
 INNER JOIN eventTypeDefinitions T ON E.eventType = T.eventTypeID
 INNER JOIN eventDistanceDefinitions D ON E.eventDistance = D.eventDistanceID
-WHERE E.IID = ?eventID
+WHERE E.IID = @eventID
 ";
-					objCmd.Parameters.AddWithValue("?eventID", intEventID);
+					objCmd.Parameters.AddWithValue("@eventID", intEventID);
 					
 					using(SqlDataReader objRdr = objCmd.ExecuteReader())
 					{

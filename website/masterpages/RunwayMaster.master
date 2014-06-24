@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" MasterPageFile="~/umbraco/masterpages/default.master" AutoEventWireup="true" %>
+<%@ Master Language="C#" MasterPageFile="~/umbraco/masterpages/default.master" AutoEventWireup="true" %>
 <asp:Content ContentPlaceHolderID="ContentPlaceHolderDefault" runat="server">
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"[]> 
@@ -98,15 +98,14 @@
         <h2 id="siteDescription"><umbraco:Item runat="server" field="siteDescription" recursive="true" /></h2>-->
       </div>
       <div id="menu">
-        <umbraco:Macro Alias="cfNavigation" skipFirstLevel="True" startNodeId="1048" runat="server"></umbraco:Macro>
-        <div class="forum-link"><a href="http://forums.midsussextriclub.com">FORUMS</a></div>
+        <umbraco:Macro Alias="cfNavigation" skipFirstLevel="True" startNodeId="1048" runat="server"></umbraco:Macro>        
       </div>
       <div id="body">
         <asp:ContentPlaceHolder ID="RunwayMasterContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
       </div>
       <div id="footer">
         <div class="footer-left">
-        © Mid Sussex Triathlon Club <SCRIPT LANGUAGE="JAVASCRIPT">
+        � Mid Sussex Triathlon Club <SCRIPT LANGUAGE="JAVASCRIPT">
     <!--
 
     var dt = new Date();

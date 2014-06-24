@@ -120,11 +120,11 @@ INNER JOIN eventTypeDefinitions T ON E.eventType = T.eventTypeID
 INNER JOIN eventDistanceDefinitions D ON E.eventDistance = D.eventDistanceID
 WHERE eventDate >= GetDate()
 AND
-(E.eventType = ?eventTypeID OR E.eventDistance = ?eventDistanceID)
+(E.eventType = @eventTypeID OR E.eventDistance = @eventDistanceID)
 ORDER BY eventDate
 ";
-					objCmd.Parameters.AddWithValue("?eventTypeID", intEventTypeID);
-					objCmd.Parameters.AddWithValue("?eventDistanceID", intEventDistanceID);
+					objCmd.Parameters.AddWithValue("@eventTypeID", intEventTypeID);
+					objCmd.Parameters.AddWithValue("@eventDistanceID", intEventDistanceID);
 					
 					using(SqlDataReader objRdr = objCmd.ExecuteReader())
 					{
@@ -151,10 +151,10 @@ ORDER BY eventDate
 SELECT E.IID, E.eventTitle, E.eventDate, T.eventTypeDefinition AS eventType, D.eventDistanceDefinition AS eventDistance, E.eventLocation FROM Events E
 INNER JOIN eventTypeDefinitions T ON E.eventType = T.eventTypeID
 INNER JOIN eventDistanceDefinitions D ON E.eventDistance = D.eventDistanceID
-WHERE (E.eventTitle LIKE CONCAT('%',?eventSearch,'%')) OR ((YEAR(E.eventDate) LIKE CONCAT('%',?eventSearch,'%')) OR (MONTHNAME(E.eventDate) LIKE CONCAT('%',?eventSearch,'%')))
+WHERE (E.eventTitle LIKE CONCAT('%',@eventSearch,'%')) OR ((YEAR(E.eventDate) LIKE CONCAT('%',@eventSearch,'%')) OR (MONTHNAME(E.eventDate) LIKE CONCAT('%',@eventSearch,'%')))
 ORDER BY eventDate
 ";
-					objCmd.Parameters.AddWithValue("?eventSearch", strSearchEvents);
+					objCmd.Parameters.AddWithValue("@eventSearch", strSearchEvents);
 					
 					using(SqlDataReader objRdr = objCmd.ExecuteReader())
 					{
@@ -183,9 +183,9 @@ M.eventID, M.memberID
 FROM Events E INNER JOIN eventTypeDefinitions T ON E.eventType = T.eventTypeID
 INNER JOIN eventDistanceDefinitions D ON E.eventDistance = D.eventDistanceID
 LEFT OUTER JOIN MemberEvents M ON E.IID = M.eventID
-WHERE E.IID = ?eventID
+WHERE E.IID = @eventID
 ";
-					objCmd.Parameters.AddWithValue("?eventID", intEventID);
+					objCmd.Parameters.AddWithValue("@eventID", intEventID);
 					
 					using(SqlDataReader objRdr = objCmd.ExecuteReader())
 					{
@@ -232,10 +232,10 @@ WHERE E.IID = ?eventID
 					objCmd.CommandText = 
 @"
 SELECT * FROM MemberEvents 
-where memberid = ?memberID and eventid = ?eventID
+where memberid = @memberID and eventid = @eventID
 ";
-					objCmd.Parameters.AddWithValue("?eventID", intEventID);
-					objCmd.Parameters.AddWithValue("?memberID",  Convert.ToInt32(System.Web.Security.Membership.GetUser().ProviderUserKey));
+					objCmd.Parameters.AddWithValue("@eventID", intEventID);
+					objCmd.Parameters.AddWithValue("@memberID",  Convert.ToInt32(System.Web.Security.Membership.GetUser().ProviderUserKey));
 					
 					using(SqlDataReader objRdr = objCmd.ExecuteReader())
 					{
@@ -268,15 +268,15 @@ where memberid = ?memberID and eventid = ?eventID
 					objCmd.CommandText = 
 @"
 INSERT INTO Events (eventTitle, eventDate, eventType, eventDistance, eventDescription, eventLink, eventLocation) 
-VALUES (?eventTitle, ?eventDate, ?eventType, ?eventDistance, ?eventDescription, ?eventLink, ?eventLocation)
+VALUES (@eventTitle, @eventDate, @eventType, @eventDistance, @eventDescription, @eventLink, @eventLocation)
 ";
-					objCmd.Parameters.AddWithValue("?eventTitle", ((TextBox)MemberEventAddView.FindControl("txtEventTitle")).Text);
-					objCmd.Parameters.AddWithValue("?eventDate", ((TextBox)MemberEventAddView.FindControl("txtEventDate")).Text);
-					objCmd.Parameters.AddWithValue("?eventType", ((DropDownList)MemberEventAddView.FindControl("ddlEventType")).SelectedItem.Value);
-					objCmd.Parameters.AddWithValue("?eventDistance", ((DropDownList)MemberEventAddView.FindControl("ddlEventDistance")).SelectedItem.Value);
-					objCmd.Parameters.AddWithValue("?eventDescription", ((TextBox)MemberEventAddView.FindControl("txtEventDescription")).Text);
-					objCmd.Parameters.AddWithValue("?eventLink", ((TextBox)MemberEventAddView.FindControl("txtEventLink")).Text);
-					objCmd.Parameters.AddWithValue("?eventLocation", ((TextBox)MemberEventAddView.FindControl("txtEventLocation")).Text);
+					objCmd.Parameters.AddWithValue("@eventTitle", ((TextBox)MemberEventAddView.FindControl("txtEventTitle")).Text);
+					objCmd.Parameters.AddWithValue("@eventDate", ((TextBox)MemberEventAddView.FindControl("txtEventDate")).Text);
+					objCmd.Parameters.AddWithValue("@eventType", ((DropDownList)MemberEventAddView.FindControl("ddlEventType")).SelectedItem.Value);
+					objCmd.Parameters.AddWithValue("@eventDistance", ((DropDownList)MemberEventAddView.FindControl("ddlEventDistance")).SelectedItem.Value);
+					objCmd.Parameters.AddWithValue("@eventDescription", ((TextBox)MemberEventAddView.FindControl("txtEventDescription")).Text);
+					objCmd.Parameters.AddWithValue("@eventLink", ((TextBox)MemberEventAddView.FindControl("txtEventLink")).Text);
+					objCmd.Parameters.AddWithValue("@eventLocation", ((TextBox)MemberEventAddView.FindControl("txtEventLocation")).Text);
 
 					objCmd.ExecuteNonQuery();
 				}
@@ -295,10 +295,10 @@ VALUES (?eventTitle, ?eventDate, ?eventType, ?eventDistance, ?eventDescription, 
 					SqlCommand objCmd = objConn.CreateCommand();
 					objCmd.CommandText = 
 @"
-UPDATE Events SET resultsLink = ?resultsLink WHERE IID = ?eventID
+UPDATE Events SET resultsLink = @resultsLink WHERE IID = @eventID
 ";
-					objCmd.Parameters.AddWithValue("?resultsLink", ((TextBox)MemberAddResultsView.FindControl("txtResultsLink")).Text);
-					objCmd.Parameters.AddWithValue("?eventID", intEventID);
+					objCmd.Parameters.AddWithValue("@resultsLink", ((TextBox)MemberAddResultsView.FindControl("txtResultsLink")).Text);
+					objCmd.Parameters.AddWithValue("@eventID", intEventID);
 
 					objCmd.ExecuteNonQuery();
 				}
@@ -320,10 +320,10 @@ UPDATE Events SET resultsLink = ?resultsLink WHERE IID = ?eventID
 					objCmd.CommandText = 
 @"
 INSERT INTO MemberEvents (eventID, memberID) 
-VALUES (?eventID, ?memberID)
+VALUES (@eventID, @memberID)
 ";
-					objCmd.Parameters.AddWithValue("?eventID", intEventID);
-					objCmd.Parameters.AddWithValue("?memberID", intMemberID);
+					objCmd.Parameters.AddWithValue("@eventID", intEventID);
+					objCmd.Parameters.AddWithValue("@memberID", intMemberID);
 
 					objCmd.ExecuteNonQuery();
 				}
@@ -347,11 +347,11 @@ VALUES (?eventID, ?memberID)
 					objCmd.CommandText = 
 @"
 DELETE FROM MemberEvents
-WHERE eventID = ?eventID
-AND memberID = ?memberID
+WHERE eventID = @eventID
+AND memberID = @memberID
 ";
-					objCmd.Parameters.AddWithValue("?eventID", intEventID);
-					objCmd.Parameters.AddWithValue("?memberID", intMemberID);
+					objCmd.Parameters.AddWithValue("@eventID", intEventID);
+					objCmd.Parameters.AddWithValue("@memberID", intMemberID);
 
 					objCmd.ExecuteNonQuery();
 				}
@@ -374,11 +374,11 @@ AND memberID = ?memberID
 @"
 SELECT MemberID
 FROM MemberEvents
-WHERE EventID = ?eventID 
+WHERE EventID = @eventID 
 
 ";
-					objCmd.Parameters.AddWithValue("?eventID", intEventID);
-                    objCmd.Parameters.AddWithValue("?memberID", MemberHelper.Get()["ID"]);
+					objCmd.Parameters.AddWithValue("@eventID", intEventID);
+                    objCmd.Parameters.AddWithValue("@memberID", MemberHelper.Get()["ID"]);
 
                     List<IDictionary<String, object>> memdetails = new List<IDictionary<String, object>>();
 

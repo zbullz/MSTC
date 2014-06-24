@@ -62,86 +62,7 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 				ddlDateYear.DataBind();
 			}
 		}
-		
-		/*protected void addEntry(Object s, EventArgs e)
-		{
-			if(cbAgree.Checked && Page.IsValid)
-			{
-				string 	strDOB, strClub;
-			
-				strDOB = (ddlDateYear.SelectedItem.Value + "/" + ddlDateMonth.SelectedItem.Value + "/" + ddlDateDay.SelectedItem.Value);
-				strClub = txtClub.Text;
 				
-				if (strClub == "")
-				{
-					strClub = "Unattached";
-				}
-				else
-				{
-					strClub = strClub;
-				}
-				
-				if(rbFull.Checked)
-				{
-					intEventType = 1;
-				}
-				else if(rbAquabike.Checked)
-				{
-					intEventType = 2;
-				}
-			
-				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
-				{
-					objConn.Open();
-					SqlCommand objCmd = objConn.CreateCommand();
-					objCmd.CommandText = 
-@"
-INSERT INTO Entries (FirstName, LastName, Gender, DOB, Addr1, Addr2, Addr3, Addr4, Postcode, 
-Phone, Email, Club, BTFNum, Mins, Secs, Declaration, Accept, EntryDate, EventType) 
-VALUES (?FirstName, ?LastName, ?Gender, ?DOB, ?Addr1, ?Addr2, ?Addr3, ?Addr4, ?Postcode, 
-?Phone, ?Email, ?Club, ?BTFNum, ?Mins, ?Secs, 1, 0, ?Now, ?EventType)
-";
-					
-					objCmd.Parameters.AddWithValue("?FirstName", txtFirstName.Text);
-					objCmd.Parameters.AddWithValue("?LastName", txtLastName.Text);
-					objCmd.Parameters.AddWithValue("?Gender", ddlGender.SelectedItem.Value);
-					objCmd.Parameters.AddWithValue("?DOB", strDOB);
-					objCmd.Parameters.AddWithValue("?Addr1", txtAddr1.Text);
-					objCmd.Parameters.AddWithValue("?Addr2", txtAddr2.Text);
-					objCmd.Parameters.AddWithValue("?Addr3", txtAddr3.Text);
-					objCmd.Parameters.AddWithValue("?Addr4", txtAddr4.Text);
-					objCmd.Parameters.AddWithValue("?Postcode", txtPostcode.Text);
-					objCmd.Parameters.AddWithValue("?Phone", txtPhone.Text);
-					objCmd.Parameters.AddWithValue("?Email", txtEmail.Text);
-					objCmd.Parameters.AddWithValue("?Club", strClub);
-					objCmd.Parameters.AddWithValue("?BTFNum", txtBTF.Text);
-					objCmd.Parameters.AddWithValue("?Mins", ddlSwimMins.SelectedItem.Text);
-					objCmd.Parameters.AddWithValue("?Secs", ddlSwimSecs.SelectedItem.Text);
-					objCmd.Parameters.AddWithValue("?Now", DateTime.Now);
-					objCmd.Parameters.AddWithValue("?EventType", intEventType);
-				
-					objCmd.ExecuteNonQuery();
-				}
-				
-				SendMessage();
-				Response.Redirect("race-entry/race-entry-payment.aspx");
-			}
-			else
-			{
-				if(!cbAgree.Checked)
-				{
-					lblTerms.Text = "<span class='mst_fielderror_terms'><span class='ERROR'>Error!</span>You must agree to the race terms &#038; conditions to proceed</span>";
-					lblTerms.Visible = true;
-				}
-				if(!Page.IsValid)
-				{
-					lblCaptcha.Text = "<span class='mst_fielderror_terms'><span class='ERROR'>Error!</span>Incorrect please try again</span>";
-					lblCaptcha.Visible = true;
-				}
-			}
-		}
-		*/
-		
 		protected void submitEntry(object s, EventArgs e)
 		{
 			if(cbAgree.Checked && Page.IsValid)
@@ -183,7 +104,7 @@ VALUES (?FirstName, ?LastName, ?Gender, ?DOB, ?Addr1, ?Addr2, ?Addr3, ?Addr4, ?P
 			}
 			
 			MailMessage objMail = new MailMessage();
-			objMail.To.Add("juniors@midsussextriclub.com");
+			objMail.To.Add(ConfigurationManager.AppSettings["juniorEntryEmailTo"] ?? "juniors@midsussextriclub.com");
 			objMail.From = new MailAddress("noreply@midsussextriclub.com");
 			objMail.Subject = "TriHub Junior Training - Entry Received";
 			
@@ -203,7 +124,7 @@ VALUES (?FirstName, ?LastName, ?Gender, ?DOB, ?Addr1, ?Addr2, ?Addr3, ?Addr4, ?P
 			"<p>Name: " +  txtName.Text + "</p>" +
 			"<p>" + strTCAgree + "</p>";
 			
-			SmtpClient smtpClient = new SmtpClient();
+			GmailSmtpClient smtpClient = new GmailSmtpClient();
 			smtpClient.Send(objMail);
 				
 			ViewState["ViewEntryForm"] = 1;
@@ -252,40 +173,9 @@ VALUES (?FirstName, ?LastName, ?Gender, ?DOB, ?Addr1, ?Addr2, ?Addr3, ?Addr4, ?P
 			"<p>Name" +  txtName.Text + "</p>" +
 			"<p>" + strTCAgree + "</p>";
 			
-			SmtpClient smtpClient = new SmtpClient();
-			smtpClient.Send(objMail);
+			GmailSmtpClient GmailSmtpClient = new GmailSmtpClient();
+			GmailSmtpClient.Send(objMail);
 			
 		}
-		
-		/*protected void getEntries()
-		{
-			using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
-			{
-				objConn.Open();
-				
-				SqlCommand objCmd = objConn.CreateCommand();
-				objCmd.CommandText =
-@"
-select count(*) AS TotalEntries from Entries WHERE Accept=1
-";
-				using(SqlDataReader objRdr = objCmd.ExecuteReader())
-				{
-					objRdr.Read();
-					
-					intEntries = objRdr["TotalEntries"] is DBNull ? 0 : Convert.ToInt32(objRdr["TotalEntries"]);
-				}
-				
-				if(intEntries >= 340 && intSecretEntry != 1)
-				{
-					containerEntryClosed.Visible = true;
-					containerEntry.Visible = false;
-				}
-				else
-				{
-					containerEntryClosed.Visible = false;
-					containerEntry.Visible = true;
-				}
-			}
-		}*/
 	}
 }	
