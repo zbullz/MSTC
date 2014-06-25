@@ -61,6 +61,10 @@ IF NOT DEFINED MSBUILD_PATH (
   SET MSBUILD_PATH=%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild.exe
 )
 
+IF NOT DEFINED DATA_CACHE_KEY (
+  SET DATA_CACHE_KEY=67890
+)
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :: Deployment
 :: ----------
@@ -77,6 +81,10 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
+:: 3. Update the data cache key in the web.config
+
+echo Replacing data cache key with: "%DATA_CACHE_KEY%"
+node replaceConfigSettings.js "%DEPLOYMENT_TARGET%" "%DATA_CACHE_KEY%"
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :: Post deployment stub
