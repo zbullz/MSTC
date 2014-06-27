@@ -70,9 +70,7 @@
       <form id="RunwayMasterForm" method="get" action="/search.aspx">
         <a href="http://www.facebook.com/group.php?gid=2363043378" target="_blank" title="Connect with Mid Sussex Triathlon Club on Facebook" ><img src="/images/facebook-16.png" border="0" alt="Facebook Icon" /></a>
         <a href="http://www.flickr.com/groups/midsussextriclub/" target="_blank" title="View Mid Sussex Triathlon Club's photos on Flickr" ><img src="/images/flickr-16.png" border="0" alt="Flickr Icon" /></a>
-        <a href="#" target="_blank"><img src="/images/twitter-16.png" border="0" alt="Twitter Icon" title="NOT LIVE YET - Follow Mid Sussex Triathlon Club on Twitter" /></a>
-        <a href="#" target="_blank"><img src="/images/youtube-16.png" border="0" alt="You Tube Icon" title="NOT LIVE YET - Watch Mid Sussex Triathlon Club Videos on You Tube" /></a>
-        <a href="http://www.midsussextriclub.com/news/rss.aspx" title="Subscribe to the Mid Sussex Triathlon Club News Feed - RSS" ><img src="/images/rss-16.png" border="0" alt="RSS Feed" /></a>
+        <a href="https://twitter.com/midsussextri" target="_blank"><img src="/images/twitter-16.png" border="0" alt="Twitter Icon" title="Follow Mid Sussex Triathlon Club on Twitter" /></a>
           <input name="search" type="text" class="input" value="" />
           <input type="submit" value="Fetch!" class="submit" />
       </form>
