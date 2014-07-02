@@ -69,19 +69,15 @@ IF NOT DEFINED DATA_CACHE_KEY (
 :: Deployment
 :: ----------
 
-echo Handling .NET Web Site deployment.
+echo Handling Basic Web Site deployment.
 
-:: 1. Build to the repository path
-call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\MSTC.sln" /verbosity:m /nologo %SCM_BUILD_ARGS%
-IF !ERRORLEVEL! NEQ 0 goto error
-
-:: 2. KuduSync
+:: 1. KuduSync
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
   call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%\website" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
-:: 3. Update the data cache key in the web.config
+:: 2. Update the data cache key in the web.config
 
 echo Replacing data cache key with: "%DATA_CACHE_KEY%"
 node replaceConfigSettings.js "%DEPLOYMENT_TARGET%" "%DATA_CACHE_KEY%"
