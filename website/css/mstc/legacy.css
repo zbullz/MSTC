@@ -1,0 +1,133 @@
+﻿a {
+    text-decoration: none;
+}
+
+.mainmenu-header {
+    background: none repeat scroll 0 0 #000000;
+    border-bottom: 0 none;
+    z-index: 4;
+    font-size: 15.4px;
+}
+
+    .mainmenu-header .menuextras {
+        height: 30px;
+    }
+
+        .mainmenu-header .menuextras .extras a {
+            color: #fff;
+        }
+
+            .mainmenu-header .menuextras .extras a:hover {
+                color: #ccc;
+                text-decoration: none;
+            }
+
+        .mainmenu-header .menuextras .extras .active a {
+            font-weight: 900;
+        }
+
+.menuextras {
+    height: 30px;
+}
+
+    .menuextras ul {
+        float: right;
+        list-style-type: none;
+        margin: 0;
+        padding: 3px 0;
+    }
+
+    .menuextras li {
+        float: left;
+        padding: 0 8px;
+    }
+
+    .menuextras .extras li {
+        padding: 0 8px;
+    }
+
+        .menuextras .extras li a {
+            color: #333;
+        }
+
+            .menuextras .extras li a:hover {
+                color: #333;
+                text-decoration: none;
+            }
+
+.mpurpose-container {
+    max-width: 1170px;
+    padding: 0 15px 0 15px;
+    margin: 0 auto 0 auto;
+    box-sizing: border-box;
+    font-family: Arial,Helvetica,sans-serif;
+    clear: both;
+}
+
+.footer {
+    background: none repeat scroll 0 0 #ffff00;
+    border-top: 4px solid #000000;
+    box-shadow: 0 -1px 12px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    color: #a0a0a0;
+    margin-top: 20px;
+    padding: 0 20px 10px;
+    line-height: 20px;
+    min-height: 40px;
+    font-size: 14px;
+}
+
+    .footer * {
+        box-sizing: border-box;
+    }
+
+    .footer ul {
+        padding: 0;
+    }
+
+ul.footer-navigate-section {
+    float: left;
+    padding-top: 10px;
+    width: 70%;
+    list-style-type: none;
+    margin: 0 0 10px 0;
+    text-align: left;
+}
+
+.footer-navigate-section li {
+    display: inline-block;
+    line-height: 20px !important;
+    padding-right: 10px;
+}
+
+    .footer-navigate-section li a {
+        color: #000000;
+    }
+
+.footer .row {
+    margin: 0 -15px 0 -15px;
+    clear: both;
+    min-height: 40px;
+}
+
+.col-md-12 {
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    width: 100%;
+    float: left;
+}
+
+.footer-copyright {
+    border-top: 1px dotted #7c7c7c;
+    color: #7c7c7c;
+    float: right;
+    font-size: 0.9em;
+    padding-top: 10px;
+    text-align: right;
+    width: 30%;
+}
+
+.clear-float {
+    clear: both;
+}
