@@ -33,7 +33,7 @@
         <![endif]-->
         <link rel="stylesheet" href="/css/mstc/main-yellow.css">
 
-        <script src="scripts/mstc/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="/scripts/mstc/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 
         <!-- Google Analytics script -->
         <script type="text/javascript">
@@ -69,71 +69,10 @@
                 </div>
             </div>
         </div>
+        
         <div class="mainmenu-wrapper">
             <div class="container">
-                <nav id="mainmenu" class="mainmenu">
-                    <ul>
-                        <li class="logo-wrapper"><a href="/">
-                            <img src="/images/mstc/mstc_logo_nowhite_small.png" alt="Mid Sussex Tri Club"></a></li>
-                        <li class="active">
-                            <a href="/">Home</a>
-                        </li>
-                        <li class="has-submenu">
-                            <a href="#">The Club +</a>
-                            <div class="mainmenu-submenu">
-                                <div class="mainmenu-submenu-inner">
-                                    <!--<h4>Homepage</h4>-->
-                                    <ul>
-                                        <li><a href="page-members.html">Membership</a></li>
-                                        <li><a href="#">[Club Library]</a></li>
-                                        <li><a href="#">Club affiliations</a></li>
-                                        <li><a href="page-committee.html">The Committee</a></li>
-                                        <li><a href="page-contact-us.html">Contact Us</a></li>
-                                    </ul>
-                                </div>
-                                <!-- /mainmenu-submenu-inner -->
-                            </div>
-                            <!-- /mainmenu-submenu -->
-                        </li>
-                        <li>
-                            <a href="page-events.html">Club Events</a>
-                        </li>
-                        <li>
-                            <a href="page-blog-post-left-sidebar.html">Race reports</a>
-                        </li>
-                        <li class="has-submenu">
-                            <a href="#">Training Zone +</a>
-                            <div class="mainmenu-submenu">
-                                <div class="mainmenu-submenu-inner">
-                                    <!--<h4>Homepage</h4>-->
-                                    <ul>
-                                        <li><a href="training-sessions.html">Training sessions</a></li>
-                                        <li><a href="#">Coach profiles</a></li>
-                                        <li><a href="#">Route maps</a></li>
-                                        <li><a href="page-training-articles.html">Training Articles</a></li>
-                                    </ul>
-                                </div>
-                                <!-- /mainmenu-submenu-inner -->
-                            </div>
-                            <!-- /mainmenu-submenu -->
-                        </li>
-                        <li class="has-submenu">
-                            <a href="#">Members Area +</a>
-                            <div class="mainmenu-submenu">
-                                <div class="mainmenu-submenu-inner">
-                                    <ul>
-                                        <li><a href="#">Club Kit</a></li>
-                                        <li><a href="#">Club Records</a></li>
-                                        <li><a href="page-athletes.html">[Athletes]</a></li>
-                                        <li><a href="page-edit-details.html">[My Details]</a></li>
-                                    </ul>
-                                </div>
-                                <!-- /mainmenu-submenu-inner -->
-                            </div>
-                            <!-- /mainmenu-submenu -->
-                        </li>
-                    </ul>
-                </nav>
+                <umbraco:Macro ID="topNav" Alias="NestedNavigation" StartLevel="1" FinishLevel="2" runat="server" Language="cshtml"></umbraco:Macro>
             </div>
         </div>
 
@@ -353,14 +292,14 @@
 
         <!-- Javascripts -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="scripts/mstc/jquery-1.9.1.min.js"><\/script>')</script>
-        <script src="scripts/mstc/bootstrap.min.js"></script>
+        <script>window.jQuery || document.write('<script src="/scripts/mstc/jquery-1.9.1.min.js"><\/script>')</script>
+        <script src="/scripts/mstc/bootstrap.min.js"></script>
         <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
-        <script src="scripts/mstc/jquery.fitvids.js"></script>
-        <script src="scripts/mstc/jquery.sequence-min.js"></script>
-        <script src="scripts/mstc/jquery.bxslider.js"></script>
-        <script src="scripts/mstc/main-menu.js"></script>
-        <script src="scripts/mstc/template.js"></script>
+        <script src="/scripts/mstc/jquery.fitvids.js"></script>
+        <script src="/scripts/mstc/jquery.sequence-min.js"></script>
+        <script src="/scripts/mstc/jquery.bxslider.js"></script>
+        <script src="/scripts/mstc/main-menu.js"></script>
+        <script src="/scripts/mstc/template.js"></script>
     </body>
     </html>
 </asp:Content>

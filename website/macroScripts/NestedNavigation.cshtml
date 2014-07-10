@@ -1,0 +1,49 @@
+﻿@*This snippet makes it easy to do navigation based lists! It'll automatically produce a nested list all children of a page within certain 
+levels in the hierarchy that's published and visible (it'll filter out any pages with a property named "umbracoNaviHide"
+that's set to 'true'.
+Based on the inbuilt Navigation script in Umbraco 4.7                                                      
+                                                      
+How to Customize for re-use (only applies to Macros, not if you insert this snippet directly in a template):
+- If you add a Macro Parameter with the alias of "StartLevel" you can define the starting level for which nodes will be displayed
+- If you add a Macro Parameter with the alias of "FinishLevel" you can define the finish level for which nodes will be displayed   
+*@                                               
+
+@inherits umbraco.MacroEngines.DynamicNodeContext
+@{ 
+  var startLevel = String.IsNullOrEmpty(Parameter.StartLevel) ? 2 : int.Parse(Parameter.StartLevel);
+  var finishLevel = String.IsNullOrEmpty(Parameter.FinishLevel) ? 5 : int.Parse(Parameter.FinishLevel);   
+  var parent = @Model.AncestorOrSelf(startLevel);
+}                                        
+    
+<nav id="mainmenu" class="mainmenu">
+  @if (parent != null){ @traverse(parent,startLevel,finishLevel) ; }  
+</nav>
+   
+@helper traverse(dynamic parent,int startLevel,int finishLevel)
+{
+    <ul>
+        @if (parent.Level == 1)
+        {
+            <li class="logo-wrapper"><a href="/"><img src="/images/mstc/mstc_logo_nowhite_small.png" alt="Mid Sussex Tri Club"></a></li>
+            <li class="@(Model.Url == "/" ? "active" : "")"><a href="/">Home</a></li>
+        }
+        @foreach (var node in parent.Children.Where("Visible"))
+        {
+            var active = Array.IndexOf(Model.Path.Split(','), node.Id.ToString()) >= 0 ? "active" : "";
+            var hasSubMenu = node.Children.Where("Visible").Any();
+            <li class="@(hasSubMenu ? "has-submenu" : "") @active">
+                <a href="@(hasSubMenu ? "#" : node.Url)">@node.Name @(hasSubMenu ? " +" : "")</a>
+            @if (hasSubMenu) 
+            {
+                @:<div class="mainmenu-submenu"><div class="mainmenu-submenu-inner">
+            }
+                    @if (@node.Level <= finishLevel) { @traverse(node, startLevel, finishLevel) ; }
+            @if (hasSubMenu)
+            {
+                @:</div></div>
+            }  
+            </li>
+        }
+    </ul>
+}
+  
