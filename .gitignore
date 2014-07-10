@@ -2,3 +2,4 @@
 website/App_Data/*
 packages/*
 !/packages/repositories.config
+website/media/*/Cached/*

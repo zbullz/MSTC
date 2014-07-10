@@ -16,9 +16,9 @@ fs.readFile(configFilePath, 'utf8', function (err,data) {
     return console.log(err);
   }
   var result = data.replace(/dataCacheClientKey/g, dataCacheKey);
-  if (environment == 'staging')
-  {
-	var result = data.replace(/"AFCacheSessionState"/g, '"AFCacheSessionStateStaging"');  
+  
+  if (environment == 'staging')  {
+	result = result.replace(/"AFCacheSessionState"/g, '"AFCacheSessionStateStaging"');  
   }
 
   fs.writeFile(configFilePath, result, 'utf8', function (err) {
