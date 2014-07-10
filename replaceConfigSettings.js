@@ -1,6 +1,7 @@
 var fs = require('fs')
 var deploymentTargetFolder = process.argv[2]
 var dataCacheKey = process.argv[3]
+var environment = process.argv[4]
 
 console.log("Running replaceConfigSettings.js")
 
@@ -15,6 +16,10 @@ fs.readFile(configFilePath, 'utf8', function (err,data) {
     return console.log(err);
   }
   var result = data.replace(/dataCacheClientKey/g, dataCacheKey);
+  if (environment == 'staging')
+  {
+	var result = data.replace(/"AFCacheSessionState"/g, '"AFCacheSessionStateStaging"');  
+  }
 
   fs.writeFile(configFilePath, result, 'utf8', function (err) {
      if (err) return console.log(err);
