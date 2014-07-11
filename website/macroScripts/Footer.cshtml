@@ -1,0 +1,28 @@
+﻿@using umbraco.NodeFactory
+@inherits umbraco.MacroEngines.DynamicNodeContext 
+   
+@{
+    var homepage = @Model.AncestorOrSelf(1);
+    var termsPageNode = homepage.termsPage is int ? new Node(homepage.termsPage) : null;
+    var contactPageNode = homepage.contactPage is int ? new Node(homepage.contactPage) : null;
+}
+
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="no-list-style footer-navigate-section">
+                    @if (termsPageNode != null)
+                    {
+                        <li class="@(Model.Url.Contains(termsPageNode.UrlName) ? "active" : "")"><a href="@termsPageNode.Url">@termsPageNode.Name</a></li>
+                    }
+                    @if (contactPageNode != null)
+                    {
+                        <li class="@(Model.Url.Contains(contactPageNode.UrlName) ? "active" : "")"><a href="@contactPageNode.Url">@contactPageNode.Name</a></li>
+                    }
+                </ul>
+                <div class="footer-copyright">&copy; @DateTime.Now.Year Mid Sussex Triathlon Club.</div>
+            </div>
+        </div>
+    </div>
+</div>

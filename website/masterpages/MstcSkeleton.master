@@ -63,19 +63,20 @@
         <div class="homepage-slider">
             <div id="sequence">
                 <ul class="sequence-canvas">
-                    <!-- Slide 1 -->
+                    <!-- Triathlon slider, swap in when need to promote the triathlon -->
                     <!--
-                <li class="bg4">
-                    <div class="transbox">      
-                        <h2 class="title"><a href="#">Enter the Mid Sussex Triathlon</a></h2>          
-                        <h3 class="subtitle">Entries for the 2014 mid sussex triathlon are now open!</h3>                    
-                    </div>
-                </li>-->
+                    <li class="bg4">
+                        <div class="transbox">      
+                            <h2 class="title"><a href="#">Enter the Mid Sussex Triathlon</a></h2>          
+                            <h3 class="subtitle">Entries for the 2014 mid sussex triathlon are now open!</h3>                    
+                        </div>
+                    </li>
+                    -->
+                    <!-- Slide 1 -->   
                     <li class="bg1">
                         <div class="transbox">
                             <h2 class="title"><a href="training-sessions.html">Try our training sessions</a></h2>
                             <h3 class="subtitle">Come down to our weekly group training session on Thursday and have a go!</h3>
-                            <!--<img class="slide-img" alt="Slide 1" src="img/homepage-slider/slide1.png" style="">-->
                         </div>
                     </li>
                     <!-- End Slide 1 -->
@@ -92,7 +93,6 @@
                         <div class="transbox">
                             <h2 class="title"><a href="juniors.html">Tri Hub training for Juniors</a></h2>
                             <h3 class="subtitle">Our Tri Hub training sessions are both fun and rewarding for kids</h3>
-                            <!--<img class="slide-img" alt="Slide 1" src="img/homepage-slider/slide1.png" style="">-->
                         </div>
                     </li>
                     <!-- End Slide 3 -->
@@ -252,27 +252,13 @@
                         <a href="http://kneadmemassage.co.uk">
                             <img src="/images/mstc/sponsors/massage-kneadme-200.png" alt="kneadmemassage"></a>
                     </div>
-
                 </div>
             </div>
         </div>
 
         <!-- Footer -->
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="no-list-style footer-navigate-section">
-                            <li><a href="page-blog-posts.html">Terms of Use</a></li>
-                            <li><a href="page-blog-posts.html">Contact Us</a></li>
-                        </ul>
-                        <div class="footer-copyright">&copy; 2014 Mid Sussex Triathlon Club.</div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <umbraco:Macro ID="footerSection" Alias="Footer" runat="server" Language="cshtml"></umbraco:Macro>
+        
         <!-- Javascripts -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="/scripts/mstc/jquery-1.9.1.min.js"><\/script>')</script>
