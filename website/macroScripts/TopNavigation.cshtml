@@ -1,10 +1,14 @@
-﻿@inherits umbraco.MacroEngines.DynamicNodeContext
+﻿@using umbraco.NodeFactory
+@inherits umbraco.MacroEngines.DynamicNodeContext
    
 @{
-    const string triathlonUrlSegment = "the-mid-sussex-triathlon";
-    const string juniorsUrlSegment = "mid-sussex-triathlon-juniors";
-    bool isMainSite = Model.Url.Contains(triathlonUrlSegment) == false && Model.Url.Contains(juniorsUrlSegment) == false;
+    var homepage = @Model.AncestorOrSelf(1);
+    var triathlonPageNode = homepage.triathlonPage is int ? new Node(homepage.triathlonPage) : null;
+    var juniorsPageNode = homepage.juniorsPage is int ? new Node(homepage.juniorsPage) : null;
 
+    bool isMainSite = triathlonPageNode == null || juniorsPageNode == null ?
+                          true :
+                          Model.Url.Contains(triathlonPageNode.UrlName) == false && Model.Url.Contains(juniorsPageNode.UrlName) == false;
 }
 
 <div class="mainmenu-header">
@@ -12,9 +16,15 @@
         <div class="menuextras">
             <div class="extras">
                 <ul>
-                    <li class="@(isMainSite ? "active" : "")"><a href="/">Club Site</a> | </li>
-                    <li class="@(Model.Url.Contains(triathlonUrlSegment) ? "active" : "")"><a href="/the-mid-sussex-triathlon.aspx">The Mid Sussex Triathlon</a> | </li>
-                    <li class="@(Model.Url.Contains(juniorsUrlSegment) ? "active" : "")"><a href="/mid-sussex-triathlon-juniors.aspx">Juniors Tri Hub</a></li>
+                    <li class="@(isMainSite ? "active" : "")"><a href="@homepage.Url">Club Site</a> | </li>
+                @if (triathlonPageNode != null)
+                {
+                   <li class="@(Model.Url.Contains(triathlonPageNode.UrlName) ? "active" : "")"><a href="@triathlonPageNode.Url">The Mid Sussex Triathlon</a> | </li>
+                }
+                @if (juniorsPageNode != null)
+                {
+                    <li class="@(Model.Url.Contains(juniorsPageNode.UrlName) ? "active" : "")"><a href="@juniorsPageNode.Url">Juniors Tri Hub</a></li>
+                }
                 </ul>
             </div>
         </div>
