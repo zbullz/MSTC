@@ -15,9 +15,13 @@ How to Customize for re-use (only applies to Macros, not if you insert this snip
   var parent = @Model.AncestorOrSelf(startLevel);
 }                                        
     
-<nav id="mainmenu" class="mainmenu">
-  @if (parent != null){ @traverse(parent,startLevel,finishLevel) ; }  
-</nav>
+<div class="mainmenu-wrapper">
+    <div class="container">
+        <nav id="mainmenu" class="mainmenu">
+            @if (parent != null){ @traverse(parent,startLevel,finishLevel) ; }  
+        </nav>
+    </div>
+</div>
    
 @helper traverse(dynamic parent,int startLevel,int finishLevel)
 {

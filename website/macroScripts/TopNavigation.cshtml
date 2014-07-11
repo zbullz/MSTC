@@ -1,0 +1,22 @@
+﻿@inherits umbraco.MacroEngines.DynamicNodeContext
+   
+@{
+    const string triathlonUrlSegment = "the-mid-sussex-triathlon";
+    const string juniorsUrlSegment = "mid-sussex-triathlon-juniors";
+    bool isMainSite = Model.Url.Contains(triathlonUrlSegment) == false && Model.Url.Contains(juniorsUrlSegment) == false;
+
+}
+
+<div class="mainmenu-header">
+    <div class="container">
+        <div class="menuextras">
+            <div class="extras">
+                <ul>
+                    <li class="@(isMainSite ? "active" : "")"><a href="/">Club Site</a> | </li>
+                    <li class="@(Model.Url.Contains(triathlonUrlSegment) ? "active" : "")"><a href="/the-mid-sussex-triathlon.aspx">The Mid Sussex Triathlon</a> | </li>
+                    <li class="@(Model.Url.Contains(juniorsUrlSegment) ? "active" : "")"><a href="/mid-sussex-triathlon-juniors.aspx">Juniors Tri Hub</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

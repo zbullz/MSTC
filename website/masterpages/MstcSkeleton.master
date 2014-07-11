@@ -56,25 +56,8 @@
         <![endif]-->
 
         <!-- Navigation & Logo-->
-        <div class="mainmenu-header">
-            <div class="container">
-                <div class="menuextras">
-                    <div class="extras">
-                        <ul>
-                            <li class="active"><a href="/">Club Site</a> | </li>
-                            <li><a href="triathlon.html">The Mid Sussex Triathlon</a> | </li>
-                            <li><a href="juniors.html">Juniors Tri Hub</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="mainmenu-wrapper">
-            <div class="container">
-                <umbraco:Macro ID="topNav" Alias="NestedNavigation" StartLevel="1" FinishLevel="2" runat="server" Language="cshtml"></umbraco:Macro>
-            </div>
-        </div>
+        <umbraco:Macro ID="topNav" Alias="TopNavigation" runat="server" Language="cshtml"></umbraco:Macro>
+        <umbraco:Macro ID="nestedNav" Alias="NestedNavigation" StartLevel="1" FinishLevel="2" runat="server" Language="cshtml"></umbraco:Macro>
 
         <!-- Homepage Slider -->
         <div class="homepage-slider">
