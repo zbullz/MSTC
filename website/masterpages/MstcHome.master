@@ -68,39 +68,13 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <!-- Featured News -->
-                    <div class="col-sm-6 featured-news">
-                        <h2>Latest Race Reports</h2>
-                        <div class="row">
-                            <div class="col-xs-4"><a href="page-blog-post-left-sidebar.html">
-                                <img src="http://www.midsussextriclub.com/media/32958/Endoman.jpg" alt="Post Title"></a></div>
-                            <div class="col-xs-8">
-                                <div class="caption"><a href="page-blog-post-left-sidebar.html">Enduroman Half</a></div>
-                                <div class="date">16 May 2013 </div>
-                                <div class="intro">I entered this event as I wanted a change from doing Wimbleball again, so this was going to be a whole new experience. <a href="page-blog-post-left-sidebar.html">Read more...</a></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-4"><a href="page-blog-post-left-sidebar.html">
-                                <img src="http://www.midsussextriclub.com/media/32849/Nottingham.jpeg" alt="Post Title"></a></div>
-                            <div class="col-xs-8">
-                                <div class="caption"><a href="page-blog-post-left-sidebar.html">Notingham Big Tri</a></div>
-                                <div class="date">14 May 2013 </div>
-                                <div class="intro">Paul Newsome, Colin Chamber and Martin Shoesmith traveled to the Euro and World Sprint Qualifying event on Saturday 31st May. <a href="page-blog-post-right-left.html">Read more...</a></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-4"><a href="page-blog-post-left-sidebar.html">
-                                <img src="http://www.midsussextriclub.com/media/32697/70.3 Pays d Aix.jpg" alt="Post Title"></a></div>
-                            <div class="col-xs-8">
-                                <div class="caption"><a href="page-blog-post-left-sidebar.html">Ironman 70.3 Pays d'Aix</a></div>
-                                <div class="date">05 May 2013 </div>
-                                <div class="intro">The day finally arrived to experience a middle distance Ironman race and i wasn't disappointed with this event. <a href="page-blog-post-left-sidebar.html">Read more...</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Featured News -->
-                    <!-- Latest News -->
+                    <!-- Race reports -->
+                    
+                    
+                    <umbraco:Macro ID="newsListing" Alias="BlogListing" BlogNodeId="1127" Title="Latest race reports" runat="server" Language="cshtml"></umbraco:Macro>
+
+                    <!-- End race reports -->
+                    <!-- Latest training articles -->
                     <div class="col-sm-6 latest-news">
                         <h2>Latest Training Articles</h2>
                         <div class="row">
@@ -137,7 +111,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- End Featured News -->
+                    <!-- End Training articles -->
                 </div>
             </div>
         </div>

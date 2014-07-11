@@ -1,0 +1,27 @@
+﻿@using umbraco.MacroEngines
+@using umbraco.NodeFactory
+@inherits umbraco.MacroEngines.DynamicNodeContext
+@{
+    dynamic blogNode = String.IsNullOrEmpty(Parameter.BlogNodeId) ? null : new DynamicNode(int.Parse(Parameter.BlogNodeId));
+    int numberOfItems = String.IsNullOrEmpty(Parameter.NumberOfItems) ? 3 : int.Parse(Parameter.NumberOfItems);
+}
+
+@if (blogNode != null)
+{
+    <div class="col-sm-6 featured-news">
+        <h2>@Parameter.Title</h2>
+        @foreach (var item in blogNode.Descendants("BlogPost").OrderBy("PostDate descending").Take(numberOfItems))
+        {
+            dynamic mediaNode = item.newsPhotoThumbnail is int ? new DynamicMedia(new DynamicBackingItem(item.newsPhotoThumbnail)) : null;
+            <div class="row">
+                <div class="col-xs-4"><a href="@item.Url">
+                                          <img src="@(mediaNode != null ? mediaNode.umbracoFile : "")" alt="@item.Name"></a></div>
+                <div class="col-xs-8">
+                    <div class="caption"><a href="@item.Url">@item.Name</a></div>
+                    <div class="date">@item.PostDate</div>
+                    <div class="intro">@item.newsPrecis <a href="@item.Url">Read more...</a></div>
+                </div>
+            </div>
+        }
+    </div>
+}
