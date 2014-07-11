@@ -1,12 +1,11 @@
 ﻿@using umbraco.MacroEngines
-@using umbraco.NodeFactory
 @inherits umbraco.MacroEngines.DynamicNodeContext
 @{
     dynamic blogNode = String.IsNullOrEmpty(Parameter.BlogNodeId) ? null : new DynamicNode(int.Parse(Parameter.BlogNodeId));
     int numberOfItems = String.IsNullOrEmpty(Parameter.NumberOfItems) ? 3 : int.Parse(Parameter.NumberOfItems);
 }
 
-@if (blogNode != null)
+@if (blogNode != null && blogNode.Name != string.Empty)
 {
     <div class="col-sm-6 featured-news">
         <h2>@Parameter.Title</h2>
@@ -18,7 +17,7 @@
                                           <img src="@(mediaNode != null ? mediaNode.umbracoFile : "")" alt="@item.Name"></a></div>
                 <div class="col-xs-8">
                     <div class="caption"><a href="@item.Url">@item.Name</a></div>
-                    <div class="date">@item.PostDate</div>
+                    <div class="date">@(item.PostDate.ToString("dd MMM yyyy")) </div>
                     <div class="intro">@item.newsPrecis <a href="@item.Url">Read more...</a></div>
                 </div>
             </div>

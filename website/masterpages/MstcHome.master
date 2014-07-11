@@ -69,49 +69,10 @@
             <div class="container">
                 <div class="row">
                     <!-- Race reports -->
-                    
-                    
                     <umbraco:Macro ID="newsListing" Alias="BlogListing" BlogNodeId="1127" Title="Latest race reports" runat="server" Language="cshtml"></umbraco:Macro>
 
-                    <!-- End race reports -->
-                    <!-- Latest training articles -->
-                    <div class="col-sm-6 latest-news">
-                        <h2>Latest Training Articles</h2>
-                        <div class="row">
-                            <div class="col-xs-4"><a href="page-blog-post-left-sidebar.html">
-                                <img src="http://www.midsussextriclub.com/media/13620/Run-alone.jpg" alt="Post Title"></a></div>
-                            <div class="col-xs-8">
-                                <div class="caption"><a href="page-blog-post-left-sidebar.html">How Long Is Long When Training For A Marathon?</a></div>
-                                <div class="date">16 May 2013 </div>
-                                <div class="intro">
-                                    It is generally accepted that when training for a marathon you need to incorporate a few long runs. 
-                                    But how long is long, and what sort of frequency should you do them with? <a href="page-blog-post-left-sidebar.html">Read more...</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-4"><a href="page-blog-post-left-sidebar.html">
-                                <img src="http://www.midsussextriclub.com/media/5750/default.jpg" alt="Post Title"></a></div>
-                            <div class="col-xs-8">
-                                <div class="caption"><a href="page-blog-post-left-sidebar.html">Swim etiquette the Unspoken Rules</a></div>
-                                <div class="date">14 May 2013 </div>
-                                <div class="intro">
-                                    Experienced drivers know that roads are safer and more efficient when everyone observes a few common courtesies and basic rules. 
-                                    Such things are even more important when there are no explicit signs or signals to tell everyone what to do. <a href="page-blog-post-left-sidebar.html">Read more...</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-4"><a href="page-blog-post-left-sidebar.html">
-                                <img src="http://www.midsussextriclub.com/media/13102/Brick.jpg" alt="Post Title"></a></div>
-                            <div class="col-xs-8">
-                                <div class="caption"><a href="page-blog-post-left-sidebar.html">Transition Workouts: When to Run After a Ride</a></div>
-                                <div class="date">14 May 2013 </div>
-                                <div class="intro">In triathlon, there's no choice: You have to run (or at least walk) after riding your bike to reach the finish line. No run, no finisher's medal. <a href="page-blog-post-left-sidebar.html">Read more...</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Training articles -->
+                    <!-- Training articles -->
+                    <umbraco:Macro ID="Macro1" Alias="BlogListing" BlogNodeId="3145" Title="Latest training articles" runat="server" Language="cshtml"></umbraco:Macro>
                 </div>
             </div>
         </div>
