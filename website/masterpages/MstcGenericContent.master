@@ -1,5 +1,32 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
 
-<asp:content ContentPlaceHolderId="PageScripts" runat="server">
-  
-</asp:content>
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MainContent">
+    <!-- Page Title -->
+    <div class="section section-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>
+                        <umbraco:Item ID="pageName" runat="server" Field="pageName" />
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <div class="blog-post blog-single-post">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <umbraco:Item ID="Item1" runat="server" field="bodyText"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</asp:Content>

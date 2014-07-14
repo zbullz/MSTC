@@ -18,7 +18,6 @@
             <asp:PlaceHolder ID="PlaceHolder1" runat="server">
                 <umbraco:Item ID="Item1" runat="server" Field="pageName" />
                 -
-               
                 <umbraco:Item ID="Item2" runat="server" Field="siteName" recursive="true" />
             </asp:PlaceHolder>
         </title>
