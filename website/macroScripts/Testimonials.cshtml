@@ -1,0 +1,65 @@
+﻿@using umbraco.MacroEngines
+<h2>What do our members think?</h2>
+<div class="row">
+    @if (string.IsNullOrWhiteSpace(Parameter.MemberQuote1) == false)
+    {
+        <div class="testimonial col-md-4 col-sm-6">
+            <div class="author-photo">
+                @{ dynamic memberImage1 = string.IsNullOrWhiteSpace(Parameter.MemberImage1) ? null : new DynamicMedia(new DynamicBackingItem(int.Parse(Parameter.MemberImage1))); }
+                <img src="@(memberImage1 != null ? memberImage1.umbracoFile : "")" alt="@Parameter.MemberAuthor1">
+            </div>
+            <div class="testimonial-bubble">
+                <blockquote>
+                    <p class="quote">
+                        "@Parameter.MemberQuote1"
+                    </p>
+                    <cite class="author-info">
+                        @Parameter.MemberAuthor1
+                    </cite>
+                </blockquote>
+                <div class="sprite arrow-speech-bubble"></div>
+            </div>
+        </div>
+    }
+    @if (string.IsNullOrWhiteSpace(Parameter.MemberQuote2) == false)
+    {
+        <div class="testimonial col-md-4 col-sm-6">
+            <div class="author-photo">
+                @{ dynamic memberImage2 = string.IsNullOrWhiteSpace(Parameter.MemberImage2) ? null : new DynamicMedia(new DynamicBackingItem(int.Parse(Parameter.MemberImage2))); }
+                <img src="@(memberImage2 != null ? memberImage2.umbracoFile : "")" alt="@Parameter.MemberAuthor2">
+            </div>
+            <div class="testimonial-bubble">
+                <blockquote>
+                    <p class="quote">
+                        "@Parameter.MemberQuote2"
+                    </p>
+                    <cite class="author-info">
+                        @Parameter.MemberAuthor2
+                    </cite>
+                </blockquote>
+                <div class="sprite arrow-speech-bubble"></div>
+            </div>
+        </div>
+    }    
+    @if (string.IsNullOrWhiteSpace(Parameter.MemberQuote3) == false)
+    {
+        <div class="testimonial col-md-4 col-sm-6">
+            <div class="author-photo">
+                @{ dynamic memberImage3 = string.IsNullOrWhiteSpace(Parameter.MemberImage3) ? null : new DynamicMedia(new DynamicBackingItem(int.Parse(Parameter.MemberImage3))); }
+                <img src="@(memberImage3 != null ? memberImage3.umbracoFile : "")" alt="@Parameter.MemberAuthor3">
+            </div>
+            <div class="testimonial-bubble">
+                <blockquote>
+                    <p class="quote">
+                        "@Parameter.MemberQuote3"
+                    </p>
+                    <cite class="author-info">
+                        @Parameter.MemberAuthor3
+                    </cite>
+                </blockquote>
+                <div class="sprite arrow-speech-bubble"></div>
+            </div>
+        </div>
+    }
+</div>
+

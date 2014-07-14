@@ -16,16 +16,24 @@
             </div>
         </div>
     </div>
-
+    
+    <!-- Main content -->
     <div class="section">
         <div class="container">
             <div class="blog-post blog-single-post">
                 <div class="row">
                     <div class="col-sm-12">
-                        <umbraco:Item ID="Item1" runat="server" field="bodyText"/>
+                        <umbraco:Item ID="bodyText" runat="server" field="bodyText"/>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    
+    <!-- Secondary content -->
+    <div class="section">
+        <div class="container">
+           <umbraco:Item ID="secondaryContent" runat="server" field="secondaryContent"/> 
         </div>
     </div>
 
