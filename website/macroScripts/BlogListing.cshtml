@@ -10,7 +10,7 @@ RenderPage("~/macroscripts/BlogListing.cshtml", "Latest race reports", "raceRepo
     string blogNodeId = Model.GetProperty(blogNodePropertyName) == null ? null : Model.GetProperty(blogNodePropertyName).Value;
     //dynamic blogNode = null;
     //int numberOfItems = 0;
-    dynamic blogNode = blogNodeId == null ? null : Model.NodeById(int.Parse(blogNodeId));
+    dynamic blogNode = String.IsNullOrEmpty(blogNodeId) ? null : Model.NodeById(int.Parse(blogNodeId));
     int numberOfItems = String.IsNullOrEmpty(PageData[2]) ? 3 : int.Parse(PageData[2]);
 }
 
