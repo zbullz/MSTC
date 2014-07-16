@@ -1,17 +1,26 @@
-﻿@using umbraco.MacroEngines
+﻿@*
+To use this macro call with RenderPage passing up to 3 parameters, of Title, BlogNodePropertyName and NumberOfItems  eg.
+RenderPage("~/macroscripts/BlogListing.cshtml", "Latest race reports", "raceReportsPage", 3) 
+*@
+
 @inherits umbraco.MacroEngines.DynamicNodeContext
 @{
-    dynamic blogNode = String.IsNullOrEmpty(Parameter.BlogNodeId) ? null : new DynamicNode(int.Parse(Parameter.BlogNodeId));
-    int numberOfItems = String.IsNullOrEmpty(Parameter.NumberOfItems) ? 3 : int.Parse(Parameter.NumberOfItems);
+    string title = PageData[0];
+    string blogNodePropertyName = PageData[1];
+    string blogNodeId = Model.GetProperty(blogNodePropertyName) == null ? null : Model.GetProperty(blogNodePropertyName).Value;
+    //dynamic blogNode = null;
+    //int numberOfItems = 0;
+    dynamic blogNode = blogNodeId == null ? null : Model.NodeById(int.Parse(blogNodeId));
+    int numberOfItems = String.IsNullOrEmpty(PageData[2]) ? 3 : int.Parse(PageData[2]);
 }
 
 @if (blogNode != null && blogNode.Name != string.Empty)
 {
     <div class="col-sm-6 featured-news">
-        <h2>@Parameter.Title</h2>
+        <h2>@title</h2>
         @foreach (var item in blogNode.Descendants("BlogPost").OrderBy("PostDate descending").Take(numberOfItems))
         {
-            dynamic mediaNode = item.newsPhotoThumbnail is int ? new DynamicMedia(new DynamicBackingItem(item.newsPhotoThumbnail)) : null;
+            dynamic mediaNode = item.newsPhotoThumbnail is int ? Library.MediaById(item.newsPhotoThumbnail) : null;
             <div class="row">
                 <div class="col-xs-4"><a href="@item.Url">
                                           <img src="@(mediaNode != null ? mediaNode.umbracoFile : "")" alt="@item.Name"></a></div>

@@ -69,10 +69,13 @@
             <div class="container">
                 <div class="row">
                     <!-- Race reports -->
-                    <umbraco:Macro ID="newsListing" Alias="BlogListing" BlogNodeId="1127" Title="Latest race reports" runat="server" Language="cshtml"></umbraco:Macro>
-
-                    <!-- Training articles -->
-                    <umbraco:Macro ID="Macro1" Alias="BlogListing" BlogNodeId="3145" Title="Latest training articles" runat="server" Language="cshtml"></umbraco:Macro>
+                    <umbraco:Macro ID="Macro2" runat="server" language="cshtml">
+                        @RenderPage("~/macroscripts/BlogListing.cshtml", "Latest race reports", "raceReportsPage")
+                    </umbraco:Macro>
+                    
+                    <umbraco:Macro ID="Macro1" runat="server" language="cshtml">
+                        @RenderPage("~/macroscripts/BlogListing.cshtml", "Latest training articles", "trainingArticlesPage")
+                    </umbraco:Macro>
                 </div>
             </div>
         </div>
