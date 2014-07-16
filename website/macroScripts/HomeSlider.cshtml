@@ -1,0 +1,26 @@
+﻿@*
+Usage example:
+RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink1", "bg1",  "Try our training sessions", "Come down to our weekly group training session on Thursday and have a go!") 
+*@
+
+@inherits umbraco.MacroEngines.DynamicNodeContext
+@{
+    string linkPagePropertyName = PageData[0];
+
+    string cssClass = PageData[1];
+    string linkText = PageData[2];
+    string subText = PageData[3];
+    
+    string linkPageNodeId = Model.GetProperty(linkPagePropertyName) == null ? null : Model.GetProperty(linkPagePropertyName).Value;
+    dynamic linkPageNode = linkPageNodeId == null ? null : Model.NodeById(int.Parse(linkPageNodeId));
+}
+
+@if (linkPageNode != null && linkPageNode.Name != string.Empty)
+{
+    <li class="@cssClass">
+        <div class="transbox">
+            <h2 class="title"><a href="@linkPageNode.Url">@linkText</a></h2>
+            <h3 class="subtitle">@subText</h3>
+        </div>
+    </li>
+}

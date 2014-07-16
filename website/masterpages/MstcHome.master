@@ -18,30 +18,17 @@
                         </div>
                     </li>
                     -->
-                    <!-- Slide 1 -->   
-                    <li class="bg1">
-                        <div class="transbox">
-                            <h2 class="title"><a href="training-sessions.html">Try our training sessions</a></h2>
-                            <h3 class="subtitle">Come down to our weekly group training session on Thursday and have a go!</h3>
-                        </div>
-                    </li>
-                    <!-- End Slide 1 -->
-                    <!-- Slide 2 -->
-                    <li class="bg5">
-                        <div class="transbox">
-                            <h2 class="title"><a href="page-members.html">Sign up to the club</a></h2>
-                            <h3 class="subtitle">If you want to get more involved with trialthon why not become a member of the club?</h3>
-                        </div>
-                    </li>
-                    <!-- End Slide 2 -->
-                    <!-- Slide 3 -->
-                    <li class="bg2">
-                        <div class="transbox">
-                            <h2 class="title"><a href="juniors.html">Tri Hub training for Juniors</a></h2>
-                            <h3 class="subtitle">Our Tri Hub training sessions are both fun and rewarding for kids</h3>
-                        </div>
-                    </li>
-                    <!-- End Slide 3 -->
+                    <!-- Sliders -->
+                    <umbraco:Macro ID="slider1Macro" runat="server" language="cshtml">
+                        @RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink1", "bg1", "Try our training sessions", "Come down to our weekly group training session on Thursday and have a go!") 
+                    </umbraco:Macro>
+                    <umbraco:Macro ID="slider2Macro" runat="server" language="cshtml">
+                        @RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink2", "bg5", "Sign up to the club", "If you want to get more involved with trialthon why not become a member of the club?") 
+                    </umbraco:Macro>
+                    <umbraco:Macro ID="slider3Macro" runat="server" language="cshtml">
+                        @RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink3", "bg2", "Tri Hub training for Juniors", "Our Tri Hub training sessions are both fun and rewarding for kids") 
+                    </umbraco:Macro>
+                    <!-- End Sliders -->
                 </ul>
                 <div class="sequence-pagination-wrapper">
                     <ul class="sequence-pagination">
