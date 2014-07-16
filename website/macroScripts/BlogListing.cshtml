@@ -23,7 +23,7 @@ RenderPage("~/macroscripts/BlogListing.cshtml", "Latest race reports", "raceRepo
             dynamic mediaNode = item.newsPhotoThumbnail is int ? Library.MediaById(item.newsPhotoThumbnail) : null;
             <div class="row">
                 <div class="col-xs-4"><a href="@item.Url">
-                                          <img src="@(mediaNode != null ? mediaNode.umbracoFile : "")" alt="@item.Name"></a></div>
+                                          <img src="@(mediaNode != null ? mediaNode.Url : "")" alt="@item.Name"></a></div>
                 <div class="col-xs-8">
                     <div class="caption"><a href="@item.Url">@item.Name</a></div>
                     <div class="date">@(item.PostDate.ToString("dd MMM yyyy")) </div>
