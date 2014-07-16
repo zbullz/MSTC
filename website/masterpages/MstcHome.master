@@ -1,16 +1,15 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
 
-<asp:content ContentPlaceHolderId="PageScripts" runat="server">
-  
-</asp:content>
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+</asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-            <!-- Homepage Slider -->
-        <div class="homepage-slider">
-            <div id="sequence">
-                <ul class="sequence-canvas">
-                    <!-- Triathlon slider, swap in when need to promote the triathlon -->
-                    <!--
+    <!-- Homepage Slider -->
+    <div class="homepage-slider">
+        <div id="sequence">
+            <ul class="sequence-canvas">
+                <!-- Triathlon slider, swap in when need to promote the triathlon -->
+                <!--
                     <li class="bg4">
                         <div class="transbox">      
                             <h2 class="title"><a href="#">Enter the Mid Sussex Triathlon</a></h2>          
@@ -18,103 +17,115 @@
                         </div>
                     </li>
                     -->
-                    <!-- Sliders -->
-                    <umbraco:Macro ID="slider1Macro" runat="server" language="cshtml">
-                        @RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink1", "bg1", "Try our training sessions", "Come down to our weekly group training session on Thursday and have a go!") 
-                    </umbraco:Macro>
-                    <umbraco:Macro ID="slider2Macro" runat="server" language="cshtml">
-                        @RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink2", "bg5", "Sign up to the club", "If you want to get more involved with trialthon why not become a member of the club?") 
-                    </umbraco:Macro>
-                    <umbraco:Macro ID="slider3Macro" runat="server" language="cshtml">
-                        @RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink3", "bg2", "Tri Hub training for Juniors", "Our Tri Hub training sessions are both fun and rewarding for kids") 
-                    </umbraco:Macro>
-                    <!-- End Sliders -->
+                <!-- Sliders -->
+                <umbraco:Macro ID="slider1Macro" runat="server" Language="cshtml">@RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink1", "bg1", "Try our training sessions", "Come down to our weekly group training session on Thursday and have a go!") 
+                </umbraco:Macro>
+                <umbraco:Macro ID="slider2Macro" runat="server" Language="cshtml">@RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink2", "bg5", "Sign up to the club", "If you want to get more involved with trialthon why not become a member of the club?") 
+                </umbraco:Macro>
+                <umbraco:Macro ID="slider3Macro" runat="server" Language="cshtml">@RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink3", "bg2", "Tri Hub training for Juniors", "Our Tri Hub training sessions are both fun and rewarding for kids") 
+                </umbraco:Macro>
+                <!-- End Sliders -->
+            </ul>
+            <div class="sequence-pagination-wrapper">
+                <ul class="sequence-pagination">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
                 </ul>
-                <div class="sequence-pagination-wrapper">
-                    <ul class="sequence-pagination">
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
-                    </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End Homepage Slider -->
+
+    <div class="section">
+        <div class="container">
+            <h2>About the Club</h2>
+            <div class="row">
+                <div class="col-xs-12">
+                    <umbraco:Item ID="Item1" runat="server" Field="bodyText" />
                 </div>
             </div>
         </div>
-        <!-- End Homepage Slider -->
+    </div>
 
-        <div class="section">
-            <div class="container">
-                <h2>About the Club</h2>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <umbraco:Item ID="Item1" runat="server" field="bodyText"/>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <!-- Race reports -->
+                <umbraco:Macro ID="Macro2" runat="server" Language="cshtml">@RenderPage("~/macroscripts/BlogListing.cshtml", "Latest race reports", "raceReportsPage")
+                </umbraco:Macro>
+
+                <umbraco:Macro ID="Macro1" runat="server" Language="cshtml">@RenderPage("~/macroscripts/BlogListing.cshtml", "Latest training articles", "trainingArticlesPage")
+                </umbraco:Macro>
+            </div>
+        </div>
+    </div>
+
+    <div class="section home-social">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="service-wrapper">
+                        <a href="https://www.facebook.com/groups/2363043378/">
+                            <img src="/images/mstc/service-icon/facebook-200.png" alt="Service Name">
+                        </a>
+                        <p>Members keep in touch and organise informal training through our facebook group</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="service-wrapper">
+                        <a href="https://twitter.com/midsussextri">
+                            <img src="/images/mstc/service-icon/twitter-200.png" alt="Service Name">
+                        </a>
+                        <p>Follow us on twitter to keep up to date with all the latest news from our club</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="service-wrapper">
+                        <a href="https://www.flickr.com/groups/midsussextriclub/">
+                            <img src="/images/mstc/service-icon/flickr-200.png" alt="Service Name">
+                        </a>
+                        <p>Check out photos from our previous events on flickr.</p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <!-- Race reports -->
-                    <umbraco:Macro ID="Macro2" runat="server" language="cshtml">
-                        @RenderPage("~/macroscripts/BlogListing.cshtml", "Latest race reports", "raceReportsPage")
-                    </umbraco:Macro>
-                    
-                    <umbraco:Macro ID="Macro1" runat="server" language="cshtml">
-                        @RenderPage("~/macroscripts/BlogListing.cshtml", "Latest training articles", "trainingArticlesPage")
-                    </umbraco:Macro>
-                </div>
-            </div>
-        </div>
-
-        <div class="section home-social">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="service-wrapper">
-                            <a href="https://www.facebook.com/groups/2363043378/">
-                                <img src="/images/mstc/service-icon/facebook-200.png" alt="Service Name">
-                            </a>
-                            <p>Members keep in touch and organise informal training through our facebook group</p>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Our Sponsors</h2>
+                    <div class="clients-logo-wrapper text-center row">
+                        <div class="col-xs-4">
+                            <a href="http://www.nuffieldhealth.com/Individuals/Centres/H/Haywards-Heath/">
+                                <img src="/images/mstc/sponsors/sponsors-nuffield-health.png" alt="Nuffield Health"></a>
+                        </div>
+                        <div class="col-xs-4">
+                            <a href="http://www.sheactive.co.uk/">
+                                <img src="/images/mstc/sponsors/sponsors-sheactive.png" alt="she active"></a>
+                        </div>
+                        <div class="col-xs-4">
+                            <a href="http://kneadmemassage.co.uk">
+                                <img src="/images/mstc/sponsors/massage-kneadme-200.png" alt="kneadmemassage"></a>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="service-wrapper">
-                            <a href="https://twitter.com/midsussextri">
-                                <img src="/images/mstc/service-icon/twitter-200.png" alt="Service Name">
-                            </a>
-                            <p>Follow us on twitter to keep up to date with all the latest news from our club</p>
+                </div>
+                <div class="col-md-6">
+                    <h2>Affiliated Clubs</h2>
+                    <div class="clients-logo-wrapper text-center row">
+                        <div class="col-xs-4">
+                            <a href="http://crawleywheelers.co.uk/">
+                                <img src="/images/mstc/sponsors/CrawleyWheelers.jpg" alt="Crawley Wheelers"></a>
                         </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="service-wrapper">
-                            <a href="https://www.flickr.com/groups/midsussextriclub/">
-                                <img src="/images/mstc/service-icon/flickr-200.png" alt="Service Name">
-                            </a>
-                            <p>Check out photos from our previous events on flickr.</p>
+                        <div class="col-xs-4">
+                            <a href="http://www.bhrunners.co.uk/">
+                                <img src="/images/mstc/sponsors/BHRunners.jpg" alt="Burgess Hill Runners"></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="section">
-            <div class="container">
-                <h2>Our Sponsors</h2>
-                <div class="clients-logo-wrapper text-center row">
-                    <div class="col-xs-4">
-                        <a href="http://www.nuffieldhealth.com/Individuals/Centres/H/Haywards-Heath/">
-                            <img src="/images/mstc/sponsors/sponsors-nuffield-health.png" alt="Nuffield Health"></a>
-                    </div>
-                    <div class="col-xs-4">
-                        <a href="http://www.sheactive.co.uk/">
-                            <img src="/images/mstc/sponsors/sponsors-sheactive.png" alt="she active"></a>
-                    </div>
-                    <div class="col-xs-4">
-                        <a href="http://kneadmemassage.co.uk">
-                            <img src="/images/mstc/sponsors/massage-kneadme-200.png" alt="kneadmemassage"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
 </asp:Content>
