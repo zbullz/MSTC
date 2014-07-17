@@ -31,10 +31,10 @@ How to Customize for re-use (only applies to Macros, not if you insert this snip
             <li class="logo-wrapper"><a href="/"><img src="/images/mstc/mstc_logo_nowhite_small.png" alt="Mid Sussex Tri Club"></a></li>
             <li class="@(Model.Url == "/" ? "active" : "")"><a href="/">Home</a></li>
         }
-        @foreach (var node in parent.Children.Where("Visible"))
+        @foreach (var node in parent.Children.Where("Template > 0 && umbracoNaviHide == False"))
         {
             var active = Array.IndexOf(Model.Path.Split(','), node.Id.ToString()) >= 0 ? "active" : "";
-            var hasSubMenu = node.Children.Where("Visible").Any();
+            var hasSubMenu = node.Children.Where("Template > 0 && umbracoNaviHide == False").Any();
             <li class="@(hasSubMenu ? "has-submenu" : "") @active">
                 <a href="@(hasSubMenu ? "#" : node.Url)">@node.Name @(hasSubMenu ? " +" : "")</a>
             @if (hasSubMenu) 

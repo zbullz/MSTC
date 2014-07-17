@@ -1,0 +1,21 @@
+﻿@*
+This control will output a formatted list of 'MSTCPerson' pages added below the page this macro is added to
+Usage example: @RenderPage("~/macroscripts/PersonListing.cshtml") 
+*@
+    
+@foreach (var item in Model.Descendants("MSTCPerson"))
+{
+    <div class="row service-wrapper-row">
+        <div class="col-sm-4">
+            <div class="service-image">
+                @{ dynamic personImage = item.PersonImage is int ? Library.MediaById(item.PersonImage) : null; }
+                <img src="@(personImage != null ? personImage.Url : "")" alt="@item.Name">
+                <h3>@item.Name</h3>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            @item.bodyText
+        </div>
+    </div>
+}
+
