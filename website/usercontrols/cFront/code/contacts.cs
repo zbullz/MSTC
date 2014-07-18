@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Net.Mail;
+using System.Collections.Generic;
 
 namespace cFront.Projects.CFSL.Web.UI.UserControls
 {
@@ -13,6 +14,7 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
     public class ContactForm : UserControl
 	{
 		protected TextBox 		txtName, txtEmail, txtMsg;
+		protected DropDownList topicSelect;
 		protected PlaceHolder 	phMessageForm, phMessageSent;
 		protected int			intViewState;
 		protected Label			lblResult;
@@ -41,7 +43,19 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 			if(Page.IsValid)
 			{
 				MailMessage objMail = new MailMessage();
-				objMail.To.Add(ConfigurationManager.AppSettings["contactFormEmailTo"] ?? "info@midsussextriclub.com");
+
+				Dictionary<string, string> emailLookup = new Dictionary<string, string>() {
+					{ "Membership", "members@midsussextriclub.com" },
+					{ "Sponsorship", "sponsorship@midsussextriclub.com" },
+					{ "Juniors", "juniors@midsussextriclub.com" },
+					{ "Website", "support@midsussextriclub.com" },
+				};
+
+				string toAddress;
+				if (emailLookup.TryGetValue(topicSelect.SelectedValue, out toAddress) == false)
+					toAddress = ConfigurationManager.AppSettings["contactFormEmailTo"] ?? "info@midsussextriclub.com";
+
+				objMail.To.Add(toAddress);
 				objMail.From = new MailAddress(txtEmail.Text);
 				objMail.Subject = "[Website Enquiry]";
 				

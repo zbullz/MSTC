@@ -18,23 +18,14 @@
     </div>
     
     <!-- Main content -->
-    <div class="section">
-        <div class="container">
-            <div class="blog-post blog-single-post">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <umbraco:Item ID="bodyText" runat="server" field="bodyText"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <umbraco:Item ID="bodyText" runat="server" field="bodyText" 
+        insertTextBefore="&lt;div class=&quot;section&quot;&gt;&lt;div class=&quot;container&quot;&gt;&lt;
+            div class=&quot;blog-post blog-single-post&quot;&gt;&lt;div class=&quot;row&quot;&gt;&lt;div class=&quot;col-sm-12&quot;&gt;" 
+        insertTextAfter="&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" />
     
     <!-- Secondary content -->
-    <div class="section">
-        <div class="container">
-           <umbraco:Item ID="secondaryContent" runat="server" field="secondaryContent"/> 
-        </div>
-    </div>
+    <umbraco:Item ID="secondaryContent" runat="server" field="secondaryContent" 
+        insertTextBefore="&lt;div class=&quot;section&quot;&gt;&lt;div class=&quot;container&quot;&gt;" 
+        insertTextAfter="&lt;/div&gt;&lt;/div&gt;" /> 
 
 </asp:Content>
