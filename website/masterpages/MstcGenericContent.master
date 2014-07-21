@@ -4,22 +4,10 @@
 </asp:Content>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MainContent">
-    <!-- Page Banner Image -->
+    <!-- Page Heading -->
     <umbraco:Macro ID="bannerImageMacro" runat="server" Language="cshtml">
-        @RenderPage("~/macroscripts/topBannerImage.cshtml")
+        @RenderPage("~/macroscripts/PageHeading.cshtml")
     </umbraco:Macro>
-    <!-- Page Title -->
-    <div class="section section-breadcrumbs">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>
-                        <umbraco:Item ID="pageName" runat="server" Field="pageName" />
-                    </h1>
-                </div>
-            </div>
-        </div>
-    </div>
     
     <!-- Main content -->
     <umbraco:Item ID="bodyText" runat="server" field="bodyText" 

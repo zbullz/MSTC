@@ -1,0 +1,23 @@
+﻿@inherits umbraco.MacroEngines.DynamicNodeContext
+@{
+    string topBannerImageId = Model.GetProperty("topBannerImage") == null ? null : Model.GetProperty("topBannerImage").Value;
+    dynamic topBannerImage = topBannerImageId != null ? Library.MediaById(int.Parse(topBannerImageId)) : null; 
+}
+
+<div class="section section-breadcrumbs @(topBannerImage != null ? "section-banner-image" : "")" style="background-image: url('@(topBannerImage != null ? topBannerImage.Url : "")');">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @if (topBannerImage != null)
+                {
+                    <div class="heading-transbox"><h1>Club events</h1></div>
+                }
+                else
+                {
+                    <h1>@Model.pageName</h1>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
