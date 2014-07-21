@@ -97,12 +97,15 @@ h4 {
   color: #53555c;
   margin-bottom: 10px;
 }
-a {
-  color: #000000;
+/* Don't want links to be black so turning this off
+a{
+	color: @theme-color;
 }
-a:hover {
-  color: #000000;
+
+a:hover{
+	color: darken(@theme-color, 20%);
 }
+*/
 img.image-right {
   float: right;
   -webkit-box-shadow: 0 0 5px #000;
@@ -1634,9 +1637,6 @@ span.color-red {
   list-style-type: none;
   padding: 0;
 }
-.sitemap a {
-  color: #535b60;
-}
 .sitemap li {
   padding: 10px 0;
   font-weight: 900;
@@ -1752,6 +1752,9 @@ span.color-red {
 }
 .footer ul {
   padding: 0;
+}
+.footer a {
+  color: #000000;
 }
 ul.footer-navigate-section {
   width: 70%;
