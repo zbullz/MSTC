@@ -106,6 +106,10 @@ a:hover{
 	color: darken(@theme-color, 20%);
 }
 */
+img.top-banner {
+  max-height: 150px;
+  width: 1920px;
+}
 img.image-right {
   float: right;
   -webkit-box-shadow: 0 0 5px #000;
@@ -1140,6 +1144,7 @@ span.color-red {
 .events-list {
   width: 100%;
   font-size: 0.9em;
+  margin-bottom: 30px;
 }
 .events-list tr td {
   padding: 5px 20px 5px 0;

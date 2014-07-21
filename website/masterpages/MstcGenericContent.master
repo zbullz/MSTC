@@ -4,6 +4,10 @@
 </asp:Content>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MainContent">
+    <!-- Page Banner Image -->
+    <umbraco:Macro ID="bannerImageMacro" runat="server" Language="cshtml">
+        @RenderPage("~/macroscripts/topBannerImage.cshtml")
+    </umbraco:Macro>
     <!-- Page Title -->
     <div class="section section-breadcrumbs">
         <div class="container">

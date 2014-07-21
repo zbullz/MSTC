@@ -1,0 +1,11 @@
+﻿@inherits umbraco.MacroEngines.DynamicNodeContext
+@{
+    string topBannerImageId = Model.GetProperty("topBannerImage") == null ? null : Model.GetProperty("topBannerImage").Value;
+    dynamic topBannerImage = topBannerImageId != null ? Library.MediaById(int.Parse(topBannerImageId)) : null; 
+}
+
+@if (topBannerImage != null)
+{
+    <img class="top-banner" src="@topBannerImage.Url" alt="@topBannerImage.Name" />
+}
+
