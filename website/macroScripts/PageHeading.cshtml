@@ -1,16 +1,18 @@
 ﻿@inherits umbraco.MacroEngines.DynamicNodeContext
 @{
     string topBannerImageId = Model.GetProperty("topBannerImage") == null ? null : Model.GetProperty("topBannerImage").Value;
-    dynamic topBannerImage = topBannerImageId != null ? Library.MediaById(int.Parse(topBannerImageId)) : null; 
+    dynamic topBannerImage = string.IsNullOrWhiteSpace(topBannerImageId) ? null : Library.MediaById(int.Parse(topBannerImageId));
+    string sectionClass = topBannerImage == null ? string.Format("class=\"section section-breadcrumbs\"") : string.Format("class=\"section section-breadcrumbs section-banner-image\"");
+    string sectionStyle = topBannerImage == null ? "" : string.Format("style=\"background-image: url('{0}');\"", topBannerImage.Url);
 }
 
-<div class="section section-breadcrumbs @(topBannerImage != null ? "section-banner-image" : "")" style="background-image: url('@(topBannerImage != null ? topBannerImage.Url : "")');">
+<div @Html.Raw(sectionClass) @Html.Raw(sectionStyle)>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 @if (topBannerImage != null)
                 {
-                    <div class="heading-transbox"><h1>Club events</h1></div>
+                    <div class="heading-transbox"><h1>@Model.pageName</h1></div>
                 }
                 else
                 {
