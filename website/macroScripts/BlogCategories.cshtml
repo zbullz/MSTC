@@ -1,0 +1,14 @@
+﻿@using umbraco.cms.businesslogic.Tags
+@inherits umbraco.MacroEngines.DynamicNodeContext
+@{
+    dynamic blogHome = Model.AncestorOrSelf(2);
+    IOrderedEnumerable<Tag> blogTags = Tag.GetTags("default").OrderByDescending(t => t.NodeCount); 
+}
+
+<h4>Categories</h4>
+<ul class="blog-categories">
+     @foreach (Tag blogTag in blogTags)
+     {
+         <li><a href="@string.Format("{0}?filterby={1}", blogHome.Url,blogTag.TagCaption)">@blogTag.TagCaption</a> (@blogTag.NodeCount)</li>
+     }
+</ul>
