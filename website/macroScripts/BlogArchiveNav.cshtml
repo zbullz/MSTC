@@ -1,0 +1,18 @@
+﻿@inherits umbraco.MacroEngines.DynamicNodeContext
+@{
+    dynamic blogHome = Model.AncestorOrSelf(2);
+}
+<h4>Archive</h4>
+<ul class="blog-archive">
+    @foreach (var blogYear in blogHome.Children)
+    {
+        <li>@blogYear.Name
+            <ul class="blog-archive-months">
+                @foreach (var blogMonth in blogYear.Children.OrderBy("CreateDate descending"))
+                {
+                    <li><a href="@blogMonth.Url">@blogMonth.CreateDate.ToString("MMMM")</a> (@blogMonth.Children.Count())</li>
+                }
+            </ul>
+        </li>
+    }
+</ul>
