@@ -1,0 +1,12 @@
+﻿<!-- Page Title -->
+<div class="section section-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>
+                    @(Model.NodeTypeAlias == "DateFolder" ? Model.AncestorOrSelf(2).pageName : Model.pageName)
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
