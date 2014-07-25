@@ -21,7 +21,7 @@
                 <!-- End Sidebar -->
                 <!-- Blog Posts -->
                 <div class="col-sm-8">
-                    <umbraco:Macro ID="blogListing" runat="server" Language="cshtml">@RenderPage("~/macroscripts/BlogPostListing.cshtml")
+                    <umbraco:Macro ID="blogListing" runat="server" Language="cshtml">@RenderPage("~/macroscripts/BlogPost.cshtml")
                     </umbraco:Macro>
                 </div>
                 <!-- End Blog Posts -->

@@ -57,11 +57,13 @@
             </div>
         </div>
         <div class="entry-meta">
-            <span class="tag-links">
+            <span class="tag-links">Tags: 
                 @{ IEnumerable<Tag> tags = Tag.GetTags(@post.Id);}
                 @foreach (var tag in tags) { <a href="@string.Format("{0}?filterby={1}", blogHome.Url, tag.TagCaption)">@tag.TagCaption</a> }
                 @if (tags.Any() == false) {@Html.Raw("Not tagged")}
             </span>
+            <br/>
+            <span class="perma-link">Permalink: <a href="@post.Url">@post.Name</a></span>
         </div>
     </div>
 }

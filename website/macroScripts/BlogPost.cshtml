@@ -1,0 +1,32 @@
+﻿@inherits umbraco.MacroEngines.DynamicNodeContext
+@using umbraco.cms.businesslogic.Tags
+@{
+    dynamic blogHome = Model.AncestorOrSelf(2);
+}
+
+<div class="blog-post blog-single-post">
+    <div class="single-post-title">
+        <h3>@Model.Name</h3>
+    </div>
+    <div class="single-post-info">
+        <i class="glyphicon glyphicon-time"></i>@Model.PostDate.ToString("dd MMM yyyy"), @Model.postAuthor
+    </div>
+    @if (@Model.newsPhoto is int)
+    {
+        <div class="single-post-image"><img src="@Library.MediaById(Model.newsPhoto).Url" alt="@Model.Name" /></div>
+    }
+    <div class="single-post-content">
+        <div class="entry-content">
+            @Model.BodyText
+        </div>
+    </div>
+    <div class="entry-meta">
+        <span class="tag-links">Tags: 
+            @{ IEnumerable<Tag> tags = Tag.GetTags(@Model.Id);}
+            @foreach (var tag in tags) { <a href="@string.Format("{0}?filterby={1}", blogHome.Url, tag.TagCaption)">@tag.TagCaption</a> }
+            @if (tags.Any() == false) {@Html.Raw("Not tagged")}
+        </span>
+        <br/>
+        <span class="perma-link">Permalink: <a href="@Model.Url">@Model.Name</a></span>
+    </div>
+</div>
