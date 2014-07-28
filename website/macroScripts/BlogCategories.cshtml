@@ -1,7 +1,7 @@
 ﻿@using umbraco.cms.businesslogic.Tags
 @inherits umbraco.MacroEngines.DynamicNodeContext
 @{
-    dynamic blogHome = Model.AncestorOrSelf(2);
+    dynamic blogHome = Model.AncestorsOrSelf("Blog").Last();
     IOrderedEnumerable<Tag> blogTags = Tag.GetTags("default").OrderByDescending(t => t.NodeCount); 
 }
 

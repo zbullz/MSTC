@@ -1,7 +1,7 @@
 ﻿@inherits umbraco.MacroEngines.DynamicNodeContext
 @using umbraco.cms.businesslogic.Tags
 @{
-    dynamic blogHome = Model.AncestorOrSelf(2);
+    dynamic blogHome = Model.AncestorsOrSelf("Blog").Last();
 }
 
 <div class="blog-post blog-single-post">

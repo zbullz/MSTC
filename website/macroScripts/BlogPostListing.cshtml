@@ -3,7 +3,7 @@
 @{
     int postsPerPage = 5;
 
-    dynamic blogHome = Model.AncestorOrSelf(2);
+    dynamic blogHome = Model.AncestorsOrSelf("Blog").Last();
     int pageNumber = 1;
     int.TryParse(umbraco.library.RequestQueryString("page"), out pageNumber);
     string filter = umbraco.library.RequestQueryString("filterby");
