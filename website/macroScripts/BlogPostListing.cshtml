@@ -4,13 +4,14 @@
     int postsPerPage = 5;
 
     dynamic blogHome = Model.AncestorsOrSelf("Blog").Last();
-    int pageNumber = 1;
+    int pageNumber = 0;
     int.TryParse(umbraco.library.RequestQueryString("page"), out pageNumber);
     string filter = umbraco.library.RequestQueryString("filterby");
-    var posts = string.IsNullOrEmpty(filter) ? Model.Descendants("BlogPost").OrderBy("PostDate descending").Take(postsPerPage)
-                    : Model.Descendants("BlogPost").Where(string.Format("Tags.Contains(\"{0}\")", filter)).OrderBy("PostDate descending").Take(postsPerPage);
+    var allPosts = string.IsNullOrEmpty(filter) ? Model.Descendants("BlogPost").OrderBy("PostDate descending")
+                       : Model.Descendants("BlogPost").Where(string.Format("Tags.Contains(\"{0}\")", filter)).OrderBy("PostDate descending");
 
-    int numberOfPosts = posts.Count();
+    int numberOfPosts = allPosts.Count();
+    var posts = allPosts.Skip(pageNumber).Take(postsPerPage);
 }
 
 @if (string.IsNullOrWhiteSpace(filter) == false) {
@@ -29,11 +30,11 @@
     <div id="nav-above" class="navigation">
         @if (pageNumber * postsPerPage < numberOfPosts)
         {
-            <div class="nav-previous">&#171; <a href="?page=@(pageNumber + 1)">Older posts</a></div>
+            <div class="nav-previous">&#171; <a href="@string.Format("?filterBy={0}&page={1}",filter, pageNumber + 1)">Older posts</a></div>
         }
         @if (pageNumber > 1)
         {
-            <div class="nav-next"><a href="?page=@(pageNumber - 1)">Newer posts</a> &#187;</div>
+            <div class="nav-next"><a href="?page=@string.Format("?filterBy={0}&page={1}",filter, pageNumber - 1)">Newer posts</a> &#187;</div>
         }
     </div>
 }
