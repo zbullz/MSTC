@@ -20,10 +20,6 @@
 @if (Model.NodeTypeAlias == "DateFolder") {
     <h2 class="page-title">Monthly archive for @Model.CreateDate.ToString("MMMM yyyy")</h2>
 }
-@if (Model.NodeTypeAlias == "Blog" && string.IsNullOrWhiteSpace(filter))
-{
-    <h2 class="page-title">@Model.Name</h2>
-}
 
 @if (numberOfPosts > postsPerPage)
 {
