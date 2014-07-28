@@ -1,0 +1,11 @@
+﻿@inherits umbraco.MacroEngines.DynamicNodeContext
+@{
+    dynamic level2Page = Model.AncestorOrSelf(3);
+}
+<h4>@level2Page.Name</h4>
+<ul class="blog-archive">
+    @foreach (var childPage in level2Page.Children)
+    {
+        <li><a href="@childPage.Url">@childPage.Name</a></li>
+    }
+</ul>

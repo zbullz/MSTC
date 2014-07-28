@@ -1,0 +1,50 @@
+﻿@inherits umbraco.MacroEngines.DynamicNodeContext
+@{
+    int postsPerPage = 3;
+
+    int pageNumber = 0;
+    int.TryParse(umbraco.library.RequestQueryString("page"), out pageNumber);
+
+    var allPosts = Model.Descendants().OrderBy("PostDate descending");
+    int numberOfPosts = allPosts.Count();
+    var posts = allPosts.Skip(pageNumber).Take(postsPerPage);
+ 
+}
+
+@if (numberOfPosts > postsPerPage)
+{
+    <div id="nav-above" class="navigation">
+        @if (pageNumber * postsPerPage < numberOfPosts)
+        {
+            <div class="nav-previous">&#171; <a href="?page=@(pageNumber + 1)">Older posts</a></div>
+        }
+        @if (pageNumber > 0)
+        {
+            <div class="nav-next"><a href="?page=@(pageNumber - 1)">Newer posts</a> &#187;</div>
+        }
+    </div>
+}
+
+@foreach (var post in posts)
+{
+    <div class="blog-post blog-single-post">
+        <div class="single-post-title">
+            <h3><a href="@post.Url">@post.Name</a></h3>
+        </div>
+        <div class="single-post-info">
+            <i class="glyphicon glyphicon-time"></i>@post.PostDate.ToString("dd MMM yyyy"), @post.author
+        </div>
+                @if (@post.thumbnailPhoto is int)
+                {
+                    <div class="single-post-image"><img src="@Library.MediaById(post.thumbnailPhoto).Url" alt="@post.Name" /></div>
+                }
+        <div class="single-post-content">
+            <div class="entry-content">
+                @post.introText ...
+            </div>
+        </div>
+        <div class="entry-meta">
+            <span class="perma-link">Read full article: <a href="@post.Url">@post.Name</a></span>
+        </div>
+    </div>
+}
