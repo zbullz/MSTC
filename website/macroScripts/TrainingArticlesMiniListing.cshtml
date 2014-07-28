@@ -1,0 +1,35 @@
+﻿@*
+To use this macro call with RenderPage passing up to 3 parameters, of Title, BlogNodePropertyName and NumberOfItems  eg.
+RenderPage("~/macroscripts/BlogMiniListing.cshtml", "Latest race reports", "raceReportsPage", 3) 
+*@
+
+@inherits umbraco.MacroEngines.DynamicNodeContext
+@{
+    string title = PageData[0];
+    string blogNodePropertyName = PageData[1];
+    string blogNodeId = Model.GetProperty(blogNodePropertyName) == null ? null : Model.GetProperty(blogNodePropertyName).Value;
+
+    dynamic blogNode = String.IsNullOrEmpty(blogNodeId) ? null : Model.NodeById(int.Parse(blogNodeId));
+    int numberOfItems = String.IsNullOrEmpty(PageData[2]) ? 3 : int.Parse(PageData[2]);
+}
+
+@if (blogNode != null && blogNode.Name != string.Empty)
+{
+    <div class="col-sm-6 featured-news">
+        <h2>@title</h2>
+        @foreach (var item in blogNode.Descendants().OrderBy("PostDate descending").Take(numberOfItems))
+        {
+            dynamic mediaNode = item.thumbnailPhoto is int ? Library.MediaById(item.thumbnailPhoto) : null;
+            <div class="row">
+                <div class="col-xs-4">
+                    @if (mediaNode != null) { <a href="@item.Url"><img src="@mediaNode.Url" alt="@item.Name"></a> }
+                </div>
+                <div class="col-xs-8">
+                    <div class="caption"><a href="@item.Url">@item.Name</a></div>
+                    <div class="date">@(item.PostDate.ToString("dd MMM yyyy")) </div>
+                    <div class="intro">@item.introText <a href="@item.Url">Read more...</a></div>
+                </div>
+            </div>
+        }
+    </div>
+}
