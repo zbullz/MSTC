@@ -571,6 +571,15 @@ img.member-directory-image {
 +	Blog Style
 --------------------------------------------------------------------------*/
 /* Posts List */
+.navigation {
+  padding-bottom: 15px;
+}
+.navigation .nav-previous {
+  float: left;
+}
+.navigation .nav-next {
+  float: right;
+}
 .blog-post {
   background: #FFF;
   position: relative;
