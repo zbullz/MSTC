@@ -28,7 +28,7 @@
         {
             <div class="nav-previous">&#171; <a href="@string.Format("?filterBy={0}&page={1}",filter, pageNumber + 1)">Older posts</a></div>
         }
-        @if (pageNumber > 1)
+        @if (pageNumber > 0)
         {
             <div class="nav-next"><a href="?page=@string.Format("?filterBy={0}&page={1}",filter, pageNumber - 1)">Newer posts</a> &#187;</div>
         }
