@@ -1,0 +1,41 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
+
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MainContent">
+    <!-- Page Title -->
+    <div class="section section-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>
+                        <umbraco:Item ID="pageName" runat="server" Field="pageName" />
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main content -->
+    <div class="section">
+        <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <umbraco:Item ID="bodyText" runat="server" field="bodyText"/>
+                    </div>
+                </div>
+                <umbraco:Macro ID="athletesMacro" runat="server" Language="cshtml">
+                    @RenderPage("~/macroscripts/Athletes.cshtml") 
+                </umbraco:Macro>
+        </div>
+    </div>
+    
+    <!-- Secondary content -->
+    <div class="section">
+        <div class="container">
+           <umbraco:Item ID="secondaryContent" runat="server" field="secondaryContent"/> 
+        </div>
+    </div>
+
+</asp:Content>
