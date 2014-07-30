@@ -1,0 +1,54 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
+
+<%@ Register TagPrefix="cf" Namespace="cFront.WebControls" Assembly="cfWebControls" %>
+
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MainContent">
+    <!-- Page Title -->
+    <div class="section section-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>
+                        <umbraco:Item ID="pageName" runat="server" Field="pageName" />
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <umbraco:Item ID="bodyText" runat="server" Field="bodyText" />
+                </div>
+            </div>
+            <form id="Form1" runat="server">
+                <asp:LoginView ID="UmbracoLoginView" runat="server">
+                    <AnonymousTemplate>
+                        <cf:Login ID="Login1" TitleText="Members Login" runat="server"></cf:Login>
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Welcome
+         
+                        <asp:LoginName ID="LoginName1" runat="server" />
+                        <a href="/about-MSTC/member-area.aspx">My details</a><br />
+                        <asp:LoginStatus ID="LoginStatus1" runat="server" />
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </form>
+        </div>
+    </div>
+
+    <!-- Secondary content -->
+    <div class="section">
+        <div class="container">
+            <umbraco:Item ID="secondaryContent" runat="server" Field="secondaryContent" />
+        </div>
+    </div>
+
+</asp:Content>

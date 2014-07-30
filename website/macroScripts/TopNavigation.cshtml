@@ -9,22 +9,43 @@
     bool isMainSite = triathlonPageNode == null || juniorsPageNode == null ?
                           true :
                           Model.Url.Contains(triathlonPageNode.UrlName) == false && Model.Url.Contains(juniorsPageNode.UrlName) == false;
+
+    var isSubmitLogout = (IsPost && Request["submit"] == "Log out");
+    if (isSubmitLogout)
+    {
+        FormsAuthentication.SignOut();
+        Response.Redirect(Request.RawUrl);
+    }
+    var currentUser = Membership.GetUser();
+}
+@helper LogoutForm()
+{
+  <form method="post">
+    <input class="btn-yellow" type="submit" id="submit" name="submit" value="Log out"/>
+  </form>
 }
 
 <div class="mainmenu-header">
     <div class="container">
         <div class="menuextras">
             <div class="extras">
+                <div class="login-status">
+                    @if (currentUser != null)
+                    {
+                        <p>Welcome back Mike Hook. @LogoutForm()</p>
+                    }
+                </div>
+
                 <ul>
                     <li class="@(isMainSite ? "active" : "")"><a href="@homepage.Url">Club Site</a> | </li>
-                @if (triathlonPageNode != null)
-                {
-                   <li class="@(Model.Url.Contains(triathlonPageNode.UrlName) ? "active" : "")"><a href="@triathlonPageNode.Url">@triathlonPageNode.Name</a> | </li>
-                }
-                @if (juniorsPageNode != null)
-                {
-                    <li class="@(Model.Url.Contains(juniorsPageNode.UrlName) ? "active" : "")"><a href="@juniorsPageNode.Url">@juniorsPageNode.Name</a></li>
-                }
+                    @if (triathlonPageNode != null)
+                    {
+                        <li class="@(Model.Url.Contains(triathlonPageNode.UrlName) ? "active" : "")"><a href="@triathlonPageNode.Url">@triathlonPageNode.Name</a> | </li>
+                    }
+                    @if (juniorsPageNode != null)
+                    {
+                        <li class="@(Model.Url.Contains(juniorsPageNode.UrlName) ? "active" : "")"><a href="@juniorsPageNode.Url">@juniorsPageNode.Name</a></li>
+                    }
                 </ul>
             </div>
         </div>

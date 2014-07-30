@@ -2621,6 +2621,20 @@ ul.footer-navigate-section {
 .mainmenu-header .menuextras .extras .active a {
   font-weight: 900;
 }
+.mainmenu-header .menuextras .login-status {
+  float: left;
+  padding: 3px 0;
+}
+.mainmenu-header .menuextras .login-status p {
+  float: left;
+  color: #fff;
+}
+.mainmenu-header .menuextras .login-status form {
+  float: left;
+}
+.mainmenu-header .menuextras .login-status form input {
+  margin: 0 0 0 10px;
+}
 .menuextras {
   font-size: 0.85em;
   height: 30px;
