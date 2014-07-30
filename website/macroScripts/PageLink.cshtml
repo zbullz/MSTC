@@ -1,0 +1,8 @@
+﻿@using umbraco.NodeFactory
+@inherits umbraco.MacroEngines.DynamicNodeContext
+@{ int linkID;}
+
+@if (int.TryParse(Parameter.linkID, out linkID))
+{
+<a href="@Html.Raw(new Node(linkID).Url)">@Parameter.linkText</a>
+}

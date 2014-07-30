@@ -1,7 +1,5 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
 
-<%@ Register TagPrefix="cf" Namespace="cFront.WebControls" Assembly="cfWebControls" %>
-
 <asp:Content ContentPlaceHolderID="PageScripts" runat="server">
 </asp:Content>
 
@@ -27,20 +25,48 @@
                     <umbraco:Item ID="bodyText" runat="server" Field="bodyText" />
                 </div>
             </div>
-            <form id="Form1" runat="server">
-                <asp:LoginView ID="UmbracoLoginView" runat="server">
-                    <AnonymousTemplate>
-                        <cf:Login ID="Login1" TitleText="Members Login" runat="server"></cf:Login>
-                    </AnonymousTemplate>
-                    <LoggedInTemplate>
-                        Welcome
-         
-                        <asp:LoginName ID="LoginName1" runat="server" />
-                        <a href="/about-MSTC/member-area.aspx">My details</a><br />
-                        <asp:LoginStatus ID="LoginStatus1" runat="server" />
-                    </LoggedInTemplate>
-                </asp:LoginView>
-            </form>
+            <div class="row">
+                <div class="col-sm-12">
+                    <form id="loginForm" runat="server" class="form-horizontal">
+                        <asp:Login ID="Login1" runat="server" RenderOuterTable="False">
+                            <LayoutTemplate>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="UserName">User name*</label>
+                                    <div class="col-sm-7">
+                                        <asp:TextBox ID="UserName" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName" Text="Please enter your user name" 
+                                            CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="Password">Password*</label>
+                                    <div class="col-sm-7">
+                                        <asp:TextBox ID="Password" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password" Text="Please enter your password" 
+                                            CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <umbraco:Macro ID="forgotPassword" runat="server" Language="cshtml" linkID="[#forgotPasswordPage]" linkText="Forgot your password?">
+                                            @RenderPage("~/macroscripts/PageLink.cshtml")
+                                        </umbraco:Macro>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="RememberMe">Remember my login</label>
+                                    <div class="col-sm-7">
+                                        <asp:CheckBox ID="RememberMe" runat="server" Text=""></asp:CheckBox>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-10">
+                                        <asp:Button ID="Login" CommandName="Login" runat="server" Text="Login" CssClass="btn btn-yellow pull-right"></asp:Button>
+                                    </div>
+                                </div>
+                            </LayoutTemplate>
+                        </asp:Login>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
