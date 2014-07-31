@@ -18,6 +18,15 @@
     }
     var currentUser = Membership.GetUser();
 }
+
+@helper ChangePasswordLink(dynamic homepage)
+{
+    if (homepage.changePasswordPage is int)
+    {
+        <a href="@Html.Raw(new Node(homepage.changePasswordPage).Url)">Change password</a>
+    }
+}
+
 @helper LogoutForm()
 {
   <form method="post">
@@ -32,7 +41,7 @@
                 <div class="login-status">
                     @if (currentUser != null)
                     {
-                        <p>Welcome back Mike Hook. @LogoutForm()</p>
+                        <p>Welcome back Mike Hook. @ChangePasswordLink(homepage) @LogoutForm()</p>
                     }
                 </div>
 

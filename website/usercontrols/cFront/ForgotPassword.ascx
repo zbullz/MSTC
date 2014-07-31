@@ -5,7 +5,7 @@
         <label class="col-sm-3 control-label" for="tbEmail">Enter your email address*</label>
         <div class="col-sm-7">
             <asp:TextBox ID="tbEmail" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="tbEmail" Text="Please enter your user name"
+            <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="tbEmail" Text="Please enter your email address"
                 CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
             <asp:Literal ID="litError" runat="server" />
         </div>
