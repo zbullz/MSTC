@@ -1,20 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using umbraco.cms.businesslogic.member;
 
 namespace cFront.Projects.CFSL.Web.UI.UserControls
 {
-
-	/// <summary>
-	/// Summary description for ChangePassword
-	/// </summary>
-	/// <summary>
-	/// Summary description for changePassword1
-	/// </summary>
 	public class ChangePassword : UserControl
 	{
 		protected TextBox tbCurrentPassword, tbNewPassword;
@@ -26,8 +17,7 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			Member cMember = Member.GetCurrentMember();
-			litError.Text = string.Format(ErrorFormat, cMember.Password);
+
 		}
 
 		protected void BtnSubmitClick(object sender, EventArgs e)
@@ -41,18 +31,20 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 				litError.Text = string.Format(ErrorFormat, "You don't appear to be logged in, go away!");
 				return;
 			}
-
-			//TODO - Fix this to un-hash the password before comparing
-			if (cMember.Password != tbCurrentPassword.Text)
+			 
+			MembershipUser member = Membership.GetUser(cMember.LoginName);
+			if (member.ChangePassword(tbCurrentPassword.Text, tbNewPassword.Text) == false)
 			{
 				litError.Text = string.Format(ErrorFormat,
 											  "Your current password does not match to your stored password");
 				return;
 			}
-
-			cMember.ChangePassword(tbNewPassword.Text);
+			
 			// Save the password/member
 			cMember.Save();
+
+			// update the XML cache 
+			cMember.XmlGenerate(new System.Xml.XmlDocument());
 
 			// Disable the button to stop them pressing it again
 			btnSubmit.Enabled = false;
