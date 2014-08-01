@@ -1222,6 +1222,13 @@ span.color-red {
 .jobs-list tr:last-child td {
   border-bottom: 1px solid #E6E6E6;
 }
+.jobs-list .type {
+  width: 60%;
+}
+.jobs-list .price,
+.jobs-list .control {
+  width: 20%;
+}
 .job-position a {
   color: #535b60;
   font-size: 1.1em;

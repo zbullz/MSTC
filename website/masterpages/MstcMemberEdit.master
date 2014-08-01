@@ -1,6 +1,6 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
 
-<%@ Register TagPrefix="cf" TagName="EditMemberImage" Src="../usercontrols/cFront/editMemberImage.ascx" %>
+<%@ Register TagPrefix="cf" TagName="EditMembershipImage" Src="../usercontrols/cFront/editMembershipImage.ascx" %>
 <%@ Register TagPrefix="cf" TagName="EditMember" Src="../usercontrols/cFront/editMemberDetails.ascx" %>
 
 <asp:Content ContentPlaceHolderID="PageScripts" runat="server">
@@ -34,50 +34,11 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
-
-                        <cf:EditMemberImage ID="editMemberImage" runat="server" />
-
-                        <h2>Membership</h2>
-
-                        <div class="contact-form-wrapper">
-                            <form role="form" class="form-horizontal">
-                                <div class="form-group">
-                                    <label class="col-sm-6 control-label"><b>Membership expires:</b></label>
-                                    <div class="col-sm-6 member-date">
-                                        01 April 2015
-                                   
-                               
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <button class="btn btn-yellow pull-left" type="submit">Renew membership</button>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-5 control-label"><b>Swim subs expire:</b></label>
-                                    <div class="col-sm-7 member-date">
-                                        01 April 2015
-                                   
-                               
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <button class="btn btn-yellow pull-left" type="submit">Renew swim subs</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
+                        <cf:EditMembershipImage ID="editMemberImage" runat="server" />
                     </div>
 
 
                     <div class="col-sm-8">
-                        <!-- Contact Form -->
-                        <h2>Edit your details</h2>
-                        <p>Please use the form below to update your personal details.</p>
-
                         <cf:EditMember ID="editMember" runat="server" />
                     </div>
                 </div>

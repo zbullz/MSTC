@@ -1,6 +1,9 @@
 <%@ Control Inherits="usercontrols.cFront.code.EditMemberDetails" Src="code/editMemberDetails.cs" %>
 
 <asp:PlaceHolder ID="EditContainer" runat="server">
+    <!-- Contact Form -->
+    <h2>Edit your details</h2>
+    <p>Please use the form below to update your personal details.</p>
 
     <div class="contact-form-wrapper">
             <div class="form-group">

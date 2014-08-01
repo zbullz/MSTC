@@ -1002,24 +1002,35 @@ span.color-red{
 +	Jobs list Style
 --------------------------------------------------------------------------*/
 
-.jobs-list{
-	width: 100%;
-	th{
-		font-size: 1.2em;
-		text-align: left;
-		padding: 10px 0;
-	}
-	td{
-		padding: 5px 20px 5px 0;
-		border-top: 1px solid #E6E6E6;
-	}
-	tr{
-		&:last-child{
-			td{
-				border-bottom: 1px solid #E6E6E6;
-			}
-		}
-	}
+.jobs-list {
+    width: 100%;
+
+    th {
+        font-size: 1.2em;
+        text-align: left;
+        padding: 10px 0;
+    }
+
+    td {
+        padding: 5px 20px 5px 0;
+        border-top: 1px solid #E6E6E6;
+    }
+
+    tr {
+        &:last-child {
+            td {
+                border-bottom: 1px solid #E6E6E6;
+            }
+        }
+    }
+
+    .type {
+        width: 60%;
+    }
+
+    .price, .control {
+        width: 20%;
+    }
 }
 
 .job-position{

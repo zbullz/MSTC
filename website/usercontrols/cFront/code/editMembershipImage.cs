@@ -20,12 +20,13 @@ namespace usercontrols.cFront.code
      * ID, LoginName, Name, Email
      * 
      */
-    public class EditMemberImage : UserControl
+    public class EditMembershipImage : UserControl
 	{
         public bool IsDebug { get { return Request.QueryString["cfDebug"] == "member"; } }             
 
         protected PlaceHolder 	DebugContainer;
         protected CheckBox RemoveProfileImage;
+        protected Label membershipExpiry, swimExpiry;
         protected MediaUpload profileImage;
         protected MediaImage CurrentProfileImage;
 
@@ -53,6 +54,10 @@ namespace usercontrols.cFront.code
                 // Show current profile image, if any.
                 // This helper function is used to set the MediaID, which is an int, from the object returned by the properties
                 CurrentProfileImage.SetMediaIDFromObject(currentmemdata["profileImage"]);
+                var membershipExpiryDate = currentmemdata["membershipExpiry"] as DateTime?;
+                membershipExpiry.Text = membershipExpiryDate.HasValue ? membershipExpiryDate.Value.ToString("dd MMM yyyy") : "";
+                var swimExpiryDate = currentmemdata["swimSubsExpiry"] as DateTime?;
+                swimExpiry.Text = swimExpiryDate.HasValue ? swimExpiryDate.Value.ToString("dd MMM yyyy") : "";
             }
         }
 
