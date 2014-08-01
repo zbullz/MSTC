@@ -129,3 +129,9 @@
         </div>
     </div>
 </asp:Content>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="FooterScripts" runat="server">
+    <script src="/scripts/mstc/jquery.sequence-min.js"></script>
+    <script src="/scripts/mstc/jquery.bxslider.js"></script>
+    <script src="/scripts/mstc/home-slider.js"></script>
+</asp:Content>
