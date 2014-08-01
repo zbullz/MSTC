@@ -196,6 +196,9 @@ img.image-left {
 img.member-directory-image {
   max-height: 120px;
 }
+.edit-member .profile-image img {
+  max-width: 200px;
+}
 /*--------------------------------------------------------------------------
 +	Pricing Table Style
 --------------------------------------------------------------------------*/

@@ -1,5 +1,6 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
 
+<%@ Register TagPrefix="cf" TagName="EditMemberImage" Src="../usercontrols/cFront/editMemberImage.ascx" %>
 <%@ Register TagPrefix="cf" TagName="EditMember" Src="../usercontrols/cFront/editMemberDetails.ascx" %>
 
 <asp:Content ContentPlaceHolderID="PageScripts" runat="server">
@@ -24,85 +25,64 @@
 
     <!-- Main content -->
     <div class="section">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <umbraco:Item ID="bodyText" runat="server" Field="bodyText" />
+        <form id="Form1" role="form" class="form-horizontal" runat="server">
+            <div class="container edit-member">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <umbraco:Item ID="bodyText" runat="server" Field="bodyText" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+
+                        <cf:EditMemberImage ID="editMemberImage" runat="server" />
+
+                        <h2>Membership</h2>
+
+                        <div class="contact-form-wrapper">
+                            <form role="form" class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-6 control-label"><b>Membership expires:</b></label>
+                                    <div class="col-sm-6 member-date">
+                                        01 April 2015
+                                   
+                               
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-yellow pull-left" type="submit">Renew membership</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label"><b>Swim subs expire:</b></label>
+                                    <div class="col-sm-7 member-date">
+                                        01 April 2015
+                                   
+                               
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-yellow pull-left" type="submit">Renew swim subs</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-sm-8">
+                        <!-- Contact Form -->
+                        <h2>Edit your details</h2>
+                        <p>Please use the form below to update your personal details.</p>
+
+                        <cf:EditMember ID="editMember" runat="server" />
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-4">
-
-                    <h2>Profile image</h2>
-
-                    <div class="service-image">
-                        <img alt="Mark Jordan" src="http://www.midsussextriclub.com/media/27895/mark_jordan_200.png">
-                    </div>
-                    <div class="contact-form-wrapper">
-                        <form role="form" class="form-horizontal">
-                            <div class="form-group">
-                                <label class="col-sm-5 control-label" for="upload-member-image"><b>Upload new:</b></label>
-                                <div class="col-sm-7">
-                                    <input type="file" id="upload-member-image">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-5 control-label" for="remove-member-image"><b>Remove image</b></label>
-                                <div class="col-sm-7">
-                                    <input type="checkbox" title="Remove image" value="checked" id="remove-member-image">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <button class="btn btn-yellow pull-left" type="submit">Save changes</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <h2>Membership</h2>
-
-                    <div class="contact-form-wrapper">
-                        <form role="form" class="form-horizontal">
-                            <div class="form-group">
-                                <label class="col-sm-6 control-label"><b>Membership expires:</b></label>
-                                <div class="col-sm-6 member-date">
-                                    01 April 2015
-                                   
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <button class="btn btn-yellow pull-left" type="submit">Renew membership</button>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-5 control-label"><b>Swim subs expire:</b></label>
-                                <div class="col-sm-7 member-date">
-                                    01 April 2015
-                                   
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <button class="btn btn-yellow pull-left" type="submit">Renew swim subs</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-
-
-                <div class="col-sm-8">
-                    <!-- Contact Form -->
-                    <h2>Edit your details</h2>
-                    <p>Please use the form below to update your personal details.</p>
-                    
-                    <cf:EditMember ID="editMember" runat="server" />
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
 
     <!-- Secondary content -->
@@ -118,7 +98,7 @@
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("input[name*='dateOfBirth']").datepicker({ dateFormat: 'dd/mm/yy', yearRange: '-65:-12' });
         });
     </script>

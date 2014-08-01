@@ -3,7 +3,6 @@
 <asp:PlaceHolder ID="EditContainer" runat="server">
 
     <div class="contact-form-wrapper">
-        <form role="form" class="form-horizontal" runat="server">
             <div class="form-group">
                 <label class="col-sm-4 control-label"><b>Personal Details</b></label>
             </div>
@@ -90,7 +89,6 @@
                     <asp:Button ID="SubmitButton" OnClick="SaveMemberClicked" Text="Save changes" runat="server" CssClass="btn btn-yellow pull-right" />
                 </div>
             </div>
-        </form>
     </div>
 </asp:PlaceHolder>
 <asp:PlaceHolder ID="DebugContainer" runat="server">
