@@ -1,6 +1,6 @@
 ﻿@inherits umbraco.MacroEngines.DynamicNodeContext
 @{
-    dynamic blogHome = Model.AncestorsOrSelf("Blog").Last();
+    dynamic blogHome = Model.AncestorOrSelf("Blog");
 }
 <h4>Archive</h4>
 <ul class="blog-archive">
