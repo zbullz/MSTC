@@ -10,7 +10,7 @@
             <ul class="blog-archive-months">
                 @foreach (var blogMonth in blogYear.Children.OrderBy("CreateDate descending"))
                 {
-                    <li><a href="@blogMonth.Url">@blogMonth.CreateDate.ToString("MMMM")</a> (@blogMonth.Children.Count())</li>
+                    <li><a href="@blogMonth.Url">@blogMonth.CreateDate.ToString("MMMM")</a> (@blogMonth.Descendants("BlogPost").Count())</li>
                 }
             </ul>
         </li>
