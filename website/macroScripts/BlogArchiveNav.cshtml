@@ -4,7 +4,7 @@
 }
 <h4>Archive</h4>
 <ul class="blog-archive">
-    @foreach (var blogYear in blogHome.Children)
+    @foreach (var blogYear in blogHome.Children.OrderBy("CreateDate descending"))
     {
         <li>@blogYear.Name
             <ul class="blog-archive-months">
