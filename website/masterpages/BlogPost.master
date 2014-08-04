@@ -1,71 +1,32 @@
-﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/BlogMaster.master" AutoEventWireup="true" %>
-<script runat="server">
-	bool closeComments = false;
-	
-	void Page_Load(object sender, System.EventArgs ea) {
-		try{		
-			if(umbraco.presentation.nodeFactory.Node.GetCurrent().GetProperty("closeComments").Value == "1")
-				closeComments = true;
-		}
-		catch(System.NullReferenceException){}	
-		catch(System.ArgumentException){}	
-	}
-</script>
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
 
-<asp:Content ContentPlaceHolderID="body" runat="server">
-<div class="hentry p1 post publish"> 
-	<h2 class="entry-title"><umbraco:Item field="pageName" runat="server"></umbraco:Item></h2>
+<asp:Content ID="Content1" ContentPlaceHolderID="PageScripts" runat="server">
+</asp:Content>
 
-	<div class="entry-date">
-		<abbr class="published" title='<umbraco:Item field="PostDate" formatAsDate="true" runat="server"></umbraco:Item>'>
-			<umbraco:Item field="PostDate" formatAsDate="true" runat="server"></umbraco:Item> 
-		</abbr>
-	</div>
+<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="MainContent">
+    <umbraco:Macro ID="Macro1" runat="server" Language="cshtml">@RenderPage("~/macroscripts/BlogHeading.cshtml")
+    </umbraco:Macro>
 
-	<div class="entry-content"> 
-		<img src='<umbraco:Item field="newsPhoto" xslt="umbraco.library:GetMedia({0}, 0)/umbracoFile" runat="server" textIfEmpty="/images/secret-squirrel.jpg"></umbraco:Item>' class="newsPhoto" />
-		<umbraco:Item field="bodyText" runat="server"></umbraco:Item>
-	</div>
+    <!-- Main content -->
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-sm-4 blog-sidebar">
+                    <umbraco:Macro ID="blogCats" runat="server" Language="cshtml">@RenderPage("~/macroscripts/BlogCategories.cshtml")
+                    </umbraco:Macro>
+                    <umbraco:Macro ID="blogArchive" runat="server" Language="cshtml">@RenderPage("~/macroscripts/BlogArchiveNav.cshtml")
+                    </umbraco:Macro>
+                </div>
+                <!-- End Sidebar -->
+                <!-- Blog Posts -->
+                <div class="col-sm-8">
+                    <umbraco:Macro ID="blogListing" runat="server" Language="cshtml">@RenderPage("~/macroscripts/BlogPost.cshtml")
+                    </umbraco:Macro>
+                </div>
+                <!-- End Blog Posts -->
+            </div>
 
-	<div class="entry-meta"> 
-	This entry was written by <span class="author vcard"><span class="fn n"><umbraco:Item field="writerName" runat="server"/></span></span>, 
-	posted on <abbr class="published" title='<umbraco:Item ID="Item1" field="PostDate" formatAsDate="true" runat="server"/>'><umbraco:Item field="PostDate" formatAsDate="true" runat="server"/></abbr>
-
-	Bookmark the <a href='<umbraco:Item field="pageID" runat="server" xslt="umbraco.library:NiceUrl({0})"></umbraco:Item>' title="Permalink" rel="bookmark">permalink</a>. 
-	<!--
-	<% if (!closeComments) { %>
-	Follow any comments here with the 
-	<umbraco:Item field="pageID" runat="server" xslt="concat('&lt;a href=&quot;',umbraco.library:Replace(umbraco.library:NiceUrl({0}),'.aspx',''),'/commentrss.aspx','&quot; title=&quot;Comments RSS&quot; rel=&quot;alternate&quot; type=&quot;application/rss+xml&quot;&gt;','RSS feed for this post','&lt;/a&gt;')" xsltDisableEscaping="true" ></umbraco:Item>.
-		You can <a class="comment-link" href="#respond" title="Post a comment">post a comment</a>.
-	<% } %>
-
-	</div>
-
-	</div>
-
-	<div id="related">
-	<umbraco:Macro Alias="BlogpostRelatedPages" runat="server"></umbraco:Macro>
-	</div>
-
-	<div id="comments">
-	<umbraco:Macro Alias="BlogPostListComments" runat="server"></umbraco:Macro>
-
-	<div id="respond">
-	<h3>Post a comment</h3>
-	<% if (!closeComments) { %>
-
-	<div class="formcontainer">
-	<umbraco:Macro Alias="frmBlogComment" runat="server"></umbraco:Macro>
-	</div>
-
-	<% } else { %>
-		<p>Comments closed</p>
-	<% } %>
-	-->
-	</div>
-	<div class="facebook-like">
-		<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like href="" show_faces="false" width="450" font=""></fb:like>
-	</div>
-</div>
-
+        </div>
+    </div>
 </asp:Content>

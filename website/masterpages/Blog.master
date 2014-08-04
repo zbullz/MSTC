@@ -1,5 +1,32 @@
-﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/BlogMaster.master" AutoEventWireup="true" %>
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
 
-<asp:Content ContentPlaceHolderID="body" runat="server">
-		<umbraco:Macro Alias="BlogListPosts" runat="server"></umbraco:Macro>
+<asp:Content ID="Content1" ContentPlaceHolderID="PageScripts" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="MainContent">
+    <umbraco:Macro ID="Macro1" runat="server" Language="cshtml">@RenderPage("~/macroscripts/BlogHeading.cshtml")
+    </umbraco:Macro>
+
+    <!-- Main content -->
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-sm-4 blog-sidebar">
+                    <umbraco:Macro ID="blogCats" runat="server" Language="cshtml">@RenderPage("~/macroscripts/BlogCategories.cshtml")
+                    </umbraco:Macro>
+                    <umbraco:Macro ID="blogArchive" runat="server" Language="cshtml">@RenderPage("~/macroscripts/BlogArchiveNav.cshtml")
+                    </umbraco:Macro>
+                </div>
+                <!-- End Sidebar -->
+                <!-- Blog Posts -->
+                <div class="col-sm-8">
+                    <umbraco:Macro ID="blogListing" runat="server" Language="cshtml">@RenderPage("~/macroscripts/BlogPostListing.cshtml")
+                    </umbraco:Macro>
+                </div>
+                <!-- End Blog Posts -->
+            </div>
+
+        </div>
+    </div>
 </asp:Content>
