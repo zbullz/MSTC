@@ -11,7 +11,7 @@
                        : Model.Descendants("BlogPost").Where(string.Format("Tags.Contains(\"{0}\")", filter)).OrderBy("PostDate descending");
 
     int numberOfPosts = allPosts.Count();
-    var posts = allPosts.Skip(pageNumber).Take(postsPerPage);
+    var posts = allPosts.Skip(pageNumber * postsPerPage).Take(postsPerPage);
 }
 
 @if (string.IsNullOrWhiteSpace(filter) == false) {
