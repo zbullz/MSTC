@@ -82,9 +82,8 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
 )
 
 :: 2. Update the data cache key in the web.config
-
-echo Replacing data cache key with: "%DATA_CACHE_KEY%" for environment "%ENVIRONMENT%"
-node replaceConfigSettings.js "%DEPLOYMENT_TARGET%" "%DATA_CACHE_KEY%" "%ENVIRONMENT%"
+::echo Replacing data cache key with: "%DATA_CACHE_KEY%" for environment "%ENVIRONMENT%"
+::node replaceConfigSettings.js "%DEPLOYMENT_TARGET%" "%DATA_CACHE_KEY%" "%ENVIRONMENT%"
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :: Post deployment stub
