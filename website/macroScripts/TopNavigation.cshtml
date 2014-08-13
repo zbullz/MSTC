@@ -1,4 +1,5 @@
-﻿@using umbraco.NodeFactory
+﻿@using cFront.Umbraco.Membership
+@using umbraco.NodeFactory
 @inherits umbraco.MacroEngines.DynamicNodeContext
    
 @{
@@ -17,6 +18,12 @@
         Response.Redirect(Request.RawUrl);
     }
     var currentUser = Membership.GetUser();
+}
+
+@helper RenderUsersName()
+{
+    IDictionary<String, object> memberData = MemberHelper.Get();
+    @Html.Raw(Convert.ToString(memberData["Name"]))
 }
 
 @helper ChangePasswordLink(dynamic homepage)
@@ -41,7 +48,7 @@
                 <div class="login-status">
                     @if (currentUser != null)
                     {
-                        <p><em>Welcome back @currentUser.UserName.</em> @ChangePasswordLink(homepage) @LogoutForm()</p>
+                        <p><em>Welcome back @RenderUsersName().</em> @ChangePasswordLink(homepage) @LogoutForm()</p>
                     }
                 </div>
 
