@@ -41,7 +41,7 @@
                 <div class="login-status">
                     @if (currentUser != null)
                     {
-                        <p><em>Welcome back Mike Hook.</em> @ChangePasswordLink(homepage) @LogoutForm()</p>
+                        <p><em>Welcome back @currentUser.UserName.</em> @ChangePasswordLink(homepage) @LogoutForm()</p>
                     }
                 </div>
 
