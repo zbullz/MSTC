@@ -93,7 +93,13 @@ namespace usercontrols.cFront.code
                 newmemdata["address2"] = address2.Text;
                 newmemdata["address3"] = address3.Text;
                 newmemdata["postcode"] = postcode.Text;
-                newmemdata["dateOfBirth"] = DateTime.ParseExact(dateOfBirth.Text, "dd/MM/yyyy", null).ToString("yyyy-MM-dd");
+
+	            if (string.IsNullOrWhiteSpace(dateOfBirth.Text) == false)
+		            newmemdata["dateOfBirth"] = DateTime.ParseExact(dateOfBirth.Text, "dd/MM/yyyy", null).ToString("yyyy-MM-dd");
+	            else
+	            {
+		            newmemdata["dateOfBirth"] = null;
+	            }
 				
 				newmemdata["medicalConditions"] = txtMedConditions.Text;
 				newmemdata["emergencyContactName"] = txtEmergencyName.Text;

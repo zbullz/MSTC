@@ -5,8 +5,6 @@
 
 <asp:Content ContentPlaceHolderID="PageScripts" runat="server">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 </asp:Content>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MainContent">
@@ -56,11 +54,12 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FooterScripts" runat="server">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
     <script>
         $(document).ready(function () {
-            $("input[name*='dateOfBirth']").datepicker({ dateFormat: 'dd/mm/yy', yearRange: '-65:-12' });
+            $("input[name*='dateOfBirth']").datepicker({
+                dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true, maxDate: +0
+            });
         });
     </script>
 </asp:Content>
