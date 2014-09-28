@@ -1,4 +1,12 @@
-﻿a {
+﻿html, body {
+	height: 100%;
+}
+
+* {
+	margin: 0;
+}
+
+a {
     text-decoration: none;
 }
 
@@ -65,6 +73,17 @@
     box-sizing: border-box;
     font-family: Arial,Helvetica,sans-serif;
     clear: both;
+}
+
+.height-fix-wrapper {
+	min-height: 100%;
+	height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
+	height: 100%;
+	margin: 0 auto -74px; /* the bottom margin is the negative value of the footer's height */
+}
+
+.height-fix-push {
+	height: 74px;
 }
 
 .footer {

@@ -51,29 +51,31 @@
                 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
             })();
-	</script>
+        </script>
 
         <asp:ContentPlaceHolder ID="PageScripts" runat="server"></asp:ContentPlaceHolder>
 
     </head>
     <body>
-        <umbraco:Macro ID="topNav" Alias="TopNavigation" runat="server" Language="cshtml"></umbraco:Macro>
-        <div id="main">
-            <div id="logo-header">
-                <div id="MSTC-logo">
-                    <a href="/the-mid-sussex-triathlon.aspx" title="Mid Sussex Triathlon > Home">Mid Sussex Triathlon Club</a>
+        <div class="height-fix-wrapper">
+            <umbraco:Macro ID="topNav" Alias="TopNavigation" runat="server" Language="cshtml"></umbraco:Macro>
+            <div id="main">
+                <div id="logo-header">
+                    <div id="MSTC-logo">
+                        <a href="/the-mid-sussex-triathlon.aspx" title="Mid Sussex Triathlon > Home">Mid Sussex Triathlon Club</a>
+                    </div>
+                </div>
+                <div id="menu">
+                    <umbraco:Macro Alias="cfNavigation" skipFirstLevel="True" startNodeId="1150" runat="server"></umbraco:Macro>
+                </div>
+                <div id="body">
+                    <asp:ContentPlaceHolder ID="triclubMasterContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
                 </div>
             </div>
-            <div id="menu">
-                <umbraco:Macro Alias="cfNavigation" skipFirstLevel="True" startNodeId="1150" runat="server"></umbraco:Macro>
-            </div>
-            <div id="body">
-                <asp:ContentPlaceHolder ID="triclubMasterContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
-            </div>
+            <div class="clear-float"></div>
+            <div class="height-fix-push"></div>
         </div>
         <!-- Footer -->
-        <div class="clear-float">
-        </div>
         <div class="footer">
             <div class="container">
                 <div class="row">
@@ -83,12 +85,13 @@
                         </ul>
                         <div class="footer-copyright">
                             &copy;
-                            <script language="javascript"><!--
-    var dt = new Date();
-    var crnt_year = dt.getFullYear();
-    document.write(crnt_year);
-    //-->
-                                                         </script>
+                            <script language="javascript">
+                                <!--
+                                var dt = new Date();
+                                var crnt_year = dt.getFullYear();
+                                document.write(crnt_year);
+                                //-->
+                            </script>
                             Mid Sussex Triathlon Club.
                         </div>
                     </div>
