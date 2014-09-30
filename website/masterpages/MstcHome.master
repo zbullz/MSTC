@@ -13,12 +13,16 @@
                     <li class="bg4">
                         <div class="transbox">      
                             <h2 class="title"><a href="#">Enter the Mid Sussex Triathlon</a></h2>          
-                            <h3 class="subtitle">Entries for the 2014 mid sussex triathlon are now open!</h3>                    
+                            <h3 class="subtitle">Entries for the 2015 mid sussex triathlon are now open!</h3>                    
                         </div>
                     </li>
                     -->
                 <!-- Sliders -->
+                <!--
                 <umbraco:Macro ID="slider1Macro" runat="server" Language="cshtml">@RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink1", "bg1", "Try our training sessions", "Come down to our weekly group training session on Thursday and have a go!") 
+                </umbraco:Macro>
+                -->
+                <umbraco:Macro ID="slider1Macro" runat="server" Language="cshtml">@RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink1", "bg4", "Enter the Mid Sussex Triathlon", "Entries for the 2015 mid sussex triathlon are now open!") 
                 </umbraco:Macro>
                 <umbraco:Macro ID="slider2Macro" runat="server" Language="cshtml">@RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink2", "bg5", "Sign up to the club", "If you want to get more involved with trialthon why not become a member of the club?") 
                 </umbraco:Macro>
