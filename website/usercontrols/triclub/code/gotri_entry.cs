@@ -202,7 +202,7 @@ VALUES (@FirstName, @LastName, @DOB, @Age, @Gender, @School, @SchoolYear, @Email
 			"<p></p>" +
 			"<p>To confirm your child's place please send your payment using one of the following methods:</p>" +
 			"<p><a href='http://www.midsussextriclub.com/mid-sussex-triathlon-juniors/gotri!/gotri!-payment.aspx'>Paypal - click here to visit the GoTri! payment page and pay using Paypal</a></p>" +
-			"<p>Please pay online using BACS by putting GoTri! and then your child's name as a reference</p><p>Account Name: MSTC<br />Sort code: 20-49-76<br />Account Number: 43272192<br /><br />or make cheques payable to Mid Sussex Triathlon Club and send to:</p><p><br>MSTC GoTri!,<br /> 12 Brading Road, Brighton BN2 3PD</p><p>Please enter as soon as possible as places are limited.</p>" +
+			"<p>Please pay online using BACS by putting GoTri! and then your child's name as a reference</p><p>Account Name: MSTC<br />Sort code: 20-49-76<br />Account Number: 03712435<br /><br />or make cheques payable to Mid Sussex Triathlon Club and send to:</p><p><br>MSTC GoTri!,<br /> 12 Brading Road, Brighton BN2 3PD</p><p>Please enter as soon as possible as places are limited.</p>" +
 			"<h2>Young Person / Triathlete details</h2><p>" + txtFirstName.Text + " " + txtLastName.Text + "</p>" +
 			"<p>Date of birth" +  strDOB + ", Age:" + txtAge.Text + ", Gender: " + ddlGender.SelectedItem.Value + "</p>" +
 			"<p>School attended" +  txtSchool.Text + ", School year:" + txtSchoolYear.Text + "</p>" +

@@ -142,7 +142,7 @@
 			Please pay online using BACS by putting TriHub and then your childs name as a reference
 			Account Name: MSTC
 			Sort code: 20-49-76
-			Account Number: 43272192
+			Account Number: 03712435
 		</p>
 		<p>
 			or make cheques payable to Mid Sussex Triathlon Club and send to:
