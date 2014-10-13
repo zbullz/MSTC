@@ -17,3 +17,15 @@ box-shadow: 0 0 5px #000; float: left;
 box-shadow: 0 0 5px #000; float: right;
 }
 
+.entry-link {
+	display:block;
+	margin:20px 0px;
+	padding:10px 20px;
+	text-align:center;
+	background:#4f8fc1;
+	font-family: 'Arvo', arial, serif;
+	color:#FFFFFF;
+	font-size:16px;
+	text-decoration:none;
+}
+
