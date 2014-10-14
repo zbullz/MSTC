@@ -10,6 +10,24 @@ a {
     text-decoration: none;
 }
 
+p {
+   margin: 0 0 1em 0;
+}
+p a {
+    text-decoration: underline;
+    color: #428bca;
+}
+
+h2 {
+    margin: 0 0 0.8em 0;
+}
+
+h3 {
+    margin: 0 0 0.6em 0;
+}
+
+
+
 .mainmenu-header {
     background: none repeat scroll 0 0 #000000;
     border-bottom: 0 none;
