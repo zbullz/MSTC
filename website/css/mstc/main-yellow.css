@@ -132,6 +132,9 @@ img.image-left {
 .contact-form-wrapper {
   margin-top: 20px;
 }
+.member-service-link {
+  font-size: 1.2em;
+}
 /*--------------------------------------------------------------------------
 +	Services Style
 --------------------------------------------------------------------------*/
@@ -1613,6 +1616,7 @@ span.color-red {
 }
 .team-member img {
   max-width: 100%;
+  max-height: 200px;
 }
 .team-member ul {
   list-style-type: none;
