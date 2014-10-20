@@ -212,12 +212,8 @@ table.membership_payment td button:hover {
 	background: #cd035d;
 }
 
-div#rightFeatures a.entry-link, 
-div.event-detail a.entry-link, 
-div.feature-info a.entry-link, 
-div#middle-content a.entry-link,
-p.entry-link {
-	display:block;
+p.entry-link a {
+   	display:block;
 	margin:20px 0px;
 	padding:10px 20px;
 	text-align:center;
@@ -225,9 +221,6 @@ p.entry-link {
 	font-family: 'Arvo', arial, serif;
 	font-size:16px;
     cursor: pointer;
-}
-
-p.entry-link a {
     color:#FFFFFF;
     text-decoration:none;
 }
