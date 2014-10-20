@@ -216,19 +216,23 @@ div#rightFeatures a.entry-link,
 div.event-detail a.entry-link, 
 div.feature-info a.entry-link, 
 div#middle-content a.entry-link,
-.entry-link {
+p.entry-link {
 	display:block;
 	margin:20px 0px;
 	padding:10px 20px;
 	text-align:center;
 	background:#4f8fc1;
 	font-family: 'Arvo', arial, serif;
-	color:#FFFFFF;
 	font-size:16px;
-	text-decoration:none;
+    cursor: pointer;
 }
 
-.entry-link:hover {
+p.entry-link a {
+    color:#FFFFFF;
+    text-decoration:none;
+}
+
+p.entry-link a:hover {
 	text-decoration:none;
 	background:#315877;
 	color:#FFFFFF;
