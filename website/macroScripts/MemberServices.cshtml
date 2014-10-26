@@ -1,9 +1,58 @@
 ﻿@using cFront.Umbraco.Membership
 @{
-    //http://our.umbraco.org/wiki/reference/api-cheatsheet/working-with-members/manually-selecting-member-properties
-    //Not supported until v4.8: http://our.umbraco.org/documentation/Reference/Querying/uQuery/Members
+    IMemberDal memberDal = new MemberDal(new DataConnection());
+    IEnumerable<MemberServiceDto> members = memberDal.GetMembersWithServices();
 }
+
 <div class="section">
+    <div class="container">
+        @{
+            int row = 0;
+            int skip = row*3;
+            int numberOfmembers = members.Count();
+            while (skip < numberOfmembers)
+            {
+                var memberRow = members.Skip(skip).Take(3);
+                <div class="row">
+                @foreach (var member in memberRow)
+                {
+                    @renderService(member);
+                }
+                </div>
+                row++;
+                skip = row * 3;
+            }
+        } 
+    </div>
+</div>
+
+@helper renderService(MemberServiceDto member)
+{
+    <div class="col-md-4 col-sm-6">
+        <div class="team-member">
+        @if (member.ServiceImageId.HasValue)
+        {
+            <!-- Team Member Photo -->
+            <div class="team-member-image">
+                <a href="@member.ServiceLinkAddress" title="@member.Name">
+                    <img src="@Library.MediaById(member.ServiceImageId).Url" alt="@member.Name" />
+                </a>
+            </div>
+        }
+            <div class="team-member-info">
+                <ul>
+                    <!-- Team Member Info & Social Links -->
+                    <li class="team-member-name">@member.Name</li>
+                    <li><a class="member-service-link" href="@member.ServiceLinkAddress">@member.ServiceLinkText</a></li>
+                    <li>@member.ServiceDescription</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+
+
+@*<div class="section">
     <div class="container">
         <div class="row">
             <!-- Team Member -->
@@ -110,7 +159,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 
 
