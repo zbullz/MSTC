@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.ServiceModel;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using cFront.Umbraco.Membership;
+using cFront.Umbraco.WebControls;
 using umbraco.cms.businesslogic.media;
 // Requires ~/bin/cfMemberExtensions.dll
 
@@ -22,12 +24,28 @@ namespace usercontrols.cFront.code
      */
     public class EditMemberDetails : UserControl
 	{
-        public bool IsDebug { get { return Request.QueryString["cfDebug"] == "member"; } }             
+		
 
-        protected PlaceHolder 	DebugContainer;
-        protected TextBox 		phoneMobile, Email, Name, address1, address2, address3, postcode, dateOfBirth,
-								txtMedConditions, txtEmergencyName, txtEmergencyNumber;
-        protected CheckBox 		txtVolMST;
+        public bool IsDebug { get { return Request.QueryString["cfDebug"] == "member"; } }
+
+	    protected PlaceHolder DebugContainer;
+	    protected TextBox phoneMobile,
+		    Email,
+		    Name,
+		    address1,
+		    address2,
+		    address3,
+		    postcode,
+		    dateOfBirth,
+		    txtMedConditions,
+		    txtEmergencyName,
+		    txtEmergencyNumber,
+			tbServiceLinkText,
+			tbServiceLinkAddress,
+			tbServiceDescription;
+		protected MediaUpload serviceImage;
+		protected MediaImage currentServiceImage;
+	    protected CheckBox cbShowService;
 
         public String DebugText { get; set; }
 
@@ -67,11 +85,16 @@ namespace usercontrols.cFront.code
 				txtEmergencyName.Text = Convert.ToString(currentmemdata["emergencyContactName"]);
 				txtEmergencyNumber.Text = Convert.ToString(currentmemdata["emergencyContactNumber"]);
 					
-				// Volunteering
-				if(Convert.ToString(currentmemdata["midSussexTriathlon"]) == "1")
-					txtVolMST.Checked = true;
+				// Member service
+				if (Convert.ToString(currentmemdata[MemberProperty.showService]) == "1")
+					cbShowService.Checked = true;
 				else
-					txtVolMST.Checked = false;
+					cbShowService.Checked = false;
+
+				tbServiceLinkAddress.Text = Convert.ToString(currentmemdata[MemberProperty.serviceLinkAddress]);
+				tbServiceLinkText.Text = Convert.ToString(currentmemdata[MemberProperty.serviceLinkText]);
+				currentServiceImage.SetMediaIDFromObject(currentmemdata[MemberProperty.serviceImage]);
+				tbServiceDescription.Text = Convert.ToString(currentmemdata[MemberProperty.serviceDescription]);
             }
         }
 
@@ -105,8 +128,25 @@ namespace usercontrols.cFront.code
 				newmemdata["emergencyContactName"] = txtEmergencyName.Text;
 				newmemdata["emergencyContactNumber"] = txtEmergencyNumber.Text;
 				
-				// Events
-				newmemdata["midSussexTriathlon"] = txtVolMST.Checked;
+				// Service
+				newmemdata[MemberProperty.showService] = cbShowService.Checked;
+	            newmemdata[MemberProperty.serviceLinkAddress] = tbServiceLinkAddress.Text;
+				newmemdata[MemberProperty.serviceLinkText] = tbServiceLinkText.Text;
+				if (serviceImage.HasFile)
+				{
+					// If a profile image is set then the  media uploader will overwrite it 
+					// This helper function is used to set the MediaID, which is an int, from the object returned by the properties
+					serviceImage.SetMediaIDFromObject(currentmemdata[MemberProperty.serviceImage]);
+					//
+
+					// Save with a sensible name (this will also update an existing profile image if the member's name changes)
+					serviceImage.SaveAs(currentmemdata["Name"] + "-" + Convert.ToString(currentmemdata["ID"]));
+
+					// Update member with media ID in case it was newly created
+					newmemdata[MemberProperty.serviceImage] = serviceImage.MediaID;
+				}
+
+				newmemdata[MemberProperty.serviceDescription] = tbServiceDescription.Text;
 
                 MemberHelper.Update(newmemdata); // If you don't provide a member, it uses the current. If no current, this will silently fail.
             }

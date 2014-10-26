@@ -1,4 +1,5 @@
 <%@ Control Inherits="usercontrols.cFront.code.EditMemberDetails" Src="code/editMemberDetails.cs" %>
+<%@ Register TagPrefix="cfu" Assembly="cfUmbracoWebControls" Namespace="cFront.Umbraco.WebControls" %>
 
 <asp:PlaceHolder ID="EditContainer" runat="server">
     <!-- Contact Form -->
@@ -7,7 +8,7 @@
 
     <div class="contact-form-wrapper">
             <div class="form-group">
-                <label class="col-sm-4 control-label"><b>Personal Details</b></label>
+                <h3 class="col-sm-12">Personal Details</h3>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="Name"><b>Your name</b></label>
@@ -57,8 +58,9 @@
                     <asp:TextBox ID="Email" runat="server" CssClass="form-control" />
                 </div>
             </div>
+
             <div class="form-group">
-                <label class="col-sm-3 control-label"><b>Emergency Details</b></label>
+                <h3 class="col-sm-12">Emergency Details</h3>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="txtMedConditions"><b>Medical Conditions</b></label>
@@ -79,12 +81,40 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label"><b>Volunteering</b></label>
+                <h3 class="col-sm-12">Promote a Service</h3>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="txtVolMST"><b>Mid Sussex Triathlon</b></label>
+                <label class="col-sm-3 control-label" for="cbShowService"><b>Show my service on the website</b></label>
                 <div class="col-sm-9">
-                    <asp:CheckBox ID="txtVolMST" runat="server" />
+                    <asp:CheckBox ID="cbShowService" runat="server" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="tbServiceLinkAddress"><b>Web Link to service</b></label>
+                <div class="col-sm-9">
+                    <asp:TextBox ID="tbServiceLinkAddress" runat="server" CssClass="form-control" ToolTip="eg. http://www.myservice.com" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="tbServiceLinkText"><b>Text on service link</b></label>
+                <div class="col-sm-9">
+                    <asp:TextBox ID="tbServiceLinkText" runat="server" CssClass="form-control" ToolTip="eg. My Service" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="serviceImage"><b>Service image</b></label>
+                <div class="col-sm-9">
+                    <cfu:MediaImage ID="currentServiceImage" runat="server" Width="300px" />
+                    <cfu:MediaUpload ID="serviceImage" MediaTypeAlias="Image" ParentFolderNameInRoot="Member Service Images" runat="server" 
+                        ToolTip="Recommended size 300px width, 200px height" />    
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="tbServiceDescription"><b>Short description of service</b></label>
+                <div class="col-sm-9">
+                    <asp:TextBox ID="tbServiceDescription" TextMode="MultiLine" runat="server" CssClass="form-control" Rows="3" ToolTip="Up to 200 characters" />
+                    <asp:RegularExpressionValidator runat="server" ID="valServiceDescription" ControlToValidate="tbServiceDescription"
+                        ValidationExpression="^[\s\S]{0,200}$" ErrorMessage="Please enter a maximum of 200 characters" Display="Dynamic"></asp:RegularExpressionValidator>
                 </div>
             </div>
             <div class="form-group">
