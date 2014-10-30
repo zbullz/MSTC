@@ -55,7 +55,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="Email"><b>Your Email</b></label>
                 <div class="col-sm-9">
-                    <asp:TextBox ID="Email" runat="server" CssClass="form-control" />
+                    <asp:TextBox ID="Email" runat="server" CssClass="form-control"   />
                 </div>
             </div>
 

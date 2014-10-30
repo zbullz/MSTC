@@ -110,6 +110,7 @@ namespace usercontrols.cFront.code
 
                 // Same process for setting system data as custom data - just use the preset aliases mentioned above for system data
                 newmemdata["Email"] = Email.Text;
+				newmemdata["LoginName"] = Email.Text;
                 newmemdata["phoneMobile"] = phoneMobile.Text;
                 newmemdata["Name"] = Name.Text;
                 newmemdata["address1"] = address1.Text;
