@@ -1,35 +1,125 @@
-﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/RunwayMaster.master" AutoEventWireup="true" %>
-<asp:Content ContentPlaceHolderID="RunwayMasterContentPlaceHolder" runat="server">
- <div id="signin-content">
-    <div id="leftNav">
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
 
+<asp:Content ID="Content1" ContentPlaceHolderID="PageScripts" runat="server">
+    <script runat="server">
+
+        protected void CreateUserWizard1_CreatingUser(object sender, LoginCancelEventArgs e)
+        {
+            CreateUserWizard cuw = (CreateUserWizard)sender;
+            cuw.Email = cuw.UserName;
+        }
+
+        protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
+        {
+
+            Roles.AddUserToRole(CreateUserWizard1.UserName, "Member");
+            IDictionary<String, object> currentmemdata = cFront.Umbraco.MemberHelper.Get();
+
+            TextBox tbName = (TextBox)CreateUserWizardStep1.ContentTemplateContainer.FindControl("tbName");
+            currentmemdata["Name"] = tbName.Text;
+            cFront.Umbraco.MemberHelper.Update(currentmemdata);
+        }
+
+        protected void CreateUserWizard1_ContinueButtonClick(object sender, EventArgs e)
+        {
+            CreateUserWizard1.ContinueDestinationPageUrl = "/members-area/my-details.aspx";
+        }
+    </script>
+</asp:Content>
+
+<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="MainContent">
+    <!-- Page Title -->
+    <div class="section section-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>
+                        <umbraco:Item ID="pageName" runat="server" Field="pageName" />
+                    </h1>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="middle-content" class="member-registration">
-      <form runat="server">
-      <script runat="server">
 
-protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
-{
-    Roles.AddUserToRole(CreateUserWizard1.UserName, "Member");
-}
+    <!-- Main content -->
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <umbraco:Item ID="bodyText" runat="server" Field="bodyText" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <form id="Form1" runat="server" class="form-horizontal">
+                        <asp:CreateUserWizard ID="CreateUserWizard1" OnCreatingUser="CreateUserWizard1_CreatingUser" OnContinueButtonClick="CreateUserWizard1_ContinueButtonClick"
+                            OnCreatedUser="CreateUserWizard1_CreatedUser" runat="server" style="width:80%;"
+                            DuplicateUserNameErrorMessage="A member has already registered with that email address. You can use the <a href='/forgot-password'>forgot password</a> form to reset your password.">
+                            <WizardSteps>
+                                <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
+                                    <ContentTemplate>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="UserName">Your email:*</label>
+                                            <div class="col-sm-7">
+                                                <asp:TextBox ID="UserName" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName"
+                                                    ErrorMessage="Email is required." ToolTip="Email is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+                                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="UserName"
+                                                    ErrorMessage="Email address is not valid" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="UserName">Password:*</label>
+                                            <div class="col-sm-7">
+                                            <asp:TextBox ID="Password" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password"
+                                                ErrorMessage="Password is required." ToolTip="Password is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="UserName">Confirm password:*</label>
+                                            <div class="col-sm-7">
+                                                <asp:TextBox ID="ConfirmPassword" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="ConfirmPasswordRequired" runat="server" ControlToValidate="ConfirmPassword"
+                                                ErrorMessage="Confirm Password is required." ToolTip="Confirm Password is required."
+                                                ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+                                            </div>
+                                        </div>
 
-protected void CreateUserWizard1_ContinueButtonClick(object sender, EventArgs e)
-{
-  CreateUserWizard1.ContinueDestinationPageUrl="/about-MSTC/member-area.aspx"; 
-}
-
-</script>
-
-<asp:CreateUserWizard ID="CreateUserWizard1" OnContinueButtonClick="CreateUserWizard1_ContinueButtonClick" OnCreatedUser="CreateUserWizard1_CreatedUser" runat="server">
-    <WizardSteps>
-        <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server"></asp:CreateUserWizardStep>
-        <asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server"></asp:CompleteWizardStep>
-    </WizardSteps>
-</asp:CreateUserWizard>
-      </form>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="UserName">Your name:*</label>
+                                            <div class="col-sm-7">
+                                                <asp:TextBox ID="tbName" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="NameRequired" runat="server" ControlToValidate="tbName"
+                                                ErrorMessage="Name is required." ToolTip="Name is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+                                                <asp:CompareValidator ID="PasswordCompare" runat="server" ControlToCompare="Password"
+                                                ControlToValidate="ConfirmPassword" Display="Dynamic" ErrorMessage="The Password and Confirmation Password must match."
+                                                ValidationGroup="CreateUserWizard1"></asp:CompareValidator>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <asp:TextBox ID="Email" runat="server" Visible="false"></asp:TextBox>
+                                                <asp:Literal ID="ErrorMessage" runat="server" EnableViewState="False"></asp:Literal>
+                                            </div>
+                                        </div>
+                                        </fieldset>
+                                    </ContentTemplate>
+                                </asp:CreateUserWizardStep>
+                                <asp:CompleteWizardStep ID="CompleteWizardStep2" runat="server"></asp:CompleteWizardStep>
+                            </WizardSteps>
+                        </asp:CreateUserWizard>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="rightFeatures">
 
+    <!-- Secondary content -->
+    <div class="section">
+        <div class="container">
+            <umbraco:Item ID="secondaryContent" runat="server" Field="secondaryContent" />
+        </div>
     </div>
-  </div>
+
 </asp:Content>

@@ -31,7 +31,7 @@
                         <asp:Login ID="Login1" runat="server" RenderOuterTable="False">
                             <LayoutTemplate>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label" for="UserName">User name*</label>
+                                    <label class="col-sm-3 control-label" for="UserName">Email*</label>
                                     <div class="col-sm-7">
                                         <asp:TextBox ID="UserName" runat="server" CssClass="form-control"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName" Text="Please enter your user name" 
