@@ -11,11 +11,11 @@
 
         protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
         {
-
             Roles.AddUserToRole(CreateUserWizard1.UserName, "Member");
-            IDictionary<String, object> currentmemdata = cFront.Umbraco.MemberHelper.Get();
-
-            TextBox tbName = (TextBox)CreateUserWizardStep1.ContentTemplateContainer.FindControl("tbName");
+            
+            var userId = (int) Membership.GetUser((sender as CreateUserWizard).UserName).ProviderUserKey;
+            IDictionary<String, object> currentmemdata = cFront.Umbraco.MemberHelper.Get(userId);
+            TextBox tbName = (TextBox) CreateUserWizardStep1.ContentTemplateContainer.FindControl("tbName");
             currentmemdata["Name"] = tbName.Text;
             cFront.Umbraco.MemberHelper.Update(currentmemdata);
         }
