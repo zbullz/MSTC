@@ -17,7 +17,7 @@
             IDictionary<String, object> currentmemdata = cFront.Umbraco.MemberHelper.Get(userId);
             TextBox tbName = (TextBox) CreateUserWizardStep1.ContentTemplateContainer.FindControl("tbName");
             currentmemdata["Name"] = tbName.Text;
-            cFront.Umbraco.MemberHelper.Update(currentmemdata);
+            cFront.Umbraco.MemberHelper.Update(userId, currentmemdata);
         }
 
         protected void CreateUserWizard1_ContinueButtonClick(object sender, EventArgs e)
