@@ -19,11 +19,6 @@
             currentmemdata["Name"] = tbName.Text;
             cFront.Umbraco.MemberHelper.Update(userId, currentmemdata);
         }
-
-        protected void CreateUserWizard1_ContinueButtonClick(object sender, EventArgs e)
-        {
-            CreateUserWizard1.ContinueDestinationPageUrl = "/members-area/my-details.aspx";
-        }
     </script>
 </asp:Content>
 
@@ -52,7 +47,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <form id="Form1" runat="server" class="form-horizontal">
-                        <asp:CreateUserWizard ID="CreateUserWizard1" OnCreatingUser="CreateUserWizard1_CreatingUser" OnContinueButtonClick="CreateUserWizard1_ContinueButtonClick"
+                        <asp:CreateUserWizard ID="CreateUserWizard1" OnCreatingUser="CreateUserWizard1_CreatingUser"
                             OnCreatedUser="CreateUserWizard1_CreatedUser" runat="server" style="width:80%;"
                             DuplicateUserNameErrorMessage="A member has already registered with that email address. You can use the <a href='/forgot-password'>forgot password</a> form to reset your password.">
                             <WizardSteps>
@@ -106,7 +101,16 @@
                                         </fieldset>
                                     </ContentTemplate>
                                 </asp:CreateUserWizardStep>
-                                <asp:CompleteWizardStep ID="CompleteWizardStep2" runat="server"></asp:CompleteWizardStep>
+                                <asp:CompleteWizardStep ID="CompleteWizardStep2" runat="server">
+                                    <ContentTemplate>
+                                        <p>
+                                            Your account has been successfully created.
+                                        </p>
+                                        <p>
+                                            <a href="/members-area/my-details.aspx">Edit your member details</a>
+                                        </p>
+                                    </ContentTemplate>
+                                </asp:CompleteWizardStep>
                             </WizardSteps>
                         </asp:CreateUserWizard>
                     </form>
