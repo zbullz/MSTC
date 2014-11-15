@@ -135,6 +135,11 @@ img.image-left {
 .member-service-link {
   font-size: 1.2em;
 }
+span.validation-error[style*="inline"] {
+  display: block !important;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
 /*--------------------------------------------------------------------------
 +	Services Style
 --------------------------------------------------------------------------*/

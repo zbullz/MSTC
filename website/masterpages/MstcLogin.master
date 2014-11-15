@@ -1,6 +1,13 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
 
 <asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+    <script runat="server">
+        protected void OnLoginError(object sender, EventArgs e)
+        {
+            var loginFailedDiv = (HtmlControl)Login1.FindControl("loginFailedDiv");
+            loginFailedDiv.Attributes["class"] = "form-group";
+        }
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MainContent">
@@ -22,33 +29,35 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <umbraco:Item ID="bodyText" runat="server" Field="bodyText" />
+                    <p>Please use the form below to log in. <br/>
+                        If you don't have any log in details then you can <a href="/sign-up">sign up here</a></p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
                     <form id="loginForm" runat="server" class="form-horizontal">
-                        <asp:Login ID="Login1" runat="server" RenderOuterTable="False">
+                        <asp:Login ID="Login1" runat="server" RenderOuterTable="False" OnLoginError="OnLoginError">
                             <LayoutTemplate>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="UserName">Email*</label>
                                     <div class="col-sm-7">
-                                        <asp:TextBox ID="UserName" runat="server" CssClass="form-control"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName" Text="Please enter your user name" 
-                                            CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
+                                        <asp:TextBox ID="UserName" runat="server" CssClass="form-control" ToolTip="The email address you used to sign up to the website"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName" Text="Please enter your email address" 
+                                            CssClass="validation-error alert-danger"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="Password">Password*</label>
                                     <div class="col-sm-7">
                                         <asp:TextBox ID="Password" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password" Text="Please enter your password" 
-                                            CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
-                                    </div>
-                                    <div class="col-sm-2">
                                         <umbraco:Macro ID="forgotPassword" runat="server" Language="cshtml" linkID="[#forgotPasswordPage]" linkText="Forgot your password?">
                                             @RenderPage("~/macroscripts/PageLink.cshtml")
                                         </umbraco:Macro>
+                                        <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password" Text="Please enter your password" 
+                                            CssClass="validation-error alert-danger"></asp:RequiredFieldValidator>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -56,6 +65,15 @@
                                     <div class="col-sm-7">
                                         <asp:CheckBox ID="RememberMe" runat="server" Text=""></asp:CheckBox>
                                     </div>
+                                </div>
+                                <div class="form-group hidden" id="loginFailedDiv" runat="server">
+                                    <span class="help-block alert-danger">
+                                        Your email or password was not recognised. Please try the 
+                                    <umbraco:Macro ID="Macro1" runat="server" Language="cshtml" linkID="[#forgotPasswordPage]" linkText="forgot password facility">
+                                            @RenderPage("~/macroscripts/PageLink.cshtml")
+                                    </umbraco:Macro> 
+                                    or <a href="/the-club/contact-us">get in touch with us</a>
+                                    </span>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-10">

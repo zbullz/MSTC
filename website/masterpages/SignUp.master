@@ -1,6 +1,7 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="PageScripts" runat="server">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
     <script runat="server">
 
         protected void CreateUserWizard1_CreatingUser(object sender, LoginCancelEventArgs e)
@@ -17,6 +18,8 @@
             IDictionary<String, object> currentmemdata = cFront.Umbraco.MemberHelper.Get(userId);
             TextBox tbName = (TextBox) CreateUserWizardStep1.ContentTemplateContainer.FindControl("tbName");
             currentmemdata["Name"] = tbName.Text;
+            TextBox tbDateOfBirth = (TextBox)CreateUserWizardStep1.ContentTemplateContainer.FindControl("tbDateOfBirth");
+            currentmemdata["dateOfBirth"] = DateTime.ParseExact(tbDateOfBirth.Text, "dd/MM/yyyy", null).ToString("yyyy-MM-dd");
             cFront.Umbraco.MemberHelper.Update(userId, currentmemdata);
         }
     </script>
@@ -54,44 +57,67 @@
                                 <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
                                     <ContentTemplate>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="UserName">Your email:*</label>
-                                            <div class="col-sm-7">
-                                                <asp:TextBox ID="UserName" runat="server" CssClass="form-control"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName"
-                                                    ErrorMessage="Email is required." ToolTip="Email is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
-                                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="UserName"
-                                                    ErrorMessage="Email address is not valid" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="Password">Password:*</label>
-                                            <div class="col-sm-7">
-                                            <asp:TextBox ID="Password" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password"
-                                                ErrorMessage="Password is required." ToolTip="Password is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="ConfirmPassword">Confirm password:*</label>
-                                            <div class="col-sm-7">
-                                                <asp:TextBox ID="ConfirmPassword" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="ConfirmPasswordRequired" runat="server" ControlToValidate="ConfirmPassword"
-                                                ErrorMessage="Confirm Password is required." ToolTip="Confirm Password is required."
-                                                ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="tbName">Your name:*</label>
+                                            <asp:Label ID="Label1" runat="server" CssClass="col-sm-3 control-label" AssociatedControlID="tbName">Name:*</asp:Label>
                                             <div class="col-sm-7">
                                                 <asp:TextBox ID="tbName" runat="server" CssClass="form-control"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="NameRequired" runat="server" ControlToValidate="tbName"
-                                                ErrorMessage="Name is required." ToolTip="Name is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
-                                                <asp:CompareValidator ID="PasswordCompare" runat="server" ControlToCompare="Password"
-                                                ControlToValidate="ConfirmPassword" Display="Dynamic" ErrorMessage="The Password and Confirmation Password must match."
-                                                ValidationGroup="CreateUserWizard1"></asp:CompareValidator>
+                                                ErrorMessage="Name is required." ValidationGroup="CreateUserWizard1" CssClass="validation-error alert-danger"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <asp:Label runat="server" CssClass="col-sm-3 control-label" AssociatedControlID="UserName">Email address:*</asp:Label>
+                                            <div class="col-sm-7">
+                                                <asp:TextBox ID="UserName" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName"
+                                                    ErrorMessage="Email is required." ValidationGroup="CreateUserWizard1" CssClass="validation-error alert-danger"></asp:RequiredFieldValidator>
+                                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="UserName"
+                                                    ErrorMessage="Email address is not valid" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
+                                                    CssClass="validation-error alert-danger"></asp:RegularExpressionValidator>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:Label ID="Label2" runat="server" CssClass="col-sm-3 control-label" AssociatedControlID="tbDateOfBirth">Date of birth:*</asp:Label>
+                                            <div class="col-sm-7">
+                                                <asp:TextBox ID="tbDateOfBirth" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="dateOfBirthRequired" runat="server" ControlToValidate="tbDateOfBirth"
+                                                    ErrorMessage="Date of birth is required." ValidationGroup="CreateUserWizard1" CssClass="validation-error alert-danger"></asp:RequiredFieldValidator>
+                                                <asp:CompareValidator id="dateValidator" runat="server" Type="Date" Operator="DataTypeCheck" 
+                                                    ControlToValidate="tbDateOfBirth" ErrorMessage="Please enter a valid date." ValidationGroup="CreateUserWizard1" 
+                                                    CssClass="validation-error alert-danger"></asp:CompareValidator>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:Label ID="Label3" runat="server" CssClass="col-sm-3 control-label" AssociatedControlID="Password">Password:*</asp:Label>
+                                            <div class="col-sm-7">
+                                            <asp:TextBox ID="Password" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password"
+                                                ErrorMessage="Password is required." ValidationGroup="CreateUserWizard1" CssClass="validation-error alert-danger"></asp:RequiredFieldValidator>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:Label ID="Label4" runat="server" CssClass="col-sm-3 control-label" AssociatedControlID="ConfirmPassword">Confirm password:*</asp:Label>
+                                            <div class="col-sm-7">
+                                                <asp:TextBox ID="ConfirmPassword" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="ConfirmPasswordRequired" runat="server" ControlToValidate="ConfirmPassword"
+                                                ErrorMessage="Confirm Password is required." ValidationGroup="CreateUserWizard1" CssClass="validation-error alert-danger"></asp:RequiredFieldValidator>
+                                                <asp:CompareValidator ID="PasswordCompare" runat="server" ControlToCompare="Password"
+                                                ControlToValidate="ConfirmPassword" Display="Dynamic" ErrorMessage="The Password and Confirmation Password must match."
+                                                ValidationGroup="CreateUserWizard1" CssClass="validation-error alert-danger" ></asp:CompareValidator>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:Label ID="Label5" runat="server" CssClass="col-sm-3 control-label" AssociatedControlID="ConfirmPassword">Sign up code:*</asp:Label>
+                                            <div class="col-sm-7">
+                                                <asp:TextBox ID="tbSecretCode" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbSecretCode"
+                                                ErrorMessage="Sign up code is required." ValidationGroup="CreateUserWizard1" CssClass="validation-error alert-danger"></asp:RequiredFieldValidator>
+                                                <asp:CompareValidator ID="codeCompare" runat="server" ValueToCompare="multisport" Operator="Equal" 
+                                                ControlToValidate="tbSecretCode" Display="Dynamic" ErrorMessage="The sign up code must match the code provided to you by the membership secretary."
+                                                ValidationGroup="CreateUserWizard1" CssClass="validation-error alert-danger"></asp:CompareValidator>
+                                            </div>
+                                        </div>
+
+                                        
                                         <div class="form-group">
                                             <div class="col-sm-12">
                                                 <asp:TextBox ID="Email" runat="server" Visible="false"></asp:TextBox>
@@ -126,4 +152,15 @@
         </div>
     </div>
 
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="FooterScripts" runat="server">
+    <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("input[name*='tbDateOfBirth']").datepicker({
+                dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true, maxDate: +0, yearRange: "c-60:c+20", defaultDate: "-30y"
+            });
+        });
+    </script>
 </asp:Content>
