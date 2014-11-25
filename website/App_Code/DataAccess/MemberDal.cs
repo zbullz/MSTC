@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design.Serialization;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Web;
 using Dapper;
-using umbraco.cms.businesslogic.member;
 
 public interface IMemberDal
 {
 	IEnumerable<MemberServiceDto> GetMembersWithServices();
+    IEnumerable<MemberSummaryDto> GetMemberSummaries();
 }
 
 public class MemberDal : IMemberDal
@@ -23,12 +18,10 @@ public class MemberDal : IMemberDal
 		_dataConnection = dataConnection;
 	}
 
-	public IEnumerable<MemberServiceDto> GetMembersWithServices()
-	{
-		//Somewhat hideous query but I can't help the Umbraco database structures :S
-		string query = 
-		@"SELECT	MemberTypes.Alias AS PropertyAlias,					 
+    //Somewhat hideous query but I can't help the Umbraco database structures :S
+    protected string BaseSelectQuery = @"SELECT	MemberTypes.Alias AS PropertyAlias,					 
 					n.TEXT As Name,
+                    CmsMember.Email,
 					ISNULL(CASE 
 						WHEN MemberTypes.datatypeID IN (SELECT NodeId FROM DBO.CMSDATATYPE WHERE DBTYPE = 'Nvarchar') THEN MemberDataTable.[dataNvarchar] 
 						WHEN MemberTypes.datatypeID IN (SELECT NodeId FROM DBO.CMSDATATYPE WHERE DBTYPE = 'Ntext') THEN MemberDataTable.[dataNtext] 
@@ -40,13 +33,18 @@ public class MemberDal : IMemberDal
 					LEFT OUTER JOIN dbo.cmsPropertyType AS MemberTypes ON MemberTypes.contentTypeId = MemberList.contentType 
 					LEFT OUTER JOIN dbo.cmsPropertyData AS MemberDataTable ON MemberDataTable.contentNodeId = MemberList.nodeId AND MemberDataTable.propertytypeid = MemberTypes.id 
 					LEFT OUTER JOIN dbo.cmsMember AS CmsMember ON CmsMember.nodeId = MemberList.nodeId
-					inner join dbo.umbracoNode n on n.id = MemberList.nodeId
-					inner join (select [dataInt] as ShowService, contentNodeId, propertytypeid 
+					inner join dbo.umbracoNode n on n.id = MemberList.nodeId ";
+
+
+	public IEnumerable<MemberServiceDto> GetMembersWithServices()
+	{
+		string query = BaseSelectQuery +
+	                   @" inner join (select [dataInt] as ShowService, contentNodeId, propertytypeid 
 								From dbo.cmsPropertyData 
 								Where propertytypeid = 246 And [dataInt] = 1) AS ShowServiceData 
 								ON ShowServiceData.contentNodeId = MemberList.nodeId  
-			WHERE	(MemberList.nodeId IS NOT NULL)
-					and MemberTypes.Alias in ('serviceLinkAddress', 'serviceLinkText', 'serviceImage', 'serviceDescription', 'showService')";
+			        WHERE	(MemberList.nodeId IS NOT NULL)
+					        and MemberTypes.Alias in ('serviceLinkAddress', 'serviceLinkText', 'serviceImage', 'serviceDescription', 'showService')";
 
 		IEnumerable<MemberData> memberData;
 		using (IDbConnection connection = _dataConnection.SqlConnection)
@@ -58,7 +56,23 @@ public class MemberDal : IMemberDal
 		return memberServiceDtos;
 	}
 
-	private MemberServiceDto MapMemberDataToService(IGrouping<string, MemberData> groupedMemberData)
+    public IEnumerable<MemberSummaryDto> GetMemberSummaries()
+    {
+        string query = BaseSelectQuery +
+                       @" WHERE	(MemberList.nodeId IS NOT NULL)
+					        and MemberTypes.Alias in ('phoneMobile', 'profileImage')";
+
+        IEnumerable<MemberData> memberData;
+        using (IDbConnection connection = _dataConnection.SqlConnection)
+        {
+            memberData = connection.Query<MemberData>(query, null);
+        }
+
+        var memberSummaries = memberData.GroupBy(m => m.Name).Select(g => MapMemberDataToSummary(g));
+        return memberSummaries;
+    }
+
+    private MemberServiceDto MapMemberDataToService(IGrouping<string, MemberData> groupedMemberData)
 	{
 		var memberServiceDto = new MemberServiceDto()
 		{
@@ -81,4 +95,21 @@ public class MemberDal : IMemberDal
 		var memberData = groupedMemberData.SingleOrDefault(d => d.PropertyAlias == alias);
 		return memberData != null ? memberData.PropertyValue : string.Empty;
 	}
+
+    private MemberSummaryDto MapMemberDataToSummary(IGrouping<string, MemberData> groupedMemberData)
+    {
+        var memberServiceDto = new MemberSummaryDto()
+            {
+                Name = groupedMemberData.Key,
+                Email = groupedMemberData.First().Email,
+                Phone = GetPropertyValueForAlias(groupedMemberData, "phoneMobile")
+            };
+
+        int imageId;
+        if (int.TryParse(GetPropertyValueForAlias(groupedMemberData, "profileImage"), out imageId))
+        {
+            memberServiceDto.ProfileImageId = imageId;
+        }
+        return memberServiceDto;
+    }
 }

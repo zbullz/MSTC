@@ -1,24 +1,22 @@
 ﻿@using cFront.Umbraco.Membership
 @{
-    IEnumerable<IDictionary<string, object>> members = MemberHelper.GetAllMembers();
+    //IEnumerable<IDictionary<string, object>> members = MemberHelper.GetAllMembers();
+    IMemberDal memberDal = new MemberDal(new DataConnection());
+    IEnumerable<MemberSummaryDto> memberSummaries = memberDal.GetMemberSummaries();
 }  
-@foreach (IDictionary<string, object> member in members)
+@foreach (var member in memberSummaries)
 {
     <div class="row service-wrapper-row">
         <div class="col-sm-2">
             <div class="service-image">
-               @{ dynamic personImage = member["profileImage"] is int ? Library.MediaById(member["profileImage"]) : null; }
-                <img class="member-directory-image" src="@(personImage != null ? personImage.Url : "/images/mstc/headshot-placeholder.jpg")" alt="@member["Name"]">
+               @{ dynamic personImage = member.ProfileImageId.HasValue ? Library.MediaById(member.ProfileImageId) : null; }
+                <img class="member-directory-image" src="@(personImage != null ? personImage.Url : "/images/mstc/headshot-placeholder.jpg")" alt="@member.Name" />
             </div>
         </div>
         <div class="col-sm-10">
-            <h3>@member["Name"]</h3>
-            <p>Email: <a href="mailto:@member["Email"]">@member["Email"]</a> | Phone: @member["phoneMobile"]</p>
+            <h3>@member.Name</h3>
+            <p>Email: <a href="mailto:@member.Email">@member.Email</a> | Phone: @member.Phone</p>
 
         </div>
     </div>
 }
-
-
-
-

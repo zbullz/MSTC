@@ -6,6 +6,7 @@ using System.Web;
 public class MemberData
 {
 	public string Name { get; set; }
+    public string Email { get; set; }
 	public string PropertyAlias { get; set; }
 	public string PropertyValue { get; set; }
 }
