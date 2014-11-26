@@ -2,7 +2,7 @@
 @{
     //IEnumerable<IDictionary<string, object>> members = MemberHelper.GetAllMembers();
     IMemberDal memberDal = new MemberDal(new DataConnection());
-    IEnumerable<MemberSummaryDto> memberSummaries = memberDal.GetMemberSummaries();
+    IEnumerable<MemberSummaryDto> memberSummaries = memberDal.GetMemberSummaries().OrderBy(m => m.Name);
 }  
 @foreach (var member in memberSummaries)
 {
