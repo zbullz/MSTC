@@ -9,7 +9,8 @@
     <div class="row service-wrapper-row">
         <div class="col-sm-2">
             <div class="service-image">
-               @{ dynamic personImage = member.ProfileImageId.HasValue ? Library.MediaById(member.ProfileImageId) : null; }
+                <!--<img src="umbraco/ImageGen.ashx?image=/media/30742/MidSussexGoTri_July13_303.jpg&width=200&Compression=99&AntiAlias=true" /> -->
+                @{ dynamic personImage = member.ProfileImageId.HasValue ? Library.MediaById(member.ProfileImageId) : null; }
                 <img class="member-directory-image" src="@(personImage != null ? personImage.Url : "/images/mstc/headshot-placeholder.jpg")" alt="@member.Name" />
             </div>
         </div>

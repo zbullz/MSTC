@@ -16,7 +16,7 @@
 	<div id="content" class="clearfix">
 		<div class="image_link">
 			<a href="/mid-sussex-triathlon-juniors/about-mid-sussex-juniors.aspx">
-				<img src="igen.axd?vpath=/media/30742/MidSussexGoTri_July13_303.jpg&size=imageLink" />
+				<img src="/media/30742/MidSussexGoTri_July13_303.jpg" />
 				<div class="info about-us">
 					<h4>About Us</h4>
 					<p>Find out more about Mid Sussex Tri Club Juniors</p>
@@ -29,12 +29,12 @@
 					<h4>Tri Hub - Junior Training</h4>
 					<p>Triathlon skills training for junior triathletes...</p>
 				</div>
-				<img src="igen.axd?vpath=/media/30762/MidSussexGoTri_July13_358.jpg&size=imageLink" />
+				<img src="/media/30762/MidSussexGoTri_July13_358.jpg" />
 			</a>
 		</div>
 		<div class="image_link">
 			<a href="/mid-sussex-triathlon-juniors/gotri!.aspx">
-				<img src="igen.axd?vpath=/media/30737/MidSussexGoTri_July13_228.jpg&size=imageLink" />
+				<img src="/media/30737/MidSussexGoTri_July13_228.jpg" />
 				<div class="info go-tri">
 					<h4>Go Tri!</h4>
 					<p>More information about our Go Tri! event will be available soon...</p>
