@@ -52,7 +52,7 @@ public class MemberDal : IMemberDal
 			memberData = connection.Query<MemberData>(query, null);
 		}
 
-		var memberServiceDtos = memberData.GroupBy(m => m.Name).Select(g => MapMemberDataToService(g));
+		var memberServiceDtos = memberData.GroupBy(m => m.Email).Select(g => MapMemberDataToService(g));
 		return memberServiceDtos;
 	}
 
@@ -68,7 +68,7 @@ public class MemberDal : IMemberDal
             memberData = connection.Query<MemberData>(query, null);
         }
 
-        var memberSummaries = memberData.GroupBy(m => m.Name).Select(g => MapMemberDataToSummary(g));
+        var memberSummaries = memberData.GroupBy(m => m.Email).Select(g => MapMemberDataToSummary(g));
         return memberSummaries;
     }
 
@@ -76,7 +76,7 @@ public class MemberDal : IMemberDal
 	{
 		var memberServiceDto = new MemberServiceDto()
 		{
-			Name = groupedMemberData.Key,
+			Name = groupedMemberData.First().Name,
 			ServiceLinkAddress = GetPropertyValueForAlias(groupedMemberData, "serviceLinkAddress"),
 			ServiceLinkText = GetPropertyValueForAlias(groupedMemberData, "serviceLinkText"),
 			ServiceDescription = GetPropertyValueForAlias(groupedMemberData, "serviceDescription"),
@@ -92,7 +92,7 @@ public class MemberDal : IMemberDal
 
 	private string GetPropertyValueForAlias(IGrouping<string, MemberData> groupedMemberData, string alias)
 	{
-		var memberData = groupedMemberData.SingleOrDefault(d => d.PropertyAlias == alias);
+		var memberData = groupedMemberData.FirstOrDefault(d => d.PropertyAlias == alias);
 		return memberData != null ? memberData.PropertyValue : string.Empty;
 	}
 
@@ -100,8 +100,8 @@ public class MemberDal : IMemberDal
     {
         var memberServiceDto = new MemberSummaryDto()
             {
-                Name = groupedMemberData.Key,
-                Email = groupedMemberData.First().Email,
+                Name = groupedMemberData.First().Name,
+                Email = groupedMemberData.Key,
                 Phone = GetPropertyValueForAlias(groupedMemberData, "phoneMobile")
             };
 
