@@ -13,8 +13,8 @@
             @if (personImage != null)
             {
                 <a href="@personImage.Url" target="_blank">
-                    <img class="member-directory-image" alt="@member.Name" 
-                         src="@string.Format("/umbraco/ImageGen.ashx?image={0}&width=120&Compression=99&AntiAlias=true", personImage.Url)" />
+                <img class="member-directory-image" alt="@member.Name"
+                     src="personImage.Url" />
                 </a>
             }
             else
