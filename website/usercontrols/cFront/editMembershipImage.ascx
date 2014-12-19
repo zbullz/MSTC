@@ -44,6 +44,7 @@
                     <asp:Label ID="swimExpiry" runat="server"></asp:Label>                              
                 </div>
             </div>
+            <%-- 
             <div class="form-group">
                 <div class="col-sm-12">
                     <umbraco:Macro ID="membershipRenewalPageMacro" runat="server" Language="cshtml" linkID="[#membershipRenewalPage]" linkText="Renew now">
@@ -51,6 +52,7 @@
                     </umbraco:Macro>
                 </div>
             </div>
+            --%>
         </form>
     </div>
 </asp:PlaceHolder>
