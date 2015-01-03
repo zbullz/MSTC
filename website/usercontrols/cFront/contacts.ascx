@@ -1,6 +1,9 @@
 <%@ Control Inherits="cFront.Projects.CFSL.Web.UI.UserControls.ContactForm" AutoEventWireup="true" Src="code/contacts.cs" %>
 <asp:PlaceHolder ID="phMessageForm" runat="server">
-    <div class="contact-form-wrapper">
+    <div class="form-wrapper">
+        <h3>Send Us a Message</h3>
+        <p> Get in touch with us to find out about joining, training, sponsorship or whatever you like.</p>
+        <p>If you have a query about the Mid Sussex Triathlon please visit our event website.</p>
         <form class="form-horizontal" role="form" runat="server">
             <div class="form-group">
                 <label for="txtName" class="col-sm-2 control-label"><b>Your name *</b></label>
@@ -45,9 +48,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-12">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-10">
                     <asp:Label ID="lblResult" Visible="false" runat="server" CssClass="contact-error" />
-                    <asp:Button ID="btnSend" Text="Send message" runat="server" OnClick="SendMessage" CssClass="btn pull-right" />  
+                    <asp:Button ID="btnSend" Text="Send message" runat="server" OnClick="SendMessage" CssClass="btn pull-left btn-yellow" />  
                 </div>
             </div>
         </form>

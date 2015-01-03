@@ -74,6 +74,14 @@ body{
 	color: @font-color;
 }
 
+p {
+	font-size: 1.2em;
+}
+
+ul li {
+	font-size: 1.2em;
+}
+
 h1{ 
 	color: @heading-color;
 	font-family: 'Open Sans', sans-serif; 
@@ -129,16 +137,30 @@ img.image-left {
     margin: 0 10px 10px 0;
 }
 
-.form-horizontal .control-label {
-	text-align: left;
-}
-
-.contact-form-wrapper {
-	margin-top: 20px;
-}
-
 .member-service-link {
 	font-size: 1.2em;
+}
+
+
+
+/* form overrides */
+
+.form-wrapper {
+	margin-top: 20px;
+	padding: 10px;
+	border-style: dashed;
+	border-color: @font-color;
+	border-width: 1px;
+}
+
+.form-horizontal label,
+.form-horizontal .form-control {
+	font-size: 1.2em;
+}
+
+.form-horizontal .btn {
+ 	font-size: 1.2em;
+	font-weight: 600;
 }
 
 span.validation-error[style*="inline"]
@@ -147,3 +169,4 @@ span.validation-error[style*="inline"]
 	margin-bottom: 10px;
 	margin-top: 5px;
 }
+

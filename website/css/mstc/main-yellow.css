@@ -73,6 +73,12 @@ body {
   line-height: 20px;
   color: #535b60;
 }
+p {
+  font-size: 1.2em;
+}
+ul li {
+  font-size: 1.2em;
+}
 h1 {
   color: #53555c;
   font-family: 'Open Sans', sans-serif;
@@ -126,14 +132,24 @@ img.image-left {
   color: 0 0 5px #000;
   margin: 0 10px 10px 0;
 }
-.form-horizontal .control-label {
-  text-align: left;
-}
-.contact-form-wrapper {
-  margin-top: 20px;
-}
 .member-service-link {
   font-size: 1.2em;
+}
+/* form overrides */
+.form-wrapper {
+  margin-top: 20px;
+  padding: 10px;
+  border-style: dashed;
+  border-color: #535b60;
+  border-width: 1px;
+}
+.form-horizontal label,
+.form-horizontal .form-control {
+  font-size: 1.2em;
+}
+.form-horizontal .btn {
+  font-size: 1.2em;
+  font-weight: 600;
 }
 span.validation-error[style*="inline"] {
   display: block !important;
@@ -537,7 +553,7 @@ img.member-directory-image {
 .featured-news .intro,
 .latest-news .intro {
   padding-bottom: 10px;
-  font-size: 0.9em;
+  font-size: 1.1em;
 }
 .featured-news .intro a,
 .latest-news .intro a {
@@ -545,7 +561,6 @@ img.member-directory-image {
 }
 .featured-news .date,
 .latest-news .date {
-  font-size: 0.7em;
   color: #999;
 }
 .featured-news img,
@@ -696,7 +711,6 @@ img.member-directory-image {
   border-bottom: 2px dotted #CCC;
 }
 .single-post-content p {
-  font-size: 0.9em;
   text-align: justify;
 }
 .post-comments {
@@ -1680,6 +1694,9 @@ span.color-red {
   list-style-type: none;
   padding: 0;
 }
+.sitemap a {
+  color: #535b60;
+}
 .sitemap li {
   padding: 10px 0;
   font-weight: 900;
@@ -1858,7 +1875,7 @@ ul.footer-navigate-section {
   color: #7C7C7C;
   border-top: 1px dotted #7C7C7C;
   padding-top: 10px;
-  font-size: 0.9em;
+  font-size: 1.2em;
   width: 30%;
   float: right;
 }
@@ -2500,6 +2517,7 @@ ul.footer-navigate-section {
 }
 .mainmenu > ul > li,
 .mainmenu .mainmenu-submenu-inner > li {
+  font-size: inherit;
   display: inline-block;
   *display: inline;
 }
@@ -2572,6 +2590,7 @@ ul.footer-navigate-section {
   margin: 20px;
 }
 .mainmenu-submenu ul li {
+  font-size: inherit;
   margin-bottom: 10px;
 }
 @media screen and (max-width: 979px) {
@@ -2601,6 +2620,7 @@ ul.footer-navigate-section {
     font-size: 75%;
   }
   .mainmenu > ul > li {
+    font-size: 1 em;
     display: block;
     border-bottom: 4px solid #47a3da;
   }
@@ -2666,6 +2686,7 @@ ul.footer-navigate-section {
   padding: 3px 0;
 }
 .menuextras li {
+  font-size: inherit;
   float: left;
   padding: 0 8px;
 }
