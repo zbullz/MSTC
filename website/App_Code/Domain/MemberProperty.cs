@@ -5,6 +5,8 @@ using System.Web;
 
 public static class MemberProperty
 {
+	public const string Email = "Email";
+
 	public const string showService = "showService";
 	public const string serviceLinkAddress = "serviceLinkAddress";
 	public const string serviceLinkText = "serviceLinkText";
