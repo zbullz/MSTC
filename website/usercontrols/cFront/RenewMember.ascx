@@ -13,5 +13,5 @@
             <asp:Button ID="RenewMember" runat="server" Text="Continue to payment" CssClass="btn pull-left btn-yellow" OnClick="RenewMember_OnClick" />
         </div>
     </div>
-    <asp:Label ID="lblMemberOptions" runat="server"></asp:Label>
+    
 </div>

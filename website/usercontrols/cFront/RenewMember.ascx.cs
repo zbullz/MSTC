@@ -29,21 +29,21 @@ public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
 		{
 			return; //Ensure the form is behind a login form
 		}
-		
-		MembershipOptions membershipOptions = membershipOptionsControl.GetMembershipOptions();
-		lblMemberOptions.Text = JsonConvert.SerializeObject(membershipOptions);
 
-		currentmemdata[MemberProperty.membershipType] = membershipOptions.MembershipType.ToString();
-		currentmemdata[MemberProperty.OpenWaterIndemnityAcceptance] = membershipOptions.OpenWaterIndemnityAcceptance;
-		currentmemdata[MemberProperty.swimSubsJanToJune] = membershipOptions.SwimSubsJanToJune;
-		currentmemdata[MemberProperty.SwimSubsJulyToDec] = membershipOptions.SwimSubsJulyToDec;
-		currentmemdata[MemberProperty.CoreSubsAprilToSept] = membershipOptions.CoreSubsAprilToSept;
-		currentmemdata[MemberProperty.CoreSubsOctToMarch] = membershipOptions.CoreSubsOctToMarch;
-		currentmemdata[MemberProperty.Volunteering] = membershipOptions.Volunteering;
+		var sessionProvider = new SessionProvider();
+		sessionProvider.RenewalOptions = membershipOptionsControl.GetMembershipOptions();
+
 		string memberEmail = currentmemdata[MemberProperty.Email] as string;
-		MemberHelper.Update(currentmemdata);
-
 		RedirectToGocardless(memberEmail);
+		//RedirectToCompletePage(); //Can use this for local testing
+	}
+
+	private void RedirectToCompletePage()
+	{
+		string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
+			Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
+		string redirectUrl = string.Format("{0}/members-area/membership-renewal-complete", rootUrl);
+		Response.Redirect(redirectUrl);
 	}
 
 	private void RedirectToGocardless(string memberEmail)
@@ -56,9 +56,16 @@ public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
 			User = new UserRequest()
 			{
 				Email = memberEmail
-			}
+			},
 		};
-		var paymentGatewayUrl = goCardlessProvider.CreateBill(billRequest);
+
+		//Could wrap this in a provider
+		string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
+			Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
+		string redirectUrl = string.Format("{0}/members-area/membership-renewal-complete", rootUrl);
+		string cancelUrl = string.Format("{0}/members-area/membership-renewal-cancelled", rootUrl);
+
+		string paymentGatewayUrl = goCardlessProvider.CreateBill(billRequest, redirectUrl, cancelUrl);
 		Response.Redirect(paymentGatewayUrl);
 	}
 }

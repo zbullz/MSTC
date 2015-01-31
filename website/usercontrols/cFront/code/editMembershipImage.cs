@@ -26,7 +26,7 @@ namespace usercontrols.cFront.code
 
         protected PlaceHolder 	DebugContainer;
         protected CheckBox RemoveProfileImage;
-        protected Label membershipExpiry, swimExpiry;
+        protected Label membershipExpiry;
         protected MediaUpload profileImage;
         protected MediaImage CurrentProfileImage;
 
@@ -56,8 +56,6 @@ namespace usercontrols.cFront.code
                 CurrentProfileImage.SetMediaIDFromObject(currentmemdata["profileImage"]);
                 var membershipExpiryDate = currentmemdata["membershipExpiry"] as DateTime?;
                 membershipExpiry.Text = membershipExpiryDate.HasValue ? membershipExpiryDate.Value.ToString("dd MMM yyyy") : "";
-                var swimExpiryDate = currentmemdata["swimSubsExpiry"] as DateTime?;
-                swimExpiry.Text = swimExpiryDate.HasValue ? swimExpiryDate.Value.ToString("dd MMM yyyy") : "";
             }
         }
 

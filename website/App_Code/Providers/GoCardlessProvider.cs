@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.Linq;
 using System.Web;
@@ -25,9 +26,14 @@ public class GoCardlessProvider
 		get { return ConfigurationManager.AppSettings["gocardlessMerchantId"]; }
 	}
 
-	public string CreateBill(BillRequest billRequest)
+	public string CreateBill(BillRequest billRequest, string redirectUri, string cancelUri)
 	{
-		string requestUrl = new GoCardlessSdk.Connect.ConnectClient().NewBillUrl(billRequest);
+		string requestUrl = new GoCardlessSdk.Connect.ConnectClient().NewBillUrl(billRequest, redirectUri, cancelUri);
 		return requestUrl;
+	}
+
+	public void ConfirmBill(NameValueCollection confirmQueryStringCollection)
+	{
+		GoCardless.Connect.ConfirmResource(confirmQueryStringCollection);
 	}
 }
