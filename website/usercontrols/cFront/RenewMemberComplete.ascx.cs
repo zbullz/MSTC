@@ -13,10 +13,10 @@ public partial class usercontrols_cFront_RenewMemberComplete : System.Web.UI.Use
     {
 		if (IsPostBack == false)
 		{
-			lblQueryString.Text = Request.QueryString["resource_uri"];
+			//lblQueryString.Text = Request.QueryString["resource_uri"];
 		    if (Request.QueryString["resource_uri"] != null)
 		    {
-			    //ConfirmPaymentRequest();
+			    ConfirmPaymentRequest();
 		    }
 		    UpdateMemberDetails();
 	    }
@@ -39,7 +39,7 @@ public partial class usercontrols_cFront_RenewMemberComplete : System.Web.UI.Use
 		var sessionProvider = new SessionProvider();
 		var membershipOptions = sessionProvider.RenewalOptions;
 
-		lblMemberOptions.Text = JsonConvert.SerializeObject(membershipOptions);
+		//lblMemberOptions.Text = JsonConvert.SerializeObject(membershipOptions);
 
 		currentmemdata[MemberProperty.membershipType] = membershipOptions.MembershipType.ToString();
 		currentmemdata[MemberProperty.OpenWaterIndemnityAcceptance] = membershipOptions.OpenWaterIndemnityAcceptance;
