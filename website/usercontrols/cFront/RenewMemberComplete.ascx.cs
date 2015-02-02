@@ -16,7 +16,7 @@ public partial class usercontrols_cFront_RenewMemberComplete : System.Web.UI.Use
 			lblQueryString.Text = Request.QueryString["resource_uri"];
 		    if (Request.QueryString["resource_uri"] != null)
 		    {
-			    ConfirmPaymentRequest();
+			    //ConfirmPaymentRequest();
 		    }
 		    UpdateMemberDetails();
 	    }
