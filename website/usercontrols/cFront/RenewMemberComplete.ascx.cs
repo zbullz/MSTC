@@ -12,7 +12,8 @@ public partial class usercontrols_cFront_RenewMemberComplete : System.Web.UI.Use
     protected void Page_Load(object sender, EventArgs e)
     {
 		if (IsPostBack == false)
-	    {
+		{
+			lblQueryString.Text = Request.QueryString["resource_uri"];
 		    if (Request.QueryString["resource_uri"] != null)
 		    {
 			    ConfirmPaymentRequest();
