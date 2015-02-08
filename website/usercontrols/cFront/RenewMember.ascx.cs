@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
@@ -31,10 +32,12 @@ public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
 		}
 
 		var sessionProvider = new SessionProvider();
-		sessionProvider.RenewalOptions = membershipOptionsControl.GetMembershipOptions();
+		MembershipOptions membershipOptions = membershipOptionsControl.GetMembershipOptions();
+		sessionProvider.RenewalOptions = membershipOptions;
 
+		decimal cost = (new MembershipCostCalcualtor()).Calculate(membershipOptions);
 		string memberEmail = currentmemdata[MemberProperty.Email] as string;
-		RedirectToGocardless(memberEmail);
+		RedirectToGocardless(memberEmail, cost);
 		//RedirectToCompletePage(); //Can use this for local testing
 	}
 
@@ -46,10 +49,10 @@ public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
 		Response.Redirect(redirectUrl);
 	}
 
-	private void RedirectToGocardless(string memberEmail)
+	private void RedirectToGocardless(string memberEmail, decimal cost)
 	{
 		var goCardlessProvider = new GoCardlessProvider();
-		var billRequest = new BillRequest(goCardlessProvider.MerchantId, 10)
+		var billRequest = new BillRequest(goCardlessProvider.MerchantId, cost)
 		{
 			Name = "MSTC Membership Renewal",
 			Description = "Mid Sussex Tri Club Membership renewal",

@@ -6,6 +6,7 @@ using System.Web;
 public static class MemberProperty
 {
 	public const string Email = "Email";
+	public const string ProfileImage = "profileImage";
 
 	public const string showService = "showService";
 	public const string serviceLinkAddress = "serviceLinkAddress";

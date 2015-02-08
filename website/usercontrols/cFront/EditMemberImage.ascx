@@ -1,7 +1,6 @@
-<%@ Control Inherits="usercontrols.cFront.code.EditMembershipImage" Src="code/editMembershipImage.cs" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="EditMemberImage.ascx.cs" Inherits="usercontrols_cFront_EditMemberImage" %>
 <%@ Register TagPrefix="cfu" Assembly="cfUmbracoWebControls" Namespace="cFront.Umbraco.WebControls" %>
 
-<asp:PlaceHolder ID="EditContainer" runat="server">
     <h2>Profile image</h2>
 
     <div class="profile-image">
@@ -27,29 +26,3 @@
             </div>
         </div>
     </div>
-
-    <h2>Membership</h2>
-
-    <div class="contact-form-wrapper">
-        <form role="form" class="form-horizontal">
-            <div class="form-group">
-                <label class="col-sm-6 control-label"><b>Membership expires:</b></label>
-                <div class="col-sm-6 member-date">
-                    <asp:Label ID="membershipExpiry" runat="server"></asp:Label>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <umbraco:Macro ID="membershipRenewalPageMacro" runat="server" Language="cshtml" linkID="[#membershipRenewalPage]" linkText="Renew now">
-                        @RenderPage("~/macroscripts/PageLink.cshtml")
-                    </umbraco:Macro>
-                </div>
-            </div>
-        </form>
-    </div>
-</asp:PlaceHolder>
-<asp:PlaceHolder ID="DebugContainer" runat="server">
-    <div class="member_debug">
-        <%= DebugText %>
-    </div>
-</asp:PlaceHolder>
