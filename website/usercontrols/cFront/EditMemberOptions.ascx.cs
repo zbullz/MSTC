@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserControl
 {
@@ -36,37 +33,52 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 			membershipType.Text = memberData[MemberProperty.membershipType] as string;
 
 			membershipOptionalExtras.Text = string.Join("<br/>", OptionalExtras(memberData));
-
-			int? openWaterIndemnityAcceptance = (int?)memberData[MemberProperty.OpenWaterIndemnityAcceptance];
-			EnableOpenWater = openWaterIndemnityAcceptance.HasValue && openWaterIndemnityAcceptance == 1;
+	
+		    EnableOpenWater = GetMemberBool(memberData, MemberProperty.OpenWaterIndemnityAcceptance);
 		}
 	}
 
 	private List<string> OptionalExtras(IDictionary<String, object> memberData)
 	{
 		var extras = new List<string>();
-
-		int? swimSubsJan = (int?) memberData[MemberProperty.swimSubsJanToJune];
-		if (swimSubsJan.HasValue && swimSubsJan == 1)
+		
+        if (GetMemberBool(memberData, MemberProperty.swimSubsJanToJune))
 		{
 			extras.Add("Pool swim Jan - June.");
 		}
-		int? swimSubsJuly = (int?)memberData[MemberProperty.SwimSubsJulyToDec];
-		if (swimSubsJuly.HasValue && swimSubsJuly == 1)
+		if (GetMemberBool(memberData, MemberProperty.SwimSubsJulyToDec))
 		{
 			extras.Add("Pool swim July - Dec.");
 		}
-		int? core1 = (int?)memberData[MemberProperty.CoreSubsAprilToSept];
-		if (core1.HasValue && core1 == 1)
-		{
+        if (GetMemberBool(memberData, MemberProperty.CoreSubsAprilToSept))
+        {
 			extras.Add("Core/Spin April - Sept.");
 		}
-		int? core2 = (int?)memberData[MemberProperty.CoreSubsOctToMarch];
-		if (core2.HasValue && core2 == 1)
+        if (GetMemberBool(memberData, MemberProperty.CoreSubsOctToMarch))
 		{
 			extras.Add("Core/Spin Oct - March.");
 		}
 
+        if (extras.Any() == false)
+        {
+            extras.Add("None");
+        }
+
 		return extras;
 	}
+
+    private bool GetMemberBool(IDictionary<String, object> memberData, string memberPropertyName)
+    {
+        bool value = false;
+        object propertyValue = memberData[memberPropertyName];
+        if (propertyValue != null)
+        {
+            int valueInt;
+            if (int.TryParse(propertyValue.ToString(), out valueInt))
+            {
+                value = valueInt == 1;
+            }
+        }
+        return value;
+    }
 }
