@@ -22,7 +22,7 @@
         <div class="form-group">
             <label for="contact-message" class="col-sm-2 control-label"><b>Open water swimming indemnity waiver*</b></label>
             <div class="col-sm-10">
-                <p><a href="http://midsussextriclub.com/media/19048/MSTCArdinglyReservoirindemnityterms_2012.doc" target="_blank">Click here to view the Open Water Swimming Indemnity Document</a></p>
+                <p><a href="http://midsussextriclub.com/media/47452/MSTCIndemnityWaiver.pdf" target="_blank">Click here to view the Open Water Swimming Indemnity Document</a></p>
                 <asp:RadioButtonList ID="indemnityOptions" runat="server" RepeatLayout="Flow" CssClass="radio"></asp:RadioButtonList>
                 <asp:RequiredFieldValidator ID="requiredIndemnityOptions" runat="server" ErrorMessage="Please select your open water indemnity waiver response" 
                     ControlToValidate="indemnityOptions" CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
