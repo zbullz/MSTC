@@ -40,4 +40,12 @@
             </p>
         </div>
     </div>
+    <div class="form-group <%=ShowMemberAdminLink ? "" : "hide"%>">
+        <label class="col-sm-6 control-label"><b>Super secret admin page:</b></label>
+        <div class="col-sm-6 member-date">
+            <p>
+                <a href="/members-area/members-admin-details.aspx">Members Admin Details</a>
+            </p>
+        </div>
+    </div>
 </div>

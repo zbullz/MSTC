@@ -136,6 +136,7 @@ public class MemberDal : IMemberDal
 		{
 			Name = groupedMemberData.First().Name,
 			Email = groupedMemberData.Key,
+			
 			Phone = GetPropertyValueForAlias(groupedMemberData, MemberProperty.Phone),
 			CoreSubsAprilToSept = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.CoreSubsAprilToSept)),
 			CoreSubsOctToMarch = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.CoreSubsOctToMarch)),
@@ -144,17 +145,21 @@ public class MemberDal : IMemberDal
 			OpenWaterIndemnityAcceptance =
 				GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.OpenWaterIndemnityAcceptance)),
 			Volunteering = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.Volunteering))
+			 
 		};
 
+		
 		string membershipType = GetPropertyValueForAlias(groupedMemberData, MemberProperty.membershipType);
 		memberOptionsDto.MembershipType = string.IsNullOrEmpty(membershipType)
 			? (MembershipType?) null
 			: (MembershipType) Enum.Parse(typeof (MembershipType), membershipType);
-
+		
 		string membershipExpiry = GetPropertyValueForAlias(groupedMemberData, MemberProperty.MembershipExpiry);
 		memberOptionsDto.MembershipExpiry = string.IsNullOrEmpty(membershipExpiry) ? (DateTime?) null : DateTime.Parse(membershipExpiry);
+		
 		string swimAuthNumber = GetPropertyValueForAlias(groupedMemberData, MemberProperty.SwimAuthNumber);
-		memberOptionsDto.SwimAuthNumber = string.IsNullOrEmpty(swimAuthNumber) ? (int?)null : int.Parse(membershipExpiry);
+		memberOptionsDto.SwimAuthNumber = string.IsNullOrEmpty(swimAuthNumber) ? (int?)null : int.Parse(swimAuthNumber);
+		 
 	
 		return memberOptionsDto;
 	}

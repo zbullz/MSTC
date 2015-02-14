@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Web.Security;
 
 public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserControl
 {
 	public bool EnableRenewal { get; set; }
 	public bool EnableOpenWater { get; set; }
+	public bool ShowMemberAdminLink { get; set; }
 
 	protected void Page_Load(object sender, EventArgs e)
 	{
@@ -45,6 +47,9 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 				}
 			}
 		}
+
+		string[] roles = Roles.GetRolesForUser();
+		ShowMemberAdminLink = roles.Contains("MemberAdmin");
 	}
 
 	private List<string> OptionalExtras(IDictionary<String, object> memberData)
