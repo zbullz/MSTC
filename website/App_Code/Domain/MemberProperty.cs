@@ -6,6 +6,7 @@ using System.Web;
 public static class MemberProperty
 {
 	public const string Email = "Email";
+	public const string Phone = "phoneMobile";
 	public const string ProfileImage = "profileImage";
 
 	public const string showService = "showService";
@@ -22,4 +23,5 @@ public static class MemberProperty
 	public const string OpenWaterIndemnityAcceptance = "openWaterIndemnityAcceptance";
 	public const string Volunteering = "volunteering";
 	public const string MembershipExpiry = "membershipExpiry";
+	public const string SwimAuthNumber = "swimAuthNumber";
 }

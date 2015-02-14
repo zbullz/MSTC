@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Dapper;
+using umbraco.cms.presentation.create.controls;
 
 public interface IMemberDal
 {
 	IEnumerable<MemberServiceDto> GetMembersWithServices();
     IEnumerable<MemberSummaryDto> GetMemberSummaries();
+	IEnumerable<MemberOptionsDto> GetMemberOptions();
 }
 
 public class MemberDal : IMemberDal
@@ -72,6 +75,26 @@ public class MemberDal : IMemberDal
         return memberSummaries;
     }
 
+	public IEnumerable<MemberOptionsDto> GetMemberOptions()
+	{
+		string query = BaseSelectQuery +
+		               string.Format(@" WHERE	(MemberList.nodeId IS NOT NULL)
+					        and MemberTypes.Alias in ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')",
+			               MemberProperty.Phone, MemberProperty.membershipType, MemberProperty.swimSubsJanToJune,
+			               MemberProperty.SwimSubsJulyToDec, MemberProperty.CoreSubsAprilToSept,
+			               MemberProperty.CoreSubsOctToMarch, MemberProperty.OpenWaterIndemnityAcceptance,
+			               MemberProperty.Volunteering,
+			               MemberProperty.MembershipExpiry, MemberProperty.SwimAuthNumber);
+
+		IEnumerable<MemberData> memberData;
+		using (IDbConnection connection = _dataConnection.SqlConnection)
+		{
+			memberData = connection.Query<MemberData>(query, null);
+		}
+		IEnumerable<MemberOptionsDto> memberOptions = memberData.GroupBy(m => m.Email).Select(g => MapMemberDataToOptions(g));
+		return memberOptions;
+	}
+
     private MemberServiceDto MapMemberDataToService(IGrouping<string, MemberData> groupedMemberData)
 	{
 		var memberServiceDto = new MemberServiceDto()
@@ -90,12 +113,6 @@ public class MemberDal : IMemberDal
 		return memberServiceDto;
 	}
 
-	private string GetPropertyValueForAlias(IGrouping<string, MemberData> groupedMemberData, string alias)
-	{
-		var memberData = groupedMemberData.FirstOrDefault(d => d.PropertyAlias == alias);
-		return memberData != null ? memberData.PropertyValue : string.Empty;
-	}
-
     private MemberSummaryDto MapMemberDataToSummary(IGrouping<string, MemberData> groupedMemberData)
     {
         var memberServiceDto = new MemberSummaryDto()
@@ -112,4 +129,44 @@ public class MemberDal : IMemberDal
         }
         return memberServiceDto;
     }
+
+	private MemberOptionsDto MapMemberDataToOptions(IGrouping<string, MemberData> groupedMemberData)
+	{
+		var memberOptionsDto = new MemberOptionsDto()
+		{
+			Name = groupedMemberData.First().Name,
+			Email = groupedMemberData.Key,
+			Phone = GetPropertyValueForAlias(groupedMemberData, MemberProperty.Phone),
+			CoreSubsAprilToSept = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.CoreSubsAprilToSept)),
+			CoreSubsOctToMarch = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.CoreSubsOctToMarch)),
+			SwimSubsJanToJune = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.swimSubsJanToJune)),
+			SwimSubsJulyToDec = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.SwimSubsJulyToDec)),
+			OpenWaterIndemnityAcceptance =
+				GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.OpenWaterIndemnityAcceptance)),
+			Volunteering = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.Volunteering))
+		};
+
+		string membershipType = GetPropertyValueForAlias(groupedMemberData, MemberProperty.membershipType);
+		memberOptionsDto.MembershipType = string.IsNullOrEmpty(membershipType)
+			? (MembershipType?) null
+			: (MembershipType) Enum.Parse(typeof (MembershipType), membershipType);
+
+		string membershipExpiry = GetPropertyValueForAlias(groupedMemberData, MemberProperty.MembershipExpiry);
+		memberOptionsDto.MembershipExpiry = string.IsNullOrEmpty(membershipExpiry) ? (DateTime?) null : DateTime.Parse(membershipExpiry);
+		string swimAuthNumber = GetPropertyValueForAlias(groupedMemberData, MemberProperty.SwimAuthNumber);
+		memberOptionsDto.SwimAuthNumber = string.IsNullOrEmpty(swimAuthNumber) ? (int?)null : int.Parse(membershipExpiry);
+	
+		return memberOptionsDto;
+	}
+
+	private string GetPropertyValueForAlias(IGrouping<string, MemberData> groupedMemberData, string alias)
+	{
+		var memberData = groupedMemberData.FirstOrDefault(d => d.PropertyAlias == alias);
+		return memberData != null ? memberData.PropertyValue : string.Empty;
+	}
+
+	private bool GetBool(string valueString)
+	{
+		return valueString == "1";
+	}
 }

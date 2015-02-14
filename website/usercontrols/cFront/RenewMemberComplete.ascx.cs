@@ -49,7 +49,19 @@ public partial class usercontrols_cFront_RenewMemberComplete : System.Web.UI.Use
 		currentmemdata[MemberProperty.CoreSubsOctToMarch] = membershipOptions.CoreSubsOctToMarch;
 		currentmemdata[MemberProperty.Volunteering] = membershipOptions.Volunteering;
 		currentmemdata[MemberProperty.MembershipExpiry] = new DateTime(DateTime.Now.Year + 1, 4, 1).ToString("yyyy-MM-dd");
+
+		if (membershipOptions.OpenWaterIndemnityAcceptance)
+		{
+			//Calculate the next available swim auth number
+			IMemberDal memberDal = new MemberDal(new DataConnection());
+			IEnumerable<MemberOptionsDto> memberOptions = memberDal.GetMemberOptions();
+			var membersWithSwimAuthNumbers = memberOptions.Where(m => m.SwimAuthNumber.HasValue).OrderBy(m => m.SwimAuthNumber);
+			int swimAuthNumber = membersWithSwimAuthNumbers.Any()
+				? membersWithSwimAuthNumbers.Last().SwimAuthNumber.Value + 1
+				: 1;
+			currentmemdata[MemberProperty.SwimAuthNumber] = swimAuthNumber;
+		}
+
 		MemberHelper.Update(currentmemdata);
-		 
 	}
 }
