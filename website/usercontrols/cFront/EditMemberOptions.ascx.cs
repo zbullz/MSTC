@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserControl
@@ -33,8 +34,16 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 			membershipType.Text = memberData[MemberProperty.membershipType] as string;
 
 			membershipOptionalExtras.Text = string.Join("<br/>", OptionalExtras(memberData));
-	
+			
 		    EnableOpenWater = GetMemberBool(memberData, MemberProperty.OpenWaterIndemnityAcceptance);
+			if (EnableOpenWater)
+			{
+				object swimAuthObj = memberData[MemberProperty.SwimAuthNumber];
+				if (swimAuthObj != null && string.IsNullOrEmpty(swimAuthObj.ToString()) == false)
+				{
+					openWaterAuthNumber.Text = ((int)swimAuthObj).ToString("D3");
+				}
+			}
 		}
 	}
 

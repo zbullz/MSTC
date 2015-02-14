@@ -36,7 +36,7 @@
         <div class="col-sm-6 member-date">
             <p>
                 <asp:HyperLink ID="openWaterAuthNumber" runat="server" data-toggle="tooltip" data-placement="bottom"
-                    title="Take this number with you to open water swim sessions. You can't get in the water unless you have your number!">123</asp:HyperLink>
+                    title="Take this number with you to open water swim sessions. You can't get in the water unless you have your number!"></asp:HyperLink>
             </p>
         </div>
     </div>
