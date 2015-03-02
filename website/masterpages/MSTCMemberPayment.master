@@ -1,5 +1,8 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
 
+<asp:Content ContentPlaceHolderID="MstcSkeletonContentPlaceHolder" runat="server">
+<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
+
 <asp:Content ContentPlaceHolderID="PageScripts" runat="server">
 </asp:Content>
 
@@ -112,4 +115,5 @@
         </div>
     </div>
 
+</asp:Content>
 </asp:Content>

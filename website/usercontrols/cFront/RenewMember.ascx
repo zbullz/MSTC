@@ -5,12 +5,13 @@
 <div class="form-wrapper">
     <p>Please select from the options below to renew your club membership for 2015</p>
     <!--Membership options-->
-    <cf:MembershipOptions ID="membershipOptions" runat="server" />
+    <cf:MembershipOptions ID="membershipOptionsControl" runat="server" />
 
     <div class="form-group">
         <div class="col-sm-2"></div>
         <div class="col-sm-10">
-            <button type="submit" class="btn pull-left btn-yellow">Continue to payment</button>
+            <asp:Button ID="RenewMember" runat="server" Text="Continue to payment" CssClass="btn pull-left btn-yellow" OnClick="RenewMember_OnClick" />
         </div>
     </div>
+    
 </div>

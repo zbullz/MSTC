@@ -1,0 +1,43 @@
+﻿@using cFront.Umbraco.Membership
+@{
+    IMemberDal memberDal = new MemberDal(new DataConnection());
+    IEnumerable<MemberOptionsDto> memberOptions = memberDal.GetMemberOptions().OrderBy(m => m.Name);
+}  
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Membership Type</th>
+        <th>Membership Expiry Date</th>
+        <th>Paid Swim Subs Jan to June</th>
+        <th>Paid Swim Subs July to Dec</th>
+        <th>Paid Core Subs April to Sept</th>
+        <th>Paid Core Subs Oct to March</th>
+        <th>Accepted indemnity?</th>
+        <th>Open water auth number</th>
+    </tr>
+
+    @foreach (var member in memberOptions)
+    {
+        <tr>
+            <td>@member.Name</td>
+            <td>@member.Email</td>
+            <td>@member.MembershipType</td>
+            <td>@(member.MembershipExpiry.HasValue ? member.MembershipExpiry.Value.ToShortDateString() : "")</td>
+            <td>@displayBool(member.SwimSubsJanToJune)</td>
+            <td>@displayBool(member.SwimSubsJulyToDec)</td>
+            <td>@displayBool(member.CoreSubsAprilToSept)</td>
+            <td>@displayBool(member.CoreSubsOctToMarch)</td>
+            <td>@displayBool(member.OpenWaterIndemnityAcceptance)</td>
+            <td>@(member.SwimAuthNumber.HasValue ? member.SwimAuthNumber.Value.ToString("D3") : "-")</td>
+    
+        </tr>
+    }
+
+</table>
+
+@helper displayBool(bool value)
+{
+    @(value == true ? "Yes" : "No")
+}
