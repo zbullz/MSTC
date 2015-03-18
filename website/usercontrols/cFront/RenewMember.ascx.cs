@@ -83,14 +83,6 @@ public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
 		{
 			descriptionList.Add("Swim subs July to Dec");
 		}
-		if (membershipOptions.CoreSubsAprilToSept)
-		{
-			descriptionList.Add("Core subs April to Sept");
-		}
-		if (membershipOptions.CoreSubsOctToMarch)
-		{
-			descriptionList.Add("Core subs Oct to March");
-		}
 
 		return string.Join(", ", descriptionList);
 	}

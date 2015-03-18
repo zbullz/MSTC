@@ -6,7 +6,5 @@ using System.Web;
 public enum MembershipExtras
 {
 	SwimSubsJanToJune,
-	SwimSubsJulyToDec,
-	CoreSubsAprilToSept,
-	CoreSubsOctToMarch
+	SwimSubsJulyToDec
 }
