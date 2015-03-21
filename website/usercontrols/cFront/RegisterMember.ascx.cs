@@ -68,7 +68,7 @@ public partial class usercontrols_cFront_RegisterMember : System.Web.UI.UserCont
 		string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
 			Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
 		string redirectUrl = string.Format("{0}/the-club/membership-registration-complete", rootUrl);
-		string cancelUrl = string.Format("{0}/the-club/membership-registration-cancelled", rootUrl);
+		string cancelUrl = string.Format("{0}", rootUrl);
 
 		string paymentGatewayUrl = goCardlessProvider.CreateBill(billRequest, redirectUrl, cancelUrl);
 		Response.Redirect(paymentGatewayUrl);

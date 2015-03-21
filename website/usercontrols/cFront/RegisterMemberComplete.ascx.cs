@@ -25,7 +25,7 @@ public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.
 			var sessionProvider = new SessionProvider();
 			RegistrationFullDetails registrationFullDetails = sessionProvider.RegistrationFullDetails;
 
-			lblMemberOptions.Text = JsonConvert.SerializeObject(registrationFullDetails);
+			//lblMemberOptions.Text = JsonConvert.SerializeObject(registrationFullDetails);
 
 			var member = CreateMember(registrationFullDetails.RegistrationDetails);
 			UpdateMemberDetails(member, registrationFullDetails);
@@ -57,9 +57,10 @@ public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.
 	private void UpdateMemberDetails(umbraco.cms.businesslogic.member.Member member, RegistrationFullDetails regDetails)
 	{
 		IDictionary<String, object> currentmemdata = MemberHelper.Get(member);
+
 		SetMemberDetails(currentmemdata, regDetails.RegistrationDetails);
 		SetMembershipOptions(currentmemdata, regDetails.MembershipOptions);
-		MemberHelper.Update(currentmemdata);
+		MemberHelper.Update(member, currentmemdata);
 	}
 
 	private void SetMemberDetails(IDictionary<String, object> currentmemdata, RegistrationDetails registrationDetails)
