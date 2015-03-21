@@ -42,29 +42,16 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 		{	
 			if(Page.IsValid)
 			{
-				MailMessage objMail = new MailMessage();
-
-				Dictionary<string, string> emailLookup = new Dictionary<string, string>() {
-					{ "Membership", "members@midsussextriclub.com" },
-					{ "Sponsorship", "sponsorship@midsussextriclub.com" },
-					{ "Juniors", "juniors@midsussextriclub.com" },
-					{ "Website", "support@midsussextriclub.com" },
-				};
+				var emailProvider = new EmailProvider();
 
 				string toAddress;
-				if (emailLookup.TryGetValue(topicSelect.SelectedValue, out toAddress) == false)
+				if (emailProvider.EmailLookup.TryGetValue(topicSelect.SelectedValue, out toAddress) == false)
 					toAddress = ConfigurationManager.AppSettings["contactFormEmailTo"] ?? "info@midsussextriclub.com";
-
-				objMail.To.Add(toAddress);
-				objMail.From = new MailAddress(txtEmail.Text);
-				objMail.Subject = "[Website Enquiry]";
 				
-				objMail.IsBodyHtml = true;
-				
-				objMail.Body = "<p>" + txtMsg.Text + "</p><p>Message from: " + txtName.Text + "</p><p>Email: " + txtEmail.Text + "</p>";
+				string content = "<p>" + txtMsg.Text + "</p><p>Message from: " + txtName.Text + "</p><p>Email: " + txtEmail.Text +
+				                 "</p>";
 
-				var GmailSmtpClient = new GmailSmtpClient();
-				GmailSmtpClient.Send(objMail);
+				emailProvider.SendEmail(toAddress, txtEmail.Text, "[Website Enquiry]", content);
 					
 				ViewState["ViewContactForm"] = 1;
 				

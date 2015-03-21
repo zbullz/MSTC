@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using cFront.Umbraco.Membership;
 using GoCardlessSdk;
 using GoCardlessSdk.Connect;
+using umbraco.BusinessLogic;
 
 public partial class usercontrols_cFront_RegisterMember : System.Web.UI.UserControl
 {
@@ -25,18 +26,20 @@ public partial class usercontrols_cFront_RegisterMember : System.Web.UI.UserCont
 			return;
 		}
 
-		RegistrationDetails registrationDetails = registrationDetailsControl.GetRegistrationDetails();
-		MembershipOptions membershipOptions = membershipOptionsControl.GetMembershipOptions();
-
-		var sessionProvider = new SessionProvider();
-		sessionProvider.RegistrationFullDetails = new RegistrationFullDetails()
+		var registrationFullDetails = new RegistrationFullDetails()
 		{
-			MembershipOptions = membershipOptions,
-			RegistrationDetails = registrationDetails
+			MembershipOptions = membershipOptionsControl.GetMembershipOptions(),
+			RegistrationDetails = registrationDetailsControl.GetRegistrationDetails()
 		};
 
-		decimal cost = (new MembershipCostCalcualtor()).Calculate(membershipOptions);
-		RedirectToGocardless(registrationDetails.Email, cost, GetPaymentDescription(membershipOptions));
+		var sessionProvider = new SessionProvider();
+		sessionProvider.RegistrationFullDetails = registrationFullDetails;
+
+		Log.Add(LogTypes.Custom, -1, string.Format("New member registration request: {0}",
+			JsonConvert.SerializeObject(registrationFullDetails)));
+
+		decimal cost = (new MembershipCostCalcualtor()).Calculate(registrationFullDetails.MembershipOptions);
+		RedirectToGocardless(registrationFullDetails.RegistrationDetails.Email, cost, GetPaymentDescription(registrationFullDetails.MembershipOptions));
 		//RedirectToCompletePage(); //Can use this for local testing
 	}
 

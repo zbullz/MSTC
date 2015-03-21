@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using cFront.Umbraco.Membership;
 using GoCardlessSdk;
 using GoCardlessSdk.Connect;
+using umbraco.BusinessLogic;
 
 public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
 {
@@ -34,6 +35,10 @@ public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
 		var sessionProvider = new SessionProvider();
 		MembershipOptions membershipOptions = membershipOptionsControl.GetMembershipOptions();
 		sessionProvider.RenewalOptions = membershipOptions;
+
+		Log.Add(LogTypes.Custom, - 1,
+			string.Format("Membership renewal request: {0}, {1}", currentmemdata[MemberProperty.Email],
+				JsonConvert.SerializeObject(membershipOptions)));
 
 		decimal cost = (new MembershipCostCalcualtor()).Calculate(membershipOptions);
 		string memberEmail = currentmemdata[MemberProperty.Email] as string;

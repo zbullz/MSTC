@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -31,6 +32,12 @@ public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.
 
 			//Login the member
 			FormsAuthentication.SetAuthCookie(member.LoginName, true);
+
+			var emailProvider = new EmailProvider();
+			string content = string.Format("<p>A new member has registered with the club</p><p>Member details: {0}</p>",
+				JsonConvert.SerializeObject(registrationFullDetails, Formatting.Indented));
+
+			emailProvider.SendEmail(ConfigurationManager.AppSettings["newRegistrationEmailTo"], EmailProvider.SupportEmail, "New member registration", content);
 	    }
     }
 
