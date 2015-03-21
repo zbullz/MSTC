@@ -69,21 +69,21 @@ namespace usercontrols.cFront.code
             if (currentmemdata != null) // Null if no current member
             {
                 // Same process for getting system data as custom data - just use the preset aliases mentioned above for system data
-                Email.Text = Convert.ToString(currentmemdata["Email"]); 
-                phoneMobile.Text = Convert.ToString(currentmemdata["phoneMobile"]);
-                Name.Text = Convert.ToString(currentmemdata["Name"]);
-                address1.Text = Convert.ToString(currentmemdata["address1"]);
-                address2.Text = Convert.ToString(currentmemdata["address2"]);
-                address3.Text = Convert.ToString(currentmemdata["address3"]);
-                postcode.Text = Convert.ToString(currentmemdata["postcode"]);
-                if(currentmemdata["dateOfBirth"] != null)
+				Email.Text = Convert.ToString(currentmemdata[MemberProperty.Email]);
+				phoneMobile.Text = Convert.ToString(currentmemdata[MemberProperty.Phone]);
+				Name.Text = Convert.ToString(currentmemdata[MemberProperty.Name]);
+				address1.Text = Convert.ToString(currentmemdata[MemberProperty.Address1]);
+				address2.Text = Convert.ToString(currentmemdata[MemberProperty.Address2]);
+				address3.Text = Convert.ToString(currentmemdata[MemberProperty.Address3]);
+				postcode.Text = Convert.ToString(currentmemdata[MemberProperty.Postcode]);
+                if(currentmemdata[MemberProperty.DateOfBirth] != null)
 				{
-					dateOfBirth.Text = String.Format("{0:dd/MM/yyyy}", currentmemdata["dateOfBirth"]);
+					dateOfBirth.Text = String.Format("{0:dd/MM/yyyy}", currentmemdata[MemberProperty.DateOfBirth]);
 				}
 
-				txtMedConditions.Text = Convert.ToString(currentmemdata["medicalConditions"]);
-				txtEmergencyName.Text = Convert.ToString(currentmemdata["emergencyContactName"]);
-				txtEmergencyNumber.Text = Convert.ToString(currentmemdata["emergencyContactNumber"]);
+				txtMedConditions.Text = Convert.ToString(currentmemdata[MemberProperty.medicalConditions]);
+				txtEmergencyName.Text = Convert.ToString(currentmemdata[MemberProperty.emergencyContactName]);
+				txtEmergencyNumber.Text = Convert.ToString(currentmemdata[MemberProperty.emergencyContactNumber]);
 					
 				// Member service
 				if (Convert.ToString(currentmemdata[MemberProperty.showService]) == "1")
@@ -109,25 +109,25 @@ namespace usercontrols.cFront.code
                 Dictionary<String, object> newmemdata = new Dictionary<String, object>();
 
                 // Same process for setting system data as custom data - just use the preset aliases mentioned above for system data
-                newmemdata["Email"] = Email.Text;
-				newmemdata["LoginName"] = Email.Text;
-                newmemdata["phoneMobile"] = phoneMobile.Text;
-                newmemdata["Name"] = Name.Text;
-                newmemdata["address1"] = address1.Text;
-                newmemdata["address2"] = address2.Text;
-                newmemdata["address3"] = address3.Text;
-                newmemdata["postcode"] = postcode.Text;
+                newmemdata[MemberProperty.Email] = Email.Text;
+				newmemdata[MemberProperty.LoginName] = Email.Text;
+                newmemdata[MemberProperty.Phone] = phoneMobile.Text;
+                newmemdata[MemberProperty.Name] = Name.Text;
+                newmemdata[MemberProperty.Address1] = address1.Text;
+				newmemdata[MemberProperty.Address2] = address2.Text;
+				newmemdata[MemberProperty.Address3] = address3.Text;
+				newmemdata[MemberProperty.Postcode] = postcode.Text;
 
 	            if (string.IsNullOrWhiteSpace(dateOfBirth.Text) == false)
-		            newmemdata["dateOfBirth"] = DateTime.ParseExact(dateOfBirth.Text, "dd/MM/yyyy", null).ToString("yyyy-MM-dd");
+					newmemdata[MemberProperty.DateOfBirth] = DateTime.ParseExact(dateOfBirth.Text, "dd/MM/yyyy", null).ToString("yyyy-MM-dd");
 	            else
 	            {
-		            newmemdata["dateOfBirth"] = null;
+					newmemdata[MemberProperty.DateOfBirth] = null;
 	            }
 				
-				newmemdata["medicalConditions"] = txtMedConditions.Text;
-				newmemdata["emergencyContactName"] = txtEmergencyName.Text;
-				newmemdata["emergencyContactNumber"] = txtEmergencyNumber.Text;
+				newmemdata[MemberProperty.medicalConditions] = txtMedConditions.Text;
+				newmemdata[MemberProperty.emergencyContactName] = txtEmergencyName.Text;
+				newmemdata[MemberProperty.emergencyContactNumber] = txtEmergencyNumber.Text;
 				
 				// Service
 				newmemdata[MemberProperty.showService] = cbShowService.Checked;
@@ -141,7 +141,7 @@ namespace usercontrols.cFront.code
 					//
 
 					// Save with a sensible name (this will also update an existing profile image if the member's name changes)
-					serviceImage.SaveAs(currentmemdata["Name"] + "-" + Convert.ToString(currentmemdata["ID"]));
+					serviceImage.SaveAs(currentmemdata[MemberProperty.Name] + "-" + Convert.ToString(currentmemdata["ID"]));
 
 					// Update member with media ID in case it was newly created
 					newmemdata[MemberProperty.serviceImage] = serviceImage.MediaID;

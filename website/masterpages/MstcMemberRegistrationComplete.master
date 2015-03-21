@@ -1,6 +1,6 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
 
-<%@ Register TagPrefix="cf" TagName="RegisterMember" Src="../usercontrols/cFront/RegisterMember.ascx" %>
+<%@ Register TagPrefix="cf" TagName="RegisterMemberComplete" Src="../usercontrols/cFront/RegisterMemberComplete.ascx" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="PageScripts" runat="server">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
@@ -31,7 +31,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <cf:RegisterMember ID="registerMember" runat="server" />
+                        <cf:RegisterMemberComplete ID="registerMemberComplete" runat="server" />
                     </div>
                 </div>
             </div>
