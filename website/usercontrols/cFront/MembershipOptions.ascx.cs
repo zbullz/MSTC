@@ -34,19 +34,17 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 		var extrasList = new List<ListItem>()
 	    {
 		    new ListItem("Swim subs January to June - &pound;30", MembershipExtras.SwimSubsJanToJune.ToString()),
-		    new ListItem("Swim subs July to December - &pound;30", MembershipExtras.SwimSubsJulyToDec.ToString()),
-		    new ListItem("Spin/Core subs April to Sept - &pound;20", MembershipExtras.CoreSubsAprilToSept.ToString()),
-		    new ListItem("Turbo/Core subs Oct to March - &pound;20", MembershipExtras.CoreSubsOctToMarch.ToString())
+		    new ListItem("Swim subs July to December - &pound;30", MembershipExtras.SwimSubsJulyToDec.ToString())
 	    };
 		extras.Items.AddRange(extrasList.ToArray());
 
 		var indemnityOptionsList = new List<ListItem>()
 	    {
 		    new ListItem(
-			    @"I have read and understand the open water swimming indemnity document.<br />I agree to and accept them without qualification.",
+			    @"I have read and understand the open water swimming indemnity document.<br />I agree to and accept the terms without qualification.",
 			    AcceptIndemnity),
 		    new ListItem(
-			    @"I do not accept the open water swimming indemnity document.<br />I understand I will not be elligible to take part in club open water swim sessions for this membership year.",
+			    @"I do not accept the terms in the open water swimming indemnity document.<br />I understand I will not be elligible to take part in club open water swim sessions for this membership year.",
 			    "NotAccepted")
 	    };
 
@@ -65,8 +63,6 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 			MembershipType = (MembershipType) Enum.Parse(typeof(MembershipType), membershipType.SelectedValue),
 			SwimSubsJanToJune = extras.Items.FindByValue(MembershipExtras.SwimSubsJanToJune.ToString()).Selected,
 			SwimSubsJulyToDec = extras.Items.FindByValue(MembershipExtras.SwimSubsJulyToDec.ToString()).Selected,
-			CoreSubsAprilToSept = extras.Items.FindByValue(MembershipExtras.CoreSubsAprilToSept.ToString()).Selected,
-			CoreSubsOctToMarch = extras.Items.FindByValue(MembershipExtras.CoreSubsOctToMarch.ToString()).Selected,
 			OpenWaterIndemnityAcceptance = indemnityOptions.SelectedValue == AcceptIndemnity,
 			Volunteering = true //Hardcode to true as can't renew unless this is selected :)
 		};

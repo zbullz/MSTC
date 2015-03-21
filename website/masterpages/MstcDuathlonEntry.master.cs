@@ -1,25 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Newtonsoft.Json;
 using cFront.Umbraco.Membership;
 using GoCardlessSdk;
 using GoCardlessSdk.Connect;
-using umbraco.BusinessLogic;
 
-public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
+public partial class masterpages_MstcDuathlonEntry : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
 
     }
 
-	protected void RenewMember_OnClick(object sender, EventArgs e)
+	protected void Enter_OnClick(object sender, EventArgs e)
 	{
 		if (Page.IsValid == false)
 		{
@@ -32,17 +28,9 @@ public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
 			return; //Ensure the form is behind a login form
 		}
 
-		var sessionProvider = new SessionProvider();
-		MembershipOptions membershipOptions = membershipOptionsControl.GetMembershipOptions();
-		sessionProvider.RenewalOptions = membershipOptions;
-
-		Log.Add(LogTypes.Custom, - 1,
-			string.Format("Membership renewal request: {0}, {1}", currentmemdata[MemberProperty.Email],
-				JsonConvert.SerializeObject(membershipOptions)));
-
-		decimal cost = (new MembershipCostCalcualtor()).Calculate(membershipOptions);
+		decimal cost = 10m;
 		string memberEmail = currentmemdata[MemberProperty.Email] as string;
-		RedirectToGocardless(memberEmail, cost, GetPaymentDescription(membershipOptions));
+		RedirectToGocardless(memberEmail, cost, "MSTC Duathlon Entry");
 		//RedirectToCompletePage(); //Can use this for local testing
 	}
 
@@ -50,7 +38,7 @@ public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
 	{
 		string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
 			Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
-		string redirectUrl = string.Format("{0}/members-area/membership-renewal-complete", rootUrl);
+		string redirectUrl = string.Format("{0}/club-events/seasons-events/duathlon-entry-complete", rootUrl);
 		Response.Redirect(redirectUrl);
 	}
 
@@ -59,7 +47,7 @@ public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
 		var goCardlessProvider = new GoCardlessProvider();
 		var billRequest = new BillRequest(goCardlessProvider.MerchantId, cost)
 		{
-			Name = "MSTC Membership Renewal",
+			Name = "MSTC Duathlon Entry",
 			Description = description,
 			User = new UserRequest()
 			{
@@ -70,25 +58,15 @@ public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
 		//Could wrap this in a provider
 		string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
 			Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
-		string redirectUrl = string.Format("{0}/members-area/membership-renewal-complete", rootUrl);
-		string cancelUrl = string.Format("{0}/members-area/membership-renewal-cancelled", rootUrl);
+		string redirectUrl = string.Format("{0}/club-events/seasons-events/duathlon-entry-complete", rootUrl);
+		string cancelUrl = string.Format("{0}", rootUrl);
 
 		string paymentGatewayUrl = goCardlessProvider.CreateBill(billRequest, redirectUrl, cancelUrl);
 		Response.Redirect(paymentGatewayUrl);
 	}
 
-	private string GetPaymentDescription(MembershipOptions membershipOptions)
+	protected void CheckBoxRequired_ServerValidate(object sender, ServerValidateEventArgs e)
 	{
-		List<string> descriptionList = new List<string>() {membershipOptions.MembershipType.ToString()};
-		if (membershipOptions.SwimSubsJanToJune)
-		{
-			descriptionList.Add("Swim subs Jan to June");
-		}
-		if (membershipOptions.SwimSubsJulyToDec)
-		{
-			descriptionList.Add("Swim subs July to Dec");
-		}
-
-		return string.Join(", ", descriptionList);
+		e.IsValid = waiverAgreement.Checked;
 	}
 }

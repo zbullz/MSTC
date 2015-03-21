@@ -16,7 +16,6 @@ public class MembershipCostCalcualtor
 	};
 
 	private decimal SwimsSubsCost = new decimal(30);
-	private decimal CoreSubsCost = new decimal(20);
 
 	public decimal Calculate(MembershipOptions membershipOptions)
 	{
@@ -29,15 +28,7 @@ public class MembershipCostCalcualtor
 		{
 			cost += SwimsSubsCost;
 		}
-		if (membershipOptions.CoreSubsAprilToSept)
-		{
-			cost += CoreSubsCost;
-		}
-		if (membershipOptions.CoreSubsOctToMarch)
-		{
-			cost += CoreSubsCost;
-		}
-
+	
 		return cost;
 	}
 

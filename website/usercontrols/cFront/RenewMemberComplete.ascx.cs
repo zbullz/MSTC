@@ -45,8 +45,6 @@ public partial class usercontrols_cFront_RenewMemberComplete : System.Web.UI.Use
 		currentmemdata[MemberProperty.OpenWaterIndemnityAcceptance] = membershipOptions.OpenWaterIndemnityAcceptance;
 		currentmemdata[MemberProperty.swimSubsJanToJune] = membershipOptions.SwimSubsJanToJune;
 		currentmemdata[MemberProperty.SwimSubsJulyToDec] = membershipOptions.SwimSubsJulyToDec;
-		currentmemdata[MemberProperty.CoreSubsAprilToSept] = membershipOptions.CoreSubsAprilToSept;
-		currentmemdata[MemberProperty.CoreSubsOctToMarch] = membershipOptions.CoreSubsOctToMarch;
 		currentmemdata[MemberProperty.Volunteering] = membershipOptions.Volunteering;
 		currentmemdata[MemberProperty.MembershipExpiry] = new DateTime(DateTime.Now.Year + 1, 4, 1).ToString("yyyy-MM-dd");
 

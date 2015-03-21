@@ -12,37 +12,34 @@ using GoCardlessSdk;
 using GoCardlessSdk.Connect;
 using umbraco.BusinessLogic;
 
-public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
+public partial class usercontrols_cFront_RegisterMember : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
 
     }
 
-	protected void RenewMember_OnClick(object sender, EventArgs e)
+	protected void RegisterMember_OnClick(object sender, EventArgs e)
 	{
 		if (Page.IsValid == false)
 		{
 			return;
 		}
 
-		IDictionary<String, object> currentmemdata = MemberHelper.Get();
-		if (currentmemdata == null)
+		var registrationFullDetails = new RegistrationFullDetails()
 		{
-			return; //Ensure the form is behind a login form
-		}
+			MembershipOptions = membershipOptionsControl.GetMembershipOptions(),
+			RegistrationDetails = registrationDetailsControl.GetRegistrationDetails()
+		};
 
 		var sessionProvider = new SessionProvider();
-		MembershipOptions membershipOptions = membershipOptionsControl.GetMembershipOptions();
-		sessionProvider.RenewalOptions = membershipOptions;
+		sessionProvider.RegistrationFullDetails = registrationFullDetails;
 
-		Log.Add(LogTypes.Custom, - 1,
-			string.Format("Membership renewal request: {0}, {1}", currentmemdata[MemberProperty.Email],
-				JsonConvert.SerializeObject(membershipOptions)));
+		Log.Add(LogTypes.Custom, -1, string.Format("New member registration request: {0}",
+			JsonConvert.SerializeObject(registrationFullDetails)));
 
-		decimal cost = (new MembershipCostCalcualtor()).Calculate(membershipOptions);
-		string memberEmail = currentmemdata[MemberProperty.Email] as string;
-		RedirectToGocardless(memberEmail, cost, GetPaymentDescription(membershipOptions));
+		decimal cost = (new MembershipCostCalcualtor()).Calculate(registrationFullDetails.MembershipOptions);
+		RedirectToGocardless(registrationFullDetails.RegistrationDetails.Email, cost, GetPaymentDescription(registrationFullDetails.MembershipOptions));
 		//RedirectToCompletePage(); //Can use this for local testing
 	}
 
@@ -50,7 +47,7 @@ public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
 	{
 		string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
 			Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
-		string redirectUrl = string.Format("{0}/members-area/membership-renewal-complete", rootUrl);
+		string redirectUrl = string.Format("{0}/the-club/membership-registration-complete", rootUrl);
 		Response.Redirect(redirectUrl);
 	}
 
@@ -59,7 +56,7 @@ public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
 		var goCardlessProvider = new GoCardlessProvider();
 		var billRequest = new BillRequest(goCardlessProvider.MerchantId, cost)
 		{
-			Name = "MSTC Membership Renewal",
+			Name = "MSTC Membership Registration",
 			Description = description,
 			User = new UserRequest()
 			{
@@ -70,8 +67,8 @@ public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
 		//Could wrap this in a provider
 		string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
 			Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
-		string redirectUrl = string.Format("{0}/members-area/membership-renewal-complete", rootUrl);
-		string cancelUrl = string.Format("{0}/members-area/membership-renewal-cancelled", rootUrl);
+		string redirectUrl = string.Format("{0}/the-club/membership-registration-complete", rootUrl);
+		string cancelUrl = string.Format("{0}", rootUrl);
 
 		string paymentGatewayUrl = goCardlessProvider.CreateBill(billRequest, redirectUrl, cancelUrl);
 		Response.Redirect(paymentGatewayUrl);
@@ -79,7 +76,7 @@ public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
 
 	private string GetPaymentDescription(MembershipOptions membershipOptions)
 	{
-		List<string> descriptionList = new List<string>() {membershipOptions.MembershipType.ToString()};
+		List<string> descriptionList = new List<string>() { string.Format("New member - {0}", membershipOptions.MembershipType.ToString())};
 		if (membershipOptions.SwimSubsJanToJune)
 		{
 			descriptionList.Add("Swim subs Jan to June");

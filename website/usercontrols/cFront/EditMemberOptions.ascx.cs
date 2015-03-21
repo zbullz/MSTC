@@ -66,14 +66,6 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 		{
 			extras.Add("Pool swim July - Dec.");
 		}
-        if (GetMemberBool(memberData, MemberProperty.CoreSubsAprilToSept))
-        {
-			extras.Add("Core/Spin April - Sept.");
-		}
-        if (GetMemberBool(memberData, MemberProperty.CoreSubsOctToMarch))
-		{
-			extras.Add("Core/Spin Oct - March.");
-		}
 
         if (extras.Any() == false)
         {
