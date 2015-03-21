@@ -4,7 +4,7 @@
     IEnumerable<MemberOptionsDto> memberOptions = memberDal.GetMemberOptions().OrderBy(m => m.Name);
 }  
 
-<table>
+<table class="table table-striped table-bordered">
     <tr>
         <th>Name</th>
         <th>Email</th>
@@ -12,8 +12,7 @@
         <th>Membership Expiry Date</th>
         <th>Paid Swim Subs Jan to June</th>
         <th>Paid Swim Subs July to Dec</th>
-        <th>Paid Core Subs April to Sept</th>
-        <th>Paid Core Subs Oct to March</th>
+        <th>Entered duathlon</th>
         <th>Accepted indemnity?</th>
         <th>Open water auth number</th>
     </tr>
@@ -27,8 +26,8 @@
             <td>@(member.MembershipExpiry.HasValue ? member.MembershipExpiry.Value.ToShortDateString() : "")</td>
             <td>@displayBool(member.SwimSubsJanToJune)</td>
             <td>@displayBool(member.SwimSubsJulyToDec)</td>
-            <td>@displayBool(member.CoreSubsAprilToSept)</td>
-            <td>@displayBool(member.CoreSubsOctToMarch)</td>
+            <td>@displayBool(member.DuathlonEntered)</td>
+
             <td>@displayBool(member.OpenWaterIndemnityAcceptance)</td>
             <td>@(member.SwimAuthNumber.HasValue ? member.SwimAuthNumber.Value.ToString("D3") : "-")</td>
     

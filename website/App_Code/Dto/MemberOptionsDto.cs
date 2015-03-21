@@ -15,4 +15,6 @@ public class MemberOptionsDto
 	public bool Volunteering { get; set; }
 	public DateTime? MembershipExpiry { get; set; }
 	public int? SwimAuthNumber { get; set; }
+
+	public bool DuathlonEntered { get; set; }
 }

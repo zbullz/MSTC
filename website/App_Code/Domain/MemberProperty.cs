@@ -37,4 +37,6 @@ public static class MemberProperty
 	public const string Volunteering = "volunteering";
 	public const string MembershipExpiry = "membershipExpiry";
 	public const string SwimAuthNumber = "swimAuthNumber";
+
+	public const string DuathlonEntered = "duathlonEntered";
 }

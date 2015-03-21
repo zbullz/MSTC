@@ -79,11 +79,11 @@ public class MemberDal : IMemberDal
 	{
 		string query = BaseSelectQuery +
 		               string.Format(@" WHERE	(MemberList.nodeId IS NOT NULL)
-					        and MemberTypes.Alias in ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}')",
+					        and MemberTypes.Alias in ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}')",
 			               MemberProperty.Phone, MemberProperty.membershipType, MemberProperty.swimSubsJanToJune,
 			               MemberProperty.SwimSubsJulyToDec, MemberProperty.OpenWaterIndemnityAcceptance,
 			               MemberProperty.Volunteering,
-			               MemberProperty.MembershipExpiry, MemberProperty.SwimAuthNumber);
+			               MemberProperty.MembershipExpiry, MemberProperty.SwimAuthNumber, MemberProperty.DuathlonEntered);
 
 		IEnumerable<MemberData> memberData;
 		using (IDbConnection connection = _dataConnection.SqlConnection)
@@ -139,6 +139,7 @@ public class MemberDal : IMemberDal
 			Phone = GetPropertyValueForAlias(groupedMemberData, MemberProperty.Phone),
 			SwimSubsJanToJune = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.swimSubsJanToJune)),
 			SwimSubsJulyToDec = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.SwimSubsJulyToDec)),
+			DuathlonEntered = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.DuathlonEntered)),
 			OpenWaterIndemnityAcceptance =
 				GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.OpenWaterIndemnityAcceptance)),
 			Volunteering = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.Volunteering))
