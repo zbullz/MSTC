@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using cFront.Umbraco;
 using Newtonsoft.Json;
+using umbraco.cms.businesslogic.property;
 using umbraco.providers.members;
 
 public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.UserControl
@@ -60,7 +61,15 @@ public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.
 
 		SetMemberDetails(currentmemdata, regDetails.RegistrationDetails);
 		SetMembershipOptions(currentmemdata, regDetails.MembershipOptions);
-		MemberHelper.Update(member, currentmemdata);
+
+		foreach (Property property in (List<Property>)member.GenericProperties)
+		{
+			if (currentmemdata.ContainsKey(property.PropertyType.Alias))
+				property.Value = currentmemdata[property.PropertyType.Alias];
+		}
+		member.Save();
+
+		//MemberHelper.Update(member, currentmemdata);
 	}
 
 	private void SetMemberDetails(IDictionary<String, object> currentmemdata, RegistrationDetails registrationDetails)
