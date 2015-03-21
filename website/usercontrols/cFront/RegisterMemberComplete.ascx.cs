@@ -75,7 +75,7 @@ public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.
 	private void SetMemberDetails(IDictionary<String, object> currentmemdata, RegistrationDetails registrationDetails)
 	{
 		currentmemdata[MemberProperty.Gender] = registrationDetails.Gender;
-		currentmemdata[MemberProperty.DateOfBirth] = registrationDetails.DateOfBirth.ToString("yyyy-MM-dd");
+		currentmemdata[MemberProperty.DateOfBirth] = registrationDetails.DateOfBirth;
 		currentmemdata[MemberProperty.Address1] = registrationDetails.Address1;
 		currentmemdata[MemberProperty.Address2] = registrationDetails.City;
 		currentmemdata[MemberProperty.Postcode] = registrationDetails.Postcode;
@@ -94,7 +94,7 @@ public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.
 		currentmemdata[MemberProperty.swimSubsJanToJune] = membershipOptions.SwimSubsJanToJune;
 		currentmemdata[MemberProperty.SwimSubsJulyToDec] = membershipOptions.SwimSubsJulyToDec;
 		currentmemdata[MemberProperty.Volunteering] = membershipOptions.Volunteering;
-		currentmemdata[MemberProperty.MembershipExpiry] = new DateTime(DateTime.Now.Year + 1, 4, 1).ToString("yyyy-MM-dd");
+		currentmemdata[MemberProperty.MembershipExpiry] = new DateTime(DateTime.Now.Year + 1, 4, 1);
 
 		if (membershipOptions.OpenWaterIndemnityAcceptance)
 		{
