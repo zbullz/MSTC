@@ -15,6 +15,7 @@ public class SessionProvider
 	}
 
 	private const string _renewalOptionsKey = "RenewalOptions";
+	private const string _regFullDetails = "RegistrationFullDetails";
 
 	public SessionProvider()
 	{
@@ -27,5 +28,11 @@ public class SessionProvider
 	{
 		get { return (MembershipOptions) CurrentSession[_renewalOptionsKey]; }
 		set { CurrentSession[_renewalOptionsKey] = value; }
+	}
+
+	public RegistrationFullDetails RegistrationFullDetails
+	{
+		get { return (RegistrationFullDetails)CurrentSession[_regFullDetails]; }
+		set { CurrentSession[_regFullDetails] = value; }
 	}
 }

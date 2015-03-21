@@ -15,9 +15,23 @@
         <div class="form-group">
             <label for="tbEmail" class="col-sm-2 control-label"><b>Your Email*</b></label>
             <div class="col-sm-7">
+                
                  <asp:TextBox ID="tbEmail" runat="server" CssClass="form-control"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="requiredEmail" runat="server" ErrorMessage="Please enter your email" 
                     ControlToValidate="tbEmail" CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
+                <asp:CustomValidator ID="availableEmailValidator" runat="server" ControlToValidate="tbEmail" CssClass="help-block alert-danger"
+                    ErrorMessage="A user with your email address has already registered" OnServerValidate="availableEmailValidator_OnValidate"></asp:CustomValidator>
+
+            </div>
+        </div>
+                <div class="form-group">
+            <label for="tbPassword" class="col-sm-2 control-label"><b>Your Password*</b></label>
+            <div class="col-sm-7">
+                 <asp:TextBox ID="tbPassword" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="requiredPassword" runat="server" ErrorMessage="Please enter your password" 
+                    ControlToValidate="tbPassword" CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ControlToValidate="tbPassword" ID="minLengthValidator" ValidationExpression = "^[\s\S]{8,}$" runat="server" 
+                    ErrorMessage="Minimum 8 characters required."></asp:RegularExpressionValidator>
             </div>
         </div>
         <div class="form-group">
@@ -29,11 +43,11 @@
             </div>            
         </div>
         <div class="form-group">
-            <label for="tbDateOfBirth" class="col-sm-2 control-label"><b>Date of birth*</b></label>
+            <label for="tbdateOfBirth" class="col-sm-2 control-label"><b>Date of birth*</b></label>
             <div class="col-sm-7">
-                 <asp:TextBox ID="tbDateOfBirth" runat="server" CssClass="form-control"></asp:TextBox>
+                 <asp:TextBox ID="tbdateOfBirth" runat="server" CssClass="form-control"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredDateOfBirth" runat="server" ErrorMessage="Please select your date of birth" 
-                    ControlToValidate="tbDateOfBirth" CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
+                    ControlToValidate="tbdateOfBirth" CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
             </div>            
         </div>
         <div class="form-group">

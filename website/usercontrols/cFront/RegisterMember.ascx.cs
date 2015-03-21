@@ -25,15 +25,18 @@ public partial class usercontrols_cFront_RegisterMember : System.Web.UI.UserCont
 			return;
 		}
 
-		string memberEmail = "Get this from the new user control";
+		RegistrationDetails registrationDetails = registrationDetailsControl.GetRegistrationDetails();
+		MembershipOptions membershipOptions = membershipOptionsControl.GetMembershipOptions();
 
 		var sessionProvider = new SessionProvider();
-		MembershipOptions membershipOptions = membershipOptionsControl.GetMembershipOptions();
-		sessionProvider.RenewalOptions = membershipOptions;
+		sessionProvider.RegistrationFullDetails = new RegistrationFullDetails()
+		{
+			MembershipOptions = membershipOptions,
+			RegistrationDetails = registrationDetails
+		};
 
 		decimal cost = (new MembershipCostCalcualtor()).Calculate(membershipOptions);
-		//string memberEmail = currentmemdata[MemberProperty.Email] as string;
-		RedirectToGocardless(memberEmail, cost, GetPaymentDescription(membershipOptions));
+		RedirectToGocardless(registrationDetails.Email, cost, GetPaymentDescription(membershipOptions));
 		//RedirectToCompletePage(); //Can use this for local testing
 	}
 
@@ -70,7 +73,7 @@ public partial class usercontrols_cFront_RegisterMember : System.Web.UI.UserCont
 
 	private string GetPaymentDescription(MembershipOptions membershipOptions)
 	{
-		List<string> descriptionList = new List<string>() {membershipOptions.MembershipType.ToString()};
+		List<string> descriptionList = new List<string>() { string.Format("New member - {0}", membershipOptions.MembershipType.ToString())};
 		if (membershipOptions.SwimSubsJanToJune)
 		{
 			descriptionList.Add("Swim subs Jan to June");
@@ -78,14 +81,6 @@ public partial class usercontrols_cFront_RegisterMember : System.Web.UI.UserCont
 		if (membershipOptions.SwimSubsJulyToDec)
 		{
 			descriptionList.Add("Swim subs July to Dec");
-		}
-		if (membershipOptions.CoreSubsAprilToSept)
-		{
-			descriptionList.Add("Core subs April to Sept");
-		}
-		if (membershipOptions.CoreSubsOctToMarch)
-		{
-			descriptionList.Add("Core subs Oct to March");
 		}
 
 		return string.Join(", ", descriptionList);

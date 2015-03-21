@@ -2,7 +2,8 @@
 
 <%@ Register TagPrefix="cf" TagName="RegisterMember" Src="../usercontrols/cFront/RegisterMember.ascx" %>
 
-<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+<asp:Content ID="Content3" ContentPlaceHolderID="PageScripts" runat="server">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 </asp:Content>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MainContent">
@@ -47,4 +48,12 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FooterScripts" runat="server">
+    <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("input[name*='dateOfBirth']").datepicker({
+                dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true, maxDate: +0, yearRange: "c-60:c+20", defaultDate: "-30y"
+            });
+        });
+    </script>
 </asp:Content>
