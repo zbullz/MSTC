@@ -16,6 +16,7 @@ public class SessionProvider
 
 	private const string _renewalOptionsKey = "RenewalOptions";
 	private const string _regFullDetails = "RegistrationFullDetails";
+	private const string _hasPaid = "HasPaid";
 
 	public SessionProvider()
 	{
@@ -35,4 +36,10 @@ public class SessionProvider
 		get { return (RegistrationFullDetails)CurrentSession[_regFullDetails]; }
 		set { CurrentSession[_regFullDetails] = value; }
 	}
+
+	public bool HasPaid
+	{
+		get { return CurrentSession[_hasPaid] != null ? (bool) CurrentSession[_hasPaid] : false; }
+		set { CurrentSession[_hasPaid] = value; }
+	} 
 }

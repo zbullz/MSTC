@@ -39,4 +39,6 @@ public static class MemberProperty
 	public const string SwimAuthNumber = "swimAuthNumber";
 
 	public const string DuathlonEntered = "duathlonEntered";
+
+	public const string SwimCredits = "swimCredits";
 }

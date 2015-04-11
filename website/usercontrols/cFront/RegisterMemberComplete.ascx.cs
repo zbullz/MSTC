@@ -13,18 +13,34 @@ using umbraco.providers.members;
 
 public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.UserControl
 {
+	protected SessionProvider _sessionProvider;
+	protected SessionProvider SessionProvider
+	{
+		get
+		{
+			if (_sessionProvider == null)
+			{
+				_sessionProvider = new SessionProvider();
+			}
+			return _sessionProvider;
+		}
+	}
+
     protected void Page_Load(object sender, EventArgs e)
     {
 		if (IsPostBack == false)
 		{
+			RegistrationFullDetails registrationFullDetails = SessionProvider.RegistrationFullDetails;
+			if (registrationFullDetails == null)
+			{
+				return; //Prevent duplicate registration
+			}
+
 			//lblQueryString.Text = Request.QueryString["resource_uri"];
 		    if (Request.QueryString["resource_uri"] != null)
 		    {
 			    ConfirmPaymentRequest();
 		    }
-
-			var sessionProvider = new SessionProvider();
-			RegistrationFullDetails registrationFullDetails = sessionProvider.RegistrationFullDetails;
 
 			//lblMemberOptions.Text = JsonConvert.SerializeObject(registrationFullDetails);
 
@@ -39,7 +55,9 @@ public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.
 				JsonConvert.SerializeObject(registrationFullDetails, Formatting.Indented));
 
 			emailProvider.SendEmail(ConfigurationManager.AppSettings["newRegistrationEmailTo"], EmailProvider.SupportEmail, "New member registration", content);
-	    }
+
+			SessionProvider.RegistrationFullDetails = null;
+		}
     }
 
 	private void ConfirmPaymentRequest()
@@ -95,6 +113,7 @@ public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.
 		currentmemdata[MemberProperty.SwimSubsJulyToDec] = membershipOptions.SwimSubsJulyToDec;
 		currentmemdata[MemberProperty.Volunteering] = membershipOptions.Volunteering;
 		currentmemdata[MemberProperty.MembershipExpiry] = new DateTime(DateTime.Now.Year + 1, 4, 1);
+		currentmemdata[MemberProperty.SwimCredits] = 0;
 
 		if (membershipOptions.OpenWaterIndemnityAcceptance)
 		{

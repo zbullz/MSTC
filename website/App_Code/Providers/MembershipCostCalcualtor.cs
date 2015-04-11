@@ -32,4 +32,8 @@ public class MembershipCostCalcualtor
 		return cost;
 	}
 
+	public decimal SwimCreditsCost(PaymentStates credits)
+	{
+		return new decimal(3*(int) credits);
+	}
 }

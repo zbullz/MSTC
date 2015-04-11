@@ -9,16 +9,36 @@ using Newtonsoft.Json;
 
 public partial class usercontrols_cFront_RenewMemberComplete : System.Web.UI.UserControl
 {
-    protected void Page_Load(object sender, EventArgs e)
+	protected SessionProvider _sessionProvider;
+	protected SessionProvider SessionProvider
+	{
+		get
+		{
+			if (_sessionProvider == null)
+			{
+				_sessionProvider = new SessionProvider();
+			}
+			return _sessionProvider;
+		}
+	}
+
+	protected void Page_Load(object sender, EventArgs e)
     {
 		if (IsPostBack == false)
 		{
+			IDictionary<String, object> currentmemdata = MemberHelper.Get();
+			var membershipOptions = SessionProvider.RenewalOptions;
+			if (currentmemdata == null || membershipOptions == null)
+			{
+				return; //Ensure user is logged in and request hasn't been duplicated
+			}
+
 			//lblQueryString.Text = Request.QueryString["resource_uri"];
 		    if (Request.QueryString["resource_uri"] != null)
 		    {
 			    ConfirmPaymentRequest();
 		    }
-		    UpdateMemberDetails();
+			UpdateMemberDetails(currentmemdata, membershipOptions);
 	    }
     }
 
@@ -28,19 +48,8 @@ public partial class usercontrols_cFront_RenewMemberComplete : System.Web.UI.Use
 		goCardlessProvider.ConfirmBill(Request.QueryString);
 	}
 
-	private void UpdateMemberDetails()
+	private void UpdateMemberDetails(IDictionary<String, object> currentmemdata, MembershipOptions membershipOptions)
 	{
-		IDictionary<String, object> currentmemdata = MemberHelper.Get();
-		if (currentmemdata == null)
-		{
-			return; //Ensure the form is behind a login form
-		}
-
-		var sessionProvider = new SessionProvider();
-		var membershipOptions = sessionProvider.RenewalOptions;
-
-		//lblMemberOptions.Text = JsonConvert.SerializeObject(membershipOptions);
-
 		currentmemdata[MemberProperty.membershipType] = membershipOptions.MembershipType.ToString();
 		currentmemdata[MemberProperty.OpenWaterIndemnityAcceptance] = membershipOptions.OpenWaterIndemnityAcceptance;
 		currentmemdata[MemberProperty.swimSubsJanToJune] = membershipOptions.SwimSubsJanToJune;
@@ -61,5 +70,7 @@ public partial class usercontrols_cFront_RenewMemberComplete : System.Web.UI.Use
 		}
 
 		MemberHelper.Update(currentmemdata);
+
+		SessionProvider.RenewalOptions = null;
 	}
 }
