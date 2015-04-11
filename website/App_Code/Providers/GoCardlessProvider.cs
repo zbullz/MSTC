@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using GoCardlessSdk;
 using GoCardlessSdk.Connect;
+using umbraco.BusinessLogic;
 
 public class GoCardlessProvider
 {
@@ -29,6 +30,11 @@ public class GoCardlessProvider
 
 	public string CreateSimpleBill(string memberEmail, decimal cost, string name, string description, PaymentStates paymentState, Uri requestUri)
 	{
+		Log.Add(LogTypes.Custom, -1,
+			string.Format(
+				"New CreateSimpleBill request. memberEmail: {0}, cost: {1}, name: {2}, description: {3}, paymentState: {4}",
+				memberEmail, cost, name, description, paymentState.ToString()));
+
 		var goCardlessProvider = new GoCardlessProvider();
 		var billRequest = new BillRequest(goCardlessProvider.MerchantId, cost)
 		{

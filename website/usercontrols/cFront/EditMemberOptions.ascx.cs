@@ -118,7 +118,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 			string.Format("Open water swim, {0} credits", (int)paymentState), paymentState, Request.Url);
 
 		var sessionProvider = new SessionProvider();
-		sessionProvider.HasPaid = true;
+		sessionProvider.CanProcessPaymentCompletion = true;
 		//RedirectToCompletePage(paymentState.ToString()); //Can be used for testing
 		Response.Redirect(redirectUrl);
 	}

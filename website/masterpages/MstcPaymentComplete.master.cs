@@ -31,7 +31,7 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 		if (IsPostBack == false)
 		{
 			IDictionary<String, object> currentmemdata = MemberHelper.Get();
-			if (currentmemdata == null || SessionProvider.HasPaid == false)
+			if (currentmemdata == null || SessionProvider.CanProcessPaymentCompletion == false)
 			{
 				return; //Ensure the form is behind a login form and not a duplicate request
 			}
@@ -46,7 +46,7 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 				ProcessPaymentState(currentmemdata, Request.QueryString["state"]);
 			}
 
-			SessionProvider.HasPaid = false;
+			SessionProvider.CanProcessPaymentCompletion = false;
 		}
     }
 

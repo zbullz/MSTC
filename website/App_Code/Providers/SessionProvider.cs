@@ -16,7 +16,7 @@ public class SessionProvider
 
 	private const string _renewalOptionsKey = "RenewalOptions";
 	private const string _regFullDetails = "RegistrationFullDetails";
-	private const string _hasPaid = "HasPaid";
+	private const string _canProcessPaymentCompletion = "CanProcessPaymentCompletion";
 
 	public SessionProvider()
 	{
@@ -37,9 +37,9 @@ public class SessionProvider
 		set { CurrentSession[_regFullDetails] = value; }
 	}
 
-	public bool HasPaid
+	public bool CanProcessPaymentCompletion
 	{
-		get { return CurrentSession[_hasPaid] != null ? (bool) CurrentSession[_hasPaid] : false; }
-		set { CurrentSession[_hasPaid] = value; }
+		get { return CurrentSession[_canProcessPaymentCompletion] != null ? (bool) CurrentSession[_canProcessPaymentCompletion] : false; }
+		set { CurrentSession[_canProcessPaymentCompletion] = value; }
 	} 
 }
