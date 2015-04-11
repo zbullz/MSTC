@@ -47,7 +47,7 @@ public class GoCardlessProvider
 		string cancelUrl = string.Format("{0}", rootUrl);
 
 		string requestUrl = new GoCardlessSdk.Connect.ConnectClient().NewBillUrl(billRequest, redirectUrl, cancelUrl, paymentState.ToString());
-		return redirectUrl;
+		return requestUrl;
 	}
 
 	public string CreateBill(BillRequest billRequest, string redirectUri, string cancelUri)
