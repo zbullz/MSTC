@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
 using System.Web;
 using GoCardlessSdk;
 using GoCardlessSdk.Connect;
+using umbraco.BusinessLogic;
 
 public class GoCardlessProvider
 {
@@ -24,6 +26,34 @@ public class GoCardlessProvider
 	public string MerchantId
 	{
 		get { return ConfigurationManager.AppSettings["gocardlessMerchantId"]; }
+	}
+
+	public string CreateSimpleBill(string memberEmail, decimal cost, string name, string description, PaymentStates paymentState, Uri requestUri)
+	{
+		Log.Add(LogTypes.Custom, -1,
+			string.Format(
+				"New CreateSimpleBill request. memberEmail: {0}, cost: {1}, name: {2}, description: {3}, paymentState: {4}",
+				memberEmail, cost, name, description, paymentState.ToString()));
+
+		var goCardlessProvider = new GoCardlessProvider();
+		var billRequest = new BillRequest(goCardlessProvider.MerchantId, cost)
+		{
+			Name = name,
+			Description = description,
+			User = new UserRequest()
+			{
+				Email = memberEmail,
+			}
+		};
+
+		//Could wrap this in a provider
+		string rootUrl = string.Format("{0}://{1}{2}", requestUri.Scheme, requestUri.Host,
+			requestUri.Port == 80 ? string.Empty : ":" + requestUri.Port);
+		string redirectUrl = string.Format("{0}/payment-complete", rootUrl);
+		string cancelUrl = string.Format("{0}", rootUrl);
+
+		string requestUrl = new GoCardlessSdk.Connect.ConnectClient().NewBillUrl(billRequest, redirectUrl, cancelUrl, paymentState.ToString());
+		return requestUrl;
 	}
 
 	public string CreateBill(BillRequest billRequest, string redirectUri, string cancelUri)

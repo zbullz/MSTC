@@ -4,16 +4,19 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Web.Security;
+using GoCardlessSdk.Connect;
 
 public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserControl
 {
+	protected MembershipCostCalcualtor _membershipCostCalcualtor;
+
 	public bool EnableRenewal { get; set; }
 	public bool EnableOpenWater { get; set; }
 	public bool ShowMemberAdminLink { get; set; }
 
 	protected void Page_Load(object sender, EventArgs e)
 	{
-
+		_membershipCostCalcualtor = new MembershipCostCalcualtor();
 	}
 
 	public void LoadOptions(IDictionary<String, object> memberData)
@@ -47,6 +50,8 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 				{
 					openWaterAuthNumber.Text = ((int)swimAuthObj).ToString("D3");
 				}
+				litSwimCredits.Text = memberData[MemberProperty.SwimCredits].ToString();
+				hiddenEmail.Value = memberData[MemberProperty.Email].ToString();
 			}
 		}
 
@@ -89,4 +94,42 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
         }
         return value;
     }
+
+	public void btn_5SwimCreditsClick(object sender, EventArgs e)
+	{
+		MakeSwimPayment(PaymentStates.S00599C);
+	}
+
+	public void btn_10SwimCreditsClick(object sender, EventArgs e)
+	{
+		MakeSwimPayment(PaymentStates.S001099C);
+	}
+
+	public void btn_15SwimCreditsClick(object sender, EventArgs e)
+	{
+		MakeSwimPayment(PaymentStates.S001599C);
+	}
+
+	private void MakeSwimPayment(PaymentStates paymentState)
+	{
+		var goCardlessProvider = new GoCardlessProvider();
+		var redirectUrl = goCardlessProvider.CreateSimpleBill(hiddenEmail.Value, _membershipCostCalcualtor.SwimCreditsCost(paymentState),
+			"Open water swim credits",
+			string.Format("Open water swim, {0} credits", (int)paymentState), paymentState, Request.Url);
+
+		var sessionProvider = new SessionProvider();
+		sessionProvider.CanProcessPaymentCompletion = true;
+		//RedirectToCompletePage(paymentState.ToString()); //Can be used for testing
+		Response.Redirect(redirectUrl);
+	}
+
+	private void RedirectToCompletePage(string state)
+	{
+		string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
+			Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
+		string redirectUrl = string.Format("{0}/payment-complete?state={1}", rootUrl, state);
+		Response.Redirect(redirectUrl);
+	}
+
+	
 }
