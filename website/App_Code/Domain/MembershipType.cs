@@ -5,7 +5,7 @@ using System.Web;
 
 public enum MembershipType
 {
-	Individual,
-	Couple,
-	Concession
+	Individual = 43,
+	Couple = 44,
+	Concession = 45
 }

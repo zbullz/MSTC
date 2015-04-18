@@ -22,12 +22,12 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 	{
 		var membershipTypes = new List<ListItem>()
 	    {
-		    new ListItem("Individual membership - &pound;40", MembershipType.Individual.ToString()),
+		    new ListItem("Individual membership - &pound;40", ((int) MembershipType.Individual).ToString()),
 		    new ListItem(
 			    @"Couple membership - &pound;35<br /> <i>Only select this option if your partner will also be renewing their membership - The membership secretary will be checking!</i>",
-			    MembershipType.Couple.ToString()),
+			    ((int)MembershipType.Couple).ToString()),
 		    new ListItem("Unemployed/full-time student (18 years or above) - &pound;30",
-			    MembershipType.Concession.ToString())
+			    ((int)MembershipType.Concession).ToString())
 	    };
 		membershipType.Items.AddRange(membershipTypes.ToArray());
 
