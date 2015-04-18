@@ -16,13 +16,14 @@ FROM	(SELECT id, text FROM dbo.umbracoNode WHERE (nodeObjectType = '9b5416fb-e72
 WHERE	(MemberList.nodeId IS NOT NULL)
 		and MemberTypes.Alias in ('membershipTypeOld')
 		
-Select * from #OldMemberTypes
+--Select * from #OldMemberTypes
 
 Update MemberDataTable
-Set MemberDataTable.[dataInt] = (Case omt.OldMemberType When 'Individual' Then 43
+Set MemberDataTable.[dataNVarChar] = (Case omt.OldMemberType When 'Individual' Then 43
 										WHEN 'Couple' Then 44
 										WHEN 'Concession' Then 45 
 								End)
+								--select omt.LoginName, CmsMember.LoginName								
 From (SELECT id FROM dbo.umbracoNode WHERE (nodeObjectType = '9b5416fb-e72f-45a9-a07b-5a9a2709ce43')) AS MemberTypeId 
 					LEFT OUTER JOIN (SELECT nodeId, contentType FROM dbo.cmsContent) AS MemberList ON MemberList.contentType = MemberTypeId.id 
 					LEFT OUTER JOIN dbo.cmsPropertyType AS MemberTypes ON MemberTypes.contentTypeId = MemberList.contentType 
@@ -30,7 +31,7 @@ From (SELECT id FROM dbo.umbracoNode WHERE (nodeObjectType = '9b5416fb-e72f-45a9
 						AND MemberDataTable.propertytypeid = MemberTypes.id 
 					LEFT OUTER JOIN dbo.cmsMember AS CmsMember ON CmsMember.nodeId = MemberList.nodeId
 					inner join dbo.umbracoNode n on n.id = MemberList.nodeId 
-					inner join #OldMemberTypes omt on omt.LoginName = CmsMember.LoginName
+					LEFT OUTER JOIN  #OldMemberTypes omt on omt.LoginName = CmsMember.LoginName
 			Where	MemberTypes.Alias in ('membershipType')
 
 Drop table #OldMemberTypes
