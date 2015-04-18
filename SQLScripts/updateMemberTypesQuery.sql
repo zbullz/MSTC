@@ -9,10 +9,6 @@ FROM	(SELECT id, text FROM dbo.umbracoNode WHERE (nodeObjectType = '9b5416fb-e72
 		LEFT OUTER JOIN dbo.cmsPropertyData AS MemberDataTable ON MemberDataTable.contentNodeId = MemberList.nodeId AND MemberDataTable.propertytypeid = MemberTypes.id 
 		LEFT OUTER JOIN dbo.cmsMember AS CmsMember ON CmsMember.nodeId = MemberList.nodeId
 		inner join dbo.umbracoNode n on n.id = MemberList.nodeId
-		inner join (select [dataInt] as ShowService, contentNodeId, propertytypeid 
-					From dbo.cmsPropertyData 
-					Where propertytypeid = 246 And [dataInt] = 1) AS ShowServiceData 
-					ON ShowServiceData.contentNodeId = MemberList.nodeId  
 WHERE	(MemberList.nodeId IS NOT NULL)
 		and MemberTypes.Alias in ('membershipTypeOld')
 		
