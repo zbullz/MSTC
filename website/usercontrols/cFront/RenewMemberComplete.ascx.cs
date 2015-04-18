@@ -50,7 +50,7 @@ public partial class usercontrols_cFront_RenewMemberComplete : System.Web.UI.Use
 
 	private void UpdateMemberDetails(IDictionary<String, object> currentmemdata, MembershipOptions membershipOptions)
 	{
-		currentmemdata[MemberProperty.membershipType] = membershipOptions.MembershipType.ToString();
+		currentmemdata[MemberProperty.membershipType] = ((int) membershipOptions.MembershipType).ToString();
 		currentmemdata[MemberProperty.OpenWaterIndemnityAcceptance] = membershipOptions.OpenWaterIndemnityAcceptance;
 		currentmemdata[MemberProperty.swimSubsJanToJune] = membershipOptions.SwimSubsJanToJune;
 		currentmemdata[MemberProperty.SwimSubsJulyToDec] = membershipOptions.SwimSubsJulyToDec;

@@ -38,7 +38,16 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 				EnableRenewal = false;
 			}
 
-			membershipType.Text = memberData[MemberProperty.membershipType] as string;
+			string membershipTypeValue = memberData[MemberProperty.membershipType] as string;
+			if (string.IsNullOrWhiteSpace(membershipTypeValue) == false)
+			{
+				//Sadly there is no nicer way to do this as umbraco gives us an int as a string object! 
+				int membershipTypeInt;
+				if (int.TryParse(membershipTypeValue, out membershipTypeInt))
+				{
+					membershipType.Text = ((MembershipType) membershipTypeInt).ToString();
+				}
+			}
 
 			membershipOptionalExtras.Text = string.Join("<br/>", OptionalExtras(memberData));
 			
