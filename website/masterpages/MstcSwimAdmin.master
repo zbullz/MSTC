@@ -1,0 +1,73 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" CodeFile="MstcSwimAdmin.master.cs"
+    Inherits="masterpages_MstcSwimAdmin" %>
+
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MainContent">
+    <!-- Page Title -->
+    <div class="section section-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>
+                        <umbraco:Item ID="pageName" runat="server" Field="pageName" />
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="section">
+        <form id="Form1" role="form" class="form-horizontal" runat="server">
+            <div class="container edit-member">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <umbraco:Item ID="bodyText" runat="server" Field="bodyText" />
+                    </div>
+                </div>
+                <umbraco:Macro ID="swimAdminMacro" runat="server" Language="cshtml">@RenderPage("~/macroscripts/SwimAdmin.cshtml") 
+                </umbraco:Macro>
+                <div class="form-group">
+                    <div class="col-sm-10"></div>
+                    <div class="col-sm-2">
+                        <input id="updateSwimCredits" type="submit" value="Update credits" class="btn pull-left btn-yellow"  />
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    <!-- Secondary content -->
+    <div class="section">
+        <div class="container">
+            <umbraco:Item ID="secondaryContent" runat="server" Field="secondaryContent" />
+        </div>
+    </div>
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="FooterScripts" runat="server">
+    <script>
+        $(document).ready(function () {
+            $("#updateSwimCredits").bind("click", function (e) {
+                e.preventDefault();
+                var memberNodeIdsToUpdate = [];
+                $('input[name="RemoveCredit"]:checked').each(function(index, checkbox) {
+                    memberNodeIdsToUpdate.push(checkbox.value);
+                });
+
+                $.ajax({
+                    url: "/Base/SwimAdmin/UpdateSwimCredits",
+                    data: { nodeIds: memberNodeIdsToUpdate + "" },
+                    type: 'post',
+                    success: function (data) {
+                        location.reload(true);
+                    }
+                });
+            });
+        });
+    </script>
+</asp:Content>

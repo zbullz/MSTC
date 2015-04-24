@@ -10,6 +10,7 @@ public interface IMemberDal
 	IEnumerable<MemberServiceDto> GetMembersWithServices();
     IEnumerable<MemberSummaryDto> GetMemberSummaries();
 	IEnumerable<MemberOptionsDto> GetMemberOptions();
+	void UpdateSwimCredits(List<string> nodeIds);
 }
 
 public class MemberDal : IMemberDal
@@ -25,6 +26,7 @@ public class MemberDal : IMemberDal
     protected string BaseSelectQuery = @"SELECT	MemberTypes.Alias AS PropertyAlias,					 
 					n.TEXT As Name,
                     CmsMember.Email,
+					MemberList.NodeId,
 					ISNULL(CASE 
 						WHEN MemberTypes.datatypeID IN (SELECT NodeId FROM DBO.CMSDATATYPE WHERE DBTYPE = 'Nvarchar') THEN MemberDataTable.[dataNvarchar] 
 						WHEN MemberTypes.datatypeID IN (SELECT NodeId FROM DBO.CMSDATATYPE WHERE DBTYPE = 'Ntext') THEN MemberDataTable.[dataNtext] 
@@ -55,7 +57,7 @@ public class MemberDal : IMemberDal
 			memberData = connection.Query<MemberData>(query, null);
 		}
 
-		var memberServiceDtos = memberData.GroupBy(m => m.Email).Select(g => MapMemberDataToService(g));
+		IEnumerable<MemberServiceDto> memberServiceDtos = memberData.GroupBy(m => m.Email).Select(g => MapMemberDataToService(g));
 		return memberServiceDtos;
 	}
 
@@ -71,7 +73,7 @@ public class MemberDal : IMemberDal
             memberData = connection.Query<MemberData>(query, null);
         }
 
-        var memberSummaries = memberData.GroupBy(m => m.Email).Select(g => MapMemberDataToSummary(g));
+        IEnumerable<MemberSummaryDto> memberSummaries = memberData.GroupBy(m => m.Email).Select(g => MapMemberDataToSummary(g));
         return memberSummaries;
     }
 
@@ -79,11 +81,11 @@ public class MemberDal : IMemberDal
 	{
 		string query = BaseSelectQuery +
 		               string.Format(@" WHERE	(MemberList.nodeId IS NOT NULL)
-					        and MemberTypes.Alias in ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}')",
+					        and MemberTypes.Alias in ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')",
 			               MemberProperty.Phone, MemberProperty.membershipType, MemberProperty.swimSubsJanToJune,
 			               MemberProperty.SwimSubsJulyToDec, MemberProperty.OpenWaterIndemnityAcceptance,
 			               MemberProperty.Volunteering,
-			               MemberProperty.MembershipExpiry, MemberProperty.SwimAuthNumber, MemberProperty.DuathlonEntered);
+			               MemberProperty.MembershipExpiry, MemberProperty.SwimAuthNumber, MemberProperty.DuathlonEntered, MemberProperty.SwimCredits);
 
 		IEnumerable<MemberData> memberData;
 		using (IDbConnection connection = _dataConnection.SqlConnection)
@@ -94,9 +96,27 @@ public class MemberDal : IMemberDal
 		return memberOptions;
 	}
 
-    private MemberServiceDto MapMemberDataToService(IGrouping<string, MemberData> groupedMemberData)
+	public void UpdateSwimCredits(List<string> nodeIds)
 	{
-		var memberServiceDto = new MemberServiceDto()
+		string query = @"Update MemberDataTable
+							Set MemberDataTable.[dataInt] = MemberDataTable.[dataInt] - 1
+							From (SELECT id FROM dbo.umbracoNode WHERE (nodeObjectType = '9b5416fb-e72f-45a9-a07b-5a9a2709ce43')) AS MemberTypeId 
+						LEFT OUTER JOIN (SELECT nodeId, contentType FROM dbo.cmsContent) AS MemberList ON MemberList.contentType = MemberTypeId.id 
+						LEFT OUTER JOIN dbo.cmsPropertyType AS MemberTypes ON MemberTypes.contentTypeId = MemberList.contentType 
+						LEFT OUTER JOIN dbo.cmsPropertyData AS MemberDataTable ON MemberDataTable.contentNodeId = MemberList.nodeId 
+							AND MemberDataTable.propertytypeid = MemberTypes.id 
+						LEFT OUTER JOIN dbo.cmsMember AS CmsMember ON CmsMember.nodeId = MemberList.nodeId
+						inner join dbo.umbracoNode n on n.id = MemberList.nodeId 
+						Where	MemberTypes.Alias = 'swimCredits' and MemberList.nodeId in @NodeIds";
+		using (IDbConnection connection = _dataConnection.SqlConnection)
+		{
+			connection.Execute(query, new {NodeIds = nodeIds});
+		}
+	}
+
+	private MemberServiceDto MapMemberDataToService(IGrouping<string, MemberData> groupedMemberData)
+	{
+		MemberServiceDto memberServiceDto = new MemberServiceDto()
 		{
 			Name = groupedMemberData.First().Name,
 			ServiceLinkAddress = GetPropertyValueForAlias(groupedMemberData, "serviceLinkAddress"),
@@ -114,7 +134,7 @@ public class MemberDal : IMemberDal
 
     private MemberSummaryDto MapMemberDataToSummary(IGrouping<string, MemberData> groupedMemberData)
     {
-        var memberServiceDto = new MemberSummaryDto()
+        MemberSummaryDto memberServiceDto = new MemberSummaryDto()
             {
                 Name = groupedMemberData.First().Name,
                 Email = groupedMemberData.Key,
@@ -131,8 +151,9 @@ public class MemberDal : IMemberDal
 
 	private MemberOptionsDto MapMemberDataToOptions(IGrouping<string, MemberData> groupedMemberData)
 	{
-		var memberOptionsDto = new MemberOptionsDto()
+		MemberOptionsDto memberOptionsDto = new MemberOptionsDto()
 		{
+			NodeId = groupedMemberData.First().NodeId,
 			Name = groupedMemberData.First().Name,
 			Email = groupedMemberData.Key,
 			
@@ -142,8 +163,8 @@ public class MemberDal : IMemberDal
 			DuathlonEntered = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.DuathlonEntered)),
 			OpenWaterIndemnityAcceptance =
 				GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.OpenWaterIndemnityAcceptance)),
-			Volunteering = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.Volunteering))
-			 
+			Volunteering = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.Volunteering)),
+			SwimCredits = int.Parse(GetPropertyValueForAlias(groupedMemberData, MemberProperty.SwimCredits))
 		};
 
 		
@@ -164,7 +185,7 @@ public class MemberDal : IMemberDal
 
 	private string GetPropertyValueForAlias(IGrouping<string, MemberData> groupedMemberData, string alias)
 	{
-		var memberData = groupedMemberData.FirstOrDefault(d => d.PropertyAlias == alias);
+		MemberData memberData = groupedMemberData.FirstOrDefault(d => d.PropertyAlias == alias);
 		return memberData != null ? memberData.PropertyValue : string.Empty;
 	}
 

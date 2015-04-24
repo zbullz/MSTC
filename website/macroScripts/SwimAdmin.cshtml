@@ -1,0 +1,25 @@
+﻿@using cFront.Umbraco.Membership
+@{
+    IMemberDal memberDal = new MemberDal(new DataConnection());
+    IEnumerable<MemberOptionsDto> memberOptions = memberDal.GetMemberOptions().OrderBy(m => m.Name);
+}  
+
+<table class="table table-striped table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Swim Credits</th>
+        <th>Remove swim credit</th>
+    </tr>
+
+    @foreach (var member in memberOptions)
+    {
+        <tr>
+            <td>@member.Name</td>
+            <td>@member.Email</td>
+            <td>@member.SwimCredits</td>
+            <td><input type="checkbox" name="RemoveCredit" value="@member.NodeId" /></td>
+        </tr>
+    }
+
+</table>

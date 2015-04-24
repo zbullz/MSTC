@@ -5,6 +5,7 @@ using System.Web;
 
 public class MemberOptionsDto
 {
+	public int NodeId { get; set; }
 	public string Name { get; set; }
 	public string Email { get; set; }
 	public string Phone { get; set; }
@@ -15,6 +16,7 @@ public class MemberOptionsDto
 	public bool Volunteering { get; set; }
 	public DateTime? MembershipExpiry { get; set; }
 	public int? SwimAuthNumber { get; set; }
+	public int SwimCredits { get; set; }
 
 	public bool DuathlonEntered { get; set; }
 }
