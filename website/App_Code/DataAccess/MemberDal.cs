@@ -99,7 +99,7 @@ public class MemberDal : IMemberDal
 	public void UpdateSwimCredits(List<string> nodeIds)
 	{
 		string query = @"Update MemberDataTable
-							Set MemberDataTable.[dataInt] = MemberDataTable.[dataInt] - 1
+							Set MemberDataTable.[dataInt] = ISNULL(MemberDataTable.[dataInt], 0) - 1
 							From (SELECT id FROM dbo.umbracoNode WHERE (nodeObjectType = '9b5416fb-e72f-45a9-a07b-5a9a2709ce43')) AS MemberTypeId 
 						LEFT OUTER JOIN (SELECT nodeId, contentType FROM dbo.cmsContent) AS MemberList ON MemberList.contentType = MemberTypeId.id 
 						LEFT OUTER JOIN dbo.cmsPropertyType AS MemberTypes ON MemberTypes.contentTypeId = MemberList.contentType 
