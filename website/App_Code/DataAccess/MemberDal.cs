@@ -163,10 +163,12 @@ public class MemberDal : IMemberDal
 			DuathlonEntered = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.DuathlonEntered)),
 			OpenWaterIndemnityAcceptance =
 				GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.OpenWaterIndemnityAcceptance)),
-			Volunteering = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.Volunteering)),
-			SwimCredits = int.Parse(GetPropertyValueForAlias(groupedMemberData, MemberProperty.SwimCredits))
+			Volunteering = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.Volunteering))
 		};
 
+		int swimCredits = 0;
+		int.TryParse(GetPropertyValueForAlias(groupedMemberData, MemberProperty.SwimCredits), out swimCredits);
+		memberOptionsDto.SwimCredits = swimCredits;
 		
 		string membershipType = GetPropertyValueForAlias(groupedMemberData, MemberProperty.membershipType);
 		memberOptionsDto.MembershipType = string.IsNullOrEmpty(membershipType)

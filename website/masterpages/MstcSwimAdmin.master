@@ -27,7 +27,8 @@
                         <umbraco:Item ID="bodyText" runat="server" Field="bodyText" />
                     </div>
                 </div>
-                <umbraco:Macro ID="swimAdminMacro" runat="server" Language="cshtml">@RenderPage("~/macroscripts/SwimAdmin.cshtml") 
+                <umbraco:Macro ID="swimAdminMacro" runat="server" Language="cshtml">
+                    @RenderPage("~/macroscripts/SwimAdmin.cshtml") 
                 </umbraco:Macro>
                 <div class="form-group">
                     <div class="col-sm-10"></div>
