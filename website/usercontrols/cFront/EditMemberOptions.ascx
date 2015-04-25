@@ -59,10 +59,10 @@
         <div class="form-group">
             <label class="col-sm-6 control-label"><b>O/W Swim credits:</b></label>
             <div class="col-sm-6 member-date">
-            <p>
-                <asp:Literal ID="litSwimCredits" runat="server"></asp:Literal>
-                <asp:HiddenField ID="hiddenEmail" runat="server" />
-            </p>
+                <p>
+                    <asp:Literal ID="litSwimCredits" runat="server"></asp:Literal>
+                    <asp:HiddenField ID="hiddenEmail" runat="server" />
+                </p>
             </div>
         </div>
         <div class="form-group">
@@ -72,12 +72,20 @@
         </div>
         <div class="form-group">
             <div class="col-sm-12">
-                <asp:Button ID="btn_10SwimCredits" runat="server" Text="Buy 10 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_10SwimCreditsClick"  />
+                <asp:Button ID="btn_10SwimCredits" runat="server" Text="Buy 10 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_10SwimCreditsClick" />
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-12">
-                <asp:Button ID="btn_15SwimCredits" runat="server" Text="Buy 15 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_15SwimCreditsClick"  />
+                <asp:Button ID="btn_15SwimCredits" runat="server" Text="Buy 15 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_15SwimCreditsClick" />
+            </div>
+        </div>
+        <div class="form-group <%=ShowSwimAdminLink ? "" : "hide"%>">
+            <label class="col-sm-6 control-label"><b>Swim admin page:</b></label>
+            <div class="col-sm-6 member-date">
+                <p>
+                    <a href="/members-area/swim-admin.aspx">Swim Admin</a>
+                </p>
             </div>
         </div>
     </div>

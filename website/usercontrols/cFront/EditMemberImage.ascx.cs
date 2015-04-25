@@ -54,6 +54,10 @@ public partial class usercontrols_cFront_EditMemberImage : System.Web.UI.UserCon
 				// Update member with media ID in case it was newly created
 				newMemberData["profileImage"] = profileImage.MediaID;
 			}
+			else
+			{
+				return currentmemdata;
+			}
 
 			MemberHelper.Update(newMemberData); // If you don't provide a member, it uses the current. If no current, this will silently fail.
 			return newMemberData;

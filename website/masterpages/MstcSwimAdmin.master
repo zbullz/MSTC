@@ -59,6 +59,10 @@
                     memberNodeIdsToUpdate.push(checkbox.value);
                 });
 
+                if (memberNodeIdsToUpdate.length == 0) {
+                    alert("Please select some members to update swim credits for.")
+                }
+
                 $.ajax({
                     url: "/Base/SwimAdmin/UpdateSwimCredits",
                     data: { nodeIds: memberNodeIdsToUpdate + "" },
