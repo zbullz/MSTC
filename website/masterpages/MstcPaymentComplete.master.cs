@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using cFront.Umbraco.Membership;
 using GoCardlessSdk;
 using GoCardlessSdk.Connect;
+using Lucene.Net.Search.Function;
 
 public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 {
@@ -81,7 +82,11 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 
 	private void UpdateMemberSwimCredits(IDictionary<String, object> currentmemdata, int credits)
 	{
-		int memberCredits = (int) currentmemdata[MemberProperty.SwimCredits];
+		int memberCredits = 0;
+		if (string.IsNullOrEmpty(currentmemdata[MemberProperty.SwimCredits].ToString()) == false)
+		{
+			memberCredits = (int) currentmemdata[MemberProperty.SwimCredits];
+		}
 		memberCredits += credits;
 		currentmemdata[MemberProperty.SwimCredits] = memberCredits;
 

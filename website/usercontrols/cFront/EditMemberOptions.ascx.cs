@@ -13,6 +13,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 	public bool EnableRenewal { get; set; }
 	public bool EnableOpenWater { get; set; }
 	public bool ShowMemberAdminLink { get; set; }
+	public bool ShowSwimAdminLink { get; set; }
 
 	protected void Page_Load(object sender, EventArgs e)
 	{
@@ -66,6 +67,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 
 		string[] roles = Roles.GetRolesForUser();
 		ShowMemberAdminLink = roles.Contains("MemberAdmin");
+		ShowSwimAdminLink = roles.Contains("SwimAdmin");
 	}
 
 	private List<string> OptionalExtras(IDictionary<String, object> memberData)
