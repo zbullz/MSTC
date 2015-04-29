@@ -81,11 +81,11 @@ public class MemberDal : IMemberDal
 	{
 		string query = BaseSelectQuery +
 		               string.Format(@" WHERE	(MemberList.nodeId IS NOT NULL)
-					        and MemberTypes.Alias in ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')",
+					        and MemberTypes.Alias in ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}')",
 			               MemberProperty.Phone, MemberProperty.membershipType, MemberProperty.swimSubsJanToJune,
 			               MemberProperty.SwimSubsJulyToDec, MemberProperty.OpenWaterIndemnityAcceptance,
 			               MemberProperty.Volunteering,
-			               MemberProperty.MembershipExpiry, MemberProperty.SwimAuthNumber, MemberProperty.DuathlonEntered, MemberProperty.SwimCredits);
+			               MemberProperty.MembershipExpiry, MemberProperty.SwimAuthNumber, MemberProperty.DuathlonEntered, MemberProperty.SwimCreditsBought, MemberProperty.SwimCreditsUsed);
 
 		IEnumerable<MemberData> memberData;
 		using (IDbConnection connection = _dataConnection.SqlConnection)
@@ -98,8 +98,8 @@ public class MemberDal : IMemberDal
 
 	public void UpdateSwimCredits(List<string> nodeIds)
 	{
-		string query = @"Update MemberDataTable
-							Set MemberDataTable.[dataInt] = ISNULL(MemberDataTable.[dataInt], 0) - 1
+		string query = string.Format(@"Update MemberDataTable
+							Set MemberDataTable.[dataInt] = ISNULL(MemberDataTable.[dataInt], 0) + 1
 							From (SELECT id FROM dbo.umbracoNode WHERE (nodeObjectType = '9b5416fb-e72f-45a9-a07b-5a9a2709ce43')) AS MemberTypeId 
 						LEFT OUTER JOIN (SELECT nodeId, contentType FROM dbo.cmsContent) AS MemberList ON MemberList.contentType = MemberTypeId.id 
 						LEFT OUTER JOIN dbo.cmsPropertyType AS MemberTypes ON MemberTypes.contentTypeId = MemberList.contentType 
@@ -107,7 +107,7 @@ public class MemberDal : IMemberDal
 							AND MemberDataTable.propertytypeid = MemberTypes.id 
 						LEFT OUTER JOIN dbo.cmsMember AS CmsMember ON CmsMember.nodeId = MemberList.nodeId
 						inner join dbo.umbracoNode n on n.id = MemberList.nodeId 
-						Where	MemberTypes.Alias = 'swimCredits' and MemberList.nodeId in @NodeIds";
+						Where	MemberTypes.Alias = '{0}' and MemberList.nodeId in @NodeIds", MemberProperty.SwimCreditsUsed);
 		using (IDbConnection connection = _dataConnection.SqlConnection)
 		{
 			connection.Execute(query, new {NodeIds = nodeIds});
@@ -166,9 +166,13 @@ public class MemberDal : IMemberDal
 			Volunteering = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.Volunteering))
 		};
 
-		int swimCredits = 0;
-		int.TryParse(GetPropertyValueForAlias(groupedMemberData, MemberProperty.SwimCredits), out swimCredits);
-		memberOptionsDto.SwimCredits = swimCredits;
+		int swimCreditsBought = 0;
+		int.TryParse(GetPropertyValueForAlias(groupedMemberData, MemberProperty.SwimCreditsBought), out swimCreditsBought);
+		memberOptionsDto.SwimCreditsBought = swimCreditsBought;
+
+		int swimCreditsUsed = 0;
+		int.TryParse(GetPropertyValueForAlias(groupedMemberData, MemberProperty.SwimCreditsUsed), out swimCreditsUsed);
+		memberOptionsDto.SwimCreditsUsed = swimCreditsUsed;
 		
 		string membershipType = GetPropertyValueForAlias(groupedMemberData, MemberProperty.membershipType);
 		memberOptionsDto.MembershipType = string.IsNullOrEmpty(membershipType)

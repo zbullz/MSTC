@@ -83,12 +83,10 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 	private void UpdateMemberSwimCredits(IDictionary<String, object> currentmemdata, int credits)
 	{
 		int memberCredits = 0;
-		if (string.IsNullOrEmpty(currentmemdata[MemberProperty.SwimCredits].ToString()) == false)
-		{
-			memberCredits = (int) currentmemdata[MemberProperty.SwimCredits];
-		}
+		int.TryParse(currentmemdata[MemberProperty.SwimCreditsBought].ToString(), out memberCredits);
+	
 		memberCredits += credits;
-		currentmemdata[MemberProperty.SwimCredits] = memberCredits;
+		currentmemdata[MemberProperty.SwimCreditsBought] = memberCredits;
 
 		MemberHelper.Update(currentmemdata);
 	}
