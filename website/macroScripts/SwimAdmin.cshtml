@@ -1,23 +1,29 @@
 ﻿@using cFront.Umbraco.Membership
 @{
     IMemberDal memberDal = new MemberDal(new DataConnection());
-    IEnumerable<MemberOptionsDto> memberOptions = memberDal.GetMemberOptions().OrderBy(m => m.Name);
+    IEnumerable<MemberOptionsDto> memberOptions = memberDal.GetMemberOptions().OrderBy(m => m.SwimAuthNumber);
 }  
 
 <table class="table table-striped table-bordered">
     <tr>
+        <th>Swim Auth Number</th>
         <th>Name</th>
         <th>Email</th>
-        <th>Swim Credits</th>
+        <th>Swim Credits Bought</th>
+        <th>Swim Credits Used</th>
+        <th>Swim Credits Remaining</th>
         <th>Remove swim credit</th>
     </tr>
 
     @foreach (var member in memberOptions)
     {
         <tr>
+            <td>@member.SwimAuthNumber</td>
             <td>@member.Name</td>
             <td>@member.Email</td>
-            <td>@member.SwimCredits</td>
+            <td>@member.SwimCreditsBought</td>
+            <td>@member.SwimCreditsUsed</td>
+            <td>@(member.SwimCreditsBought - member.SwimCreditsUsed)</td>
             <td><input type="checkbox" name="RemoveCredit" value="@member.NodeId" /></td>
         </tr>
     }

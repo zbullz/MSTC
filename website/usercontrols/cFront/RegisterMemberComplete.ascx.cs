@@ -113,7 +113,7 @@ public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.
 		currentmemdata[MemberProperty.SwimSubsJulyToDec] = membershipOptions.SwimSubsJulyToDec;
 		currentmemdata[MemberProperty.Volunteering] = membershipOptions.Volunteering;
 		currentmemdata[MemberProperty.MembershipExpiry] = new DateTime(DateTime.Now.Year + 1, 4, 1);
-		currentmemdata[MemberProperty.SwimCredits] = 0;
+		currentmemdata[MemberProperty.SwimCreditsBought] = 0;
 
 		if (membershipOptions.OpenWaterIndemnityAcceptance)
 		{

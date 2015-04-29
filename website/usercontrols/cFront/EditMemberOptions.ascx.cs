@@ -60,7 +60,13 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 				{
 					openWaterAuthNumber.Text = ((int)swimAuthObj).ToString("D3");
 				}
-				litSwimCredits.Text = memberData[MemberProperty.SwimCredits].ToString();
+
+				int creditsBought = 0;
+				int.TryParse(memberData[MemberProperty.SwimCreditsBought].ToString(), out creditsBought);
+				int creditsUsed = 0;
+				int.TryParse(memberData[MemberProperty.SwimCreditsUsed].ToString(), out creditsUsed);
+				litSwimCredits.Text = (creditsBought - creditsUsed).ToString();
+
 				hiddenEmail.Value = memberData[MemberProperty.Email].ToString();
 			}
 		}
