@@ -21,6 +21,8 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 		
 		void Page_Load()
 		{
+		    throw new Exception("Just a test");
+
 			ViewState["ViewContactForm"] = 0;
 			
 			intViewState = (int)ViewState["ViewContactForm"];

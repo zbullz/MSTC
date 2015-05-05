@@ -64,6 +64,28 @@ public class GoCardlessProvider
 
 	public void ConfirmBill(NameValueCollection confirmQueryStringCollection)
 	{
-		GoCardless.Connect.ConfirmResource(confirmQueryStringCollection);
+        //There have been some connectivity issues with the confirm bill request to go cardless so have put 5 retries in to guard against it
+	    int retries = 5;
+	    int tried = 0;
+	    TryConfirmBill(confirmQueryStringCollection, retries, tried);
 	}
+
+    public void TryConfirmBill(NameValueCollection confirmQueryStringCollection, int retries, int tried)
+    {
+        if (tried >= retries)
+        {
+            return;
+        }
+
+        try
+        {
+            tried++;
+	        GoCardless.Connect.ConfirmResource(confirmQueryStringCollection);
+	    }
+	    catch (Exception ex)
+	    {
+	        Log.Add(LogTypes.Error, -1, string.Format("Unable to ConfirmBill, exception: {0}", ex.ToString()));
+	        TryConfirmBill(confirmQueryStringCollection, retries, tried);
+	    }
+    }
 }
