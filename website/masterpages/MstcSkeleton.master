@@ -28,7 +28,7 @@
 
         <link rel="stylesheet" href="/css/mstc/leaflet.css" />
         <!--[if lte IE 8]>
-        <link rel="stylesheet" href="/css/leaflet.ie.css" />
+        <link rel="stylesheet" href="/css/mstc/leaflet.ie.css" />
         <![endif]-->
         <link rel="stylesheet" href="/css/mstc/main-yellow.css">
 
