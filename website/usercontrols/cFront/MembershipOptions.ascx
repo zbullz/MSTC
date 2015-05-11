@@ -27,7 +27,6 @@
                 <asp:RequiredFieldValidator ID="requiredIndemnityOptions" runat="server" ErrorMessage="Please select your open water indemnity waiver response" 
                     ControlToValidate="indemnityOptions" CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
             </div>
-            
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label"><b>Volunteering agreement*</b></label>
