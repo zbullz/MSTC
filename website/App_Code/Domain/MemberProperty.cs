@@ -42,4 +42,6 @@ public static class MemberProperty
 
 	public const string SwimCreditsBought = "swimCreditsBought";
 	public const string SwimCreditsUsed = "swimCreditsUsed";
+
+	public static string GuestCode = "guestCode";
 }

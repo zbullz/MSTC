@@ -62,6 +62,7 @@ public class MemberProvider
 		currentmemdata[MemberProperty.Volunteering] = membershipOptions.Volunteering;
 		currentmemdata[MemberProperty.MembershipExpiry] = membershipExpiry;
 		currentmemdata[MemberProperty.SwimCreditsBought] = 0;
+		currentmemdata[MemberProperty.GuestCode] = membershipOptions.GuestCode;
 
 		if (membershipOptions.OpenWaterIndemnityAcceptance)
 		{

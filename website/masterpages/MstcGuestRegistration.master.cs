@@ -42,7 +42,8 @@ public partial class masterpages_MstcGuestRegistration : System.Web.UI.MasterPag
 				OpenWaterIndemnityAcceptance = openWaterSwimAccepted,
 				SwimSubsJanToJune = false,
 				SwimSubsJulyToDec = false,
-				Volunteering = false
+				Volunteering = false,
+				GuestCode = tbSecretCode.Text
 			},
 			RegistrationDetails = regDetails
 		};
@@ -67,6 +68,14 @@ public partial class masterpages_MstcGuestRegistration : System.Web.UI.MasterPag
 	    };
 
 		indemnityOptions.Items.AddRange(indemnityOptionsList.ToArray());
+	}
+
+	protected void tbSecretCodeValidator_ServerValidate(object source, ServerValidateEventArgs args)
+	{
+		if (tbSecretCode.Text == "EGAffiliate" || tbSecretCode.Text == "BTRSLegend")
+			args.IsValid = true;
+		else
+			args.IsValid = false;
 	}
 
 }

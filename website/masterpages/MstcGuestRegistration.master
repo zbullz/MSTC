@@ -2,7 +2,9 @@
 
 <%@ Register TagPrefix="cf" TagName="RegistrationDetails" Src="/usercontrols/cFront/RegistrationDetails.ascx" %>
 
-<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+
+<asp:Content ID="Content3" ContentPlaceHolderID="PageScripts" runat="server">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 </asp:Content>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MainContent">
@@ -51,9 +53,9 @@
                                                 <asp:TextBox ID="tbSecretCode" runat="server" CssClass="form-control"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbSecretCode"
                                                 ErrorMessage="Sign up code is required." CssClass="validation-error alert-danger"></asp:RequiredFieldValidator>
-                                                <asp:CompareValidator ID="codeCompare" runat="server" ValueToCompare="multisport" Operator="Equal" 
-                                                ControlToValidate="tbSecretCode" Display="Dynamic" ErrorMessage="The sign up code must match the code provided to you by your club contact."
-                                                CssClass="validation-error alert-danger"></asp:CompareValidator>
+                                                <asp:CustomValidator ID="tbSecretCodeValidator" runat="server" ErrorMessage="CustomValidator" 
+                                                    OnServerValidate="tbSecretCodeValidator_ServerValidate">
+                                                </asp:CustomValidator>
                                             </div>
                                         </div>
                             </div>
@@ -82,4 +84,12 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FooterScripts" runat="server">
+    <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("input[name*='dateOfBirth']").datepicker({
+                dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true, maxDate: +0, yearRange: "c-60:c+20", defaultDate: "-30y"
+            });
+        });
+    </script>
 </asp:Content>
