@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using cFront.Umbraco.Membership;
@@ -27,7 +28,30 @@ public partial class masterpages_MstcGuestRegistration : System.Web.UI.MasterPag
 			return;
 		}
 
+		var regDetails = registrationDetailsControl.GetRegistrationDetails();
+		bool openWaterSwimAccepted = indemnityOptions.SelectedValue == AcceptIndemnity;
 
+		var memberProvider = new MemberProvider();
+		var member = memberProvider.CreateMember(regDetails, new string[] { "Guest" });
+
+		var registrationFullDetails = new RegistrationFullDetails()
+		{
+			MembershipOptions = new MembershipOptions()
+			{
+				MembershipType = MembershipType.Guest,
+				OpenWaterIndemnityAcceptance = openWaterSwimAccepted,
+				SwimSubsJanToJune = false,
+				SwimSubsJulyToDec = false,
+				Volunteering = false
+			},
+			RegistrationDetails = regDetails
+		};
+		memberProvider.UpdateMemberDetails(member, registrationFullDetails, new DateTime(2099, 1, 1));
+
+		//Login the member
+		FormsAuthentication.SetAuthCookie(member.LoginName, true);
+
+		Response.Redirect("/members-area/my-details");
 	}
 
 	private void BindControls()

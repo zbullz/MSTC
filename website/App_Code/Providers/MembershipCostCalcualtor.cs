@@ -32,8 +32,8 @@ public class MembershipCostCalcualtor
 		return cost;
 	}
 
-	public decimal SwimCreditsCost(PaymentStates credits)
+	public decimal SwimCreditsCost(PaymentStates credits, MembershipType membershipType)
 	{
-		return new decimal(3*(int) credits);
+		return membershipType == MembershipType.Guest ? new decimal(5*(int) credits) : new decimal(3*(int) credits);
 	}
 }
