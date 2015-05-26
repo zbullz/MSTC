@@ -47,7 +47,7 @@ public partial class masterpages_MstcGuestRegistration : System.Web.UI.MasterPag
 			},
 			RegistrationDetails = regDetails
 		};
-		memberProvider.UpdateMemberDetails(member, registrationFullDetails, new DateTime(2099, 1, 1));
+		memberProvider.UpdateMemberDetails(member, registrationFullDetails, null);
 
 		//Login the member
 		FormsAuthentication.SetAuthCookie(member.LoginName, true);

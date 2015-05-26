@@ -45,7 +45,7 @@ public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.
 			
 			var memberProvider = new MemberProvider();
 			var member = memberProvider.CreateMember(registrationFullDetails.RegistrationDetails, new string[] {"Member"});
-			memberProvider.UpdateMemberDetails(member, registrationFullDetails, new DateTime(DateTime.Now.Year + 1, 4, 1));
+			memberProvider.UpdateMemberDetails(member, registrationFullDetails, null);
 
 			//Login the member
 			FormsAuthentication.SetAuthCookie(member.LoginName, true);

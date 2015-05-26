@@ -23,12 +23,12 @@ public class MemberProvider
 			roles);
 	}
 
-	public void UpdateMemberDetails(umbraco.cms.businesslogic.member.Member member, RegistrationFullDetails regDetails, DateTime membershipExpiry)
+	public void UpdateMemberDetails(umbraco.cms.businesslogic.member.Member member, RegistrationFullDetails regDetails, DateTime? membershipExpiry)
 	{
 		IDictionary<String, object> currentmemdata = MemberHelper.Get(member);
 
 		SetMemberDetails(currentmemdata, regDetails.RegistrationDetails);
-		SetMembershipOptions(currentmemdata, regDetails.MembershipOptions, membershipExpiry);
+        SetMembershipOptions(currentmemdata, regDetails.MembershipOptions, membershipExpiry ?? new DateTime(DateTime.Now.Year + 1, 4, 1));
 
 		foreach (Property property in (List<Property>)member.GenericProperties)
 		{
@@ -66,14 +66,44 @@ public class MemberProvider
 
 		if (membershipOptions.OpenWaterIndemnityAcceptance)
 		{
-			//Calculate the next available swim auth number
-			IMemberDal memberDal = new MemberDal(new DataConnection());
-			IEnumerable<MemberOptionsDto> memberOptions = memberDal.GetMemberOptions();
-			var membersWithSwimAuthNumbers = memberOptions.Where(m => m.SwimAuthNumber.HasValue).OrderBy(m => m.SwimAuthNumber);
-			int swimAuthNumber = membersWithSwimAuthNumbers.Any()
-				? membersWithSwimAuthNumbers.Last().SwimAuthNumber.Value + 1
-				: 1;
+		    GuestCodes? guestCode = string.IsNullOrWhiteSpace(membershipOptions.GuestCode)
+		        ? null
+		        : (GuestCodes?) Enum.Parse(typeof (GuestCodes), membershipOptions.GuestCode);
+            int swimAuthNumber = GetSwimAuthNumber(guestCode);
 			currentmemdata[MemberProperty.SwimAuthNumber] = swimAuthNumber;
 		}
 	}
+
+    private int GetSwimAuthNumber(GuestCodes? guestCode)
+    {
+        //Calculate the next available swim auth number
+        IMemberDal memberDal = new MemberDal(new DataConnection());
+        IEnumerable<MemberOptionsDto> memberOptions = memberDal.GetMemberOptions();
+        IEnumerable<MemberOptionsDto> openWaterSwimmers = memberOptions.Where(m => m.SwimAuthNumber.HasValue);
+
+        int swimAuthNumber = 0;
+        if (guestCode == null)
+        {
+            var swimMembers = openWaterSwimmers.Where(m => m.SwimAuthNumber < 1000).OrderBy(m => m.SwimAuthNumber);
+            swimAuthNumber = swimMembers.Any() ? swimMembers.Last().SwimAuthNumber.Value + 1 : 1;
+            return swimAuthNumber;
+        }
+
+        switch (guestCode)
+        {
+            case GuestCodes.EGAffiliate:
+            {
+                var EGAffiliateSwimmers = openWaterSwimmers.Where(m => m.SwimAuthNumber > 1000 && m.SwimAuthNumber < 2000).OrderBy(m => m.SwimAuthNumber);
+                swimAuthNumber = EGAffiliateSwimmers.Any() ? EGAffiliateSwimmers.Last().SwimAuthNumber.Value + 1 : 1001;
+                break;
+            }
+            case GuestCodes.BTRSLegend:
+            {
+                var BTRSSwimmers = openWaterSwimmers.Where(m => m.SwimAuthNumber > 2000 && m.SwimAuthNumber < 3000).OrderBy(m => m.SwimAuthNumber);
+                swimAuthNumber = BTRSSwimmers.Any() ? BTRSSwimmers.Last().SwimAuthNumber.Value + 1 : 2001;
+                break;
+            }
+        }
+        return swimAuthNumber;
+    }
 }
