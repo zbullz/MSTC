@@ -18,12 +18,13 @@
                     </li>
                     -->
                 <!-- Sliders -->
-                <!--
+                
                 <umbraco:Macro ID="slider1Macro" runat="server" Language="cshtml">@RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink1", "bg1", "Try our training sessions", "Come down to our weekly group training session on Thursday and have a go!") 
                 </umbraco:Macro>
-                -->
+                <!--
                 <umbraco:Macro ID="slider4Macro" runat="server" Language="cshtml">@RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink1", "bg4", "Enter the Mid Sussex Triathlon", "Entries for the 2015 mid sussex triathlon are now open!") 
                 </umbraco:Macro>
+                -->
                 <umbraco:Macro ID="slider2Macro" runat="server" Language="cshtml">@RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink2", "bg5", "Sign up to the club", "If you want to get more involved with trialthon why not become a member of the club?") 
                 </umbraco:Macro>
                 <umbraco:Macro ID="slider3Macro" runat="server" Language="cshtml">@RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink3", "bg2", "Tri Hub training for Juniors", "Our Tri Hub training sessions are both fun and rewarding for kids") 
