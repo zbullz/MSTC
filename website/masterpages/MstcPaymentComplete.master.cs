@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -26,6 +27,7 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 	}
 	
 	protected bool ShowSwimCreditsConfirmation = false;
+	protected bool ShowEventConfirmation = false;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -71,6 +73,12 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 				DisplaySwimCreditConfirmationMessage((int) paymentState);
 				break;
 			}
+			case PaymentStates.E00D101C:
+			{
+				EnterMemberInDuathlon(currentmemdata);
+				DisplayEventEnteredMessage(paymentState);
+				break;
+			}
 		}
 	}
 
@@ -78,6 +86,12 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 	{
 		ShowSwimCreditsConfirmation = true;
 		litSwimCredits.Text = credits.ToString();
+	}
+
+	private void DisplayEventEnteredMessage(PaymentStates paymentState)
+	{
+		ShowEventConfirmation = true;
+		litEventEntered.Text = paymentState.GetAttributeOfType<DescriptionAttribute>().Description;
 	}
 
 	private void UpdateMemberSwimCredits(IDictionary<String, object> currentmemdata, int credits)
@@ -88,6 +102,12 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 		memberCredits += credits;
 		currentmemdata[MemberProperty.SwimCreditsBought] = memberCredits;
 
+		MemberHelper.Update(currentmemdata);
+	}
+
+	private void EnterMemberInDuathlon(IDictionary<String, object> currentmemdata)
+	{
+		currentmemdata[MemberProperty.DuathlonEntered] = true;
 		MemberHelper.Update(currentmemdata);
 	}
 }

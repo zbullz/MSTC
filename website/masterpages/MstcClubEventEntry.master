@@ -1,7 +1,4 @@
-﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
-
-<asp:Content ContentPlaceHolderID="MstcSkeletonContentPlaceHolder" runat="server">
-<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" CodeFile="MstcDuathlonEntry.master.cs" Inherits="masterpages_MstcDuathlonEntry" %>
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" CodeFile="MstcClubEventEntry.master.cs" Inherits="masterpages_MstcClubEventEntry" %>
 
 <asp:Content ContentPlaceHolderID="PageScripts" runat="server">
 </asp:Content>
@@ -31,7 +28,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="form-wrapper">
+                        <div id="duathlonEntryForm" class="form-wrapper" runat="server">
                             <p>Please complete the form below to register for the club duathlon.</p>
                             <div class="member-options">
                                 <div class="form-group">
@@ -40,7 +37,7 @@
                                         <p><a href="http://www.midsussextriclub.com/media/49381/MSTCDuathlonWaiver2015.pdf" target="_blank">Click here to view the duathlon indemnity waiver document</a></p>
                                         <asp:CheckBox ID="waiverAgreement" runat="server" CssClass="checkbox"
                                             Text="I have read and understand the duathlon indemnity document.<br />I agree to and accept the terms without qualification." />
-                                        <asp:CustomValidator runat="server" ID="requiredWaiver" OnServerValidate="CheckBoxRequired_ServerValidate" CssClass="help-block alert-danger">
+                                        <asp:CustomValidator runat="server" ID="requiredWaiver" OnServerValidate="CheckBoxRequired_ServerValidate" CssClass="help-block alert-danger" ValidationGroup="1">
                                             Please accept the waiver terms to proceed</asp:CustomValidator>
                                     </div>
 
@@ -50,7 +47,7 @@
                             <div class="form-group">
                                 <div class="col-sm-2"></div>
                                 <div class="col-sm-10">
-                                    <asp:Button ID="Enter" runat="server" Text="Continue to payment" CssClass="btn pull-left btn-yellow" OnClick="Enter_OnClick" />
+                                    <asp:Button ID="Enter" runat="server" Text="Continue to payment" CssClass="btn pull-left btn-yellow" OnClick="DualthonEnter_OnClick" ValidationGroup="1" />
                                 </div>
                             </div>
 
@@ -71,6 +68,4 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FooterScripts" runat="server">
-</asp:Content>
-
 </asp:Content>
