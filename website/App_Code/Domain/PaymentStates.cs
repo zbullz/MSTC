@@ -11,10 +11,10 @@ public enum PaymentStates
 	[Description("Swim 15 Credits")] S001599C = 15,
 	[Description("Duathlon")] E00D101C = 101,
 	
-	[Description("Triathlon Festival Olympic Individual")] E00TRIOI201C = 201,
-	[Description("Triathlon Festival Olympic Relay")] E00TRIOR202C = 202,
-	[Description("Triathlon Festival Middle Individual")] E00TRIMI203C = 203,
-	[Description("Triathlon Festival Middle Relay")] E00TRIMR204C = 204,
+	[Description("Triathlon Festival - Olympic Individual")] E00TRIOI201C = 201,
+	[Description("Triathlon Festival - Olympic Relay")] E00TRIOR202C = 202,
+	[Description("Triathlon Festival - Middle Individual")] E00TRIMI203C = 203,
+	[Description("Triathlon Festival - Middle Relay")] E00TRIMR204C = 204,
 
 	[Description("Charity Swim - 1km")] E00S1KM301C = 301,
 	[Description("Charity Swim - 3km")] E00S3KM302C = 302,

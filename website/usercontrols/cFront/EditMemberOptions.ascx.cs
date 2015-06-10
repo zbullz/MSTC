@@ -69,6 +69,22 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 
 				hiddenEmail.Value = memberData[MemberProperty.Email].ToString();
 			}
+
+			//Bind events
+			if (GetMemberBool(memberData, MemberProperty.DuathlonEntered))
+			{
+				EventList.Items.Add("Duathlon");
+			}
+			string triFestEntry = memberData[MemberProperty.TriFestEntry] as string;
+			if (string.IsNullOrWhiteSpace(triFestEntry) == false)
+			{
+				EventList.Items.Add(triFestEntry);
+			}
+			string charitySwimEntry = memberData[MemberProperty.CharitySwimEntry] as string;
+			if (string.IsNullOrWhiteSpace(charitySwimEntry) == false)
+			{
+				EventList.Items.Add(charitySwimEntry);
+			}
 		}
 
 		string[] roles = Roles.GetRolesForUser();
