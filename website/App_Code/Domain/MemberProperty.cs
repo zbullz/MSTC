@@ -46,4 +46,5 @@ public static class MemberProperty
 	public const string SwimCreditsUsed = "swimCreditsUsed";
 
 	public static string GuestCode = "guestCode";
+	public static string ReferredByMember = "referredByMember";
 }

@@ -63,18 +63,16 @@ public class MemberProvider
 		currentmemdata[MemberProperty.MembershipExpiry] = membershipExpiry;
 		currentmemdata[MemberProperty.SwimCreditsBought] = 0;
 		currentmemdata[MemberProperty.GuestCode] = membershipOptions.GuestCode;
+		currentmemdata[MemberProperty.ReferredByMember] = membershipOptions.ReferredByMember;
 
 		if (membershipOptions.OpenWaterIndemnityAcceptance)
 		{
-		    GuestCodes? guestCode = string.IsNullOrWhiteSpace(membershipOptions.GuestCode)
-		        ? null
-		        : (GuestCodes?) Enum.Parse(typeof (GuestCodes), membershipOptions.GuestCode);
-            int swimAuthNumber = GetSwimAuthNumber(guestCode);
+			int swimAuthNumber = GetSwimAuthNumber(membershipOptions.MembershipType);
 			currentmemdata[MemberProperty.SwimAuthNumber] = swimAuthNumber;
 		}
 	}
 
-    private int GetSwimAuthNumber(GuestCodes? guestCode)
+    private int GetSwimAuthNumber(MembershipType membershipType)
     {
         //Calculate the next available swim auth number
         IMemberDal memberDal = new MemberDal(new DataConnection());
@@ -82,28 +80,17 @@ public class MemberProvider
         IEnumerable<MemberOptionsDto> openWaterSwimmers = memberOptions.Where(m => m.SwimAuthNumber.HasValue);
 
         int swimAuthNumber = 0;
-        if (guestCode == null)
+		if (membershipType != MembershipType.Guest)
         {
             var swimMembers = openWaterSwimmers.Where(m => m.SwimAuthNumber < 1000).OrderBy(m => m.SwimAuthNumber);
             swimAuthNumber = swimMembers.Any() ? swimMembers.Last().SwimAuthNumber.Value + 1 : 1;
-            return swimAuthNumber;
         }
+		else
+		{
+			var guestSwimmers = openWaterSwimmers.Where(m => m.SwimAuthNumber > 1000 && m.SwimAuthNumber < 2000).OrderBy(m => m.SwimAuthNumber);
+			swimAuthNumber = guestSwimmers.Any() ? guestSwimmers.Last().SwimAuthNumber.Value + 1 : 1001;
+		}
 
-        switch (guestCode)
-        {
-            case GuestCodes.EGAffiliate:
-            {
-                var EGAffiliateSwimmers = openWaterSwimmers.Where(m => m.SwimAuthNumber > 1000 && m.SwimAuthNumber < 2000).OrderBy(m => m.SwimAuthNumber);
-                swimAuthNumber = EGAffiliateSwimmers.Any() ? EGAffiliateSwimmers.Last().SwimAuthNumber.Value + 1 : 1001;
-                break;
-            }
-            case GuestCodes.BTRSLegend:
-            {
-                var BTRSSwimmers = openWaterSwimmers.Where(m => m.SwimAuthNumber > 2000 && m.SwimAuthNumber < 3000).OrderBy(m => m.SwimAuthNumber);
-                swimAuthNumber = BTRSSwimmers.Any() ? BTRSSwimmers.Last().SwimAuthNumber.Value + 1 : 2001;
-                break;
-            }
-        }
         return swimAuthNumber;
     }
 }

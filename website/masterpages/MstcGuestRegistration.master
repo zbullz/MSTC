@@ -34,7 +34,7 @@
                     <div class="col-sm-12">
                         <div class="form-wrapper">
                             <p>Please complete the form below to register as an affiliated guest.</p>
-                                <!--Registration details-->
+                            <!--Registration details-->
                             <cf:RegistrationDetails ID="registrationDetailsControl" runat="server" />
 
                             <div class="member-options">
@@ -48,16 +48,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                            <asp:Label ID="Label5" runat="server" CssClass="col-sm-2 control-label" AssociatedControlID="tbSecretCode">Sign up code:*</asp:Label>
-                                            <div class="col-sm-7">
-                                                <asp:TextBox ID="tbSecretCode" runat="server" CssClass="form-control"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbSecretCode"
-                                                ErrorMessage="Sign up code is required." CssClass="validation-error alert-danger"></asp:RequiredFieldValidator>
-                                                <asp:CustomValidator ID="tbSecretCodeValidator" runat="server" ErrorMessage="CustomValidator" 
-                                                    OnServerValidate="tbSecretCodeValidator_ServerValidate">
-                                                </asp:CustomValidator>
-                                            </div>
-                                        </div>
+                                    <asp:Label ID="Label5" runat="server" CssClass="col-sm-2 control-label" AssociatedControlID="tbSecretCode">Sign up code:</asp:Label>
+                                    <div class="col-sm-7">
+                                        <asp:TextBox ID="tbSecretCode" runat="server" CssClass="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <asp:Label ID="Label2" runat="server" CssClass="col-sm-2 control-label" AssociatedControlID="tbMemberReferred">Referred by member:</asp:Label>
+                                    <div class="col-sm-7">
+                                        <asp:TextBox ID="tbMemberReferred" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:CustomValidator ID="tbSecretCodeValidator" runat="server" 
+                                            ErrorMessage="Please provide either a valid sign up code or the name of the member who referred you to the club."
+                                            OnServerValidate="tbSecretCodeValidator_ServerValidate" CssClass="help-block alert-danger">
+                                        </asp:CustomValidator>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="form-group">
