@@ -124,8 +124,7 @@ public partial class masterpages_MstcClubEventEntry : System.Web.UI.MasterPage
 		}
 
 		string memberEmail = currentmemdata[MemberProperty.Email] as string;
-		string paymentDescription = string.Format("Mid Sussex Tri Club Triathlon Festival Entry - {0}",
-			entryType.GetAttributeOfType<DescriptionAttribute>().Description);
+		string paymentDescription = string.Format("{0}", entryType.GetAttributeOfType<DescriptionAttribute>().Description);
 		RedirectToGocardless(memberEmail, cost, "MSTC Tri Fest", paymentDescription, entryType);
 		//RedirectToCompletePage(entryType.ToString()); //Can use this for local testing
 	}
@@ -149,8 +148,7 @@ public partial class masterpages_MstcClubEventEntry : System.Web.UI.MasterPage
 
 		decimal cost = 20m;
 		string memberEmail = currentmemdata[MemberProperty.Email] as string;
-		string paymentDescription = string.Format("Mid Sussex Tri Club 5-3-1 Charity Swim Entry - {0}",
-			entryType.GetAttributeOfType<DescriptionAttribute>().Description);
+		string paymentDescription = string.Format("{0}", entryType.GetAttributeOfType<DescriptionAttribute>().Description);
 		RedirectToGocardless(memberEmail, cost, "MSTC 5-3-1 Charity Swim", paymentDescription, entryType);
 		//RedirectToCompletePage(entryType.ToString()); //Can use this for local testing
 	}
