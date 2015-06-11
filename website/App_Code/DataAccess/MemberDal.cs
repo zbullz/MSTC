@@ -81,11 +81,12 @@ public class MemberDal : IMemberDal
 	{
 		string query = BaseSelectQuery +
 		               string.Format(@" WHERE	(MemberList.nodeId IS NOT NULL)
-					        and MemberTypes.Alias in ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}')",
+					        and MemberTypes.Alias in ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}')",
 			               MemberProperty.Phone, MemberProperty.membershipType, MemberProperty.swimSubsJanToJune,
 			               MemberProperty.SwimSubsJulyToDec, MemberProperty.OpenWaterIndemnityAcceptance,
-			               MemberProperty.Volunteering,
-			               MemberProperty.MembershipExpiry, MemberProperty.SwimAuthNumber, MemberProperty.DuathlonEntered, MemberProperty.SwimCreditsBought, MemberProperty.SwimCreditsUsed);
+			               MemberProperty.Volunteering, MemberProperty.MembershipExpiry, MemberProperty.SwimAuthNumber,
+			               MemberProperty.DuathlonEntered, MemberProperty.SwimCreditsBought, MemberProperty.SwimCreditsUsed,
+			               MemberProperty.TriFestEntry, MemberProperty.CharitySwimEntry);
 
 		IEnumerable<MemberData> memberData;
 		using (IDbConnection connection = _dataConnection.SqlConnection)
@@ -156,14 +157,16 @@ public class MemberDal : IMemberDal
 			NodeId = groupedMemberData.First().NodeId,
 			Name = groupedMemberData.First().Name,
 			Email = groupedMemberData.Key,
-			
+
 			Phone = GetPropertyValueForAlias(groupedMemberData, MemberProperty.Phone),
 			SwimSubsJanToJune = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.swimSubsJanToJune)),
 			SwimSubsJulyToDec = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.SwimSubsJulyToDec)),
 			DuathlonEntered = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.DuathlonEntered)),
 			OpenWaterIndemnityAcceptance =
 				GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.OpenWaterIndemnityAcceptance)),
-			Volunteering = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.Volunteering))
+			Volunteering = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.Volunteering)),
+			TriFestEntry = GetPropertyValueForAlias(groupedMemberData, MemberProperty.TriFestEntry),
+			CharitySwimEntry = GetPropertyValueForAlias(groupedMemberData, MemberProperty.CharitySwimEntry)
 		};
 
 		int swimCreditsBought = 0;

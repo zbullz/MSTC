@@ -13,6 +13,8 @@
         <th>Paid Swim Subs Jan to June</th>
         <th>Paid Swim Subs July to Dec</th>
         <th>Entered duathlon</th>
+        <th>Tri Festival Entry</th>
+        <th>Charity Swim Entry</th>
         <th>Accepted indemnity?</th>
         <th>Open water auth number</th>
     </tr>
@@ -27,6 +29,8 @@
             <td>@displayBool(member.SwimSubsJanToJune)</td>
             <td>@displayBool(member.SwimSubsJulyToDec)</td>
             <td>@displayBool(member.DuathlonEntered)</td>
+            <td>@member.TriFestEntry</td>
+            <td>@member.CharitySwimEntry</td>
 
             <td>@displayBool(member.OpenWaterIndemnityAcceptance)</td>
             <td>@(member.SwimAuthNumber.HasValue ? member.SwimAuthNumber.Value.ToString("D3") : "-")</td>

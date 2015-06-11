@@ -20,4 +20,6 @@ public class MemberOptionsDto
 	public int SwimCreditsUsed { get; set; }
 
 	public bool DuathlonEntered { get; set; }
+	public string TriFestEntry { get; set; }
+	public string CharitySwimEntry { get; set; }
 }

@@ -1,4 +1,7 @@
-﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" CodeFile="MstcDuathlonEntry.master.cs" Inherits="masterpages_MstcDuathlonEntry" %>
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
+
+<asp:Content ContentPlaceHolderID="MstcSkeletonContentPlaceHolder" runat="server">
+<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" CodeFile="MstcDuathlonEntry.master.cs" Inherits="masterpages_MstcDuathlonEntry" %>
 
 <asp:Content ContentPlaceHolderID="PageScripts" runat="server">
 </asp:Content>
@@ -68,4 +71,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FooterScripts" runat="server">
+</asp:Content>
+
 </asp:Content>

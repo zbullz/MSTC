@@ -1,0 +1,138 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" CodeFile="MstcClubEventEntry.master.cs" Inherits="masterpages_MstcClubEventEntry" %>
+
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MainContent">
+    <!-- Page Title -->
+    <div class="section section-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>
+                        <umbraco:Item ID="pageName" runat="server" Field="pageName" />
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="section">
+        <form id="Form1" role="form" class="form-horizontal" runat="server">
+            <div class="container edit-member">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <umbraco:Item ID="bodyText" runat="server" Field="bodyText" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="duathlonEntryForm" class="form-wrapper" runat="server" Visible="false">
+                            <p>Please complete the form below to register for the club duathlon.</p>
+                            <div class="member-options">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><b>Waiver agreement*</b></label>
+                                    <div class="col-sm-10">
+                                        <p><a href="http://www.midsussextriclub.com/media/49381/MSTCDuathlonWaiver2015.pdf" target="_blank">Click here to view the duathlon indemnity waiver document</a></p>
+                                        <asp:CheckBox ID="checkBoxDuathlonTerms" runat="server" CssClass="checkbox"
+                                            Text="I have read and understand the duathlon indemnity document.<br />I agree to and accept the terms without qualification." />
+                                        <asp:CustomValidator runat="server" ID="requiredWaiver" OnServerValidate="DuathlonTerms_Validate" CssClass="help-block alert-danger" ValidationGroup="1">
+                                            Please accept the waiver terms to proceed</asp:CustomValidator>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-10">
+                                    <asp:Button ID="Enter" runat="server" Text="Continue to payment" CssClass="btn pull-left btn-yellow" OnClick="DualthonEnter_OnClick" ValidationGroup="1" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="trifestEntryForm" class="form-wrapper" runat="server" Visible="false">
+                            <p>Please complete the form below to register for the club triathlon festival.</p>
+                            <div class="member-options">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><b>Event type*</b></label>
+                                    <div class="col-sm-10">
+                                        <asp:RadioButtonList ID="triFestEventType" runat="server" RepeatLayout="Flow" CssClass="radio"></asp:RadioButtonList>
+                                        <asp:RequiredFieldValidator ID="requiredTriFestEventType" runat="server" ErrorMessage="Please select your event type" 
+                                            ControlToValidate="triFestEventType" CssClass="help-block alert-danger" ValidationGroup="2"></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><b>Please enter your BTF number for a £3 discount:</b></label>
+                                    <div class="col-sm-10">
+                                        <asp:TextBox ID="tbTriFestBTFNumber" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><b>Waiver agreement*</b></label>
+                                    <div class="col-sm-10">
+                                        <p><a href="http://midsussextriclub.com/media/53687/TriFestivalWaiverForm.pdf" target="_blank">Click here to view the triathlon festival indemnity waiver document</a></p>
+                                        <asp:CheckBox ID="checkBoxTriFestTerms" runat="server" CssClass="checkbox"
+                                            Text="I have read and understand the triathlon festival indemnity document.<br />I agree to and accept the terms without qualification." />
+                                        <asp:CustomValidator runat="server" ID="festivalWaiver" OnServerValidate="TriFestTerms_Validate" CssClass="help-block alert-danger" ValidationGroup="2">
+                                            Please accept the waiver terms to proceed</asp:CustomValidator>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-10">
+                                    <asp:Button ID="Button1" runat="server" Text="Continue to payment" CssClass="btn pull-left btn-yellow" OnClick="TriFestEnter_OnClick" ValidationGroup="2" />
+                                </div>
+                            </div>
+                        </div>
+                        <div id="charitySwimEntryForm" class="form-wrapper" runat="server" Visible="false">
+                            <p>Please complete the form below to register for the club 5-3-1 Charity Swim.</p>
+                            <div class="member-options">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><b>Event type*</b></label>
+                                    <div class="col-sm-10">
+                                        <asp:RadioButtonList ID="charitySwimEventType" runat="server" RepeatLayout="Flow" CssClass="radio"></asp:RadioButtonList>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please select your event type" 
+                                            ControlToValidate="charitySwimEventType" CssClass="help-block alert-danger" ValidationGroup="3"></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><b>Waiver agreement*</b></label>
+                                    <div class="col-sm-10">
+                                        <p><a href="http://midsussextriclub.com/media/53690/531SwimIndemnityTerms.pdf" target="_blank">Click here to view the charity swim indemnity waiver document</a></p>
+                                        <asp:CheckBox ID="charitySwimTerms" runat="server" CssClass="checkbox"
+                                            Text="I have read and understand the charity swim indemnity document.<br />I agree to and accept the terms without qualification." />
+                                        <asp:CustomValidator runat="server" ID="CustomValidator1" OnServerValidate="CharitySwimTerms_Validate" CssClass="help-block alert-danger" ValidationGroup="3">
+                                            Please accept the waiver terms to proceed</asp:CustomValidator>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-10">
+                                    <asp:Button ID="Button2" runat="server" Text="Continue to payment" CssClass="btn pull-left btn-yellow" OnClick="CharitySwimEnter_OnClick" ValidationGroup="3" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Secondary content -->
+    <div class="section">
+        <div class="container">
+            <umbraco:Item ID="secondaryContent" runat="server" Field="secondaryContent" />
+        </div>
+    </div>
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="FooterScripts" runat="server">
+</asp:Content>

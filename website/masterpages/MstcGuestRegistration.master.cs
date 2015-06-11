@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -8,6 +9,7 @@ using System.Web.UI.WebControls;
 using cFront.Umbraco.Membership;
 using GoCardlessSdk;
 using GoCardlessSdk.Connect;
+using Newtonsoft.Json;
 
 public partial class masterpages_MstcGuestRegistration : System.Web.UI.MasterPage
 {
@@ -43,7 +45,8 @@ public partial class masterpages_MstcGuestRegistration : System.Web.UI.MasterPag
 				SwimSubsJanToJune = false,
 				SwimSubsJulyToDec = false,
 				Volunteering = false,
-				GuestCode = tbSecretCode.Text
+				GuestCode = tbSecretCode.Text,
+				ReferredByMember = tbMemberReferred.Text
 			},
 			RegistrationDetails = regDetails
 		};
@@ -51,6 +54,11 @@ public partial class masterpages_MstcGuestRegistration : System.Web.UI.MasterPag
 
 		//Login the member
 		FormsAuthentication.SetAuthCookie(member.LoginName, true);
+
+		var emailProvider = new EmailProvider();
+		string content = string.Format("<p>A new guest has registered with the club</p><p>Guest details: {0}</p>",
+			JsonConvert.SerializeObject(registrationFullDetails, Formatting.Indented));
+		emailProvider.SendEmail(ConfigurationManager.AppSettings["newRegistrationEmailTo"], EmailProvider.SupportEmail, "New MSTC Guest registration", content);
 
 		Response.Redirect("/members-area/my-details");
 	}
@@ -72,10 +80,20 @@ public partial class masterpages_MstcGuestRegistration : System.Web.UI.MasterPag
 
 	protected void tbSecretCodeValidator_ServerValidate(object source, ServerValidateEventArgs args)
 	{
-		if (tbSecretCode.Text == "EGAffiliate" || tbSecretCode.Text == "BTRSLegend")
+		string code = tbSecretCode.Text.ToLower();
+		if (string.IsNullOrWhiteSpace(code) == false)
+		{
+			args.IsValid = (code == "egaffiliate" || code == "btrslegend" || code == "fishyfriends");
+			return;
+		}
+
+		if (string.IsNullOrWhiteSpace(tbMemberReferred.Text) == false)
+		{
 			args.IsValid = true;
-		else
-			args.IsValid = false;
+			return;
+		}
+
+		args.IsValid = false;
 	}
 
 }
