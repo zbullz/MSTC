@@ -22,6 +22,8 @@ public enum PaymentStates
 	[Description("Charity Swim - 1km, 3km")] E00S1KM3KM304C = 304,
 	[Description("Charity Swim - 1km, 5km")] E00S1KM5KM305C = 305,
 	[Description("Charity Swim - 3km, 5km")] E00S3KM5KM306C = 306,
-	[Description("Charity Swim - 1km, 3km, 5km")] E00S1KM3KM5KM307C = 307
+	[Description("Charity Swim - 1km, 3km, 5km")] E00S1KM3KM5KM307C = 307,
 
+	[Description("Swim subs Jan to June")] SS05991 = 401,
+	[Description("Swim subs July to December")] SS05992 = 402
 }

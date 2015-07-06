@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Linq;
@@ -14,6 +15,8 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 	public bool EnableOpenWater { get; set; }
 	public bool ShowMemberAdminLink { get; set; }
 	public bool ShowSwimAdminLink { get; set; }
+	public bool ShowBuySwimSubs1 { get; set; }
+	public bool ShowBuySwimSubs2 { get; set; }
 
 	protected void Page_Load(object sender, EventArgs e)
 	{
@@ -38,6 +41,9 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 			{
 				EnableRenewal = false;
 			}
+
+			ShowBuySwimSubs1 = GetMemberBool(memberData, MemberProperty.swimSubsJanToJune) == false && DateTime.Now.Month <= 6;
+			ShowBuySwimSubs2 = GetMemberBool(memberData, MemberProperty.SwimSubsJulyToDec) == false;
 
 			string membershipTypeValue = memberData[MemberProperty.membershipType] as string;
 			if (string.IsNullOrWhiteSpace(membershipTypeValue) == false)
@@ -128,6 +134,16 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
         return value;
     }
 
+	public void btn_BuySwimSubs1Click(object sender, EventArgs e)
+	{
+		MakeSwimSubsPayment(PaymentStates.SS05991);
+	}
+
+	public void btn_BuySwimSubs2Click(object sender, EventArgs e)
+	{
+		MakeSwimSubsPayment(PaymentStates.SS05992);
+	}
+
 	public void btn_5SwimCreditsClick(object sender, EventArgs e)
 	{
 		MakeSwimPayment(PaymentStates.S00599C);
@@ -141,6 +157,21 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 	public void btn_15SwimCreditsClick(object sender, EventArgs e)
 	{
 		MakeSwimPayment(PaymentStates.S001599C);
+	}
+
+	private void MakeSwimSubsPayment(PaymentStates paymentState)
+	{
+		var goCardlessProvider = new GoCardlessProvider();
+
+		MembershipType memberType = (MembershipType)Enum.Parse(typeof(MembershipType), membershipType.Text);
+		var redirectUrl = goCardlessProvider.CreateSimpleBill(hiddenEmail.Value, 30m,
+			"Swim subs payment",
+			string.Format("{0}", paymentState.GetAttributeOfType<DescriptionAttribute>().Description), paymentState, Request.Url);
+
+		var sessionProvider = new SessionProvider();
+		sessionProvider.CanProcessPaymentCompletion = true;
+		//RedirectToCompletePage(paymentState.ToString()); //Can be used for testing
+		Response.Redirect(redirectUrl);
 	}
 
 	private void MakeSwimPayment(PaymentStates paymentState)
