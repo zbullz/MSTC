@@ -28,7 +28,21 @@ public class MemberProvider
 		IDictionary<String, object> currentmemdata = MemberHelper.Get(member);
 
 		SetMemberDetails(currentmemdata, regDetails.RegistrationDetails);
-        SetMembershipOptions(currentmemdata, regDetails.MembershipOptions, membershipExpiry ?? new DateTime(DateTime.Now.Year + 1, 4, 1));
+        SetMembershipOptions(currentmemdata, regDetails.MembershipOptions, membershipExpiry ?? new DateTime(DateTime.Now.Year + 1, 4, 1), true);
+
+		foreach (Property property in (List<Property>)member.GenericProperties)
+		{
+			if (currentmemdata.ContainsKey(property.PropertyType.Alias))
+				property.Value = currentmemdata[property.PropertyType.Alias];
+		}
+		member.Save();
+	}
+
+	public void UpdateMemberOptions(umbraco.cms.businesslogic.member.Member member, MembershipOptions membershipOptions, DateTime? membershipExpiry)
+	{
+		IDictionary<String, object> currentmemdata = MemberHelper.Get(member);
+
+		SetMembershipOptions(currentmemdata, membershipOptions, membershipExpiry ?? new DateTime(DateTime.Now.Year + 1, 4, 1), false);
 
 		foreach (Property property in (List<Property>)member.GenericProperties)
 		{
@@ -53,7 +67,7 @@ public class MemberProvider
 		currentmemdata[MemberProperty.emergencyContactNumber] = registrationDetails.EmergencyContactPhone;
 	}
 
-	private void SetMembershipOptions(IDictionary<String, object> currentmemdata, MembershipOptions membershipOptions, DateTime membershipExpiry)
+	private void SetMembershipOptions(IDictionary<String, object> currentmemdata, MembershipOptions membershipOptions, DateTime membershipExpiry, bool zeroSwimCredits)
 	{
 		currentmemdata[MemberProperty.membershipType] = ((int)membershipOptions.MembershipType).ToString();
 		currentmemdata[MemberProperty.OpenWaterIndemnityAcceptance] = membershipOptions.OpenWaterIndemnityAcceptance;
@@ -61,7 +75,10 @@ public class MemberProvider
 		currentmemdata[MemberProperty.SwimSubsJulyToDec] = membershipOptions.SwimSubsJulyToDec;
 		currentmemdata[MemberProperty.Volunteering] = membershipOptions.Volunteering;
 		currentmemdata[MemberProperty.MembershipExpiry] = membershipExpiry;
-		currentmemdata[MemberProperty.SwimCreditsBought] = 0;
+		if (zeroSwimCredits)
+		{
+			currentmemdata[MemberProperty.SwimCreditsBought] = 0;
+		}
 		currentmemdata[MemberProperty.GuestCode] = membershipOptions.GuestCode;
 		currentmemdata[MemberProperty.ReferredByMember] = membershipOptions.ReferredByMember;
 
