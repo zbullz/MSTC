@@ -159,9 +159,8 @@ span.validation-error[style*="inline"] {
   margin-bottom: 10px;
   margin-top: 5px;
 }
-
 span.help-block[style*="hidden"] {
-	display: none;
+  display: none;
 }
 /*--------------------------------------------------------------------------
 +	Services Style
@@ -2022,7 +2021,7 @@ ul.footer-navigate-section {
   background-position: -50px 0;
 }
 #sequence > .sequence-canvas > li.bg1 {
-  background-image: url(/images/mstc/homepage-slider/bg-pool1.jpg);
+  background-image: url(/images/mstc/homepage-slider/bg-531Swim.jpg);
 }
 #sequence > .sequence-canvas > li.bg2 {
   background-image: url(/images/mstc/homepage-slider/bg-trihub2.jpg);
