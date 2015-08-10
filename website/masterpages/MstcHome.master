@@ -88,7 +88,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6 col-sm-6">
-                    <div class="service-wrapper">
+                    <div class="service-wrapper strava">
                         <iframe height='160' width='300' frameborder='0' allowtransparency='true' scrolling='no' 
                             src='https://www.strava.com/clubs/4400/latest-rides/c31b39d89697b004849504f93dc76a7ed63a69aa?show_rides=false'></iframe>
                     </div>

@@ -28,6 +28,36 @@
 	}
 }
 
+/* small screen styling for the strava widget */
+@media (max-width: 320px)
+{
+	.home-social .service-wrapper.strava
+	{
+		padding: 30px 0 10px 0;
+	}
+
+	.home-social .service-wrapper.strava iframe
+	{
+		-moz-transform: scale(0.9, 0.9);
+		-webkit-transform: scale(0.9, 0.9);
+		-o-transform: scale(0.9, 0.9);
+		-ms-transform: scale(0.9, 0.9);
+		transform: scale(0.9, 0.9);
+		-moz-transform-origin: top left;
+		-webkit-transform-origin: top left;
+		-o-transform-origin: top left;
+		-ms-transform-origin: top left;
+		transform-origin: top left;
+	}
+}
+
+@media (min-width: 1024px) {
+	.home-social .service-wrapper.strava iframe
+	{
+		width: 400px; 
+	}
+}
+
 /* Row */
 
 .service-wrapper-row{
