@@ -28,6 +28,7 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 	
 	protected bool ShowSwimCreditsConfirmation = false;
 	protected bool ShowEventConfirmation = false;
+	protected bool ShowSwimSubsConfirmation = false;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -100,6 +101,13 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 				DisplayEventEnteredMessage(paymentState);
 				break;
 			}
+			case PaymentStates.SS05991:
+			case PaymentStates.SS05992:
+			{
+				UpdateMemberSwimSubs(currentmemdata, paymentState);
+				DisplaySwimSubsConfirmationMessage(paymentState);
+				break;
+			}
 		}
 	}
 
@@ -113,6 +121,12 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 	{
 		ShowEventConfirmation = true;
 		litEventEntered.Text = paymentState.GetAttributeOfType<DescriptionAttribute>().Description;
+	}
+
+	private void DisplaySwimSubsConfirmationMessage(PaymentStates paymentState)
+	{
+		ShowSwimSubsConfirmation = true;
+		litSwimSubs.Text = paymentState.GetAttributeOfType<DescriptionAttribute>().Description;
 	}
 
 	private void UpdateMemberSwimCredits(IDictionary<String, object> currentmemdata, int credits)
@@ -143,4 +157,20 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 		currentmemdata[MemberProperty.CharitySwimEntry] = paymentState.GetAttributeOfType<DescriptionAttribute>().Description;
 		MemberHelper.Update(currentmemdata);
 	}
+
+	private void UpdateMemberSwimSubs(IDictionary<String, object> currentmemdata, PaymentStates paymentState)
+	{
+		if (paymentState == PaymentStates.SS05991)
+		{
+			currentmemdata[MemberProperty.swimSubsJanToJune] = true;
+		}
+		if (paymentState == PaymentStates.SS05992)
+		{
+			currentmemdata[MemberProperty.SwimSubsJulyToDec] = true;
+		}
+
+		MemberHelper.Update(currentmemdata);
+	}
+
+
 }
