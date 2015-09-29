@@ -1,5 +1,4 @@
 ﻿using System;
-using System;
 using System.Data;
 using Mstc.Core.configuration;
 using MySql.Data;

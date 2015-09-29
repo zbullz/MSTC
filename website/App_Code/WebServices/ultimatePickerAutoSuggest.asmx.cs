@@ -22,7 +22,7 @@ using umbraco.cms.businesslogic.web;
 [ScriptService]
 public class ultimatePickerAutoSuggest : System.Web.Services.WebService
 {
-	private string temp;
+	//private string temp;
 	private int nodeCount;
 	private int Counter;
 	private string[] output;

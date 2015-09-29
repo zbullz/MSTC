@@ -180,7 +180,7 @@
         </p>
         <p class="entry">
             <asp:CheckBox ID="cbAgree" runat="server" />
-            By ticking the box you are bound by the Conditions and Disclaimer above.</a>.
+            By ticking the box you are bound by the Conditions and Disclaimer above.
 		<asp:Label ID="lblTerms" runat="server" Display="Dynamic" />
         </p>
         <p class="Captcha clearfix">
