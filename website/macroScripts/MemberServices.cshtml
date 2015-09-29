@@ -1,4 +1,6 @@
 ﻿@using cFront.Umbraco.Membership
+@using Mstc.Core.DataAccess
+@using Mstc.Core.Dto
 @{
     IMemberDal memberDal = new MemberDal(new DataConnection());
     IEnumerable<MemberServiceDto> members = memberDal.GetMembersWithServices();

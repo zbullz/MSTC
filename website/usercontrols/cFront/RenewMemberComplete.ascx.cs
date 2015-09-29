@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using cFront.Umbraco;
+using Mstc.Core.Providers;
 using Newtonsoft.Json;
 using umbraco.cms.businesslogic.member;
 

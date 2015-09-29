@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Mstc.Core.Domain;
+using Mstc.Core.Providers;
 using Newtonsoft.Json;
 using cFront.Umbraco.Membership;
 using GoCardlessSdk;

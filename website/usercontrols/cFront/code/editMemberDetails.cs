@@ -5,6 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using cFront.Umbraco.Membership;
 using cFront.Umbraco.WebControls;
+using Mstc.Core.Domain;
 using umbraco.cms.businesslogic.media;
 // Requires ~/bin/cfMemberExtensions.dll
 

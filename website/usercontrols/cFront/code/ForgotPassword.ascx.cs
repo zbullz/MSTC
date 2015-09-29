@@ -3,6 +3,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web.Security;
+using Mstc.Core.configuration;
 using umbraco.cms.businesslogic.member;
 
 namespace usercontrols.cFront.code

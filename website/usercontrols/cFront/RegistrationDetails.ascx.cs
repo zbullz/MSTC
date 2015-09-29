@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Mstc.Core.Domain;
 using umbraco.providers.members;
 
 public partial class usercontrols_cFront_RegistrationDetails : System.Web.UI.UserControl

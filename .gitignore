@@ -3,3 +3,6 @@ website/App_Data/*
 packages/*
 !/packages/repositories.config
 website/media/*
+Mstc.Core/bin/*
+Mstc.Core/obj/*
+*.user

@@ -1,1 +1,1 @@
-<%@ WebService Language="C#" CodeBehind="tagService.asmx.cs" Class="umbracoTags.webservice.tagService" %>
+<%@ WebService Language="C#" CodeBehind="~/App_Code/WebServices/tagService.asmx.cs" Class="tagService" %>

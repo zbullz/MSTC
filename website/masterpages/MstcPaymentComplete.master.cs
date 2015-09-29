@@ -10,6 +10,8 @@ using cFront.Umbraco.Membership;
 using GoCardlessSdk;
 using GoCardlessSdk.Connect;
 using Lucene.Net.Search.Function;
+using Mstc.Core.Domain;
+using Mstc.Core.Providers;
 
 public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 {

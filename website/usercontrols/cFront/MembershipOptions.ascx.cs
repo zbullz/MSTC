@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Mstc.Core.Domain;
 
 public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserControl
 {

@@ -4,6 +4,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "website", "website\", "{2FE6D272-E35E-4127-B4DE-8A521AEFEF52}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		ProjectReferences = "{159a837e-df0b-4ea1-8581-ec4f20bc0cdc}|Mstc.Core.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/website"
 		Debug.AspNetCompiler.PhysicalPath = "website\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\website\"
@@ -22,13 +23,22 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "website", "website\", "{2FE
 		VWDVirtualPath = "/"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstc.Core", "Mstc.Core\Mstc.Core.csproj", "{159A837E-DF0B-4EA1-8581-EC4F20BC0CDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{2FE6D272-E35E-4127-B4DE-8A521AEFEF52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2FE6D272-E35E-4127-B4DE-8A521AEFEF52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FE6D272-E35E-4127-B4DE-8A521AEFEF52}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FE6D272-E35E-4127-B4DE-8A521AEFEF52}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{159A837E-DF0B-4EA1-8581-EC4F20BC0CDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{159A837E-DF0B-4EA1-8581-EC4F20BC0CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{159A837E-DF0B-4EA1-8581-EC4F20BC0CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{159A837E-DF0B-4EA1-8581-EC4F20BC0CDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

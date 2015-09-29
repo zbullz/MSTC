@@ -8,6 +8,8 @@ using System.Web.UI.WebControls;
 using cFront.Umbraco.Membership;
 using GoCardlessSdk;
 using GoCardlessSdk.Connect;
+using Mstc.Core.Domain;
+using Mstc.Core.Providers;
 
 public partial class masterpages_MstcClubEventEntry : System.Web.UI.MasterPage
 {

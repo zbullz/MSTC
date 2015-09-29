@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Net.Mail;
 using System.Collections.Generic;
+using Mstc.Core.Providers;
 
 namespace cFront.Projects.CFSL.Web.UI.UserControls
 {

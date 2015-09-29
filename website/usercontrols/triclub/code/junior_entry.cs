@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using Mstc.Core.configuration;
 using MySql.Data; 
 using MySql.Data.MySqlClient; 
 using System.Web;

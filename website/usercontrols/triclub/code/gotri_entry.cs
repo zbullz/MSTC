@@ -5,6 +5,7 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Net.Mail;
 using System.Collections;
+using Mstc.Core.configuration;
 
 namespace cFront.Projects.CFSL.Web.UI.UserControls
 {

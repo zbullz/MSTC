@@ -6,6 +6,8 @@ using System.Data;
 using System.Linq;
 using System.Web.Security;
 using GoCardlessSdk.Connect;
+using Mstc.Core.Domain;
+using Mstc.Core.Providers;
 
 public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserControl
 {

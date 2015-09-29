@@ -7,6 +7,8 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using cFront.Umbraco;
+using Mstc.Core.Domain;
+using Mstc.Core.Providers;
 using Newtonsoft.Json;
 using umbraco.cms.businesslogic.property;
 using umbraco.providers.members;

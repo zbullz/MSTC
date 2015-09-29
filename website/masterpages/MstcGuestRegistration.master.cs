@@ -9,6 +9,8 @@ using System.Web.UI.WebControls;
 using cFront.Umbraco.Membership;
 using GoCardlessSdk;
 using GoCardlessSdk.Connect;
+using Mstc.Core.Domain;
+using Mstc.Core.Providers;
 using Newtonsoft.Json;
 
 public partial class masterpages_MstcGuestRegistration : System.Web.UI.MasterPage
