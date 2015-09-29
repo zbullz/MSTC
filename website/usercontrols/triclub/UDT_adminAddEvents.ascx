@@ -1,8 +1,8 @@
-<%@ Control Language="C#" AutoEventWireup="true" Inherits="triclub.Umbraco.UDT_adminAddEvents" %>	
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="UDT_adminAddEvents.ascx.cs" Inherits="usercontrols_triclub_UDT_adminAddEvents" %>
 <script>
-	$(document).ready(function() {
-	$("input[name*='txtEventDate']").datepicker({dateFormat: 'yy-mm-dd'});
-	});
+    $(document).ready(function () {
+        $("input[name*='txtEventDate']").datepicker({ dateFormat: 'yy-mm-dd' });
+    });
 </script>
 <asp:PlaceHolder id="containerEntry" runat="server" Visible="True" >	
 	<p class="entry top">

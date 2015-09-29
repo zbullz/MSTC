@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" Inherits="triclub.Umbraco.UDT_adminEntries" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="UDT_adminEntries.ascx.cs" Inherits="usercontrols_triclub_UDT_adminEntries" %>
 <div style="clear:both; width:100%; padding-top:30px;">
 <asp:DataList id="dlEntries"
 			   GridLines="Both"
