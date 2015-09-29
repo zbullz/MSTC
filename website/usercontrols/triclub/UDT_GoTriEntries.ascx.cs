@@ -7,14 +7,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class usercontrols_triclub_UDT_GoTriEntries : System.Web.UI.UserControl
-{
-    protected void Page_Load(object sender, EventArgs e)
-    {
-
-    }
-}
-
 public partial class usercontrols_triclub_UDT_GoTriEntries : UserControl, umbraco.editorControls.userControlGrapper.IUsercontrolDataEditor
 {
 	#region IUsercontrolDataEditor Members

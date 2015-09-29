@@ -9,16 +9,6 @@ using Mstc.Core.configuration;
 
 public partial class usercontrols_triclub_gotri_entry : UserControl
 {
-	/*
-	protected TextBox txtFirstName, txtLastName,
-							txtAge, txtSchool, txtSchoolYear, txtMedical, txtYPEmail, txtDiet, txtExperience,
-							txtParentFirstName, txtParentLastName,
-							txtAddr1, txtAddr2, txtAddr3, txtAddr4, txtPostcode, txtPhone, txtEmail, txtName;
-	protected DropDownList ddlDateDay, ddlDateMonth, ddlDateYear, ddlGender;
-	protected PlaceHolder containerEntry, containerEntryClosed;
-	protected Label lblTerms, lblCaptcha;
-	protected CheckBox cbAgree;
-	 */ 
 	protected int intSecretEntry;
 	protected Boolean boolSecretEntry;
 	protected int intViewState, intEntries, intEventType;
