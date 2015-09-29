@@ -1,6 +1,6 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
 
-<%@ Register TagPrefix="cf" TagName="RenewMemberComplete" Src="../usercontrols/cFront/RenewMemberComplete.ascx" %>
+<%@ Register TagPrefix="cf" TagName="RenewMemberComplete" Src="~/usercontrols/cFront/RenewMemberComplete.ascx" %>
 
 <asp:Content ContentPlaceHolderID="PageScripts" runat="server">
 </asp:Content>

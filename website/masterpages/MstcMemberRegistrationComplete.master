@@ -1,6 +1,6 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
 
-<%@ Register TagPrefix="cf" TagName="RegisterMemberComplete" Src="../usercontrols/cFront/RegisterMemberComplete.ascx" %>
+<%@ Register TagPrefix="cf" TagName="RegisterMemberComplete" Src="~/usercontrols/cFront/RegisterMemberComplete.ascx" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="PageScripts" runat="server">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">

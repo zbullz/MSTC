@@ -1,6 +1,6 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" CodeFile="MstcGuestRegistration.master.cs" Inherits="masterpages_MstcGuestRegistration" %>
 
-<%@ Register TagPrefix="cf" TagName="RegistrationDetails" Src="/usercontrols/cFront/RegistrationDetails.ascx" %>
+<%@ Register TagPrefix="cf" TagName="RegistrationDetails" Src="~/usercontrols/cFront/RegistrationDetails.ascx" %>
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="PageScripts" runat="server">

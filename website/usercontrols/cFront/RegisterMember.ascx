@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="RegisterMember.ascx.cs" Inherits="usercontrols_cFront_RegisterMember" %>
 
-<%@ Register TagPrefix="cf" TagName="RegistrationDetails" Src="/usercontrols/cFront/RegistrationDetails.ascx" %>
-<%@ Register TagPrefix="cf" TagName="MembershipOptions" Src="/usercontrols/cFront/MembershipOptions.ascx" %>
+<%@ Register TagPrefix="cf" TagName="RegistrationDetails" Src="~/usercontrols/cFront/RegistrationDetails.ascx" %>
+<%@ Register TagPrefix="cf" TagName="MembershipOptions" Src="~/usercontrols/cFront/MembershipOptions.ascx" %>
 
 <div class="form-wrapper">
     <p>Please complete the form below to register for membership to the club</p>

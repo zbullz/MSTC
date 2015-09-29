@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="RenewMember.ascx.cs" Inherits="usercontrols_cFront_RenewMember" %>
 
-<%@ Register TagPrefix="cf" TagName="MembershipOptions" Src="/usercontrols/cFront/MembershipOptions.ascx" %>
+<%@ Register TagPrefix="cf" TagName="MembershipOptions" Src="~/usercontrols/cFront/MembershipOptions.ascx" %>
 
 <div class="form-wrapper">
     <p>Please select from the options below to renew your club membership for 2015</p>

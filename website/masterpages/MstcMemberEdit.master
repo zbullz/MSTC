@@ -1,8 +1,8 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" CodeFile="MstcMemberEdit.master.cs" Inherits="masterpages_MstcMemberEdit" %>
 
-<%@ Register TagPrefix="cf" TagName="EditMemberImage" Src="../usercontrols/cFront/EditMemberImage.ascx" %>
-<%@ Register TagPrefix="cf" TagName="EditMemberOptions" Src="../usercontrols/cFront/EditMemberOptions.ascx" %>
-<%@ Register TagPrefix="cf" TagName="EditMember" Src="../usercontrols/cFront/editMemberDetails.ascx" %>
+<%@ Register TagPrefix="cf" TagName="EditMemberImage" Src="~/usercontrols/cFront/EditMemberImage.ascx" %>
+<%@ Register TagPrefix="cf" TagName="EditMemberOptions" Src="~/usercontrols/cFront/EditMemberOptions.ascx" %>
+<%@ Register TagPrefix="cf" TagName="EditMember" Src="~/usercontrols/cFront/editMemberDetails.ascx" %>
 
 <asp:Content ContentPlaceHolderID="PageScripts" runat="server">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
