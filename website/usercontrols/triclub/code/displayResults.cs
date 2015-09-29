@@ -40,7 +40,7 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 				phEventDetail.Visible = false; // hide event detail
 				
 				{
-					using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+					using(SqlConnection objConn = new SqlConnection(ConfigurationManager.AppSettings["triclubDSN"]))
 					{
 						objConn.Open();
 						SqlCommand objCmd = objConn.CreateCommand();
@@ -73,7 +73,7 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 			phEventDetail.Visible = false; // hide event detail
 			
 			{
-				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationManager.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
 					SqlCommand objCmd = objConn.CreateCommand();
@@ -106,7 +106,7 @@ ORDER BY eventDate
 			phEventDetail.Visible = false; // hide event detail
 			
 			{
-				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationManager.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
 					SqlCommand objCmd = objConn.CreateCommand();
@@ -138,7 +138,7 @@ ORDER BY eventDate
 			phEventDetail.Visible = true; // show event detail placeholder
 			
 			{
-				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationManager.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
 					SqlCommand objCmd = objConn.CreateCommand();

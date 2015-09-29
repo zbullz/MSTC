@@ -84,7 +84,7 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 					intEventType = 2;
 				}
 			
-				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationManager.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
 					SqlCommand objCmd = objConn.CreateCommand();
@@ -154,7 +154,7 @@ VALUES (@FirstName, @LastName, @Gender, @DOB, @Addr1, @Addr2, @Addr3, @Addr4, @P
 		
 		protected void getEntries()
 		{
-			using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+			using(SqlConnection objConn = new SqlConnection(ConfigurationManager.AppSettings["triclubDSN"]))
 			{
 				objConn.Open();
 				

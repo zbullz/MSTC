@@ -19,7 +19,7 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 		protected void getEventFilters()
 		{
 			{
-				using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+				using(SqlConnection objConn = new SqlConnection(ConfigurationManager.AppSettings["triclubDSN"]))
 				{
 					objConn.Open();
 					SqlCommand objCmd = objConn.CreateCommand();

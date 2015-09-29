@@ -19,7 +19,7 @@ namespace cFront.Projects.CFSL.Web.UI.UserControls
 		
 		protected void getEntries()
 		{
-			using(SqlConnection objConn = new SqlConnection(ConfigurationSettings.AppSettings["triclubDSN"]))
+			using(SqlConnection objConn = new SqlConnection(ConfigurationManager.AppSettings["triclubDSN"]))
 			{
 				objConn.Open();
 				
