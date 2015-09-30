@@ -1,4 +1,4 @@
-<%@ Control Inherits="cFront.Projects.CFSL.Web.UI.UserControls.EventContactForm" AutoEventWireup="true" Src="code/event_contacts.cs" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="event_contacts.ascx.cs" Inherits="usercontrols_cFront_event_contacts" %>
 <asp:PlaceHolder id="phMessageForm" runat="server">
 		<p> 
 			To contact us about the event select the appropriate person and then complete the form below and click "Send Message"

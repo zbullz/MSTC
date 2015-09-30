@@ -1,4 +1,4 @@
-<%@ Control Inherits="cFront.Projects.CFSL.Web.UI.UserControls.EntriesSoFar" AutoEventWireup="true" Src="code/entriesSoFar.cs" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="entriesSoFar.ascx.cs" Inherits="usercontrols_triclub_entriesSoFar" %>
 <table class="entries-so-far">
 	<tr>
 		<th class="entry-name">

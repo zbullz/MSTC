@@ -1,10 +1,10 @@
-<%@ Control Inherits="cFront.Projects.CFSL.Web.UI.UserControls.ContactForm" AutoEventWireup="true" Src="code/contacts.cs" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="contacts.ascx.cs" Inherits="usercontrols_cFront_contacts" %>
 <asp:PlaceHolder ID="phMessageForm" runat="server">
     <div class="form-wrapper">
         <h3>Send Us a Message</h3>
         <p> Get in touch with us to find out about joining, training, sponsorship or whatever you like.</p>
         <p>If you have a query about the Mid Sussex Triathlon please visit our event website.</p>
-        <form class="form-horizontal" role="form" runat="server">
+        <form id="Form1" class="form-horizontal" role="form" runat="server">
             <div class="form-group">
                 <label for="txtName" class="col-sm-2 control-label"><b>Your name *</b></label>
                 <div class="col-sm-10">

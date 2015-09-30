@@ -1,4 +1,4 @@
-<%@ Control Inherits="cFront.Projects.CFSL.Web.UI.UserControls.AdminEntries" AutoEventWireup="true" Src="code/adminEntries.cs" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="adminEntries.ascx.cs" Inherits="usercontrols_triclub_adminEntries" %>
 <p class="entry_sf_excl">
 	Number of confirmed entries: <span class="red"><%= intEntries %></span>
 </p>

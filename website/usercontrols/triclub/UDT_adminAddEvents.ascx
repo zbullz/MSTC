@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="UDT_adminAddEvents.ascx.cs" Inherits="usercontrols_triclub_UDT_adminAddEvents" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="UDT_adminAddEvents.ascx.cs" Inherits="usercontrols.triclub.usercontrols_triclub_UDT_adminAddEvents" %>
 <script>
     $(document).ready(function () {
         $("input[name*='txtEventDate']").datepicker({ dateFormat: 'yy-mm-dd' });

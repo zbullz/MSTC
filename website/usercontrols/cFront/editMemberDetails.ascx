@@ -1,4 +1,5 @@
-<%@ Control Inherits="usercontrols.cFront.code.EditMemberDetails" Src="code/editMemberDetails.cs" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="editMemberDetails.ascx.cs" Inherits="usercontrols_cFront_editMemberDetails" %>
+
 <%@ Register TagPrefix="cfu" Assembly="cfUmbracoWebControls" Namespace="cFront.Umbraco.WebControls" %>
 
 <asp:PlaceHolder ID="EditContainer" runat="server">

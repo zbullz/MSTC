@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="gotri_entry.ascx.cs" Inherits="usercontrols_triclub_gotri_entry" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="gotri_entry.ascx.cs" Inherits="usercontrols.triclub.usercontrols_triclub_gotri_entry" %>
 <%@ Register TagPrefix="recaptcha" Namespace="Recaptcha" Assembly="Recaptcha" %>
 <form id="juniorEntry" runat="server">
     <asp:PlaceHolder ID="containerEntryClosed" runat="server" Visible="False">

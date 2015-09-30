@@ -1,4 +1,4 @@
-﻿<%@ Control AutoEventWireup="true" CodeFile="code/ForgotPassword.ascx.cs" Inherits="usercontrols.cFront.code.usercontrols_cFront_ForgotPassword" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ForgotPassword.ascx.cs" Inherits="usercontrols_cFront_ForgotPassword" %>
 
 <form id="loginForm" runat="server" class="form-horizontal">
     <div class="form-group">

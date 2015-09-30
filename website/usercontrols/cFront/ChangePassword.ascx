@@ -1,4 +1,4 @@
-﻿<%@ Control Inherits="cFront.Projects.CFSL.Web.UI.UserControls.ChangePassword" AutoEventWireup="true" Src="code/ChangePassword.cs" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ChangePassword.ascx.cs" Inherits="usercontrols_cFront_ChangePassword" %>
 
 <form id="loginForm" runat="server" class="form-horizontal">
     <div class="form-group">

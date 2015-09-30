@@ -1,4 +1,4 @@
-<%@ Control Inherits="cFront.Projects.CFSL.Web.UI.UserControls.EntryForm" AutoEventWireup="true" Src="code/entry.cs" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="entry.ascx.cs" Inherits="usercontrols_triclub_entry" %>
 <%@ Register TagPrefix="recaptcha" Namespace="Recaptcha" Assembly="Recaptcha" %>
 <asp:PlaceHolder id="containerEntryFull" runat="server" Visible="False" >
 	<p class="entry_sf">
