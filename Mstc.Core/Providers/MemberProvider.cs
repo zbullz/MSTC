@@ -21,6 +21,13 @@ namespace Mstc.Core.Providers
 			//
 		}
 
+		public DateTime GetNewMemberExpiry(DateTime currentDate)
+		{
+			return currentDate.Month == 1 || currentDate.Month == 2
+				? new DateTime(DateTime.Now.Year, 4, 1)
+				: new DateTime(DateTime.Now.Year + 1, 4, 1);
+		}
+
 		public umbraco.cms.businesslogic.member.Member CreateMember(RegistrationDetails regDetails, string[] roles)
 		{
 			return MemberHelper.Create(regDetails.Email, regDetails.Password, regDetails.FullName, regDetails.Email, "Member",

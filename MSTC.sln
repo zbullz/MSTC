@@ -7,13 +7,25 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "website", "website\", "{2FE
 		ProjectReferences = "{159a837e-df0b-4ea1-8581-ec4f20bc0cdc}|Mstc.Core.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/website"
 		Debug.AspNetCompiler.PhysicalPath = "website\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\website\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/website"
 		Release.AspNetCompiler.PhysicalPath = "website\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\website\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "56635"
 		VWDVirtualPath = "/"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstc.Core", "Mstc.Core\Mstc.Core.csproj", "{159A837E-DF0B-4EA1-8581-EC4F20BC0CDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstc.Tests", "Mstc.Tests\Mstc.Tests.csproj", "{C3B8AD54-4ED5-4EF2-B402-452B86A714C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +41,10 @@ Global
 		{159A837E-DF0B-4EA1-8581-EC4F20BC0CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{159A837E-DF0B-4EA1-8581-EC4F20BC0CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{159A837E-DF0B-4EA1-8581-EC4F20BC0CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3B8AD54-4ED5-4EF2-B402-452B86A714C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3B8AD54-4ED5-4EF2-B402-452B86A714C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3B8AD54-4ED5-4EF2-B402-452B86A714C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3B8AD54-4ED5-4EF2-B402-452B86A714C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

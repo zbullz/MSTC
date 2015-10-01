@@ -5,4 +5,6 @@ packages/*
 website/media/*
 Mstc.Core/bin/*
 Mstc.Core/obj/*
+Mstc.Tests/bin/*
+Mstc.Tests/obj/*
 *.user
