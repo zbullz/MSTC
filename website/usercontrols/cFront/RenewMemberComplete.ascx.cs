@@ -41,7 +41,7 @@ public partial class usercontrols_cFront_RenewMemberComplete : System.Web.UI.Use
 			    ConfirmPaymentRequest();
 		    }
 			var memberProvider = new MemberProvider();
-			memberProvider.UpdateMemberOptions(member, membershipOptions, null);
+			memberProvider.UpdateMemberOptions(member, membershipOptions);
 
 			SessionProvider.RenewalOptions = null;
 	    }

@@ -34,12 +34,13 @@ namespace Mstc.Core.Providers
 				roles);
 		}
 
-		public void UpdateMemberDetails(umbraco.cms.businesslogic.member.Member member, RegistrationFullDetails regDetails, DateTime? membershipExpiry)
+		public void UpdateMemberDetails(umbraco.cms.businesslogic.member.Member member, RegistrationFullDetails regDetails)
 		{
 			IDictionary<String, object> currentmemdata = MemberHelper.Get(member);
 
 			SetMemberDetails(currentmemdata, regDetails.RegistrationDetails);
-			SetMembershipOptions(currentmemdata, regDetails.MembershipOptions, membershipExpiry ?? new DateTime(DateTime.Now.Year + 1, 4, 1), true);
+			var membershipExpiry = GetNewMemberExpiry(DateTime.Now);
+			SetMembershipOptions(currentmemdata, regDetails.MembershipOptions, membershipExpiry, zeroSwimCredits: true);
 
 			foreach (Property property in (List<Property>)member.GenericProperties)
 			{
@@ -49,11 +50,12 @@ namespace Mstc.Core.Providers
 			member.Save();
 		}
 
-		public void UpdateMemberOptions(umbraco.cms.businesslogic.member.Member member, MembershipOptions membershipOptions, DateTime? membershipExpiry)
+		public void UpdateMemberOptions(umbraco.cms.businesslogic.member.Member member, MembershipOptions membershipOptions)
 		{
 			IDictionary<String, object> currentmemdata = MemberHelper.Get(member);
 
-			SetMembershipOptions(currentmemdata, membershipOptions, membershipExpiry ?? new DateTime(DateTime.Now.Year + 1, 4, 1), false);
+			var membershipExpiry = GetNewMemberExpiry(DateTime.Now);
+			SetMembershipOptions(currentmemdata, membershipOptions, membershipExpiry, zeroSwimCredits: false);
 
 			foreach (Property property in (List<Property>)member.GenericProperties)
 			{

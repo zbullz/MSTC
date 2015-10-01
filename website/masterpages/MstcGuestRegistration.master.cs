@@ -52,7 +52,7 @@ public partial class masterpages_MstcGuestRegistration : System.Web.UI.MasterPag
 			},
 			RegistrationDetails = regDetails
 		};
-		memberProvider.UpdateMemberDetails(member, registrationFullDetails, null);
+		memberProvider.UpdateMemberDetails(member, registrationFullDetails);
 
 		//Login the member
 		FormsAuthentication.SetAuthCookie(member.LoginName, true);
