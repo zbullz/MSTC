@@ -17,7 +17,7 @@
         FormsAuthentication.SignOut();
         Response.Redirect(Request.RawUrl);
     }
-    var currentUser = Membership.GetUser();
+    var currentUser = User.Identity.IsAuthenticated ? Membership.GetUser() : null;
 }
 
 @helper RenderUsersName()
