@@ -33,7 +33,8 @@ public partial class usercontrols_cFront_RegisterMember : System.Web.UI.UserCont
 			JsonConvert.SerializeObject(registrationFullDetails)));
 
 		decimal cost = (new MembershipCostCalculator()).Calculate(registrationFullDetails.MembershipOptions, DateTime.Now);
-		RedirectToGocardless(registrationFullDetails.RegistrationDetails.Email, cost, GetPaymentDescription(registrationFullDetails.MembershipOptions));
+		var memberProvider = new MemberProvider();
+		RedirectToGocardless(registrationFullDetails.RegistrationDetails.Email, cost, memberProvider.GetPaymentDescription(registrationFullDetails.MembershipOptions));
 		//RedirectToCompletePage(); //Can use this for local testing
 	}
 
@@ -66,20 +67,5 @@ public partial class usercontrols_cFront_RegisterMember : System.Web.UI.UserCont
 
 		string paymentGatewayUrl = goCardlessProvider.CreateBill(billRequest, redirectUrl, cancelUrl);
 		Response.Redirect(paymentGatewayUrl);
-	}
-
-	private string GetPaymentDescription(MembershipOptions membershipOptions)
-	{
-		List<string> descriptionList = new List<string>() { string.Format("New member - {0}", membershipOptions.MembershipType.ToString())};
-		if (membershipOptions.SwimSubsJanToJune)
-		{
-			descriptionList.Add("Swim subs Jan to June");
-		}
-		if (membershipOptions.SwimSubsJulyToDec)
-		{
-			descriptionList.Add("Swim subs July to Dec");
-		}
-
-		return string.Join(", ", descriptionList);
 	}
 }

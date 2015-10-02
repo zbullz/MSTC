@@ -16,7 +16,6 @@
             <% } %>
             </div>
         </div>
-        <p>Please note, between October and the end of Feburary the membership costs are at a 50% discounted rate.</p>
         <div class="form-group">
             <label for="contact-email" class="col-sm-2 control-label"><b>Optional extras</b></label>
             <div class="col-sm-10">

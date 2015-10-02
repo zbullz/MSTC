@@ -68,10 +68,11 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 
 	public MembershipOptions GetMembershipOptions()
 	{
+		var swimSubJanToJuneItem = extras.Items.FindByValue(MembershipExtras.SwimSubsJanToJune.ToString());
 		return new MembershipOptions()
 		{
 			MembershipType = (MembershipType) Enum.Parse(typeof(MembershipType), membershipType.SelectedValue),
-			SwimSubsJanToJune = extras.Items.FindByValue(MembershipExtras.SwimSubsJanToJune.ToString()).Selected,
+			SwimSubsJanToJune = swimSubJanToJuneItem != null && swimSubJanToJuneItem.Selected,
 			SwimSubsJulyToDec = extras.Items.FindByValue(MembershipExtras.SwimSubsJulyToDec.ToString()).Selected,
 			OpenWaterIndemnityAcceptance = indemnityOptions.SelectedValue == AcceptIndemnity,
 			Volunteering = true //Hardcode to true as can't renew unless this is selected :)

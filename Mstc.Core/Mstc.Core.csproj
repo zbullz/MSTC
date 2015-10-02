@@ -99,8 +99,12 @@
     <Compile Include="Providers\MembershipCostCalculator.cs" />
     <Compile Include="Providers\SessionProvider.cs" />
     <Compile Include="WebMethods\SwimAdmin.cs" />
-    <Compile Include="WebServices\tagService.asmx.cs" />
-    <Compile Include="WebServices\ultimatePickerAutoSuggest.asmx.cs" />
+    <Compile Include="WebServices\tagService.asmx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebServices\ultimatePickerAutoSuggest.asmx.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

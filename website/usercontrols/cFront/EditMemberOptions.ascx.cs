@@ -13,12 +13,13 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 {
 	protected MembershipCostCalculator _membershipCostCalcualtor;
 
-	public bool EnableRenewal { get; set; }
+	public bool EnableMemberRenewal { get; set; }
 	public bool EnableOpenWater { get; set; }
 	public bool ShowMemberAdminLink { get; set; }
 	public bool ShowSwimAdminLink { get; set; }
 	public bool ShowBuySwimSubs1 { get; set; }
 	public bool ShowBuySwimSubs2 { get; set; }
+	public bool EnableUpgrade { get; set; }
 
 	protected void Page_Load(object sender, EventArgs e)
 	{
@@ -34,31 +35,38 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 			bool hasExpired = membershipExpiryDate.HasValue == false || membershipExpiryDate.Value < DateTime.Now;
 			membershipExpiry.Text = hasExpired ? "Expired" : membershipExpiryDate.Value.ToString("dd MMM yyyy");
 
-			bool renewalsEnabled = bool.Parse(ConfigurationManager.AppSettings["renewalsEnabled"]);
-			if (renewalsEnabled &&
-				DateTime.Now.Month > 2 &&
-				(membershipExpiryDate.HasValue == false || membershipExpiryDate.Value.Year <= DateTime.Now.Year))
-			{
-				EnableRenewal = true;
-			}
-			else
-			{
-				EnableRenewal = false;
-			}
-
-			ShowBuySwimSubs1 = GetMemberBool(memberData, MemberProperty.swimSubsJanToJune) == false && DateTime.Now.Month <= 6;
-			ShowBuySwimSubs2 = GetMemberBool(memberData, MemberProperty.SwimSubsJulyToDec) == false;
-
 			string membershipTypeValue = memberData[MemberProperty.membershipType] as string;
+			var memberType = MembershipType.Individual;
 			if (string.IsNullOrWhiteSpace(membershipTypeValue) == false)
 			{
 				//Sadly there is no nicer way to do this as umbraco gives us an int as a string object! 
 				int membershipTypeInt;
 				if (int.TryParse(membershipTypeValue, out membershipTypeInt))
 				{
-					membershipType.Text = ((MembershipType) membershipTypeInt).ToString();
+					memberType = (MembershipType)membershipTypeInt;
+					membershipType.Text = ((MembershipType)membershipTypeInt).ToString();
 				}
 			}
+
+			bool renewalsEnabled = bool.Parse(ConfigurationManager.AppSettings["renewalsEnabled"]);
+			if (renewalsEnabled &&
+				DateTime.Now.Month > 2 &&
+				memberType != MembershipType.Guest &&
+				(membershipExpiryDate.HasValue == false || membershipExpiryDate.Value.Year <= DateTime.Now.Year))
+			{
+				EnableMemberRenewal = true;
+			}
+			else
+			{
+				EnableMemberRenewal = false;
+			}
+
+			EnableUpgrade = memberType == MembershipType.Guest;
+
+			ShowBuySwimSubs1 = GetMemberBool(memberData, MemberProperty.swimSubsJanToJune) == false && DateTime.Now.Month <= 6;
+			ShowBuySwimSubs2 = GetMemberBool(memberData, MemberProperty.SwimSubsJulyToDec) == false;
+
+			
 
 			membershipOptionalExtras.Text = string.Join("<br/>", OptionalExtras(memberData));
 			

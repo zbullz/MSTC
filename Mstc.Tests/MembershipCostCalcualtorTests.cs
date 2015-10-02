@@ -29,7 +29,7 @@ namespace Mstc.Tests
 
 		public class when_getting_discounted_type_cost_months : WithSubject<MembershipCostCalculator>
 		{
-			private Because of = () => discountedMonths = Subject.DiscountedMonths;
+			private Because of = () => discountedMonths = MembershipCostCalculator.DiscountedMonths;
 
 			private It includes_October_November_December_Januaray_Feburary = () =>
 			{

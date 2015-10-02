@@ -5,11 +5,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using cFront.Umbraco;
+using Mstc.Core.Domain;
 using Mstc.Core.Providers;
-using Newtonsoft.Json;
 using umbraco.cms.businesslogic.member;
 
-public partial class usercontrols_cFront_RenewMemberComplete : System.Web.UI.UserControl
+public partial class masterpages_MstcMemberRenewalComplete : System.Web.UI.MasterPage
 {
 	protected SessionProvider _sessionProvider;
 	protected SessionProvider SessionProvider
@@ -25,10 +25,13 @@ public partial class usercontrols_cFront_RenewMemberComplete : System.Web.UI.Use
 	}
 
 	protected void Page_Load(object sender, EventArgs e)
-    {
+	{
 		if (IsPostBack == false)
 		{
 			var member = Member.GetCurrentMember();
+			IDictionary<String, object> currentmemdata = MemberHelper.Get();
+			litAction.Text = IsRenewing(currentmemdata) ? "renewing" : "upgrading";
+
 			var membershipOptions = SessionProvider.RenewalOptions;
 			if (member == null || membershipOptions == null)
 			{
@@ -36,20 +39,37 @@ public partial class usercontrols_cFront_RenewMemberComplete : System.Web.UI.Use
 			}
 
 			//lblQueryString.Text = Request.QueryString["resource_uri"];
-		    if (Request.QueryString["resource_uri"] != null)
-		    {
-			    ConfirmPaymentRequest();
-		    }
+			if (Request.QueryString["resource_uri"] != null)
+			{
+				ConfirmPaymentRequest();
+			}
 			var memberProvider = new MemberProvider();
 			memberProvider.UpdateMemberOptions(member, membershipOptions);
 
 			SessionProvider.RenewalOptions = null;
-	    }
-    }
+		}
+	}
 
 	private void ConfirmPaymentRequest()
 	{
 		var goCardlessProvider = new GoCardlessProvider();
 		goCardlessProvider.ConfirmBill(Request.QueryString);
+	}
+
+	private bool IsRenewing(IDictionary<String, object> currentmemdata)
+	{
+		string membershipTypeValue = currentmemdata[MemberProperty.membershipType] as string;
+		if (string.IsNullOrWhiteSpace(membershipTypeValue) == false)
+		{
+			//Sadly there is no nicer way to do this as umbraco gives us an int as a string object! 
+			int membershipTypeInt;
+			if (int.TryParse(membershipTypeValue, out membershipTypeInt))
+			{
+				return (MembershipType) membershipTypeInt != MembershipType.Guest;
+			}
+		}
+
+		return true;
+
 	}
 }

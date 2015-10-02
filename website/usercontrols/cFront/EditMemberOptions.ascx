@@ -3,9 +3,16 @@
 <h2>Membership</h2>
 
 <div class="contact-form-wrapper">
-    <div class="form-group <%=EnableRenewal ? "" : "hide"%>">
+    <div class="form-group <%=EnableMemberRenewal ? "" : "hide"%>">
         <div class="col-sm-12">
             <umbraco:Macro ID="membershipRenewalPageMacro" runat="server" Language="cshtml" linkID="[#membershipRenewalPage]" linkText="Renew now"
+                Class="btn btn-yellow pull-left">@RenderPage("~/macroscripts/PageLink.cshtml")
+            </umbraco:Macro>
+        </div>
+    </div>
+    <div class="form-group <%=EnableUpgrade ? "" : "hide"%>">
+        <div class="col-sm-12">
+            <umbraco:Macro ID="Macro3" runat="server" Language="cshtml" linkID="[#membershipRenewalPage]" linkText="Upgrade now"
                 Class="btn btn-yellow pull-left">@RenderPage("~/macroscripts/PageLink.cshtml")
             </umbraco:Macro>
         </div>

@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using cFront.Umbraco;
+using GoCardlessSdk.Connect;
 using Mstc.Core.Domain;
 using Mstc.Core.Providers;
 using Newtonsoft.Json;
-using cFront.Umbraco.Membership;
-using GoCardlessSdk.Connect;
 using umbraco.BusinessLogic;
 
-public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
+public partial class masterpages_MstcMemberRenewal : System.Web.UI.MasterPage
 {
-    protected void Page_Load(object sender, EventArgs e)
-    {
-
-    }
+	protected void Page_Load(object sender, EventArgs e)
+	{
+		IDictionary<String, object> currentmemdata = MemberHelper.Get();
+		litActionType.Text = IsRenewing(currentmemdata) ? "renew" : "upgrade";
+		litTitleActionType.Text = IsRenewing(currentmemdata) ? "Renew" : "Upgrade";
+	}
 
 	protected void RenewMember_OnClick(object sender, EventArgs e)
 	{
@@ -32,13 +34,17 @@ public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
 		sessionProvider.RenewalOptions = membershipOptions;
 
 		Log.Add(LogTypes.Custom, - 1,
-			string.Format("Membership renewal request: {0}, {1}", currentmemdata[MemberProperty.Email],
+			string.Format("Membership {0} request: {1}, {2}", IsRenewing(currentmemdata) ? "renewal" : "upgrade",
+				currentmemdata[MemberProperty.Email],
 				JsonConvert.SerializeObject(membershipOptions)));
 
 		decimal cost = (new MembershipCostCalculator()).Calculate(membershipOptions, DateTime.Now);
 		string memberEmail = currentmemdata[MemberProperty.Email] as string;
-		RedirectToGocardless(memberEmail, cost, GetPaymentDescription(membershipOptions));
-		//RedirectToCompletePage(); //Can use this for local testing
+
+		string billName = string.Format("MSTC Membership {0}", IsRenewing(currentmemdata) ? "Renewal" : "Upgrade");
+		var memberProvider = new MemberProvider();
+		//RedirectToGocardless(billName, memberEmail, cost, memberProvider.GetPaymentDescription(membershipOptions));
+		RedirectToCompletePage(); //Can use this for local testing
 	}
 
 	private void RedirectToCompletePage()
@@ -49,12 +55,12 @@ public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
 		Response.Redirect(redirectUrl);
 	}
 
-	private void RedirectToGocardless(string memberEmail, decimal cost, string description)
+	private void RedirectToGocardless(string billName, string memberEmail, decimal cost, string description)
 	{
 		var goCardlessProvider = new GoCardlessProvider();
 		var billRequest = new BillRequest(goCardlessProvider.MerchantId, cost)
 		{
-			Name = "MSTC Membership Renewal",
+			Name = billName,
 			Description = description,
 			User = new UserRequest()
 			{
@@ -72,18 +78,19 @@ public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
 		Response.Redirect(paymentGatewayUrl);
 	}
 
-	private string GetPaymentDescription(MembershipOptions membershipOptions)
+	private bool IsRenewing(IDictionary<String, object> currentmemdata)
 	{
-		List<string> descriptionList = new List<string>() {membershipOptions.MembershipType.ToString()};
-		if (membershipOptions.SwimSubsJanToJune)
+		string membershipTypeValue = currentmemdata[MemberProperty.membershipType] as string;
+		if (string.IsNullOrWhiteSpace(membershipTypeValue) == false)
 		{
-			descriptionList.Add("Swim subs Jan to June");
-		}
-		if (membershipOptions.SwimSubsJulyToDec)
-		{
-			descriptionList.Add("Swim subs July to Dec");
+			//Sadly there is no nicer way to do this as umbraco gives us an int as a string object! 
+			int membershipTypeInt;
+			if (int.TryParse(membershipTypeValue, out membershipTypeInt))
+			{
+				return (MembershipType)membershipTypeInt != MembershipType.Guest;
+			}
 		}
 
-		return string.Join(", ", descriptionList);
+		return true;
 	}
 }

@@ -1,12 +1,9 @@
-﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" CodeFile="MstcMemberRenewalComplete.master.cs" Inherits="masterpages_MstcMemberRenewalComplete" %>
 
-<%@ Register TagPrefix="cf" TagName="RenewMemberComplete" Src="~/usercontrols/cFront/RenewMemberComplete.ascx" %>
-
-<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="PageScripts" Runat="Server">
 </asp:Content>
-
-<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MainContent">
-    <!-- Page Title -->
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
+        <!-- Page Title -->
     <div class="section section-breadcrumbs">
         <div class="container">
             <div class="row">
@@ -30,7 +27,8 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <cf:RenewMemberComplete ID="renewMemberComplete" runat="server" />
+                        <p>Thank you for <asp:Literal ID="litAction" runat="server"></asp:Literal> your membership.</p> 
+                        <p>Please go to <a href="/members-area/my-details">your details page</a> to make sure your information is up to date and retrieve your open water swim authorisation number.</p>
                     </div>
                 </div>
             </div>
@@ -45,6 +43,6 @@
     </div>
 
 </asp:Content>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="FooterScripts" runat="server">
+<asp:Content ID="Content3" ContentPlaceHolderID="FooterScripts" Runat="Server">
 </asp:Content>
+

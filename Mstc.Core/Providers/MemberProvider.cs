@@ -14,11 +14,19 @@ namespace Mstc.Core.Providers
 	/// </summary>
 	public class MemberProvider
 	{
-		public MemberProvider()
+		public string GetPaymentDescription(MembershipOptions membershipOptions)
 		{
-			//
-			// TODO: Add constructor logic here
-			//
+			List<string> descriptionList = new List<string>() { membershipOptions.MembershipType.ToString() };
+			if (membershipOptions.SwimSubsJanToJune)
+			{
+				descriptionList.Add("Swim subs Jan to June");
+			}
+			if (membershipOptions.SwimSubsJulyToDec)
+			{
+				descriptionList.Add("Swim subs July to Dec");
+			}
+
+			return string.Join(", ", descriptionList);
 		}
 
 		public DateTime GetNewMemberExpiry(DateTime currentDate)
