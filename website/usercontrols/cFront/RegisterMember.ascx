@@ -4,7 +4,11 @@
 <%@ Register TagPrefix="cf" TagName="MembershipOptions" Src="~/usercontrols/cFront/MembershipOptions.ascx" %>
 
 <div class="form-wrapper">
-    <p>Please complete the form below to register for membership to the club</p>
+    <p>Please complete the form below to register for membership to the club. <br/>
+        Membership runs from 1st April to 31st March. <br/> 
+        If you are registering in March then your membership will also be valid for the next year.
+    </p>
+
     <!--Registration details-->
     <cf:RegistrationDetails ID="registrationDetailsControl" runat="server" />
 

@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="MembershipOptions.ascx.cs" Inherits="usercontrols_cFront_MembershipOptions" %>
+<%@ Import Namespace="Mstc.Core.Providers" %>
 
-    <div class="member-options">
+<div class="member-options">
         <div class="form-group">
             <h3 class="col-sm-12">Membership options</h3>
         </div>
@@ -10,9 +11,12 @@
                 <asp:RadioButtonList ID="membershipType" runat="server" RepeatLayout="Flow" CssClass="radio"></asp:RadioButtonList>
                 <asp:RequiredFieldValidator ID="requiredMembershipType" runat="server" ErrorMessage="Please select your membership type" 
                     ControlToValidate="membershipType" CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
+            <% if (MembershipCostCalculator.DiscountedMonths.Contains(DateTime.Now.Month)) { %>
+                <span class="help-block alert-success">Good news! The 50% second half season discount has been applied!</span>
+            <% } %>
             </div>
-
         </div>
+        <p>Please note, between October and the end of Feburary the membership costs are at a 50% discounted rate.</p>
         <div class="form-group">
             <label for="contact-email" class="col-sm-2 control-label"><b>Optional extras</b></label>
             <div class="col-sm-10">

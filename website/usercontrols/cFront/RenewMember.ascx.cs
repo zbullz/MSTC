@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Mstc.Core.Domain;
 using Mstc.Core.Providers;
 using Newtonsoft.Json;
 using cFront.Umbraco.Membership;
-using GoCardlessSdk;
 using GoCardlessSdk.Connect;
 using umbraco.BusinessLogic;
 
@@ -42,7 +35,7 @@ public partial class usercontrols_cFront_RenewMember : System.Web.UI.UserControl
 			string.Format("Membership renewal request: {0}, {1}", currentmemdata[MemberProperty.Email],
 				JsonConvert.SerializeObject(membershipOptions)));
 
-		decimal cost = (new MembershipCostCalcualtor()).Calculate(membershipOptions);
+		decimal cost = (new MembershipCostCalculator()).Calculate(membershipOptions, DateTime.Now);
 		string memberEmail = currentmemdata[MemberProperty.Email] as string;
 		RedirectToGocardless(memberEmail, cost, GetPaymentDescription(membershipOptions));
 		//RedirectToCompletePage(); //Can use this for local testing

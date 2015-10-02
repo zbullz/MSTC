@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Mstc.Core.Domain;
 
 namespace Mstc.Core.Providers
@@ -6,7 +7,7 @@ namespace Mstc.Core.Providers
 	/// <summary>
 	/// Summary description for MembershipCostCalcualtor
 	/// </summary>
-	public class MembershipCostCalcualtor
+	public class MembershipCostCalculator
 	{
 		private Dictionary<MembershipType, decimal> TypeCosts = new Dictionary<MembershipType, decimal>()
 		{
@@ -15,11 +16,21 @@ namespace Mstc.Core.Providers
 			{MembershipType.Concession, new decimal(30.00)},
 		};
 
+		public static List<int> DiscountedMonths
+		{
+			get { return new List<int>() {10, 11, 12, 1, 2}; }
+		}
+
 		private decimal SwimsSubsCost = new decimal(30);
 
-		public decimal Calculate(MembershipOptions membershipOptions)
+		public decimal GetTypeCost(MembershipType type, DateTime currentDate)
 		{
-			var cost = TypeCosts[membershipOptions.MembershipType];		
+			return DiscountedMonths.Contains(currentDate.Month) ? TypeCosts[type]/2 : TypeCosts[type];
+		}
+
+		public decimal Calculate(MembershipOptions membershipOptions, DateTime currentDate)
+		{
+			var cost = GetTypeCost(membershipOptions.MembershipType, currentDate);		
 			if (membershipOptions.SwimSubsJanToJune)
 			{
 				cost += SwimsSubsCost;

@@ -1,16 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Mstc.Core.Domain;
 using Mstc.Core.Providers;
 using Newtonsoft.Json;
-using cFront.Umbraco.Membership;
-using GoCardlessSdk;
 using GoCardlessSdk.Connect;
 using umbraco.BusinessLogic;
 
@@ -40,7 +32,7 @@ public partial class usercontrols_cFront_RegisterMember : System.Web.UI.UserCont
 		Log.Add(LogTypes.Custom, -1, string.Format("New member registration request: {0}",
 			JsonConvert.SerializeObject(registrationFullDetails)));
 
-		decimal cost = (new MembershipCostCalcualtor()).Calculate(registrationFullDetails.MembershipOptions);
+		decimal cost = (new MembershipCostCalculator()).Calculate(registrationFullDetails.MembershipOptions, DateTime.Now);
 		RedirectToGocardless(registrationFullDetails.RegistrationDetails.Email, cost, GetPaymentDescription(registrationFullDetails.MembershipOptions));
 		//RedirectToCompletePage(); //Can use this for local testing
 	}

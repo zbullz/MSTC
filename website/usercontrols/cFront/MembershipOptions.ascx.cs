@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Activities.Statements;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using Mstc.Core.Domain;
+using Mstc.Core.Providers;
 
 public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserControl
 {
@@ -21,22 +18,34 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 
 	private void BindControls()
 	{
+		var membershipCostCalculator = new MembershipCostCalculator();
+
 		var membershipTypes = new List<ListItem>()
-	    {
-		    new ListItem("Individual membership - &pound;40", ((int) MembershipType.Individual).ToString()),
-		    new ListItem(
-			    @"Couple membership - &pound;35<br /> <i>Only select this option if your partner will also be renewing their membership - The membership secretary will be checking!</i>",
-			    ((int)MembershipType.Couple).ToString()),
-		    new ListItem("Unemployed/full-time student (18 years or above) - &pound;30",
-			    ((int)MembershipType.Concession).ToString())
-	    };
+		{
+			new ListItem(
+				string.Format("Individual membership - &pound;{0}",
+					membershipCostCalculator.GetTypeCost(MembershipType.Individual, DateTime.Now)),
+				((int) MembershipType.Individual).ToString()),
+			new ListItem(
+				string.Format(
+					@"Couple membership - &pound;{0}<br /> <i>Only select this option if your partner will also be renewing their membership - The membership secretary will be checking!</i>",
+					membershipCostCalculator.GetTypeCost(MembershipType.Couple, DateTime.Now)),
+				((int) MembershipType.Couple).ToString()),
+			new ListItem(
+				string.Format("Unemployed/full-time student (18 years or above) - &pound;{0}",
+					membershipCostCalculator.GetTypeCost(MembershipType.Concession, DateTime.Now)),
+				((int) MembershipType.Concession).ToString())
+		};
 		membershipType.Items.AddRange(membershipTypes.ToArray());
 
-		var extrasList = new List<ListItem>()
-	    {
-		    new ListItem("Swim subs January to June - &pound;30", MembershipExtras.SwimSubsJanToJune.ToString()),
-		    new ListItem("Swim subs July to December - &pound;30", MembershipExtras.SwimSubsJulyToDec.ToString())
-	    };
+		var extrasList = new List<ListItem>();
+
+		if (DateTime.Now.Month < 7)
+		{
+			extrasList.Add(new ListItem("Swim subs January to June - &pound;30", MembershipExtras.SwimSubsJanToJune.ToString()));
+		}
+		extrasList.Add(new ListItem("Swim subs July to December - &pound;30", MembershipExtras.SwimSubsJulyToDec.ToString()));
+	    
 		extras.Items.AddRange(extrasList.ToArray());
 
 		var indemnityOptionsList = new List<ListItem>()

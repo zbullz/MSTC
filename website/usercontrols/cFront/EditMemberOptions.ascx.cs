@@ -11,7 +11,7 @@ using Mstc.Core.Providers;
 
 public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserControl
 {
-	protected MembershipCostCalcualtor _membershipCostCalcualtor;
+	protected MembershipCostCalculator _membershipCostCalcualtor;
 
 	public bool EnableRenewal { get; set; }
 	public bool EnableOpenWater { get; set; }
@@ -22,7 +22,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 
 	protected void Page_Load(object sender, EventArgs e)
 	{
-		_membershipCostCalcualtor = new MembershipCostCalcualtor();
+		_membershipCostCalcualtor = new MembershipCostCalculator();
 	}
 
 	public void LoadOptions(IDictionary<String, object> memberData)
@@ -35,7 +35,9 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 			membershipExpiry.Text = hasExpired ? "Expired" : membershipExpiryDate.Value.ToString("dd MMM yyyy");
 
 			bool renewalsEnabled = bool.Parse(ConfigurationManager.AppSettings["renewalsEnabled"]);
-			if (renewalsEnabled && (membershipExpiryDate.HasValue == false || membershipExpiryDate.Value.Year <= DateTime.Now.Year))
+			if (renewalsEnabled &&
+				DateTime.Now.Month > 2 &&
+				(membershipExpiryDate.HasValue == false || membershipExpiryDate.Value.Year <= DateTime.Now.Year))
 			{
 				EnableRenewal = true;
 			}
