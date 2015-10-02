@@ -43,8 +43,8 @@ public partial class masterpages_MstcMemberRenewal : System.Web.UI.MasterPage
 
 		string billName = string.Format("MSTC Membership {0}", IsRenewing(currentmemdata) ? "Renewal" : "Upgrade");
 		var memberProvider = new MemberProvider();
-		//RedirectToGocardless(billName, memberEmail, cost, memberProvider.GetPaymentDescription(membershipOptions));
-		RedirectToCompletePage(); //Can use this for local testing
+		RedirectToGocardless(billName, memberEmail, cost, memberProvider.GetPaymentDescription(membershipOptions));
+		//RedirectToCompletePage(); //Can use this for local testing
 	}
 
 	private void RedirectToCompletePage()
