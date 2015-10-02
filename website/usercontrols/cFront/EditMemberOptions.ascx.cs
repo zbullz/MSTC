@@ -63,10 +63,8 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 
 			EnableUpgrade = memberType == MembershipType.Guest;
 
-			ShowBuySwimSubs1 = GetMemberBool(memberData, MemberProperty.swimSubsJanToJune) == false && DateTime.Now.Month <= 6;
-			ShowBuySwimSubs2 = GetMemberBool(memberData, MemberProperty.SwimSubsJulyToDec) == false;
-
-			
+			ShowBuySwimSubs1 = memberType != MembershipType.Guest && GetMemberBool(memberData, MemberProperty.swimSubsJanToJune) == false && DateTime.Now.Month <= 6;
+			ShowBuySwimSubs2 = memberType != MembershipType.Guest && GetMemberBool(memberData, MemberProperty.SwimSubsJulyToDec) == false;
 
 			membershipOptionalExtras.Text = string.Join("<br/>", OptionalExtras(memberData));
 			
