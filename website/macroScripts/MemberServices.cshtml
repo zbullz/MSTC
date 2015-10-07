@@ -36,132 +36,35 @@
         {
             <!-- Team Member Photo -->
             <div class="team-member-image">
+            @if (string.IsNullOrWhiteSpace(member.ServiceLinkAddress) == false)
+            {
                 <a href="@member.ServiceLinkAddress" title="@member.Name">
                     <img src="@Library.MediaById(member.ServiceImageId).Url" alt="@member.Name" />
                 </a>
+            }
+            else
+            {
+                <img src="@Library.MediaById(member.ServiceImageId).Url" alt="@member.Name" />
+            }
             </div>
         }
             <div class="team-member-info">
                 <ul>
                     <!-- Team Member Info & Social Links -->
                     <li class="team-member-name">@member.Name</li>
-                    <li><a class="member-service-link" href="@member.ServiceLinkAddress">@member.ServiceLinkText</a></li>
+                    <li>
+                        @if (string.IsNullOrWhiteSpace(member.ServiceLinkAddress) == false)
+                        {
+                            <a class="member-service-link" href="@member.ServiceLinkAddress">@member.ServiceLinkText</a>
+                        }
+                        else
+                        {
+                            @member.ServiceLinkText
+                        }
+                    </li>
                     <li>@member.ServiceDescription</li>
                 </ul>
             </div>
         </div>
     </div>
 }
-
-
-@*<div class="section">
-    <div class="container">
-        <div class="row">
-            <!-- Team Member -->
-            <div class="col-md-4 col-sm-6">
-                <div class="team-member">
-                    <!-- Team Member Photo -->
-                    <div class="team-member-image">
-                        <a href="www.pedalmoore.co.uk" title="Pedal Moore">
-                            <img src="http://midsussextriclub.com/media/27905/trev_200.png" alt="Trevor Moore" />
-                        </a>
-                    </div>
-                    <div class="team-member-info">
-                        <ul>
-                            <!-- Team Member Info & Social Links -->
-                            <li class="team-member-name">Trevor Moore
-	    	                        </li>
-                            <li><a class="member-service-link" href="http://www.pedalmoore.co.uk">Pedal Moore</a></li>
-                            <li>A mobile bicycle mechanic service working in Brighton and the surrounding area.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- End Team Member -->
-            <div class="col-md-4 col-sm-6">
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <a href="http://kneadmemassage.co.uk/">
-                            <img src="img/members/ClaireService250x200.jpg" alt="Claire Cresswell" />
-                        </a>
-                    </div>
-                    <div class="team-member-info">
-                        <ul>
-                            <li class="team-member-name">Claire Cresswell
-	    	                        </li>
-                            <li><a class="member-service-link" href="http://kneadmemassage.co.uk/">Knead Me Massage</a></li>
-                            <li>Sports Massage Therapist</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <a href="#">
-                            <img src="http://midsussextriclub.com/media/28266/Pete2%20Photo.jpg" alt="Pete Harris"></a>
-                    </div>
-                    <div class="team-member-info">
-                        <ul>
-                            <li class="team-member-name">Pete Harris	    	                            
-	    	                        </li>
-                            <li>Landscape gardener</li>
-                            <li><a class="member-service-link" href="#">Link to service</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 col-sm-6">
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <a href="http://www.davidjonespersonaltraining.co.uk/">
-                            <img src="https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xap1/v/t1.0-9/p180x540/24267_560759753984968_142895199_n.jpg?oh=e01ce15b63925697923845c43244ea22&oe=54BDF4F2&__gda__=1424847786_527df2dd1e38e7624dbf684ccb5dbb68" alt="David Jones" />
-                        </a>
-                    </div>
-                    <div class="team-member-info">
-                        <ul>
-                            <li class="team-member-name">David Jones
-	    	                              </li>
-                            <li>Personal Trainer</li>
-                            <li><a href="http://www.davidjonespersonaltraining.co.uk/">David Jones Personal Training</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-6">
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="https://scontent-a-ams.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/282728_10150886540923355_1113114221_n.jpg?oh=9010ccae55404af5e89a899b50ae536e&oe=54F0EBEC" alt="Grant Mansfield"></div>
-                    <div class="team-member-info">
-                        <ul>
-                            <li class="team-member-name">Grant Mansfield
-	    	                        </li>
-                            <li>Swim Coach</li>
-                            <li><a href="#">Link to service</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xaf1/t31.0-8/240965_122426111172493_6196950_o.jpg" alt="Name Surname"></div>
-                    <div class="team-member-info">
-                        <ul>
-                            <li class="team-member-name">Paul Wills
-	    	                        </li>
-                            <li>Sports Injury Specialist</li>
-                            <li><a href="#">Link to service</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>*@
-
-
-
