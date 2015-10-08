@@ -1,4 +1,5 @@
 *.suo
+website/media/*
 website/App_Data/*
 packages/*
 !/packages/repositories.config
