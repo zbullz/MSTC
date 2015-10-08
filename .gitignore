@@ -1,6 +1,7 @@
 *.suo
 website/media/*
 website/App_Data/*
+website/data/Cached/*
 packages/*
 !/packages/repositories.config
 website/media/*
