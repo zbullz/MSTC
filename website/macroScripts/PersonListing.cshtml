@@ -9,6 +9,11 @@ Usage example: @RenderPage("~/macroscripts/PersonListing.cshtml")
         <div class="col-sm-4">
             <div class="service-image">
                 @{ dynamic personImage = item.PersonImage is int ? Library.MediaById(item.PersonImage) : null; }
+                @if (item.IsHeadCoach == true){
+                    <div class="ribbon-wrapper">
+                        <div class="ribbon ribbon-yellow">Head Coach</div>
+                    </div>
+                }
                 <img src="@(personImage != null ? personImage.Url : "")" alt="@item.Name">
                 <h3>@item.Name</h3>
             </div>
