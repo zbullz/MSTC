@@ -42,9 +42,9 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 
 		if (DateTime.Now.Month < 7)
 		{
-			extrasList.Add(new ListItem("Swim subs January to June - &pound;30", MembershipExtras.SwimSubsJanToJune.ToString()));
+			extrasList.Add(new ListItem("Swim subs April to Sept - &pound;30", MembershipExtras.SwimSubsAprToSept.ToString()));
 		}
-		extrasList.Add(new ListItem("Swim subs July to December - &pound;30", MembershipExtras.SwimSubsJulyToDec.ToString()));
+		extrasList.Add(new ListItem("Swim subs Oct to March - &pound;30", MembershipExtras.SwimSubsOctToMar.ToString()));
 	    
 		extras.Items.AddRange(extrasList.ToArray());
 
@@ -68,12 +68,12 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 
 	public MembershipOptions GetMembershipOptions()
 	{
-		var swimSubJanToJuneItem = extras.Items.FindByValue(MembershipExtras.SwimSubsJanToJune.ToString());
+		var swimSubAprToSeptItem = extras.Items.FindByValue(MembershipExtras.SwimSubsAprToSept.ToString());
 		return new MembershipOptions()
 		{
 			MembershipType = (MembershipType) Enum.Parse(typeof(MembershipType), membershipType.SelectedValue),
-			SwimSubsJanToJune = swimSubJanToJuneItem != null && swimSubJanToJuneItem.Selected,
-			SwimSubsJulyToDec = extras.Items.FindByValue(MembershipExtras.SwimSubsJulyToDec.ToString()).Selected,
+			SwimSubsAprToSept = swimSubAprToSeptItem != null && swimSubAprToSeptItem.Selected,
+			SwimSubsOctToMar = extras.Items.FindByValue(MembershipExtras.SwimSubsOctToMar.ToString()).Selected,
 			OpenWaterIndemnityAcceptance = indemnityOptions.SelectedValue == AcceptIndemnity,
 			Volunteering = true //Hardcode to true as can't renew unless this is selected :)
 		};

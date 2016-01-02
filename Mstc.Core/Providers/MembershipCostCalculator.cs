@@ -31,11 +31,11 @@ namespace Mstc.Core.Providers
 		public decimal Calculate(MembershipOptions membershipOptions, DateTime currentDate)
 		{
 			var cost = GetTypeCost(membershipOptions.MembershipType, currentDate);		
-			if (membershipOptions.SwimSubsJanToJune)
+			if (membershipOptions.SwimSubsAprToSept)
 			{
 				cost += SwimsSubsCost;
 			}
-			if (membershipOptions.SwimSubsJulyToDec)
+			if (membershipOptions.SwimSubsOctToMar)
 			{
 				cost += SwimsSubsCost;
 			}

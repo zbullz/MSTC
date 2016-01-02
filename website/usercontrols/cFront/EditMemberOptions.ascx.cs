@@ -17,6 +17,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 	public bool EnableOpenWater { get; set; }
 	public bool ShowMemberAdminLink { get; set; }
 	public bool ShowSwimAdminLink { get; set; }
+	public bool ShowBuySwimSubsSpecial { get; set; }
 	public bool ShowBuySwimSubs1 { get; set; }
 	public bool ShowBuySwimSubs2 { get; set; }
 	public bool EnableUpgrade { get; set; }
@@ -63,8 +64,9 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 
 			EnableUpgrade = memberType == MembershipType.Guest;
 
-			ShowBuySwimSubs1 = memberType != MembershipType.Guest && GetMemberBool(memberData, MemberProperty.swimSubsJanToJune) == false && DateTime.Now.Month <= 6;
-			ShowBuySwimSubs2 = memberType != MembershipType.Guest && GetMemberBool(memberData, MemberProperty.SwimSubsJulyToDec) == false;
+			ShowBuySwimSubsSpecial = memberType != MembershipType.Guest && GetMemberBool(memberData, MemberProperty.swimSubsJanToMar) == false && DateTime.Now.Month <= 3;
+			ShowBuySwimSubs1 = memberType != MembershipType.Guest && GetMemberBool(memberData, MemberProperty.swimSubsAprToSept) == false && DateTime.Now.Month <= 9;
+			ShowBuySwimSubs2 = memberType != MembershipType.Guest && GetMemberBool(memberData, MemberProperty.SwimSubsOctToMar) == false;
 
 			membershipOptionalExtras.Text = string.Join("<br/>", OptionalExtras(memberData));
 			
@@ -111,14 +113,17 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 	private List<string> OptionalExtras(IDictionary<String, object> memberData)
 	{
 		var extras = new List<string>();
-		
-        if (GetMemberBool(memberData, MemberProperty.swimSubsJanToJune))
+		if (GetMemberBool(memberData, MemberProperty.swimSubsJanToMar))
 		{
-			extras.Add("Pool swim Jan - June.");
+			extras.Add("Pool swim Jan - Mar.");
 		}
-		if (GetMemberBool(memberData, MemberProperty.SwimSubsJulyToDec))
+        if (GetMemberBool(memberData, MemberProperty.swimSubsAprToSept))
 		{
-			extras.Add("Pool swim July - Dec.");
+			extras.Add("Pool swim Apr - Sept.");
+		}
+		if (GetMemberBool(memberData, MemberProperty.SwimSubsOctToMar))
+		{
+			extras.Add("Pool swim Oct - Mar.");
 		}
 
         if (extras.Any() == false)
@@ -143,6 +148,11 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
         }
         return value;
     }
+
+	public void btn_BuySwimSubsSpecialClick(object sender, EventArgs e)
+	{
+		MakeSwimSubsPayment(PaymentStates.SS05996);
+	}
 
 	public void btn_BuySwimSubs1Click(object sender, EventArgs e)
 	{
@@ -174,7 +184,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 		var goCardlessProvider = new GoCardlessProvider();
 
 		MembershipType memberType = (MembershipType)Enum.Parse(typeof(MembershipType), membershipType.Text);
-		var redirectUrl = goCardlessProvider.CreateSimpleBill(hiddenEmail.Value, 30m,
+		var redirectUrl = goCardlessProvider.CreateSimpleBill(hiddenEmail.Value, paymentState == PaymentStates.SS05996 ? 15m : 30m,
 			"Swim subs payment",
 			string.Format("{0}", paymentState.GetAttributeOfType<DescriptionAttribute>().Description), paymentState, Request.Url);
 

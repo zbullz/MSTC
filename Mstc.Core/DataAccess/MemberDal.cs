@@ -86,8 +86,8 @@ namespace Mstc.Core.DataAccess
 			string query = BaseSelectQuery +
 			               string.Format(@" WHERE	(MemberList.nodeId IS NOT NULL)
 					        and MemberTypes.Alias in ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}')",
-				               MemberProperty.Phone, MemberProperty.membershipType, MemberProperty.swimSubsJanToJune,
-				               MemberProperty.SwimSubsJulyToDec, MemberProperty.OpenWaterIndemnityAcceptance,
+				               MemberProperty.Phone, MemberProperty.membershipType, MemberProperty.swimSubsAprToSept,
+				               MemberProperty.SwimSubsOctToMar, MemberProperty.OpenWaterIndemnityAcceptance,
 				               MemberProperty.Volunteering, MemberProperty.MembershipExpiry, MemberProperty.SwimAuthNumber,
 				               MemberProperty.DuathlonEntered, MemberProperty.SwimCreditsBought, MemberProperty.SwimCreditsUsed,
 				               MemberProperty.TriFestEntry, MemberProperty.CharitySwimEntry);
@@ -163,8 +163,8 @@ namespace Mstc.Core.DataAccess
 				Email = groupedMemberData.Key,
 
 				Phone = GetPropertyValueForAlias(groupedMemberData, MemberProperty.Phone),
-				SwimSubsJanToJune = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.swimSubsJanToJune)),
-				SwimSubsJulyToDec = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.SwimSubsJulyToDec)),
+				SwimSubsJanToJune = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.swimSubsAprToSept)),
+				SwimSubsJulyToDec = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.SwimSubsOctToMar)),
 				DuathlonEntered = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.DuathlonEntered)),
 				OpenWaterIndemnityAcceptance =
 					GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.OpenWaterIndemnityAcceptance)),

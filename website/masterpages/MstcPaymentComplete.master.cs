@@ -105,6 +105,7 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 			}
 			case PaymentStates.SS05991:
 			case PaymentStates.SS05992:
+			case PaymentStates.SS05996:
 			{
 				UpdateMemberSwimSubs(currentmemdata, paymentState);
 				DisplaySwimSubsConfirmationMessage(paymentState);
@@ -164,11 +165,15 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 	{
 		if (paymentState == PaymentStates.SS05991)
 		{
-			currentmemdata[MemberProperty.swimSubsJanToJune] = true;
+			currentmemdata[MemberProperty.swimSubsAprToSept] = true;
 		}
 		if (paymentState == PaymentStates.SS05992)
 		{
-			currentmemdata[MemberProperty.SwimSubsJulyToDec] = true;
+			currentmemdata[MemberProperty.SwimSubsOctToMar] = true;
+		}
+		if (paymentState == PaymentStates.SS05996)
+		{
+			currentmemdata[MemberProperty.swimSubsJanToMar] = true;
 		}
 
 		MemberHelper.Update(currentmemdata);

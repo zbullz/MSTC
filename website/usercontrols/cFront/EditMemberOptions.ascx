@@ -41,14 +41,19 @@
             </p>
         </div>
     </div>
+    <div class="form-group <%=ShowBuySwimSubsSpecial ? "" : "hide"%>">
+        <div class="col-sm-12">
+            <asp:Button ID="BuySwimSubsSpecial" runat="server" Text="Buy pool swim subs Jan-Mar" CssClass="btn btn-yellow pull-left" OnClick="btn_BuySwimSubsSpecialClick" />
+        </div>
+    </div>
     <div class="form-group <%=ShowBuySwimSubs1 ? "" : "hide"%>">
         <div class="col-sm-12">
-            <asp:Button ID="BuySwimSubs1" runat="server" Text="Buy pool swim subs Jan-June" CssClass="btn btn-yellow pull-left" OnClick="btn_BuySwimSubs1Click" />
+            <asp:Button ID="BuySwimSubs1" runat="server" Text="Buy pool swim subs Apr-Sept" CssClass="btn btn-yellow pull-left" OnClick="btn_BuySwimSubs1Click" />
         </div>
     </div>
     <div class="form-group <%=ShowBuySwimSubs2 ? "" : "hide"%>">
         <div class="col-sm-12">
-            <asp:Button ID="BuySwimSubs2" runat="server" Text="Buy pool swim subs July-Dec" CssClass="btn btn-yellow pull-left" OnClick="btn_BuySwimSubs2Click" />
+            <asp:Button ID="BuySwimSubs2" runat="server" Text="Buy pool swim subs Oct-Mar" CssClass="btn btn-yellow pull-left" OnClick="btn_BuySwimSubs2Click" />
         </div>
     </div>
     

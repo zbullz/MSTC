@@ -2,7 +2,7 @@
 {
 	public enum MembershipExtras
 	{
-		SwimSubsJanToJune,
-		SwimSubsJulyToDec
+		SwimSubsAprToSept,
+		SwimSubsOctToMar
 	}
 }

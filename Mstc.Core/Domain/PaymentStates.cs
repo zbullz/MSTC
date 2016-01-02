@@ -22,7 +22,8 @@ namespace Mstc.Core.Domain
 		[Description("Charity Swim - 3km, 5km")] E00S3KM5KM306C = 306,
 		[Description("Charity Swim - 1km, 3km, 5km")] E00S1KM3KM5KM307C = 307,
 
-		[Description("Swim subs Jan to June")] SS05991 = 401,
-		[Description("Swim subs July to December")] SS05992 = 402
+		[Description("Swim subs Apr to Sept")] SS05991 = 401,
+		[Description("Swim subs Oct to Mar")] SS05992 = 402,
+		[Description("Swim subs Jan to Mar")] SS05996 = 403,
 	}
 }

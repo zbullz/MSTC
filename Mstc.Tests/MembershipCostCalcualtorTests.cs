@@ -48,8 +48,8 @@ namespace Mstc.Tests
 			private Because of = () => cost = Subject.Calculate(new MembershipOptions()
 			{
 				MembershipType = MembershipType.Individual,
-				SwimSubsJanToJune = true,
-				SwimSubsJulyToDec = true
+				SwimSubsAprToSept = true,
+				SwimSubsOctToMar = true
 			},
 				new DateTime(DateTime.Now.Year, 9, 1));
 

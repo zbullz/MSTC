@@ -28,8 +28,9 @@
 		public const string serviceDescription = "serviceDescription";
 
 		public const string membershipType = "membershipType";
-		public const string swimSubsJanToJune = "swimSubsJanToJune";
-		public const string SwimSubsJulyToDec = "swimSubsJulyToDec";
+		public const string swimSubsJanToMar = "swimSubsJanToMar";
+		public const string swimSubsAprToSept = "swimSubsAprToSept";
+		public const string SwimSubsOctToMar = "swimSubsOctToMar";
 		public const string OpenWaterIndemnityAcceptance = "openWaterIndemnityAcceptance";
 		public const string Volunteering = "volunteering";
 		public const string MembershipExpiry = "membershipExpiry";

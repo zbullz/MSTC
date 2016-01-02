@@ -44,8 +44,8 @@ public partial class masterpages_MstcGuestRegistration : System.Web.UI.MasterPag
 			{
 				MembershipType = MembershipType.Guest,
 				OpenWaterIndemnityAcceptance = openWaterSwimAccepted,
-				SwimSubsJanToJune = false,
-				SwimSubsJulyToDec = false,
+				SwimSubsAprToSept = false,
+				SwimSubsOctToMar = false,
 				Volunteering = false,
 				GuestCode = tbSecretCode.Text,
 				ReferredByMember = tbMemberReferred.Text

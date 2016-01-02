@@ -17,11 +17,11 @@ namespace Mstc.Core.Providers
 		public string GetPaymentDescription(MembershipOptions membershipOptions)
 		{
 			List<string> descriptionList = new List<string>() { membershipOptions.MembershipType.ToString() };
-			if (membershipOptions.SwimSubsJanToJune)
+			if (membershipOptions.SwimSubsAprToSept)
 			{
 				descriptionList.Add("Swim subs Jan to June");
 			}
-			if (membershipOptions.SwimSubsJulyToDec)
+			if (membershipOptions.SwimSubsOctToMar)
 			{
 				descriptionList.Add("Swim subs July to Dec");
 			}
@@ -92,8 +92,8 @@ namespace Mstc.Core.Providers
 		{
 			currentmemdata[MemberProperty.membershipType] = ((int)membershipOptions.MembershipType).ToString();
 			currentmemdata[MemberProperty.OpenWaterIndemnityAcceptance] = membershipOptions.OpenWaterIndemnityAcceptance;
-			currentmemdata[MemberProperty.swimSubsJanToJune] = membershipOptions.SwimSubsJanToJune;
-			currentmemdata[MemberProperty.SwimSubsJulyToDec] = membershipOptions.SwimSubsJulyToDec;
+			currentmemdata[MemberProperty.swimSubsAprToSept] = membershipOptions.SwimSubsAprToSept;
+			currentmemdata[MemberProperty.SwimSubsOctToMar] = membershipOptions.SwimSubsOctToMar;
 			currentmemdata[MemberProperty.Volunteering] = membershipOptions.Volunteering;
 			currentmemdata[MemberProperty.MembershipExpiry] = membershipExpiry;
 			if (zeroSwimCredits)
