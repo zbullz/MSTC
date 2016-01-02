@@ -5,8 +5,7 @@
 
 <div class="form-wrapper">
     <p>Please complete the form below to register for membership to the club. <br/>
-        Membership runs from 1st April to 31st March. <br/> 
-        If you are registering in March then your membership will also be valid for the next year.
+        Current membership runs from <strong>1st April <%=FromYear %></strong> to <strong>31st March <%=ToYear %></strong>.
     </p>
 
     <!--Registration details-->
@@ -18,7 +17,7 @@
     <div class="form-group">
         <div class="col-sm-2"></div>
         <div class="col-sm-10">
-            <asp:Button ID="RenewMember" runat="server" Text="Continue to payment" CssClass="btn pull-left btn-yellow" OnClick="RegisterMember_OnClick" />
+            <asp:Button ID="RegisterMember" runat="server" Text="Continue to payment" CssClass="btn pull-left btn-yellow" OnClick="RegisterMember_OnClick" />
         </div>
     </div>
     

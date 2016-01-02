@@ -49,6 +49,9 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 				}
 			}
 
+			EnableMemberRenewal = true;
+
+			/*
 			bool renewalsEnabled = bool.Parse(ConfigurationManager.AppSettings["renewalsEnabled"]);
 			if (renewalsEnabled &&
 				DateTime.Now.Month > 2 &&
@@ -60,7 +63,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 			else
 			{
 				EnableMemberRenewal = false;
-			}
+			}*/
 
 			EnableUpgrade = memberType == MembershipType.Guest;
 

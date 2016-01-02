@@ -68,4 +68,7 @@ public partial class usercontrols_cFront_RegisterMember : System.Web.UI.UserCont
 		string paymentGatewayUrl = goCardlessProvider.CreateBill(billRequest, redirectUrl, cancelUrl);
 		Response.Redirect(paymentGatewayUrl);
 	}
+
+	public int FromYear { get { return DateTime.Now.Month < 3 ? DateTime.Now.Year - 1 : DateTime.Now.Year; } }
+	public int ToYear { get { return DateTime.Now.Month < 3 ? DateTime.Now.Year : DateTime.Now.Year + 1; } }
 }

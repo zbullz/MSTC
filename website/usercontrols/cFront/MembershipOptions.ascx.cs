@@ -40,7 +40,7 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 
 		var extrasList = new List<ListItem>();
 
-		if (DateTime.Now.Month < 7)
+		if (2 < DateTime.Now.Month && DateTime.Now.Month < 10)
 		{
 			extrasList.Add(new ListItem("Swim subs April to Sept - &pound;30", MembershipExtras.SwimSubsAprToSept.ToString()));
 		}
