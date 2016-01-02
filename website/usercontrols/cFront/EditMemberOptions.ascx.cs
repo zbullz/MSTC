@@ -137,7 +137,8 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
     private bool GetMemberBool(IDictionary<String, object> memberData, string memberPropertyName)
     {
         bool value = false;
-        object propertyValue = memberData[memberPropertyName];
+        object propertyValue;
+	    memberData.TryGetValue(memberPropertyName, out propertyValue);
         if (propertyValue != null)
         {
             int valueInt;
