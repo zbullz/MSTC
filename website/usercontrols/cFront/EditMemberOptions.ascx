@@ -56,7 +56,7 @@
             <asp:Button ID="BuySwimSubs2" runat="server" Text="Buy pool swim subs Oct-Mar" CssClass="btn btn-yellow pull-left" OnClick="btn_BuySwimSubs2Click" />
         </div>
     </div>
-    
+
 
     <div class="form-group <%=ShowMemberAdminLink ? "" : "hide"%>">
         <label class="col-sm-6 control-label"><b>Super secret admin page:</b></label>
@@ -68,16 +68,33 @@
     </div>
 </div>
 
-<div id="open-water-section" class="<%=EnableOpenWater ? "" : "hide"%>">
+<div id="open-water-section">
     <h2>Open Water Swim</h2>
     <div class="contact-form-wrapper">
-        <div class="form-group">
-            <label class="col-sm-6 control-label"><b>O/W swim auth number:</b></label>
-            <div class="col-sm-6 member-date">
-                <p>
-                    <asp:HyperLink ID="openWaterAuthNumber" runat="server" data-toggle="tooltip" data-placement="bottom"
-                        title="Take this number with you to open water swim sessions. You can't get in the water unless you have your number!"></asp:HyperLink>
-                </p>
+        <div class="<%=EnableOpenWater ? "" : "hide"%>">
+            <div class="form-group">
+                <label class="col-sm-6 control-label"><b>O/W swim auth number:</b></label>
+                <div class="col-sm-6 member-date">
+                    <p>
+                        <asp:HyperLink ID="openWaterAuthNumber" runat="server" data-toggle="tooltip" data-placement="bottom"
+                            title="Take this number with you to open water swim sessions. You can't get in the water unless you have your number!"></asp:HyperLink>
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <asp:Button ID="btn_5SwimCredits" runat="server" Text="Buy 5 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_5SwimCreditsClick" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <asp:Button ID="btn_10SwimCredits" runat="server" Text="Buy 10 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_10SwimCreditsClick" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <asp:Button ID="btn_15SwimCredits" runat="server" Text="Buy 15 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_15SwimCreditsClick" />
+                </div>
             </div>
         </div>
         <div class="form-group">
@@ -87,21 +104,6 @@
                     <asp:Literal ID="litSwimCredits" runat="server"></asp:Literal>
                     <asp:HiddenField ID="hiddenEmail" runat="server" />
                 </p>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-12">
-                <asp:Button ID="btn_5SwimCredits" runat="server" Text="Buy 5 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_5SwimCreditsClick" />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-12">
-                <asp:Button ID="btn_10SwimCredits" runat="server" Text="Buy 10 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_10SwimCreditsClick" />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-12">
-                <asp:Button ID="btn_15SwimCredits" runat="server" Text="Buy 15 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_15SwimCreditsClick" />
             </div>
         </div>
         <div class="form-group <%=ShowSwimAdminLink ? "" : "hide"%>">
@@ -119,4 +121,3 @@
     <h2><a href="/club-events/seasons-events.aspx"><%=DateTime.Now.Year %> Club Events Entered</a></h2>
     <asp:BulletedList ID="EventList" runat="server"></asp:BulletedList>
 </div>
-
