@@ -44,16 +44,16 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 				int membershipTypeInt;
 				if (int.TryParse(membershipTypeValue, out membershipTypeInt))
 				{
-					memberType = (MembershipType)membershipTypeInt;
-					membershipType.Text = ((MembershipType)membershipTypeInt).ToString();
+					memberType = (MembershipType) membershipTypeInt;
+					membershipType.Text = ((MembershipType) membershipTypeInt).ToString();
 				}
 			}
 
 			bool renewalsEnabled = bool.Parse(ConfigurationManager.AppSettings["renewalsEnabled"]);
 			if (renewalsEnabled &&
-				DateTime.Now.Month > 2 &&
-				memberType != MembershipType.Guest &&
-				(membershipExpiryDate.HasValue == false || membershipExpiryDate.Value.Year <= DateTime.Now.Year))
+			    DateTime.Now.Month > 2 &&
+			    memberType != MembershipType.Guest &&
+			    (membershipExpiryDate.HasValue == false || membershipExpiryDate.Value.Year <= DateTime.Now.Year))
 			{
 				EnableMemberRenewal = true;
 			}
@@ -64,29 +64,31 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 
 			EnableUpgrade = memberType == MembershipType.Guest;
 
-			ShowBuySwimSubsSpecial = memberType != MembershipType.Guest && GetMemberBool(memberData, MemberProperty.swimSubsJanToMar) == false && DateTime.Now.Month <= 3;
-			ShowBuySwimSubs1 = memberType != MembershipType.Guest && GetMemberBool(memberData, MemberProperty.swimSubsAprToSept) == false && DateTime.Now.Month <= 9;
-			ShowBuySwimSubs2 = memberType != MembershipType.Guest && GetMemberBool(memberData, MemberProperty.SwimSubsOctToMar) == false;
+			ShowBuySwimSubsSpecial = memberType != MembershipType.Guest &&
+			                         GetMemberBool(memberData, MemberProperty.swimSubsJanToMar) == false &&
+			                         DateTime.Now.Month <= 3;
+			ShowBuySwimSubs1 = memberType != MembershipType.Guest &&
+			                   GetMemberBool(memberData, MemberProperty.swimSubsAprToSept) == false && DateTime.Now.Month <= 9;
+			ShowBuySwimSubs2 = memberType != MembershipType.Guest &&
+			                   GetMemberBool(memberData, MemberProperty.SwimSubsOctToMar) == false;
 
 			membershipOptionalExtras.Text = string.Join("<br/>", OptionalExtras(memberData));
-			
-		    EnableOpenWater = GetMemberBool(memberData, MemberProperty.OpenWaterIndemnityAcceptance);
-			if (EnableOpenWater)
+
+			EnableOpenWater = GetMemberBool(memberData, MemberProperty.OpenWaterIndemnityAcceptance);
+			object swimAuthObj = memberData[MemberProperty.SwimAuthNumber];
+			if (swimAuthObj != null && string.IsNullOrEmpty(swimAuthObj.ToString()) == false)
 			{
-				object swimAuthObj = memberData[MemberProperty.SwimAuthNumber];
-				if (swimAuthObj != null && string.IsNullOrEmpty(swimAuthObj.ToString()) == false)
-				{
-					openWaterAuthNumber.Text = ((int)swimAuthObj).ToString("D3");
-				}
-
-				int creditsBought = 0;
-				int.TryParse(memberData[MemberProperty.SwimCreditsBought].ToString(), out creditsBought);
-				int creditsUsed = 0;
-				int.TryParse(memberData[MemberProperty.SwimCreditsUsed].ToString(), out creditsUsed);
-				litSwimCredits.Text = (creditsBought - creditsUsed).ToString();
-
-				hiddenEmail.Value = memberData[MemberProperty.Email].ToString();
+				openWaterAuthNumber.Text = ((int) swimAuthObj).ToString("D3");
 			}
+
+			int creditsBought = 0;
+			int.TryParse(memberData[MemberProperty.SwimCreditsBought].ToString(), out creditsBought);
+			int creditsUsed = 0;
+			int.TryParse(memberData[MemberProperty.SwimCreditsUsed].ToString(), out creditsUsed);
+			litSwimCredits.Text = (creditsBought - creditsUsed).ToString();
+
+			hiddenEmail.Value = memberData[MemberProperty.Email].ToString();
+
 
 			//Bind events
 			if (GetMemberBool(memberData, MemberProperty.DuathlonEntered))
