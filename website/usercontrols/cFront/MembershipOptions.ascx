@@ -35,7 +35,7 @@
             <label class="col-sm-2 control-label"><b>Volunteering agreement*</b></label>
             <div class="col-sm-10">
                 <asp:CheckBox ID="volunteering" runat="server" CssClass="checkbox" 
-                    Text="I agree to give at least 5 hours of my time to assist in duties for the club during the current year." />
+                    Text="I agree to give my time to assist in marshalling duties this year at either the Mid Sussex Triathlon or club events." />
                 <asp:CustomValidator runat="server" ID="requiredVolunteering" OnServerValidate="CheckBoxRequired_ServerValidate" CssClass="help-block alert-danger">
                     Please accept the volunteering agreement to proceed</asp:CustomValidator>
             </div>
