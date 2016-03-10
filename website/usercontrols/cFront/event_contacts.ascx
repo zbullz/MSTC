@@ -1,4 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="event_contacts.ascx.cs" Inherits="usercontrols_cFront_event_contacts" %>
+<asp:PlaceHolder id="phMessageError" runat="server">
+    <p style="color:red;">Please enter an email address</p>
+</asp:PlaceHolder>
+
+
 <asp:PlaceHolder id="phMessageForm" runat="server">
 		<p> 
 			To contact us about the event select the appropriate person and then complete the form below and click "Send Message"
@@ -7,7 +12,8 @@
 			<label>Send To:</label>
 			<asp:DropDownList id="ddlRecipient" runat="server" CssClass="ddlbox">
 				<asp:ListItem Value="1">Steve McMenamin (Race Director)</asp:ListItem>
-				<asp:ListItem Value="3">Pippa (Sponsorship)</asp:ListItem>
+				<asp:ListItem Value="3">Emma (Sponsorship)</asp:ListItem>
+				<asp:ListItem Value="5">Roger (Press)</asp:ListItem>
 			</asp:DropDownList>
 		</p>
 		<p class="contacts_form">

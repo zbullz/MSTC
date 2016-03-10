@@ -18,10 +18,12 @@ public partial class usercontrols_cFront_event_contacts : System.Web.UI.UserCont
 		if (intViewState == 0)
 		{
 			phMessageSent.Visible = false;
+			phMessageError.Visible = false;
 			phMessageForm.Visible = true;
 		}
 		else if (intViewState == 1)
 		{
+			phMessageError.Visible = false;
 			phMessageSent.Visible = true;
 			phMessageForm.Visible = false;
 		}
@@ -30,11 +32,23 @@ public partial class usercontrols_cFront_event_contacts : System.Web.UI.UserCont
 
 	protected void SendMessage(Object s, EventArgs e)
 	{
+		if (txtEmail.Text.Contains("@") == false)
+		{
+			phMessageError.Visible = true;
+			return;
+		}
+		else
+		{
+			phMessageError.Visible = false;
+		}
+
 		string RecipientAddress = "";
 		if (ddlRecipient.SelectedItem.Value == "1")
 			RecipientAddress = "info@midsussextriclub.com";
 		else if (ddlRecipient.SelectedItem.Value == "3")
 			RecipientAddress = "sponsorship@midsussextriclub.com";
+		else if (ddlRecipient.SelectedItem.Value == "5")
+			RecipientAddress = "press@midsussextriclub.com";
 
 		MailMessage objMail = new MailMessage();
 		objMail.To.Add(RecipientAddress);
