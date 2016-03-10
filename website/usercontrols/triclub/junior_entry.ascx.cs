@@ -140,11 +140,9 @@ namespace usercontrols.triclub
 
 			objMail.Body = "<p>Thanks you for entering your child in the Tri Hub</p>" +
 			               "<h2>Payment</h2>" +
-			               "<p>Tri Hub costs&nbsp;£50 per young person, £80 for two or £100 for three.</p>" +
-			               "<p>To confirm your child's place please send your payment using one of the following methods:</p>" +
-			               "<p><a href='http://www.midsussextriclub.com/mid-sussex-triathlon-juniors/tri-hub/tri-hub-payment.aspx'>Paypal - click here to visit the TriHub payment page and pay using Paypal</a></p>" +
-			               "<p>Please pay online using BACS by putting TriHub and then your child's name as a reference</p><p>Account Name: MSTC<br />Sort code: 20-49-76<br />Account Number: 03712435<br /><br />or make cheques payable to Mid Sussex Triathlon Club and send to:</p><p><br>MSTC TriHub 12 ,Brading Road, Brighton BN2 3PD</p><p>Please enter as soon as possible as places are limited.<br /><br />It is parents/carers responsibility to enter the participants in to the East Grinstead Kidstri on the 18th May and to ensure that they get there on time. Follow the link below and enter the appropriate TS race;</p><p><a href='http://entryapp.co.uk/2014/hedgehogtri/child/'>East Grinstead Kidstri website</a></p>" +
-			               "<h2>Young Person / Triathlete details</h2><p>" + txtFirstName.Text + " " + txtLastName.Text + "</p>" +
+			               "<p>To confirm your child's place please send your payment as detailed on the payment page here:</p>" +
+			               "<p><a href='http://www.midsussextriclub.com/mid-sussex-triathlon-juniors/tri-hub/tri-hub-payment.aspx'>TriHub payment page</a></p>" +
+							"<h2>Young Person / Triathlete details</h2><p>" + txtFirstName.Text + " " + txtLastName.Text + "</p>" +
 			               "<p>Date of birth" + strDOB + ", Age:" + txtAge.Text + ", Gender: " + ddlGender.SelectedItem.Value +
 			               "</p>" +
 			               "<p>School attended" + txtSchool.Text + ", School year:" + txtSchoolYear.Text + "</p>" +
