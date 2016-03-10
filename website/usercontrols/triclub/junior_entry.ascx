@@ -143,8 +143,8 @@
 			Account Number: 03712435
             </p>
             <p>
-                or make cheques payable to Mid Sussex Triathlon Club and send to:
-			MSTC TriHub 12,Brading Road, Brighton BN2 3PD
+            or make cheques payable to Mid Sussex Triathlon Club and send to:
+			Greenstones, Rookery Way, Haywards Heath RH16 4RE
 			Please enter as soon as possible as places are limited.  
             </p>
             <p>
