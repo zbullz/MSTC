@@ -19,11 +19,11 @@ namespace Mstc.Core.Providers
 			List<string> descriptionList = new List<string>() { membershipOptions.MembershipType.ToString() };
 			if (membershipOptions.SwimSubsAprToSept)
 			{
-				descriptionList.Add("Swim subs Jan to June");
+				descriptionList.Add("Swim subs Apr to Sept");
 			}
 			if (membershipOptions.SwimSubsOctToMar)
 			{
-				descriptionList.Add("Swim subs July to Dec");
+				descriptionList.Add("Swim subs Oct to Mar");
 			}
 
 			return string.Join(", ", descriptionList);
