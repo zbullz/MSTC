@@ -10,3 +10,4 @@ Mstc.Core/obj/*
 Mstc.Tests/bin/*
 Mstc.Tests/obj/*
 *.user
+.vs/*
