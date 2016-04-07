@@ -11,7 +11,7 @@
             <ul class="blog-archive-months">
                 @foreach (var blogMonth in blogYear.Children.OrderBy("Name"))
                 {
-                    <li><a href="@blogMonth.Url">@CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName((int) blogMonth.Name)</a> (@blogMonth.Descendants("BlogPost").Count())</li>
+                    <li><a href="@blogMonth.Url">@CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(int.Parse(blogMonth.Name))</a> (@blogMonth.Descendants("BlogPost").Count())</li>
                 }
             </ul>
         </li>
