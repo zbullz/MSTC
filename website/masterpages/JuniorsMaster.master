@@ -32,8 +32,6 @@
         <!-- SCRIPTS -->
 
         <script type="text/javascript" src="/scripts/jquery-1.4.2.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-
         <script type="text/javascript" src="/scripts/jquery.hoverIntent.js"></script>
         <script type="text/javascript" src="/scripts/jquery.bgiframe.min.js"></script>
         <!-- /COMMON SCRIPTS -->
@@ -88,11 +86,7 @@
                         and beyond... 
 		
                     </div>
-                    <div id="top-ads">
-                        Sponsored by<br />
-                        <a href="http://www.nuffieldhealth.com/Individuals/Centres/H/Haywards-Heath/" target="_blank" title="Visit the website for your local Nuffield Hospital">
-                            <img src="/images/nuffield-health.png" alt="Nuffield Health" border="0" /></a>
-                    </div>
+                  
                 </div>
                 <div id="juniorMenu" class="clearfix">
                     <umbraco:Macro Alias="juniorNavigation" skipFirstLevel="False" startNodeId="2972" runat="server"></umbraco:Macro>

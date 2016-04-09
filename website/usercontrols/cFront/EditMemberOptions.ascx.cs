@@ -20,7 +20,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 	public bool ShowBuySwimSubsSpecial { get; set; }
 	public bool ShowBuySwimSubs1 { get; set; }
 	public bool ShowBuySwimSubs2 { get; set; }
-	public bool EnableUpgrade { get; set; }
+	public bool IsGuest { get; set; }
 
 	protected void Page_Load(object sender, EventArgs e)
 	{
@@ -62,7 +62,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 				EnableMemberRenewal = false;
 			}
 
-			EnableUpgrade = memberType == MembershipType.Guest;
+			IsGuest = memberType == MembershipType.Guest;
 
 			ShowBuySwimSubsSpecial = memberType != MembershipType.Guest &&
 			                         GetMemberBool(memberData, MemberProperty.swimSubsJanToMar) == false &&

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using cFront.Umbraco;
-using Mstc.Core.Domain;
 using Mstc.Core.Providers;
 using umbraco.cms.businesslogic.member;
 
@@ -29,8 +22,6 @@ public partial class masterpages_MstcMemberRenewalComplete : System.Web.UI.Maste
 		if (IsPostBack == false)
 		{
 			var member = Member.GetCurrentMember();
-			IDictionary<String, object> currentmemdata = MemberHelper.Get();
-			litAction.Text = IsRenewing(currentmemdata) ? "renewing" : "upgrading";
 
 			var membershipOptions = SessionProvider.RenewalOptions;
 			if (member == null || membershipOptions == null)
@@ -54,22 +45,5 @@ public partial class masterpages_MstcMemberRenewalComplete : System.Web.UI.Maste
 	{
 		var goCardlessProvider = new GoCardlessProvider();
 		goCardlessProvider.ConfirmBill(Request.QueryString);
-	}
-
-	private bool IsRenewing(IDictionary<String, object> currentmemdata)
-	{
-		string membershipTypeValue = currentmemdata[MemberProperty.membershipType] as string;
-		if (string.IsNullOrWhiteSpace(membershipTypeValue) == false)
-		{
-			//Sadly there is no nicer way to do this as umbraco gives us an int as a string object! 
-			int membershipTypeInt;
-			if (int.TryParse(membershipTypeValue, out membershipTypeInt))
-			{
-				return (MembershipType) membershipTypeInt != MembershipType.Guest;
-			}
-		}
-
-		return true;
-
 	}
 }

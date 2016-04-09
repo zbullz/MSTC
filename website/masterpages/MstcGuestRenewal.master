@@ -1,0 +1,71 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" CodeFile="MstcGuestRenewal.master.cs" Inherits="masterpages_MstcGuestRenewal" %>
+
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MainContent">
+    <!-- Page Title -->
+    <div class="section section-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Renew guest membership
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="section">
+        <form id="Form1" role="form" class="form-horizontal" runat="server">
+            <div class="container edit-member">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <umbraco:Item ID="bodyText" runat="server" Field="bodyText" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-wrapper">
+                            <p>Please complete the form below to renew your guest membership</p>
+                            <!--Membership options-->
+                            <div class="member-options">
+                                <div class="form-group">
+                                    <h3 class="col-sm-12">Guest options</h3>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-message" class="col-sm-2 control-label"><b>Open water swimming indemnity waiver*</b></label>
+                                    <div class="col-sm-10">
+                                        <p><a href="http://midsussextriclub.com/media/47452/MSTCIndemnityWaiver.pdf" target="_blank">Click here to view the Open Water Swimming Indemnity Document</a></p>
+                                        <asp:RadioButtonList ID="indemnityOptions" runat="server" RepeatLayout="Flow" CssClass="radio"></asp:RadioButtonList>
+                                        <asp:RequiredFieldValidator ID="requiredIndemnityOptions" runat="server" ErrorMessage="Please select your open water indemnity waiver response"
+                                            ControlToValidate="indemnityOptions" CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-10">
+                                    <asp:Button ID="RenewMember" runat="server" Text="Renew" CssClass="btn pull-left btn-yellow" OnClick="RenewMember_OnClick" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Secondary content -->
+    <div class="section">
+        <div class="container">
+            <umbraco:Item ID="secondaryContent" runat="server" Field="secondaryContent" />
+        </div>
+    </div>
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="FooterScripts" runat="server">
+</asp:Content>

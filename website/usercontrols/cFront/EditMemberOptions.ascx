@@ -10,9 +10,16 @@
             </umbraco:Macro>
         </div>
     </div>
-    <div class="form-group <%=EnableUpgrade ? "" : "hide"%>">
+    <div class="form-group <%=IsGuest ? "" : "hide"%>">
         <div class="col-sm-12">
             <umbraco:Macro ID="Macro3" runat="server" Language="cshtml" linkID="[#membershipRenewalPage]" linkText="Upgrade now"
+                Class="btn btn-yellow pull-left">@RenderPage("~/macroscripts/PageLink.cshtml")
+            </umbraco:Macro>
+        </div>
+    </div>
+    <div class="form-group <%=IsGuest ? "" : "hide"%>">
+        <div class="col-sm-12">
+            <umbraco:Macro ID="Macro1" runat="server" Language="cshtml" linkID="[#guestRenewalPage]" linkText="Renew now"
                 Class="btn btn-yellow pull-left">@RenderPage("~/macroscripts/PageLink.cshtml")
             </umbraco:Macro>
         </div>

@@ -27,7 +27,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <p>Thank you for <asp:Literal ID="litAction" runat="server"></asp:Literal> your membership.</p> 
+                        <p>Thank you for updating your membership.</p> 
                         <p>Please go to <a href="/members-area/my-details">your details page</a> to make sure your information is up to date and retrieve your open water swim authorisation number.</p>
                     </div>
                 </div>
