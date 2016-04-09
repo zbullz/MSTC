@@ -33,6 +33,7 @@
                 <div class="form-group">
                     <div class="col-sm-10"></div>
                     <div class="col-sm-2">
+                        <label id="creditsRemoving"></label>
                         <input id="updateSwimCredits" type="submit" value="Update credits" class="btn pull-left btn-yellow"  />
                     </div>
                 </div>
@@ -51,8 +52,17 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FooterScripts" runat="server">
-    <script>
+    <script type="text/javascript" language="javascript">
         $(document).ready(function () {
+            $(".remove-swim-credit").bind("click", function (e) {
+                var creditsRemoving = 0;
+                $('input[name="RemoveCredit"]:checked').each(function (index, checkbox) {
+                    creditsRemoving++;
+                });
+
+                $("#creditsRemoving").html("Removing " + creditsRemoving + " credits");
+            });
+
             $("#updateSwimCredits").bind("click", function (e) {
                 e.preventDefault();
                 var memberNodeIdsToUpdate = [];
@@ -60,8 +70,8 @@
                     memberNodeIdsToUpdate.push(checkbox.value);
                 });
 
-                if (memberNodeIdsToUpdate.length == 0) {
-                    alert("Please select some members to update swim credits for.")
+                if (memberNodeIdsToUpdate.length === 0) {
+                    alert("Please select some members to update swim credits for.");
                 }
 
                 $.ajax({

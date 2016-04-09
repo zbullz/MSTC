@@ -17,11 +17,13 @@ namespace Mstc.Core.Dto
 		public bool Volunteering { get; set; }
 		public DateTime? MembershipExpiry { get; set; }
 		public int? SwimAuthNumber { get; set; }
+		public int SwimCreditsRemainingLastYear { get; set; }
 		public int SwimCreditsBought { get; set; }
 		public int SwimCreditsUsed { get; set; }
 
 		public bool DuathlonEntered { get; set; }
 		public string TriFestEntry { get; set; }
 		public string CharitySwimEntry { get; set; }
+
 	}
 }

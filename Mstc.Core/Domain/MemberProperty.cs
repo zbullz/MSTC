@@ -40,6 +40,7 @@
 		public const string TriFestEntry = "triFestEntry";
 		public const string CharitySwimEntry = "charitySwimEntry";
 
+		public const string SwimCreditsRemainingLastYear = "swimCreditsRemaingLastYear";
 		public const string SwimCreditsBought = "swimCreditsBought";
 		public const string SwimCreditsUsed = "swimCreditsUsed";
 

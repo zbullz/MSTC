@@ -74,18 +74,22 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 
 			membershipOptionalExtras.Text = string.Join("<br/>", OptionalExtras(memberData));
 
-			EnableOpenWater = GetMemberBool(memberData, MemberProperty.OpenWaterIndemnityAcceptance);
+			bool openWaterEnabled = bool.Parse(ConfigurationManager.AppSettings["openWaterEnabled"]);
+
+			EnableOpenWater = GetMemberBool(memberData, MemberProperty.OpenWaterIndemnityAcceptance) && openWaterEnabled;
 			object swimAuthObj = memberData[MemberProperty.SwimAuthNumber];
 			if (swimAuthObj != null && string.IsNullOrEmpty(swimAuthObj.ToString()) == false)
 			{
 				openWaterAuthNumber.Text = ((int) swimAuthObj).ToString("D3");
 			}
 
+			int creditsRemainingLastYear = 0;
+			int.TryParse(memberData[MemberProperty.SwimCreditsRemainingLastYear].ToString(), out creditsRemainingLastYear);
 			int creditsBought = 0;
 			int.TryParse(memberData[MemberProperty.SwimCreditsBought].ToString(), out creditsBought);
 			int creditsUsed = 0;
 			int.TryParse(memberData[MemberProperty.SwimCreditsUsed].ToString(), out creditsUsed);
-			litSwimCredits.Text = (creditsBought - creditsUsed).ToString();
+			litSwimCredits.Text = (creditsRemainingLastYear + creditsBought - creditsUsed).ToString();
 
 			hiddenEmail.Value = memberData[MemberProperty.Email].ToString();
 
