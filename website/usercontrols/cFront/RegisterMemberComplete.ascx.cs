@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -53,10 +54,12 @@ public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.
 			FormsAuthentication.SetAuthCookie(member.LoginName, true);
 
 			var emailProvider = new EmailProvider();
-			string content = string.Format("<p>A new member has registered with the club</p><p>Member details: {0}</p>",
-				JsonConvert.SerializeObject(registrationFullDetails, Formatting.Indented));
+		    string content = string.Format("<p>A new member has registered with the club</p><p>Member details: {0}</p>",
+		        JsonConvert.SerializeObject(registrationFullDetails, Formatting.Indented));
+		    var passwordObfuscator = new PasswordObfuscator();
+		    content = passwordObfuscator.ObfuscateString(content);
 
-			emailProvider.SendEmail(ConfigurationManager.AppSettings["newRegistrationEmailTo"], EmailProvider.SupportEmail, "New MSTC member registration", content);
+            emailProvider.SendEmail(ConfigurationManager.AppSettings["newRegistrationEmailTo"], EmailProvider.SupportEmail, "New MSTC member registration", content);
 
 			SessionProvider.RegistrationFullDetails = null;
 		}
