@@ -97,6 +97,7 @@
     <Compile Include="Providers\GoCardlessProvider.cs" />
     <Compile Include="Providers\MemberProvider.cs" />
     <Compile Include="Providers\MembershipCostCalculator.cs" />
+    <Compile Include="Providers\PasswordObfuscator.cs" />
     <Compile Include="Providers\SessionProvider.cs" />
     <Compile Include="WebMethods\SwimAdmin.cs" />
     <Compile Include="WebServices\tagService.asmx.cs">

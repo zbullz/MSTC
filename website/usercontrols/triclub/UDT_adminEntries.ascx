@@ -21,7 +21,10 @@
 				<HeaderTemplate>
 					<tr>
 						<td>
-							Name
+							First Name
+						</td>
+						<td>
+							Last Name
 						</td>
 						<td>
 							Club
@@ -36,7 +39,10 @@
 							Entry Confirmed
 						</td>
 						<td>
-							Contact Details
+							Email
+						</td>
+						<td>
+							Phone
 						</td>
 						<td>
 							&nbsp;
@@ -46,8 +52,10 @@
 				<ItemTemplate>
 					<tr>
 						<td>
-							<b><%# DataBinder.Eval(Container.DataItem, "ULastName") %></b>,&nbsp;
 							<%# DataBinder.Eval(Container.DataItem, "FirstName") %>
+						</td>
+						<td>
+							<b><%# DataBinder.Eval(Container.DataItem, "ULastName") %></b>				
 						</td>
 						<td>
 							<%# DataBinder.Eval(Container.DataItem, "Club") %>
@@ -62,8 +70,10 @@
 							<%# DataBinder.Eval(Container.DataItem, "Confirmed") %>
 						</td>
 						<td>
-							<a href='mailto:<%# DataBinder.Eval(Container.DataItem, "Email") %>'><%# DataBinder.Eval(Container.DataItem, "Email") %></a><br />
-							<%# DataBinder.Eval(Container.DataItem, "Phone") %><br />
+							<a href='mailto:<%# DataBinder.Eval(Container.DataItem, "Email") %>'><%# DataBinder.Eval(Container.DataItem, "Email") %></a>						
+						</td>
+						<td>
+							<%# DataBinder.Eval(Container.DataItem, "Phone") %>
 						</td>
 						<td>
 							<asp:LinkButton 

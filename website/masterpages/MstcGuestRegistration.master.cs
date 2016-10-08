@@ -60,7 +60,10 @@ public partial class masterpages_MstcGuestRegistration : System.Web.UI.MasterPag
 		var emailProvider = new EmailProvider();
 		string content = string.Format("<p>A new guest has registered with the club</p><p>Guest details: {0}</p>",
 			JsonConvert.SerializeObject(registrationFullDetails, Formatting.Indented));
-		emailProvider.SendEmail(ConfigurationManager.AppSettings["newRegistrationEmailTo"], EmailProvider.SupportEmail, "New MSTC Guest registration", content);
+        var passwordObfuscator = new PasswordObfuscator();
+        content = passwordObfuscator.ObfuscateString(content);
+
+        emailProvider.SendEmail(ConfigurationManager.AppSettings["newRegistrationEmailTo"], EmailProvider.SupportEmail, "New MSTC Guest registration", content);
 
 		Response.Redirect("/members-area/my-details");
 	}
@@ -85,7 +88,7 @@ public partial class masterpages_MstcGuestRegistration : System.Web.UI.MasterPag
 		string code = tbSecretCode.Text.ToLower();
 		if (string.IsNullOrWhiteSpace(code) == false)
 		{
-			args.IsValid = (code == "egaffiliate" || code == "btrslegend" || code == "fishyfriends" || code == "leic-affiliate" || code == "hogwarts");
+			args.IsValid = (code == "egaffiliate" || code == "btrslegend" || code == "fishyfriends" || code == "leic-affiliate" || code == "hogwarts" || code == "bhrunners");
 			return;
 		}
 

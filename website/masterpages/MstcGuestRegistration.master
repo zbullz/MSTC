@@ -47,6 +47,7 @@
                                             ControlToValidate="indemnityOptions" CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
+								<p>Please provide either a valid sign up code <strong>or</strong> the name of the member who referred you to the club.</p>
                                 <div class="form-group">
                                     <asp:Label ID="Label5" runat="server" CssClass="col-sm-2 control-label" AssociatedControlID="tbSecretCode">Sign up code:</asp:Label>
                                     <div class="col-sm-7">
