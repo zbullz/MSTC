@@ -1,0 +1,31 @@
+﻿@using cFront.Umbraco.Membership
+@using Mstc.Core.DataAccess
+@using Mstc.Core.Dto
+@{
+    IMemberDal memberDal = new MemberDal(new DataConnection());
+    IOrderedEnumerable<MemberIceDto> membeIceDetails = memberDal.GetMemberIceDetails().OrderBy(m => m.Name);
+}  
+
+<table class="table table-striped table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone number</th>
+        <th>Medical conditions</th>
+        <th>Emergency name</th>
+        <th>Emergency Phone</th>
+    </tr>
+
+    @foreach (var member in membeIceDetails)
+    {
+        <tr>
+            <td>@member.Name</td>
+            <td>@member.Email</td>
+            <td>@member.Phone</td>
+            <td>@member.MedicalConditions</td>
+            <td>@member.EmergencyContactName</td>
+            <td>@member.EmergencyContactNumber</td>
+        </tr>
+    }
+
+</table>

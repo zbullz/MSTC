@@ -14,6 +14,7 @@ namespace Mstc.Core.DataAccess
 		IEnumerable<MemberServiceDto> GetMembersWithServices();
 		IEnumerable<MemberSummaryDto> GetMemberSummaries();
 		IEnumerable<MemberOptionsDto> GetMemberOptions();
+		IEnumerable<MemberIceDto> GetMemberIceDetails();
 		void UpdateSwimCredits(List<string> nodeIds);
 	}
 
@@ -98,6 +99,22 @@ namespace Mstc.Core.DataAccess
 				memberData = connection.Query<MemberData>(query, null);
 			}
 			IEnumerable<MemberOptionsDto> memberOptions = memberData.GroupBy(m => m.Email).Select(g => MapMemberDataToOptions(g));
+			return memberOptions;
+		}
+
+		public IEnumerable<MemberIceDto> GetMemberIceDetails()
+		{
+			string query = BaseSelectQuery +
+						   string.Format(@" WHERE	(MemberList.nodeId IS NOT NULL)
+					        and MemberTypes.Alias in ('{0}', '{1}', '{2}', '{3}')",
+							   MemberProperty.Phone, MemberProperty.MedicalConditions, MemberProperty.EmergencyContactName, MemberProperty.EmergencyContactNumber);
+
+			IEnumerable<MemberData> memberData;
+			using (IDbConnection connection = _dataConnection.SqlConnection)
+			{
+				memberData = connection.Query<MemberData>(query, null);
+			}
+			IEnumerable<MemberIceDto> memberOptions = memberData.GroupBy(m => m.Email).Select(MapMemberDataToIce);
 			return memberOptions;
 		}
 
@@ -199,6 +216,24 @@ namespace Mstc.Core.DataAccess
 		 
 	
 			return memberOptionsDto;
+		}
+
+		private MemberIceDto MapMemberDataToIce(IGrouping<string, MemberData> groupedMemberData)
+		{
+			var memberIceDto = new MemberIceDto()
+			{
+				NodeId = groupedMemberData.First().NodeId,
+				Name = groupedMemberData.First().Name,
+				Email = groupedMemberData.Key,
+
+				Phone = GetPropertyValueForAlias(groupedMemberData, MemberProperty.Phone),
+				MedicalConditions = GetPropertyValueForAlias(groupedMemberData, MemberProperty.MedicalConditions),
+				EmergencyContactName = GetPropertyValueForAlias(groupedMemberData, MemberProperty.EmergencyContactName),
+				EmergencyContactNumber = GetPropertyValueForAlias(groupedMemberData, MemberProperty.EmergencyContactNumber),
+				
+			};
+
+			return memberIceDto;
 		}
 
 		private string GetPropertyValueForAlias(IGrouping<string, MemberData> groupedMemberData, string alias)

@@ -22,6 +22,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 	public bool ShowBuySwimSubs2 { get; set; }
 	public bool EnableGuestUpgrade { get; set; }
 	public bool EnableGuestRenewal { get; set; }
+	public bool ShowIceLink { get; set; }
 
 	protected void Page_Load(object sender, EventArgs e)
 	{
@@ -117,6 +118,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 		string[] roles = Roles.GetRolesForUser();
 		ShowMemberAdminLink = roles.Contains("MemberAdmin");
 		ShowSwimAdminLink = roles.Contains("SwimAdmin");
+		ShowIceLink = roles.Contains("MemberAdmin") || roles.Contains("Coach");
 	}
 
 	private List<string> OptionalExtras(IDictionary<String, object> memberData)

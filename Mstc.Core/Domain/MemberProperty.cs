@@ -46,5 +46,8 @@
 
 		public static string GuestCode = "guestCode";
 		public static string ReferredByMember = "referredByMember";
+		public static string MedicalConditions = "medicalConditions";
+		public static string EmergencyContactName = "emergencyContactName";
+		public static string EmergencyContactNumber = "emergencyContactNumber";
 	}
 }

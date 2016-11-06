@@ -87,6 +87,7 @@
     <Compile Include="Domain\PaymentStates.cs" />
     <Compile Include="Domain\RegistrationDetails.cs" />
     <Compile Include="Domain\RegistrationFullDetails.cs" />
+    <Compile Include="Dto\MemberIceDto.cs" />
     <Compile Include="Dto\MemberData.cs" />
     <Compile Include="Dto\MemberOptionsDto.cs" />
     <Compile Include="Dto\MemberServiceDto.cs" />

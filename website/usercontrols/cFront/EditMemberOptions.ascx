@@ -73,6 +73,15 @@
             </p>
         </div>
     </div>
+    
+        <div class="form-group <%=ShowIceLink ? "" : "hide"%>">
+        <label class="col-sm-6 control-label"><b>In case of Emergency page:</b></label>
+        <div class="col-sm-6 member-date">
+            <p>
+                <a href="/members-area/members-ice-details.aspx">Members ICE Details</a>
+            </p>
+        </div>
+    </div>
 </div>
 
 <div id="open-water-section">
