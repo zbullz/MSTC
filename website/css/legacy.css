@@ -171,3 +171,7 @@ ul.footer-navigate-section {
 .clear-float {
     clear: both;
 }
+
+.email-confirm {
+   display: none;
+}
