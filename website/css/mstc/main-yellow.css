@@ -162,6 +162,9 @@ span.validation-error[style*="inline"] {
 span.help-block[style*="hidden"] {
   display: none;
 }
+.email-confirm {
+  display: none;
+}
 /*--------------------------------------------------------------------------
 +	Services Style
 --------------------------------------------------------------------------*/
@@ -1857,7 +1860,7 @@ span.color-red {
   padding: 0;
 }
 .footer a {
-  color: #000000;
+  color: #000;
 }
 ul.footer-navigate-section {
   width: 70%;

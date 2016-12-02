@@ -19,7 +19,7 @@
 		About You
 	</h3>
 	<p class="entry top">
-		<label>First Name:<span class="entry_reqd">*</span></label><asp:TextBox id="txtFirstName" runat="server" CssClass="txtbox" />
+	    <label>First Name:<span class="entry_reqd">*</span></label><asp:TextBox id="txtFirstName" runat="server" CssClass="txtbox" />
 		<asp:RequiredFieldValidator id="rfvFname" ControlToValidate="txtFirstName" runat="server" 
 		ErrorMessage="<span class='mst_fielderror'><span class='ERROR'>Error!</span> Please enter your first name</span>" Display="Dynamic" />
 	</p>
@@ -74,7 +74,13 @@
 		<label>Email:<span class="entry_reqd">*</span></label><asp:TextBox id="txtEmail" runat="server" CssClass="txtboxw" />
 		<asp:RequiredFieldValidator id="rfvtxtEmail" ControlToValidate="txtEmail" runat="server" 
 		ErrorMessage="<span class='mst_fielderror'><span class='ERROR'>Error!</span> Please enter your email address</span>" Display="Dynamic" />
+        
+        
 	</p>
+    <p class="entry email-confirm">
+        <label>Email confirm:<span class="entry_reqd">*</span></label>
+        <asp:TextBox id="txtEmailConfirm" runat="server" CssClass="txtbox" AutoCompleteType="None" />
+    </p>
 	<h3>
 		Event Stuff
 	</h3>
@@ -132,16 +138,6 @@
 	<p class="entry">
 		<asp:CheckBox id="cbAgree" runat="server" /> I have read and agree to the <a href="race-entry/terms-conditions.aspx" target="_blank">race terms and conditions</a>.
 		<asp:Label id="lblTerms" runat="server" Display="Dynamic" />
-	</p>
-	<p class="Captcha clearfix">
-		<recaptcha:RecaptchaControl
-		ID="recaptcha"
-		runat="server"
-		theme="white"
-		PublicKey="6LdNrt4SAAAAADwamubmUbsuZ6t0v_m37HzONoGf"
-		PrivateKey="6LdNrt4SAAAAAKF1fmWSNpTEQFvWd0k_E3Aum7-b"
-		/>
-		<asp:Label id="lblCaptcha" runat="server" Display="Dynamic" />
 	</p>
 	<p class="entry_button">
 		<asp:Button id="btnEntry" OnClick="addEntry" Text="Proceed to payment >" Runat="server" CssClass="entry_button" />

@@ -59,7 +59,8 @@ public partial class usercontrols_triclub_entry : UserControl
 
 	protected void addEntry(Object s, EventArgs e)
 	{
-		if (cbAgree.Checked && Page.IsValid)
+        if (cbAgree.Checked && Page.IsValid && 
+            String.IsNullOrEmpty(txtEmailConfirm.Text)) //This is a simple spam bot prevention field, people won't see it see won't fill it out
 		{
 			string strDOB, strClub;
 
@@ -125,11 +126,6 @@ VALUES (@FirstName, @LastName, @Gender, @DOB, @Addr1, @Addr2, @Addr3, @Addr4, @P
 				lblTerms.Text = "<span class='mst_fielderror_terms'><span class='ERROR'>Error!</span>You must agree to the race terms &#038; conditions to proceed</span>";
 				lblTerms.Visible = true;
 			}
-			if (!Page.IsValid)
-			{
-				lblCaptcha.Text = "<span class='mst_fielderror_terms'><span class='ERROR'>Error!</span>Incorrect please try again</span>";
-				lblCaptcha.Visible = true;
-			}
 		}
 	}
 
@@ -154,7 +150,7 @@ VALUES (@FirstName, @LastName, @Gender, @DOB, @Addr1, @Addr2, @Addr3, @Addr4, @P
     {
         string content = "<p>Congratulations! You are now registered for the Mid Sussex Triathlon/Aquabike. " +
                          "Your entry will only be confirmed on the website when we have received your payment " +
-                         "and your name has been entered into the '<a href='http://www.midsussextriclub.com/the-mid-sussex-triathlon/race-entry/entries-so-far.aspx'>Entries so far</a>' list. " +
+                         "and your name has been entered into the '<a href='http://www.midsussextriclub.com/the-mid-sussex-triathlon/enter-race/entries-so-far.aspx'>Entries so far</a>' list. " +
                          "Please allow up to 48 hours for this. Please familiarise yourself with the <a href='http://www.midsussextriclub.com/the-mid-sussex-triathlon/race-info/race-instructions.aspx'>race instructions</a>.</p>" +
                          "<p>We do not post anything out so you will pick your number up at registration on the Saturday from 17:00 until 18:30 " +
                          "or on race day before 06:45 when registration closes.</p>" +
