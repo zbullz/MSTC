@@ -115,7 +115,8 @@ VALUES (@FirstName, @LastName, @Gender, @DOB, @Addr1, @Addr2, @Addr3, @Addr4, @P
 			}
 
 			SendMessage();
-			Response.Redirect("race-entry/race-entry-payment.aspx");
+		    SendEntrantMessage();
+            Response.Redirect("race-entry/race-entry-payment.aspx");
 		}
 		else
 		{
@@ -148,6 +149,30 @@ VALUES (@FirstName, @LastName, @Gender, @DOB, @Addr1, @Addr2, @Addr3, @Addr4, @P
 
 		ViewState["ViewEntryForm"] = 1;
 	}
+
+    protected void SendEntrantMessage()
+    {
+        string content = "<p>Congratulations! You are now registered for the Mid Sussex Triathlon/Aquabike. " +
+                         "Your entry will only be confirmed on the website when we have received your payment " +
+                         "and your name has been entered into the '<a href='http://www.midsussextriclub.com/the-mid-sussex-triathlon/race-entry/entries-so-far.aspx'>Entries so far</a>' list. " +
+                         "Please allow up to 48 hours for this. Please familiarise yourself with the <a href='http://www.midsussextriclub.com/the-mid-sussex-triathlon/race-info/race-instructions.aspx'>race instructions</a>.</p>" +
+                         "<p>We do not post anything out so you will pick your number up at registration on the Saturday from 17:00 until 18:30 " +
+                         "or on race day before 06:45 when registration closes.</p>" +
+                         "<p>On Sunday May 14th we'll take you out for a guided tour of the <a href='http://www.midsussextriclub.com/the-mid-sussex-triathlon/course-details/course-familiarisation-day.aspx'>cycle and run courses</a>. " +
+                         "Please let us know if you want to attend.</p>" +
+                         "<p>Thanks</p>" +
+                         "<p>Steve Mac<br/>Event Director</p>";
+
+        var mailMessage = new MailMessage();
+        mailMessage.To.Add(txtEmail.Text);
+        mailMessage.From = new MailAddress("info@midsussextriclub.com");
+        mailMessage.Subject = "Mid Sussex Triathlon - Entry Received";
+        mailMessage.IsBodyHtml = true;
+        mailMessage.Body = content;
+
+        var GmailSmtpClient = new GmailSmtpClient();
+        GmailSmtpClient.Send(mailMessage);
+    }
 
 	protected void getEntries()
 	{
