@@ -162,7 +162,9 @@ VALUES (@FirstName, @LastName, @Gender, @DOB, @Addr1, @Addr2, @Addr3, @Addr4, @P
 
         var mailMessage = new MailMessage();
         mailMessage.To.Add(txtEmail.Text);
-        mailMessage.From = new MailAddress("info@midsussextriclub.com");
+        var fromAdd = new MailAddress("info@midsussextriclub.com");
+        mailMessage.From = fromAdd;
+        mailMessage.ReplyToList.Add(fromAdd);
         mailMessage.Subject = "Mid Sussex Triathlon - Entry Received";
         mailMessage.IsBodyHtml = true;
         mailMessage.Body = content;
