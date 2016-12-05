@@ -115,8 +115,9 @@ VALUES (@FirstName, @LastName, @Gender, @DOB, @Addr1, @Addr2, @Addr3, @Addr4, @P
 				objCmd.ExecuteNonQuery();
 			}
 
-			SendMessage();
-		    SendEntrantMessage();
+            SendEntrantMessage();
+            SendMessage();
+		    
             Response.Redirect("race-entry/race-entry-payment.aspx");
 		}
 		else
@@ -134,7 +135,7 @@ VALUES (@FirstName, @LastName, @Gender, @DOB, @Addr1, @Addr2, @Addr3, @Addr4, @P
 		MailMessage objMail = new MailMessage();
 		objMail.To.Add(ConfigurationManager.AppSettings["midSussexTriEntryEmailTo"] ?? "sales@midsussextriclub.com");
 		objMail.From = new MailAddress("noreply@midsussextriclub.com");
-		objMail.Subject = "Mid Sussex Triathlon - Entry Received";
+		objMail.Subject = "Mid Sussex Triathlon - New Entry";
 
 		objMail.IsBodyHtml = true;
 
