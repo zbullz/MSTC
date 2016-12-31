@@ -109,10 +109,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-6 control-label"><b>O/W Swim credits:</b></label>
+            <label class="col-sm-6 control-label"><b>O/W Swim Balance:</b></label>
             <div class="col-sm-6 member-date">
                 <p>
-                    <asp:Literal ID="litSwimCredits" runat="server"></asp:Literal>
+                    £<asp:Literal ID="litSwimCredits" runat="server"></asp:Literal>
                     <asp:HiddenField ID="hiddenEmail" runat="server" />
                 </p>
             </div>
