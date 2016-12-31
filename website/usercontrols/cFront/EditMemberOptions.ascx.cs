@@ -200,7 +200,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 		MembershipType memberType = (MembershipType)Enum.Parse(typeof(MembershipType), membershipType.Text);
 		var redirectUrl = goCardlessProvider.CreateSimpleBill(hiddenEmail.Value, _membershipCostCalcualtor.SwimCreditsCost(paymentState, memberType),
 			"Open water swim credits",
-			string.Format("Open water swim, £{0} credits", (int)paymentState), paymentState, Request.Url);
+			string.Format("Open water swim, GBP{0} credits", (int)paymentState), paymentState, Request.Url);
 
 		var sessionProvider = new SessionProvider();
 		sessionProvider.CanProcessPaymentCompletion = true;
