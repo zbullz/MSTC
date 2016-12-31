@@ -4,16 +4,11 @@ using Mstc.Core.configuration;
 
 namespace Mstc.Core.Providers
 {
-	/// <summary>
-	/// Summary description for EmailProvider
-	/// </summary>
 	public class EmailProvider
 	{
 		public EmailProvider()
 		{
-			//
-			// TODO: Add constructor logic here
-			//
+
 		}
 
 		public const string MembersEmail = "members@midsussextriclub.com";

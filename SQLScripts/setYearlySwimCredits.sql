@@ -30,7 +30,7 @@ Select * from #swimData
 
 -- Set Credits remaining last year = Credits remaining
 Update MemberDataTable
-Set MemberDataTable.[dataInt] = #swimdata.CreditsBought - #swimdata.CreditsUsed
+Set MemberDataTable.[dataInt] = (MemberDataTable.[dataInt] + #swimdata.CreditsBought - #swimdata.CreditsUsed)*3
 							From (SELECT id FROM dbo.umbracoNode WHERE (nodeObjectType = '9b5416fb-e72f-45a9-a07b-5a9a2709ce43')) AS MemberTypeId 
 						LEFT OUTER JOIN (SELECT nodeId, contentType FROM dbo.cmsContent) AS MemberList ON MemberList.contentType = MemberTypeId.id 
 						LEFT OUTER JOIN dbo.cmsPropertyType AS MemberTypes ON MemberTypes.contentTypeId = MemberList.contentType 

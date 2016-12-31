@@ -34,6 +34,9 @@
                     <div class="col-sm-10"></div>
                     <div class="col-sm-2">
                         <label id="creditsRemoving"></label>
+                        <label>Credit cost: £<span id="creditCost"><umbraco:Item ID="creditCostItem" runat="server" field="creditCost" /></span></label>
+
+                        
                         <input id="updateSwimCredits" type="submit" value="Update credits" class="btn pull-left btn-yellow"  />
                     </div>
                 </div>
@@ -74,9 +77,12 @@
                     alert("Please select some members to update swim credits for.");
                 }
 
-                $.ajax({
-                    url: "/Base/SwimAdmin/UpdateSwimCredits",
-                    data: { nodeIds: memberNodeIdsToUpdate + "" },
+                    $.ajax({
+                        url: "/Base/SwimAdmin/UpdateSwimCredits",
+                        data: {
+                            nodeIds: memberNodeIdsToUpdate + "",
+                            cost: $("#creditCost").html()
+                },
                     type: 'post',
                     success: function (data) {
                         location.reload(true);

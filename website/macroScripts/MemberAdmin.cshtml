@@ -12,7 +12,6 @@
         <th>Email</th>
         <th>Membership Type</th>
         <th>Membership Expiry Date</th>
-        <th>Paid Swim Subs Jan to Mar</th>
         <th>Paid Swim Subs Apr to Sept</th>
         <th>Paid Swim Subs Oct to Mar</th>
         <th>Entered duathlon</th>
@@ -29,7 +28,6 @@
             <td>@member.Email</td>
             <td>@member.MembershipType</td>
             <td>@(member.MembershipExpiry.HasValue ? member.MembershipExpiry.Value.ToShortDateString() : "")</td>
-            <td>@displayBool(member.SwimSubsJanToMar)</td>
             <td>@displayBool(member.SwimSubsAprToSept)</td>
             <td>@displayBool(member.SwimSubsOctToMar)</td>
             <td>@displayBool(member.DuathlonEntered)</td>

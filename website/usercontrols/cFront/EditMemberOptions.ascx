@@ -48,11 +48,6 @@
             </p>
         </div>
     </div>
-    <div class="form-group <%=ShowBuySwimSubsSpecial ? "" : "hide"%>">
-        <div class="col-sm-12">
-            <asp:Button ID="BuySwimSubsSpecial" runat="server" Text="Buy pool swim subs Jan-Mar" CssClass="btn btn-yellow pull-left" OnClick="btn_BuySwimSubsSpecialClick" />
-        </div>
-    </div>
     <div class="form-group <%=ShowBuySwimSubs1 ? "" : "hide"%>">
         <div class="col-sm-12">
             <asp:Button ID="BuySwimSubs1" runat="server" Text="Buy pool swim subs Apr-Sept" CssClass="btn btn-yellow pull-left" OnClick="btn_BuySwimSubs1Click" />
@@ -99,17 +94,17 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <asp:Button ID="btn_5SwimCredits" runat="server" Text="Buy 5 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_5SwimCreditsClick" />
+                    <asp:Button ID="btn_5SwimCredits" runat="server" Text="Buy £16 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_5SwimCreditsClick" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <asp:Button ID="btn_10SwimCredits" runat="server" Text="Buy 10 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_10SwimCreditsClick" />
+                    <asp:Button ID="btn_10SwimCredits" runat="server" Text="Buy £32 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_10SwimCreditsClick" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <asp:Button ID="btn_15SwimCredits" runat="server" Text="Buy 15 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_15SwimCreditsClick" />
+                    <asp:Button ID="btn_15SwimCredits" runat="server" Text="Buy £44 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_15SwimCreditsClick" />
                 </div>
             </div>
         </div>

@@ -171,10 +171,6 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 		{
 			currentmemdata[MemberProperty.SwimSubsOctToMar] = true;
 		}
-		if (paymentState == PaymentStates.SS05996)
-		{
-			currentmemdata[MemberProperty.swimSubsJanToMar] = true;
-		}
 
 		MemberHelper.Update(currentmemdata);
 	}

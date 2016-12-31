@@ -17,7 +17,6 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 	public bool EnableOpenWater { get; set; }
 	public bool ShowMemberAdminLink { get; set; }
 	public bool ShowSwimAdminLink { get; set; }
-	public bool ShowBuySwimSubsSpecial { get; set; }
 	public bool ShowBuySwimSubs1 { get; set; }
 	public bool ShowBuySwimSubs2 { get; set; }
 	public bool EnableGuestUpgrade { get; set; }
@@ -68,9 +67,6 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 			EnableGuestUpgrade = isGuest && hasExpired == false;
 			EnableGuestRenewal = isGuest && hasExpired;
 
-			ShowBuySwimSubsSpecial = memberType != MembershipType.Guest &&
-			                         GetMemberBool(memberData, MemberProperty.swimSubsJanToMar) == false &&
-			                         DateTime.Now.Month <= 3;
 			ShowBuySwimSubs1 = memberType != MembershipType.Guest &&
 			                   GetMemberBool(memberData, MemberProperty.swimSubsAprToSept) == false && DateTime.Now.Month <= 9;
 			ShowBuySwimSubs2 = memberType != MembershipType.Guest &&
@@ -87,13 +83,13 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 				openWaterAuthNumber.Text = ((int) swimAuthObj).ToString("D3");
 			}
 
-			int creditsRemainingLastYear = 0;
-			int.TryParse(memberData[MemberProperty.SwimCreditsRemainingLastYear].ToString(), out creditsRemainingLastYear);
+			int swimBalanceLastYear = 0;
+			int.TryParse(memberData[MemberProperty.SwimBalanceLastYear].ToString(), out swimBalanceLastYear);
 			int creditsBought = 0;
 			int.TryParse(memberData[MemberProperty.SwimCreditsBought].ToString(), out creditsBought);
 			int creditsUsed = 0;
 			int.TryParse(memberData[MemberProperty.SwimCreditsUsed].ToString(), out creditsUsed);
-			litSwimCredits.Text = (creditsRemainingLastYear + creditsBought - creditsUsed).ToString();
+			litSwimCredits.Text = (swimBalanceLastYear + creditsBought - creditsUsed).ToString();
 
 			hiddenEmail.Value = memberData[MemberProperty.Email].ToString();
 
@@ -124,10 +120,6 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 	private List<string> OptionalExtras(IDictionary<String, object> memberData)
 	{
 		var extras = new List<string>();
-		if (GetMemberBool(memberData, MemberProperty.swimSubsJanToMar))
-		{
-			extras.Add("Pool swim Jan - Mar.");
-		}
         if (GetMemberBool(memberData, MemberProperty.swimSubsAprToSept))
 		{
 			extras.Add("Pool swim Apr - Sept.");
@@ -160,11 +152,6 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
         }
         return value;
     }
-
-	public void btn_BuySwimSubsSpecialClick(object sender, EventArgs e)
-	{
-		MakeSwimSubsPayment(PaymentStates.SS05996);
-	}
 
 	public void btn_BuySwimSubs1Click(object sender, EventArgs e)
 	{
@@ -213,7 +200,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 		MembershipType memberType = (MembershipType)Enum.Parse(typeof(MembershipType), membershipType.Text);
 		var redirectUrl = goCardlessProvider.CreateSimpleBill(hiddenEmail.Value, _membershipCostCalcualtor.SwimCreditsCost(paymentState, memberType),
 			"Open water swim credits",
-			string.Format("Open water swim, {0} credits", (int)paymentState), paymentState, Request.Url);
+			string.Format("Open water swim, £{0} credits", (int)paymentState), paymentState, Request.Url);
 
 		var sessionProvider = new SessionProvider();
 		sessionProvider.CanProcessPaymentCompletion = true;

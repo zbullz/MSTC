@@ -15,7 +15,7 @@ namespace Mstc.Core.DataAccess
 		IEnumerable<MemberSummaryDto> GetMemberSummaries();
 		IEnumerable<MemberOptionsDto> GetMemberOptions();
 		IEnumerable<MemberIceDto> GetMemberIceDetails();
-		void UpdateSwimCredits(List<string> nodeIds);
+		void UpdateSwimCredits(List<string> nodeIds, int creditCost);
 	}
 
 	public class MemberDal : IMemberDal
@@ -86,12 +86,12 @@ namespace Mstc.Core.DataAccess
 		{
 			string query = BaseSelectQuery +
 			               string.Format(@" WHERE	(MemberList.nodeId IS NOT NULL)
-					        and MemberTypes.Alias in ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}')",
-				               MemberProperty.Phone, MemberProperty.membershipType, MemberProperty.swimSubsJanToMar, MemberProperty.swimSubsAprToSept,
+					        and MemberTypes.Alias in ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}')",
+				               MemberProperty.Phone, MemberProperty.membershipType, MemberProperty.swimSubsAprToSept,
 				               MemberProperty.SwimSubsOctToMar, MemberProperty.OpenWaterIndemnityAcceptance,
 				               MemberProperty.Volunteering, MemberProperty.MembershipExpiry, MemberProperty.SwimAuthNumber,
 				               MemberProperty.DuathlonEntered, MemberProperty.SwimCreditsBought, MemberProperty.SwimCreditsUsed,
-				               MemberProperty.TriFestEntry, MemberProperty.CharitySwimEntry, MemberProperty.SwimCreditsRemainingLastYear);
+				               MemberProperty.TriFestEntry, MemberProperty.CharitySwimEntry, MemberProperty.SwimBalanceLastYear);
 
 			IEnumerable<MemberData> memberData;
 			using (IDbConnection connection = _dataConnection.SqlConnection)
@@ -118,10 +118,10 @@ namespace Mstc.Core.DataAccess
 			return memberOptions;
 		}
 
-		public void UpdateSwimCredits(List<string> nodeIds)
+		public void UpdateSwimCredits(List<string> nodeIds, int creditCost)
 		{
 			string query = string.Format(@"Update MemberDataTable
-							Set MemberDataTable.[dataInt] = ISNULL(MemberDataTable.[dataInt], 0) + 1
+							Set MemberDataTable.[dataInt] = ISNULL(MemberDataTable.[dataInt], 0) + {1}
 							From (SELECT id FROM dbo.umbracoNode WHERE (nodeObjectType = '9b5416fb-e72f-45a9-a07b-5a9a2709ce43')) AS MemberTypeId 
 						LEFT OUTER JOIN (SELECT nodeId, contentType FROM dbo.cmsContent) AS MemberList ON MemberList.contentType = MemberTypeId.id 
 						LEFT OUTER JOIN dbo.cmsPropertyType AS MemberTypes ON MemberTypes.contentTypeId = MemberList.contentType 
@@ -129,7 +129,7 @@ namespace Mstc.Core.DataAccess
 							AND MemberDataTable.propertytypeid = MemberTypes.id 
 						LEFT OUTER JOIN dbo.cmsMember AS CmsMember ON CmsMember.nodeId = MemberList.nodeId
 						inner join dbo.umbracoNode n on n.id = MemberList.nodeId 
-						Where	MemberTypes.Alias = '{0}' and MemberList.nodeId in @NodeIds", MemberProperty.SwimCreditsUsed);
+						Where	MemberTypes.Alias = '{0}' and MemberList.nodeId in @NodeIds", MemberProperty.SwimCreditsUsed, creditCost);
 			using (IDbConnection connection = _dataConnection.SqlConnection)
 			{
 				connection.Execute(query, new {NodeIds = nodeIds});
@@ -180,7 +180,6 @@ namespace Mstc.Core.DataAccess
 				Email = groupedMemberData.Key,
 
 				Phone = GetPropertyValueForAlias(groupedMemberData, MemberProperty.Phone),
-				SwimSubsJanToMar = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.swimSubsJanToMar)),
 				SwimSubsAprToSept = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.swimSubsAprToSept)),
 				SwimSubsOctToMar = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.SwimSubsOctToMar)),
 				DuathlonEntered = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.DuathlonEntered)),
@@ -191,9 +190,9 @@ namespace Mstc.Core.DataAccess
 				CharitySwimEntry = GetPropertyValueForAlias(groupedMemberData, MemberProperty.CharitySwimEntry)
 			};
 
-			int swimCreditsRemainingLastYear = 0;
-			int.TryParse(GetPropertyValueForAlias(groupedMemberData, MemberProperty.SwimCreditsRemainingLastYear), out swimCreditsRemainingLastYear);
-			memberOptionsDto.SwimCreditsRemainingLastYear = swimCreditsRemainingLastYear;
+			int balanceLastYear = 0;
+			int.TryParse(GetPropertyValueForAlias(groupedMemberData, MemberProperty.SwimBalanceLastYear), out balanceLastYear);
+			memberOptionsDto.SwimBalanceLastYear = balanceLastYear;
 
 			int swimCreditsBought = 0;
 			int.TryParse(GetPropertyValueForAlias(groupedMemberData, MemberProperty.SwimCreditsBought), out swimCreditsBought);

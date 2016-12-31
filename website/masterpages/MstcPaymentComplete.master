@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-sm-12 <%=ShowSwimCreditsConfirmation ? "" : "hide"%>">
                         <p>Thank you for purchasing additional swim credits, enjoy your swim!</p>
-                        <p>You have purchased <asp:Literal ID="litSwimCredits" runat="server"></asp:Literal> additional credits</p>
+                        <p>You have purchased £<asp:Literal ID="litSwimCredits" runat="server"></asp:Literal> additional credits</p>
                         <p>Please go to <a href="/members-area/my-details">your details page</a> to check how many credits you have in total.</p>
                     </div>
                     <div class="col-sm-12 <%=ShowEventConfirmation ? "" : "hide"%>">

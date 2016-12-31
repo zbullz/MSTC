@@ -28,7 +28,6 @@
 		public const string serviceDescription = "serviceDescription";
 
 		public const string membershipType = "membershipType";
-		public const string swimSubsJanToMar = "swimSubsJanToMar";
 		public const string swimSubsAprToSept = "swimSubsAprToSept";
 		public const string SwimSubsOctToMar = "swimSubsOctToMar";
 		public const string OpenWaterIndemnityAcceptance = "openWaterIndemnityAcceptance";
@@ -40,7 +39,7 @@
 		public const string TriFestEntry = "triFestEntry";
 		public const string CharitySwimEntry = "charitySwimEntry";
 
-		public const string SwimCreditsRemainingLastYear = "swimCreditsRemaingLastYear";
+		public const string SwimBalanceLastYear = "swimBalanceLastYear";
 		public const string SwimCreditsBought = "swimCreditsBought";
 		public const string SwimCreditsUsed = "swimCreditsUsed";
 

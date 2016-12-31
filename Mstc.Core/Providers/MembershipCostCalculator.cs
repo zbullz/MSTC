@@ -45,7 +45,7 @@ namespace Mstc.Core.Providers
 
 		public decimal SwimCreditsCost(PaymentStates credits, MembershipType membershipType)
 		{
-			return membershipType == MembershipType.Guest ? new decimal(5*(int) credits) : new decimal(3*(int) credits);
+			return new decimal((int) credits);
 		}
 	}
 }
