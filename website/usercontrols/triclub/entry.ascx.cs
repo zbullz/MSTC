@@ -159,6 +159,7 @@ VALUES (@FirstName, @LastName, @Gender, @DOB, @Addr1, @Addr2, @Addr3, @Addr4, @P
                          "Please let us know if you want to attend.</p>" +
                          "<p>A member of our club has developed an iPhone app to aid in triathlon training. Its free so why not give it a go?<br/>" +
                          "The app can be downloaded from the iTunes store here: <a href='https://itunes.apple.com/us/app/mytriathlonbuddy/id1182728584?ls=1&mt=8'>Download MyTriathlonBuddy</a></p>" +
+                         "<p>As a race entrant you can also request a promo code to unlock the apps long distance training plans. Please send us an email if you are interested.</p>" +
                          "<p>Thanks</p>" +
                          "<p>Steve Mac<br/>Event Director</p>";
 
