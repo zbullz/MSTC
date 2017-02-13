@@ -157,6 +157,8 @@ VALUES (@FirstName, @LastName, @Gender, @DOB, @Addr1, @Addr2, @Addr3, @Addr4, @P
                          "or on race day before 06:45 when registration closes.</p>" +
                          "<p>On Sunday May 14th we'll take you out for a guided tour of the <a href='http://www.midsussextriclub.com/the-mid-sussex-triathlon/course-details/course-familiarisation-day.aspx'>cycle and run courses</a>. " +
                          "Please let us know if you want to attend.</p>" +
+                         "<p>A member of our club has developed an iPhone app to aid in triathlon training. Its free so why not give it a go?<br/>" +
+                         "The app can be downloaded from the iTunes store here: <a href='https://itunes.apple.com/us/app/mytriathlonbuddy/id1182728584?ls=1&mt=8'>Download MyTriathlonBuddy</a></p>" +
                          "<p>Thanks</p>" +
                          "<p>Steve Mac<br/>Event Director</p>";
 
