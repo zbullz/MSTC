@@ -34,7 +34,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><b>Waiver agreement*</b></label>
                                     <div class="col-sm-10">
-                                        <p><a href="http://midsussextriclub.com/media/57559/MSTCDuathlonWaiver2016.pdf" target="_blank">Click here to view the duathlon indemnity waiver document</a></p>
+                                        <p><a href="http://midsussextriclub.com/media/62856/MSTCDuathlonWaiver.pdf" target="_blank">Click here to view the duathlon indemnity waiver document</a></p>
                                         <asp:CheckBox ID="checkBoxDuathlonTerms" runat="server" CssClass="checkbox"
                                             Text="I have read and understand the duathlon indemnity document.<br />I agree to and accept the terms without qualification." />
                                         <asp:CustomValidator runat="server" ID="requiredWaiver" OnServerValidate="DuathlonTerms_Validate" CssClass="help-block alert-danger" ValidationGroup="1">
