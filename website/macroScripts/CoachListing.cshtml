@@ -5,8 +5,8 @@ Usage example: @RenderPage("~/macroscripts/PersonListing.cshtml")
     
 @foreach (var item in Model.Descendants("MSTCPerson"))
 {
-    <div class="col-md-4 col-sm-6">
-        <div class="team-member">
+    <div class="col-md-4 col-sm-4">
+        <div class="coach team-member">
             <!-- Team Member Photo -->
             @{ dynamic personImage = item.PersonImage is int ? Library.MediaById(item.PersonImage) : null; }
             <div class="team-member-image">
