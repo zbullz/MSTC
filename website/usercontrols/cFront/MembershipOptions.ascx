@@ -14,6 +14,7 @@
             <% if (MembershipCostCalculator.DiscountedMonths.Contains(DateTime.Now.Month)) { %>
                 <span class="help-block alert-success">Good news! The 50% second half season discount has been applied!</span>
             <% } %>
+                <span class="help-block alert-warning">Youth members parents must complete the <a href="http://midsussextriclub.com/media/63667/Consent%20form%20Feb%202017.pdf">consent form</a>.</span>
             </div>
         </div>
         <div class="form-group">
