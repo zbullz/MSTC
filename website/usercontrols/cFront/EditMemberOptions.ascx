@@ -92,17 +92,22 @@
                     </p>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group <%=IsGuest ? "" : "hide"%>">
+                <div class="col-sm-12">
+                    <asp:Button ID="btn_24SwimCredits" runat="server" Text="Buy £24 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_24SwimCreditsClick" />
+                </div>
+            </div>
+            <div class="form-group <%=IsGuest ? "hide" : ""%>">
                 <div class="col-sm-12">
                     <asp:Button ID="btn_5SwimCredits" runat="server" Text="Buy £16 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_5SwimCreditsClick" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group <%=IsGuest ? "hide" : ""%>">
                 <div class="col-sm-12">
                     <asp:Button ID="btn_10SwimCredits" runat="server" Text="Buy £32 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_10SwimCreditsClick" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group <%=IsGuest ? "hide" : ""%>">
                 <div class="col-sm-12">
                     <asp:Button ID="btn_15SwimCredits" runat="server" Text="Buy £44 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_15SwimCreditsClick" />
                 </div>
