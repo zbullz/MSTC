@@ -84,14 +84,19 @@
                     return;
                 }
 
+                var data = {
+                    memberNodeIds: memberNodeIdsToUpdate + "",
+                    memberCost: $("#memberCreditCost").html(),
+                    guestNodeIds: guestNodeIdsToUpdate + "",
+                    guestCost: $("#guestCreditCost").html()
+                };
+                if (console) {
+                    console.log(data);
+                }
+
                 $.ajax({
                     url: "/Base/SwimAdmin/UpdateSwimCredits",
-                    data: {
-                        memberNodeIds: memberNodeIdsToUpdate + "",
-                        memberCost: $("#memberCreditCost").html(),
-                        guestNodeIds: guestNodeIdsToUpdate + "",
-                        guestCost: $("#guestCreditCost").html()
-                    },
+                    data: data,
                     type: 'post',
                     success: function(data) {
                         location.reload(true);
