@@ -74,8 +74,8 @@
                 $('input[name="RemoveCredit"]:checked').each(function (index, checkbox) {
                     var nodeId = checkbox.value;
                     var guestId = "#IsGuest-" + nodeId;
-                    var isGuest =  $(guestId).value;
-                    if (isGuest === 'true') {
+                    var isGuest =  $(guestId).val();
+                    if (isGuest === 'True') {
                         guestNodeIdsToUpdate.push(nodeId);
                     } else {
                         memberNodeIdsToUpdate.push(nodeId);
