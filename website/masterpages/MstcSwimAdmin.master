@@ -56,7 +56,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FooterScripts" runat="server">
-    <script type="text/javascript" language="javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
             $(".remove-swim-credit").bind("click", function (e) {
                 var creditsRemoving = 0;
@@ -72,10 +72,13 @@
                 var memberNodeIdsToUpdate = [];
                 var guestNodeIdsToUpdate = [];
                 $('input[name="RemoveCredit"]:checked').each(function (index, checkbox) {
-                    if (parseInt(checkbox.value, 10) < 1000) {
-                        memberNodeIdsToUpdate.push(checkbox.value);
+                    var nodeId = checkbox.value;
+                    var guestId = "#IsGuest-" + nodeId;
+                    var isGuest =  $(guestId).value;
+                    if (isGuest === 'true') {
+                        guestNodeIdsToUpdate.push(nodeId);
                     } else {
-                        guestNodeIdsToUpdate.push(checkbox.value);
+                        memberNodeIdsToUpdate.push(nodeId);
                     }
                 });
 

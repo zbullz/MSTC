@@ -29,7 +29,9 @@
             <td>£@member.SwimCreditsBought</td>
             <td>£@member.SwimCreditsUsed</td>
             <td>£@(member.SwimBalanceLastYear + member.SwimCreditsBought - member.SwimCreditsUsed)</td>
-            <td><input type="checkbox" name="RemoveCredit" class="remove-swim-credit" value="@member.NodeId"/></td>
+            <td><input type="hidden" id="IsGuest-@member.NodeId" value="@member.IsGuest" />
+                <input type="checkbox" name="RemoveCredit" class="remove-swim-credit" value="@member.NodeId"/>
+            </td>
         </tr>
     }
 

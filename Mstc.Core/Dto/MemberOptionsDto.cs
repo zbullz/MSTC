@@ -24,5 +24,7 @@ namespace Mstc.Core.Dto
 		public string TriFestEntry { get; set; }
 		public string CharitySwimEntry { get; set; }
 
+	    public bool IsGuest => MembershipType.HasValue && MembershipType.Value == Domain.MembershipType.Guest;
+
 	}
 }
