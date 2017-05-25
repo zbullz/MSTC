@@ -13,6 +13,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 {
 	protected MembershipCostCalculator _membershipCostCalcualtor;
 
+    public bool IsGuest { get; set; }
 	public bool EnableMemberRenewal { get; set; }
 	public bool EnableOpenWater { get; set; }
 	public bool ShowMemberAdminLink { get; set; }
@@ -64,7 +65,8 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 			}
 
 			bool isGuest = memberType == MembershipType.Guest;
-			EnableGuestUpgrade = isGuest && hasExpired == false;
+		    IsGuest = isGuest;
+            EnableGuestUpgrade = isGuest && hasExpired == false;
 			EnableGuestRenewal = isGuest && hasExpired;
 
 			ShowBuySwimSubs1 = memberType != MembershipType.Guest &&
@@ -178,7 +180,12 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 		MakeSwimPayment(PaymentStates.S001599C);
 	}
 
-	private void MakeSwimSubsPayment(PaymentStates paymentState)
+    public void btn_24SwimCreditsClick(object sender, EventArgs e)
+    {
+        MakeSwimPayment(PaymentStates.S002499C);
+    }
+
+    private void MakeSwimSubsPayment(PaymentStates paymentState)
 	{
 		var goCardlessProvider = new GoCardlessProvider();
 

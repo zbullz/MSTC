@@ -34,7 +34,8 @@
                     <div class="col-sm-10"></div>
                     <div class="col-sm-2">
                         <label id="creditsRemoving"></label>
-                        <label>Credit cost: £<span id="creditCost"><umbraco:Item ID="creditCostItem" runat="server" field="creditCost" /></span></label>
+                        <label>Member credit cost: £<span id="memberCreditCost"><umbraco:Item ID="Item1" runat="server" field="creditCost" /></span></label>
+                        <label>Guest credit cost: £<span id="guestCreditCost"><umbraco:Item ID="creditCostItem" runat="server" field="guestCreditCost" /></span></label>
 
                         
                         <input id="updateSwimCredits" type="submit" value="Update credits" class="btn pull-left btn-yellow"  />
@@ -55,7 +56,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FooterScripts" runat="server">
-    <script type="text/javascript" language="javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
             $(".remove-swim-credit").bind("click", function (e) {
                 var creditsRemoving = 0;
@@ -69,22 +70,38 @@
             $("#updateSwimCredits").bind("click", function (e) {
                 e.preventDefault();
                 var memberNodeIdsToUpdate = [];
-                $('input[name="RemoveCredit"]:checked').each(function(index, checkbox) {
-                    memberNodeIdsToUpdate.push(checkbox.value);
+                var guestNodeIdsToUpdate = [];
+                $('input[name="RemoveCredit"]:checked').each(function (index, checkbox) {
+                    var nodeId = checkbox.value;
+                    var guestId = "#IsGuest-" + nodeId;
+                    var isGuest =  $(guestId).val();
+                    if (isGuest === 'True') {
+                        guestNodeIdsToUpdate.push(nodeId);
+                    } else {
+                        memberNodeIdsToUpdate.push(nodeId);
+                    }
                 });
 
-                if (memberNodeIdsToUpdate.length === 0) {
+                if (memberNodeIdsToUpdate.length === 0 && guestNodeIdsToUpdate.length ===0) {
                     alert("Please select some members to update swim credits for.");
+                    return;
                 }
 
-                    $.ajax({
-                        url: "/Base/SwimAdmin/UpdateSwimCredits",
-                        data: {
-                            nodeIds: memberNodeIdsToUpdate + "",
-                            cost: $("#creditCost").html()
-                },
+                var data = {
+                    memberNodeIds: memberNodeIdsToUpdate + "",
+                    memberCost: $("#memberCreditCost").html(),
+                    guestNodeIds: guestNodeIdsToUpdate + "",
+                    guestCost: $("#guestCreditCost").html()
+                };
+                if (console) {
+                    console.log(data);
+                }
+
+                $.ajax({
+                    url: "/Base/SwimAdmin/UpdateSwimCredits",
+                    data: data,
                     type: 'post',
-                    success: function (data) {
+                    success: function(data) {
                         location.reload(true);
                     }
                 });
