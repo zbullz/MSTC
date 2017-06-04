@@ -71,6 +71,7 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 			case PaymentStates.S00599C:
 			case PaymentStates.S001099C:
 			case PaymentStates.S001599C:
+			case PaymentStates.S002499C:
 			{
 				UpdateMemberSwimCredits(currentmemdata, (int) paymentState);
 				DisplaySwimCreditConfirmationMessage((int) paymentState);
