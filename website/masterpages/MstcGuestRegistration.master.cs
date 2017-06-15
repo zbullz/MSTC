@@ -47,8 +47,7 @@ public partial class masterpages_MstcGuestRegistration : System.Web.UI.MasterPag
 				SwimSubsAprToSept = false,
 				SwimSubsOctToMar = false,
 				Volunteering = false,
-				GuestCode = tbSecretCode.Text,
-				ReferredByMember = tbMemberReferred.Text
+				GuestCode = tbSecretCode.Text
 			},
 			RegistrationDetails = regDetails
 		};
