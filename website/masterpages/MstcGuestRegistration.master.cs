@@ -88,13 +88,7 @@ public partial class masterpages_MstcGuestRegistration : System.Web.UI.MasterPag
 		string code = tbSecretCode.Text.ToLower();
 		if (string.IsNullOrWhiteSpace(code) == false)
 		{
-			args.IsValid = (code == "egaffiliate" || code == "btrslegend" || code == "fishyfriends" || code == "leic-affiliate" || code == "hogwarts" || code == "bhrunners");
-			return;
-		}
-
-		if (string.IsNullOrWhiteSpace(tbMemberReferred.Text) == false)
-		{
-			args.IsValid = true;
+			args.IsValid = (code == "btrslegend" || code == "bhrunnermates" || code == "cwheelerbuds" || code == "swim1sttrifriends");
 			return;
 		}
 
