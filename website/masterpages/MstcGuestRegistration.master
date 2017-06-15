@@ -53,7 +53,7 @@
                                     <div class="col-sm-7">
                                         <asp:TextBox ID="tbSecretCode" runat="server" CssClass="form-control"></asp:TextBox>
                                         <asp:CustomValidator ID="tbSecretCodeValidator" runat="server" 
-                                            ErrorMessage="Please provide either a valid sign up code or the name of the member who referred you to the club."
+                                            ErrorMessage="Please provide either a valid sign up code."
                                             OnServerValidate="tbSecretCodeValidator_ServerValidate" CssClass="help-block alert-danger">
                                         </asp:CustomValidator>
                                     </div>
