@@ -1,0 +1,36 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" %>
+
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MainContent">
+    <!-- Page Heading -->
+    <umbraco:Macro ID="bannerImageMacro" runat="server" Language="cshtml">@RenderPage("~/macroscripts/PageHeading.cshtml")
+    </umbraco:Macro>
+
+    <!-- Main content -->
+
+
+    <div class="section">
+        <div class="container">
+            <div class="blog-post blog-single-post">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <umbraco:Item ID="bodyText" runat="server" Field="bodyText" />
+                        <div class="vid-wrapper">
+                            <iframe width="853" height="480" src="https://www.youtube-nocookie.com/embed/E3ZakjyBONU?rel=0?ecver=1" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Secondary content -->
+    <umbraco:Item ID="secondaryContent" runat="server" Field="secondaryContent"
+        insertTextBefore="&lt;div class=&quot;section&quot;&gt;&lt;div class=&quot;container&quot;&gt;"
+        insertTextAfter="&lt;/div&gt;&lt;/div&gt;" />
+
+</asp:Content>
