@@ -32,7 +32,7 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 					membershipCostCalculator.GetTypeCost(MembershipType.Couple, DateTime.Now)),
 				((int) MembershipType.Couple).ToString()),
 			new ListItem(
-				string.Format("Youth member, full-time student (18 years or above) or unemployed - &pound;{0}",
+				string.Format("Youth (age 16-17), student (18+) or unemployed - &pound;{0}",
 					membershipCostCalculator.GetTypeCost(MembershipType.Concession, DateTime.Now)),
 				((int) MembershipType.Concession).ToString())
 		};

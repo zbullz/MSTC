@@ -30,6 +30,7 @@
                         <asp:ListItem Text="Please select topic..."></asp:ListItem>
                         <asp:ListItem Text="General" Value="General"></asp:ListItem>
                         <asp:ListItem Text="Membership" Value="Membership"></asp:ListItem>
+                        <asp:ListItem Text="Open water swimming" Value="OWS"></asp:ListItem>
                         <asp:ListItem Text="Sponsorship" Value="Sponsorship"></asp:ListItem>
                         <asp:ListItem Text="Juniors" Value="Juniors"></asp:ListItem>
                         <asp:ListItem Text="Website" Value="Website"></asp:ListItem>
