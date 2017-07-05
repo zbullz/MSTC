@@ -24,7 +24,7 @@
 
         <link rel="stylesheet" href="/css/mstc/bootstrap.min.css">
         <link rel="stylesheet" href="/css/mstc/icomoon-social.css">
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
 
         <link rel="stylesheet" href="/css/mstc/leaflet.css" />
         <!--[if lte IE 8]>
@@ -65,7 +65,7 @@
         <umbraco:Macro ID="footerSection" Alias="Footer" runat="server" Language="cshtml"></umbraco:Macro>
         
         <!-- Javascripts -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="/scripts/mstc/jquery-1.9.1.min.js"><\/script>')</script>
         <script src="/scripts/mstc/bootstrap.min.js"></script>
         <script src="/scripts/mstc/main-menu.js"></script>
