@@ -3,4 +3,7 @@
   <parameter name="umbracoDbDSN">
     <parameterEntry kind="XmlFile" scope="\\web\.config$" match="/configuration/appSettings/add[@key='umbracoDbDSN']/@value" />
   </parameter>
+    <parameter name="gmailUserName">
+    <parameterEntry kind="XmlFile" scope="\\web.config$" match="/configuration/appSettings/add[@key='gmailUserName']/@value" />
+  </parameter>
 </parameters>
