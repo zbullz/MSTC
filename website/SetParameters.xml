@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <setParameter name="umbracoDbDSN" value="server=.\SQLEXPRESS2016;database=mstc;user id=mstcuser;password=Mult1M4dn355;" />
-  <setParameter name="gmailUserName" value="bob" />
-</parameters>
