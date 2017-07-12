@@ -2,7 +2,7 @@ Write-Host 'Hey, this is my before packaging script'
 
 #$root = 'D:\dev\MSTC\website'
 #$root = 'C:\projects\mstc-f3l95\website'
-$root =  $env:APPVEYOR_BUILD_FOLDER\website
+$root =  $env:APPVEYOR_BUILD_FOLDER + '\website'
 Write-Host $root
 
 $webconfig = get-content $root\Web.config | select-object -skip 1
