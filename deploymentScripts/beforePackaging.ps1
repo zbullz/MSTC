@@ -1,8 +1,8 @@
 Write-Host 'Running before packaging script'
 
-$root = 'D:\dev\MSTC\website'
+#$root = 'D:\dev\MSTC\website'
 #$root = 'C:\projects\mstc-f3l95\website'
-#$root =  $env:APPVEYOR_BUILD_FOLDER + '\website'
+$root =  $env:APPVEYOR_BUILD_FOLDER + '\website'
 Write-Host $root
 
 $configPath = $root + '\Web.config'
@@ -50,8 +50,6 @@ if ($env:openWaterEnabled)
 	$webconfig = $webconfig -replace "<add key=`"openWaterEnabled`" value=`"([^`"]+)`"","<add key=`"openWaterEnabled`" value=`"$env:openWaterEnabled`""
 }
 
-#$Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
 [System.IO.File]::WriteAllLines($configPath, $webconfig)
-#$webconfig | out-file $root\Web.config
 
 Write-Host 'Finished before packaging script'
