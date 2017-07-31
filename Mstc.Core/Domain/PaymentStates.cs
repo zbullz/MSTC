@@ -15,8 +15,9 @@ namespace Mstc.Core.Domain
 		[Description("Triathlon Festival - Olympic Relay")] E00TRIOR202C = 202,
 		[Description("Triathlon Festival - Middle Individual")] E00TRIMI203C = 203,
 		[Description("Triathlon Festival - Middle Relay")] E00TRIMR204C = 204,
+		[Description("Triathlon Festival - Sprint Individual")] E00TRISI205C = 205,
 
-		[Description("Charity Swim - 1km")] E00S1KM301C = 301,
+        [Description("Charity Swim - 1km")] E00S1KM301C = 301,
 		[Description("Charity Swim - 3km")] E00S3KM302C = 302,
 		[Description("Charity Swim - 5km")] E00S5KM303C = 303,
 		[Description("Charity Swim - 1km, 3km")] E00S1KM3KM304C = 304,

@@ -59,8 +59,9 @@ public partial class masterpages_MstcClubEventEntry : System.Web.UI.MasterPage
 	{
 		var eventTypes = new List<ListItem>()
 		{
+			new ListItem("Sprint Individual - &pound;23", ((int) PaymentStates.E00TRISI205C).ToString()),
 			new ListItem("Olympic Individual - &pound;23", ((int) PaymentStates.E00TRIOI201C).ToString()),
-			new ListItem("Olympic Relay - &pound;13", ((int) PaymentStates.E00TRIOR202C).ToString()),
+            new ListItem("Olympic Relay - &pound;13", ((int) PaymentStates.E00TRIOR202C).ToString()),
 			new ListItem("Middle distance Individual - &pound;23", ((int) PaymentStates.E00TRIMI203C).ToString()),
 			new ListItem("Middle distance Relay - &pound;13", ((int) PaymentStates.E00TRIMR204C).ToString()),
 		};
@@ -117,7 +118,7 @@ public partial class masterpages_MstcClubEventEntry : System.Web.UI.MasterPage
 
 		PaymentStates entryType = (PaymentStates)Enum.Parse(typeof(PaymentStates), triFestEventType.SelectedValue);
 
-		decimal cost = (entryType == PaymentStates.E00TRIOI201C || entryType == PaymentStates.E00TRIMI203C) ? 23m : 13m;
+		decimal cost = (entryType == PaymentStates.E00TRIOI201C || entryType == PaymentStates.E00TRIMI203C || entryType == PaymentStates.E00TRISI205C) ? 23m : 13m;
 		if (string.IsNullOrEmpty(tbTriFestBTFNumber.Text) == false)
 		{
 			cost = cost - 3;
