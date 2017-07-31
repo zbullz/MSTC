@@ -34,7 +34,6 @@
                     <div class="col-sm-12">
                         <div class="form-wrapper">
                             <p>Please complete the form below to register as an affiliated guest.</p>
-                            <p>The affiliated clubs for 2017 are Burgess Hill Runners, Crawley Wheelers, BTRS and Swim 1st Tri. You must be a member of one of these clubs to join as an affiliate.</p>
 
                             <!--Registration details-->
                             <cf:RegistrationDetails ID="registrationDetailsControl" runat="server" />

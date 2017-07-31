@@ -14,8 +14,7 @@ namespace Mstc.Core.WebMethods
 		public static bool UpdateSwimCredits()
 		{
 			string memberNodeIdsString = HttpContext.Current.Request["memberNodeIds"];
-			string guestNodeIdsString = HttpContext.Current.Request["guestNodeIds"];
-            int creditCost = 5;
+            int creditCost =4;
 
 			IMemberDal memberDal = new MemberDal(new DataConnection());
 
@@ -25,14 +24,8 @@ namespace Mstc.Core.WebMethods
                 int.TryParse(HttpContext.Current.Request["memberCost"], out creditCost);
                 memberDal.UpdateSwimCredits(nodeIds, creditCost);
 		    }
-            if (guestNodeIdsString.Length > 0)
-            {
-                List<string> nodeIds = guestNodeIdsString.Split(',').ToList();
-                int.TryParse(HttpContext.Current.Request["guestCost"], out creditCost);
-                memberDal.UpdateSwimCredits(nodeIds, creditCost);
-            }
 
-            Log.Add(LogTypes.Custom, -1, string.Format("Decremented swim credits for nodeIds: {0} {1}", memberNodeIdsString, guestNodeIdsString));
+            Log.Add(LogTypes.Custom, -1, string.Format("Decremented swim credits for nodeIds: {0}", memberNodeIdsString));
 
 			return true;
 		}

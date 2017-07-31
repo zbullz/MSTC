@@ -82,7 +82,7 @@
 <div id="open-water-section">
     <h2>Open Water Swim</h2>
     <div class="contact-form-wrapper">
-        <div class="<%=EnableOpenWater ? "" : "hide"%>">
+        <div class="<%=EnableOpenWater && !IsGuest ? "" : "hide"%>">
             <div class="form-group">
                 <label class="col-sm-6 control-label"><b>O/W swim auth number:</b></label>
                 <div class="col-sm-6 member-date">
@@ -90,11 +90,6 @@
                         <asp:HyperLink ID="openWaterAuthNumber" runat="server" data-toggle="tooltip" data-placement="bottom"
                             title="Take this number with you to open water swim sessions. You can't get in the water unless you have your number!"></asp:HyperLink>
                     </p>
-                </div>
-            </div>
-            <div class="form-group <%=IsGuest ? "" : "hide"%>">
-                <div class="col-sm-12">
-                    <asp:Button ID="btn_24SwimCredits" runat="server" Text="Buy £24 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_24SwimCreditsClick" />
                 </div>
             </div>
             <div class="form-group <%=IsGuest ? "hide" : ""%>">

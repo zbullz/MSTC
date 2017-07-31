@@ -180,11 +180,6 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 		MakeSwimPayment(PaymentStates.S001599C);
 	}
 
-    public void btn_24SwimCreditsClick(object sender, EventArgs e)
-    {
-        MakeSwimPayment(PaymentStates.S002499C);
-    }
-
     private void MakeSwimSubsPayment(PaymentStates paymentState)
 	{
 		var goCardlessProvider = new GoCardlessProvider();
