@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-wrapper">
-                            <p>Please complete the form below to register as an affiliated guest.</p>
+                            <p>Please complete the form below to register as a guest.</p>
 
                             <!--Registration details-->
                             <cf:RegistrationDetails ID="registrationDetailsControl" runat="server" />
