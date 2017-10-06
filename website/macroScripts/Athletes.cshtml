@@ -1,10 +1,11 @@
 ﻿@using cFront.Umbraco.Membership
 @using Mstc.Core.DataAccess
+@using Mstc.Core.Domain
 @using Mstc.Core.Dto
 @{
-    //IEnumerable<IDictionary<string, object>> members = MemberHelper.GetAllMembers();
     IMemberDal memberDal = new MemberDal(new DataConnection());
-    IEnumerable<MemberSummaryDto> memberSummaries = memberDal.GetMemberSummaries().OrderBy(m => m.Name);
+    IEnumerable<MemberSummaryDto> memberSummaries = memberDal.GetMemberSummaries()
+        .Where(m => m.MembershipType != MembershipType.Guest && string.IsNullOrWhiteSpace(m.Name) == false).OrderBy(m => m.Name);
 }  
 @foreach (var member in memberSummaries)
 {

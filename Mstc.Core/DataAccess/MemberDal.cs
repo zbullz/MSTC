@@ -69,8 +69,8 @@ namespace Mstc.Core.DataAccess
 		public IEnumerable<MemberSummaryDto> GetMemberSummaries()
 		{
 			string query = BaseSelectQuery +
-			               @" WHERE	(MemberList.nodeId IS NOT NULL)
-					        and MemberTypes.Alias in ('phoneMobile', 'profileImage')";
+                           @" WHERE	(MemberList.nodeId IS NOT NULL)
+					        and MemberTypes.Alias in ('phoneMobile', 'profileImage', 'membershipType')";
 
 			IEnumerable<MemberData> memberData;
 			using (IDbConnection connection = _dataConnection.SqlConnection)
@@ -160,15 +160,20 @@ namespace Mstc.Core.DataAccess
 			{
 				Name = groupedMemberData.First().Name,
 				Email = groupedMemberData.Key,
-				Phone = GetPropertyValueForAlias(groupedMemberData, "phoneMobile")
-			};
+				Phone = GetPropertyValueForAlias(groupedMemberData, "phoneMobile"),
+            };
 
 			int imageId;
 			if (int.TryParse(GetPropertyValueForAlias(groupedMemberData, "profileImage"), out imageId))
 			{
 				memberServiceDto.ProfileImageId = imageId;
 			}
-			return memberServiceDto;
+
+		    MembershipType membershipType;
+            Enum.TryParse(GetPropertyValueForAlias(groupedMemberData, "membershipType"), out membershipType);
+		    memberServiceDto.MembershipType = membershipType;
+
+            return memberServiceDto;
 		}
 
 		private MemberOptionsDto MapMemberDataToOptions(IGrouping<string, MemberData> groupedMemberData)

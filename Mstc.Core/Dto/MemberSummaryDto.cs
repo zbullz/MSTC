@@ -1,4 +1,6 @@
-﻿namespace Mstc.Core.Dto
+﻿using Mstc.Core.Domain;
+
+namespace Mstc.Core.Dto
 {
 	public class MemberSummaryDto
 	{
@@ -6,5 +8,6 @@
 		public string Email { get; set; }
 		public string Phone { get; set; }
 		public int? ProfileImageId { get; set; }
-	}
+        public MembershipType MembershipType { get; set; }
+    }
 }
