@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "website", "website\", "{2FE6D272-E35E-4127-B4DE-8A521AEFEF52}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
 		ProjectReferences = "{159a837e-df0b-4ea1-8581-ec4f20bc0cdc}|Mstc.Core.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/website"
 		Debug.AspNetCompiler.PhysicalPath = "website\"
