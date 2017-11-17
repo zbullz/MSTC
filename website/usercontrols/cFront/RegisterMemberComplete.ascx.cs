@@ -68,7 +68,7 @@ public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.
 	private void ConfirmPaymentRequest()
 	{
 		var goCardlessProvider = new GoCardlessProvider();
-		goCardlessProvider.ConfirmBill(Request.QueryString);
+		//goCardlessProvider.ConfirmBill(Request.QueryString);
 	}
 
 

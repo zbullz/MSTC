@@ -6,8 +6,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using cFront.Umbraco.Membership;
-using GoCardlessSdk;
-using GoCardlessSdk.Connect;
 using Mstc.Core.Domain;
 using Mstc.Core.Providers;
 
@@ -167,8 +165,8 @@ public partial class masterpages_MstcClubEventEntry : System.Web.UI.MasterPage
 	private void RedirectToGocardless(string memberEmail, decimal cost, string name, string description, PaymentStates paymentState)
 	{
 		var goCardlessProvider = new GoCardlessProvider();
-		var redirectUrl = goCardlessProvider.CreateSimpleBill(memberEmail, cost, name, description, paymentState, Request.Url);
-		Response.Redirect(redirectUrl);
+		//var redirectUrl = goCardlessProvider.CreateSimpleBill(memberEmail, cost, name, description, paymentState, Request.Url);
+		//Response.Redirect(redirectUrl);
 	}
 
 	protected void DuathlonTerms_Validate(object sender, ServerValidateEventArgs e)

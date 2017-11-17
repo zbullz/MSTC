@@ -41,6 +41,8 @@ namespace Mstc.Core.Providers
 		{
 			get { return CurrentSession[_canProcessPaymentCompletion] != null ? (bool) CurrentSession[_canProcessPaymentCompletion] : false; }
 			set { CurrentSession[_canProcessPaymentCompletion] = value; }
-		} 
-	}
+		}
+
+	    public string SessionId => CurrentSession.SessionID;
+    }
 }

@@ -44,6 +44,6 @@ public partial class masterpages_MstcMemberRenewalComplete : System.Web.UI.Maste
 	private void ConfirmPaymentRequest()
 	{
 		var goCardlessProvider = new GoCardlessProvider();
-		goCardlessProvider.ConfirmBill(Request.QueryString);
+		//goCardlessProvider.ConfirmBill(Request.QueryString);
 	}
 }

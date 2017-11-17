@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
-using System.Data;
 using System.Linq;
 using System.Web.Security;
-using GoCardlessSdk.Connect;
 using Mstc.Core.Domain;
 using Mstc.Core.Providers;
 
@@ -185,6 +183,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 		var goCardlessProvider = new GoCardlessProvider();
 
 		MembershipType memberType = (MembershipType)Enum.Parse(typeof(MembershipType), membershipType.Text);
+        /*
 		var redirectUrl = goCardlessProvider.CreateSimpleBill(hiddenEmail.Value, paymentState == PaymentStates.SS05996 ? 15m : 30m,
 			"Swim subs payment",
 			string.Format("{0}", paymentState.GetAttributeOfType<DescriptionAttribute>().Description), paymentState, Request.Url);
@@ -193,6 +192,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 		sessionProvider.CanProcessPaymentCompletion = true;
 		//RedirectToCompletePage(paymentState.ToString()); //Can be used for testing
 		Response.Redirect(redirectUrl);
+        */
 	}
 
 	private void MakeSwimPayment(PaymentStates paymentState)
@@ -200,7 +200,8 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 		var goCardlessProvider = new GoCardlessProvider();
 
 		MembershipType memberType = (MembershipType)Enum.Parse(typeof(MembershipType), membershipType.Text);
-		var redirectUrl = goCardlessProvider.CreateSimpleBill(hiddenEmail.Value, _membershipCostCalcualtor.SwimCreditsCost(paymentState, memberType),
+        /*
+        var redirectUrl = goCardlessProvider.CreateSimpleBill(hiddenEmail.Value, _membershipCostCalcualtor.SwimCreditsCost(paymentState, memberType),
 			"Open water swim credits",
 			string.Format("Open water swim, GBP{0} credits", (int)paymentState), paymentState, Request.Url);
 
@@ -208,6 +209,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 		sessionProvider.CanProcessPaymentCompletion = true;
 		//RedirectToCompletePage(paymentState.ToString()); //Can be used for testing
 		Response.Redirect(redirectUrl);
+        */
 	}
 
 	private void RedirectToCompletePage(string state)

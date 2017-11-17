@@ -1,15 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using cFront.Umbraco.Membership;
-using GoCardlessSdk;
-using GoCardlessSdk.Connect;
-using Lucene.Net.Search.Function;
 using Mstc.Core.Domain;
 using Mstc.Core.Providers;
 
@@ -59,7 +51,7 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 	private void ConfirmPaymentRequest()
 	{
 		var goCardlessProvider = new GoCardlessProvider();
-		goCardlessProvider.ConfirmBill(Request.QueryString);
+		//goCardlessProvider.ConfirmBill(Request.QueryString);
 	}
 
 	private void ProcessPaymentState(IDictionary<String, object> currentmemdata, string state)

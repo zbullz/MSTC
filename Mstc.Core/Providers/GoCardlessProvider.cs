@@ -1,25 +1,27 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.Configuration;
-using GoCardlessSdk;
-using GoCardlessSdk.Connect;
+using System.Threading.Tasks;
+using GoCardless;
+using GoCardless.Services;
 using Mstc.Core.Domain;
+using Mstc.Core.Dto;
 using umbraco.BusinessLogic;
 
 namespace Mstc.Core.Providers
 {
 	public class GoCardlessProvider
 	{
-		public GoCardlessProvider()
+	    private GoCardlessClient _client;
+
+        public GoCardlessProvider()
 		{
-			GoCardless.Environment = (GoCardless.Environments)
-				Enum.Parse(typeof (GoCardless.Environments), ConfigurationManager.AppSettings["gocardlessEnvironment"]);
-			GoCardless.AccountDetails = new AccountDetails
-			{
-				AppId = ConfigurationManager.AppSettings["gocardlessAppId"],
-				AppSecret = ConfigurationManager.AppSettings["gocardlessAppSecret"], 
-				Token = ConfigurationManager.AppSettings["gocardlessToken"]
-			};
+		    var environment = ConfigurationManager.AppSettings["gocardlessEnvironment"] == "Production"
+		        ? GoCardlessClient.Environment.LIVE
+		        : GoCardlessClient.Environment.SANDBOX;
+
+		    _client = GoCardlessClient.Create(ConfigurationManager.AppSettings["gocardlessAccessToken"],
+		        environment);
 		}
 
 		public string MerchantId
@@ -27,6 +29,34 @@ namespace Mstc.Core.Providers
 			get { return ConfigurationManager.AppSettings["gocardlessMerchantId"]; }
 		}
 
+	    public async Task<RedirectResponseDto> CreateRedirectRequest(CustomerDto customer, string sessionToken, string successUrl)
+	    {
+	        var redirectFlowResponse = await _client.RedirectFlows.CreateAsync(new RedirectFlowCreateRequest()
+	        {
+	            Description = "MSTC Member",
+	            SessionToken = sessionToken,
+	            SuccessRedirectUrl = successUrl,
+	            // Optionally, prefill customer details on the payment page
+	            PrefilledCustomer = new RedirectFlowCreateRequest.RedirectFlowPrefilledCustomer()
+	            {
+	                GivenName = customer.GivenName,
+	                FamilyName = customer.FamilyName,
+	                Email = customer.Email,
+	                AddressLine1 = customer.AddressLine1,
+	                City = customer.City,
+	                PostalCode = customer.PostalCode
+	            }
+	        });
+
+            var redirectFlow = redirectFlowResponse.RedirectFlow;
+            return new RedirectResponseDto()
+            {
+                Id = redirectFlow.Id,
+                RedirectUrl = redirectFlow.RedirectUrl
+            };
+        }
+
+        /*
 		public string CreateSimpleBill(string memberEmail, decimal cost, string name, string description, PaymentStates paymentState, Uri requestUri)
 		{
 			Log.Add(LogTypes.Custom, -1,
@@ -87,5 +117,6 @@ namespace Mstc.Core.Providers
 				TryConfirmBill(confirmQueryStringCollection, retries, tried);
 			}
 		}
+        */
 	}
 }

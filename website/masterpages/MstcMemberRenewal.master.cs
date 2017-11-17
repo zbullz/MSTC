@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using cFront.Umbraco;
-using GoCardlessSdk.Connect;
 using Mstc.Core.Domain;
 using Mstc.Core.Providers;
 using Newtonsoft.Json;
@@ -58,6 +57,7 @@ public partial class masterpages_MstcMemberRenewal : System.Web.UI.MasterPage
 	private void RedirectToGocardless(string billName, string memberEmail, decimal cost, string description)
 	{
 		var goCardlessProvider = new GoCardlessProvider();
+        /*
 		var billRequest = new BillRequest(goCardlessProvider.MerchantId, cost)
 		{
 			Name = billName,
@@ -67,6 +67,7 @@ public partial class masterpages_MstcMemberRenewal : System.Web.UI.MasterPage
 				Email = memberEmail
 			},
 		};
+        
 
 		//Could wrap this in a provider
 		string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
@@ -76,6 +77,7 @@ public partial class masterpages_MstcMemberRenewal : System.Web.UI.MasterPage
 
 		string paymentGatewayUrl = goCardlessProvider.CreateBill(billRequest, redirectUrl, cancelUrl);
 		Response.Redirect(paymentGatewayUrl);
+        */
 	}
 
 	private bool IsRenewing(IDictionary<String, object> currentmemdata)
