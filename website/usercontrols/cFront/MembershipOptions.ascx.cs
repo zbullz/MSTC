@@ -24,16 +24,16 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 		{
 			new ListItem(
 				string.Format("Individual membership - &pound;{0}",
-					membershipCostCalculator.GetTypeCost(MembershipType.Individual, DateTime.Now)),
+					membershipCostCalculator.GetTypeCostPence(MembershipType.Individual, DateTime.Now)/100),
 				((int) MembershipType.Individual).ToString()),
 			new ListItem(
 				string.Format(
 					@"Couple membership - &pound;{0}<br /> <i>Only select this option if your partner will also be renewing their membership - The membership secretary will be checking!</i>",
-					membershipCostCalculator.GetTypeCost(MembershipType.Couple, DateTime.Now)),
+					membershipCostCalculator.GetTypeCostPence(MembershipType.Couple, DateTime.Now)/100),
 				((int) MembershipType.Couple).ToString()),
 			new ListItem(
 				string.Format("Youth (age 16-17), student (18+) or unemployed - &pound;{0}",
-					membershipCostCalculator.GetTypeCost(MembershipType.Concession, DateTime.Now)),
+					membershipCostCalculator.GetTypeCostPence(MembershipType.Concession, DateTime.Now)/100),
 				((int) MembershipType.Concession).ToString())
 		};
 		membershipType.Items.AddRange(membershipTypes.ToArray());

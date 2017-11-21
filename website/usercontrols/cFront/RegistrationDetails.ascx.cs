@@ -40,7 +40,8 @@ public partial class usercontrols_cFront_RegistrationDetails : System.Web.UI.Use
 	{
 		return new RegistrationDetails()
 		{
-			FullName = tbFullName.Text,
+			FirstName = tbFirstName.Text,
+            LastName = tbLastName.Text,
 			Email = tbEmail.Text,
 			Password = tbPassword.Text,
 			Gender = rblGender.SelectedValue,

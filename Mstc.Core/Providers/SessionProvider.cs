@@ -4,9 +4,6 @@ using Mstc.Core.Domain;
 
 namespace Mstc.Core.Providers
 {
-	/// <summary>
-	/// Summary description for SessionProvider
-	/// </summary>
 	public class SessionProvider
 	{
 		private HttpSessionState CurrentSession
@@ -17,13 +14,7 @@ namespace Mstc.Core.Providers
 		private const string _renewalOptionsKey = "RenewalOptions";
 		private const string _regFullDetails = "RegistrationFullDetails";
 		private const string _canProcessPaymentCompletion = "CanProcessPaymentCompletion";
-
-		public SessionProvider()
-		{
-			//
-			// TODO: Add constructor logic here
-			//
-		}
+		private const string _goCardlessRedirectFlowId = "GoCardlessRedirectFlowId";
 
 		public MembershipOptions RenewalOptions
 		{
@@ -42,6 +33,12 @@ namespace Mstc.Core.Providers
 			get { return CurrentSession[_canProcessPaymentCompletion] != null ? (bool) CurrentSession[_canProcessPaymentCompletion] : false; }
 			set { CurrentSession[_canProcessPaymentCompletion] = value; }
 		}
+
+	    public string GoCardlessRedirectFlowId
+	    {
+            get { return (string) CurrentSession[_goCardlessRedirectFlowId]; }
+            set { CurrentSession[_goCardlessRedirectFlowId] = value; }
+	    }
 
 	    public string SessionId => CurrentSession.SessionID;
     }

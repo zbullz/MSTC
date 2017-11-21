@@ -19,9 +19,9 @@
 		public const string medicalConditions = "medicalConditions";
 		public const string emergencyContactName = "emergencyContactName";
 		public const string emergencyContactNumber = "emergencyContactNumber";
+	    public const string directDebitMandateId = "directDebitMandateId";
 
-
-		public const string showService = "showService";
+        public const string showService = "showService";
 		public const string serviceLinkAddress = "serviceLinkAddress";
 		public const string serviceLinkText = "serviceLinkText";
 		public const string serviceImage = "serviceImage";

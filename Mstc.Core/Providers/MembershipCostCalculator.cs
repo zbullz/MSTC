@@ -9,11 +9,11 @@ namespace Mstc.Core.Providers
 	/// </summary>
 	public class MembershipCostCalculator
 	{
-		private Dictionary<MembershipType, decimal> TypeCosts = new Dictionary<MembershipType, decimal>()
+		private Dictionary<MembershipType, int> TypeCosts = new Dictionary<MembershipType, int>()
 		{
-			{MembershipType.Individual, new decimal(40.00)},
-			{MembershipType.Couple, new decimal(35.00)},
-			{MembershipType.Concession, new decimal(30.00)},
+			{MembershipType.Individual, 4000},
+			{MembershipType.Couple,3500},
+			{MembershipType.Concession, 3000},
 		};
 
 		public static List<int> DiscountedMonths
@@ -21,16 +21,16 @@ namespace Mstc.Core.Providers
 			get { return new List<int>() {10, 11, 12, 1, 2}; }
 		}
 
-		private decimal SwimsSubsCost = new decimal(30);
+		private int SwimsSubsCost = 3000;
 
-		public decimal GetTypeCost(MembershipType type, DateTime currentDate)
+		public int GetTypeCostPence(MembershipType type, DateTime currentDate)
 		{
 			return DiscountedMonths.Contains(currentDate.Month) ? TypeCosts[type]/2 : TypeCosts[type];
 		}
 
-		public decimal Calculate(MembershipOptions membershipOptions, DateTime currentDate)
+		public int Calculate(MembershipOptions membershipOptions, DateTime currentDate)
 		{
-			var cost = GetTypeCost(membershipOptions.MembershipType, currentDate);		
+			var cost = GetTypeCostPence(membershipOptions.MembershipType, currentDate);		
 			if (membershipOptions.SwimSubsAprToSept)
 			{
 				cost += SwimsSubsCost;
@@ -43,9 +43,9 @@ namespace Mstc.Core.Providers
 			return cost;
 		}
 
-		public decimal SwimCreditsCost(PaymentStates credits, MembershipType membershipType)
+		public int SwimCreditsCost(PaymentStates credits, MembershipType membershipType)
 		{
-			return new decimal((int) credits);
+			return (int) credits * 100;
 		}
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Net.Mail;
 using Mstc.Core.configuration;
 
@@ -37,8 +38,12 @@ namespace Mstc.Core.Providers
 			objMail.IsBodyHtml = true;
 			objMail.Body = htmlContent;
 
-			var GmailSmtpClient = new GmailSmtpClient();
-			GmailSmtpClient.Send(objMail);
+		    string gmailUserName = ConfigurationManager.AppSettings["gmailUserName"];
+		    if (string.IsNullOrWhiteSpace(gmailUserName) == false)
+		    {
+		        var GmailSmtpClient = new GmailSmtpClient();
+		        GmailSmtpClient.Send(objMail);
+		    }
 		}
 	}
 }

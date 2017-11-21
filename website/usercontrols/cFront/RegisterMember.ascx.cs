@@ -9,10 +9,13 @@ using umbraco.BusinessLogic;
 public partial class usercontrols_cFront_RegisterMember : System.Web.UI.UserControl
 {
     private SessionProvider _sessionProvider;
+    private GoCardlessProvider _goCardlessProvider;
 
     public usercontrols_cFront_RegisterMember()
     {
         _sessionProvider = new SessionProvider();
+        _goCardlessProvider = new GoCardlessProvider();
+
     }
 
     protected void Page_Load(object sender, EventArgs e)
@@ -20,7 +23,7 @@ public partial class usercontrols_cFront_RegisterMember : System.Web.UI.UserCont
 
     }
 
-	protected async void RegisterMember_OnClick(object sender, EventArgs e)
+	protected void RegisterMember_OnClick(object sender, EventArgs e)
 	{
 		if (Page.IsValid == false)
 		{
@@ -33,22 +36,15 @@ public partial class usercontrols_cFront_RegisterMember : System.Web.UI.UserCont
 			RegistrationDetails = registrationDetailsControl.GetRegistrationDetails()
 		};
 
-		
-		_sessionProvider.RegistrationFullDetails = registrationFullDetails;
+        _sessionProvider.RegistrationFullDetails = registrationFullDetails;
 
 		Log.Add(LogTypes.Custom, -1, string.Format("New member registration request: {0}",
 			JsonConvert.SerializeObject(registrationFullDetails)));
 
-		decimal cost = (new MembershipCostCalculator()).Calculate(registrationFullDetails.MembershipOptions, DateTime.Now);
-		var memberProvider = new MemberProvider();
-
-        var goCardlessProvider = new GoCardlessProvider();
-
         var customerDto = new CustomerDto()
         {
-            //TODO - Need to amend form to split first name and surname
-            GivenName = registrationFullDetails.RegistrationDetails.FullName,
-            //FamilyName = registrationFullDetails.
+            GivenName = registrationFullDetails.RegistrationDetails.FirstName,
+            FamilyName = registrationFullDetails.RegistrationDetails.LastName,
             AddressLine1 = registrationFullDetails.RegistrationDetails.Address1,
             City = registrationFullDetails.RegistrationDetails.City,
             PostalCode = registrationFullDetails.RegistrationDetails.Postcode,
@@ -58,23 +54,11 @@ public partial class usercontrols_cFront_RegisterMember : System.Web.UI.UserCont
 	        Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
         string successUrl = string.Format("{0}/the-club/membership-registration-complete", rootUrl);
 
-	    var redirectResponse = await goCardlessProvider.CreateRedirectRequest(customerDto, _sessionProvider.SessionId,
+	    var redirectResponse = _goCardlessProvider.CreateRedirectRequest(customerDto, _sessionProvider.SessionId,
 	        successUrl);
-
-        //TODO -Save the redirectResponse.Id to the user session
-
+        
+        _sessionProvider.GoCardlessRedirectFlowId = redirectResponse.Id;
         Response.Redirect(redirectResponse.RedirectUrl);
-
-        //RedirectToGocardless(registrationFullDetails.RegistrationDetails.Email, cost, memberProvider.GetPaymentDescription(registrationFullDetails.MembershipOptions));
-		//RedirectToCompletePage(); //Can use this for local testing
-	}
-
-	private void RedirectToCompletePage()
-	{
-		string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
-			Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
-		string redirectUrl = string.Format("{0}/the-club/membership-registration-complete", rootUrl);
-		Response.Redirect(redirectUrl);
 	}
 
 	public int FromYear { get { return DateTime.Now.Month < 3 ? DateTime.Now.Year - 1 : DateTime.Now.Year; } }

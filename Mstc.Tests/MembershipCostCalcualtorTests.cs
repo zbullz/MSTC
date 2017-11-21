@@ -11,18 +11,18 @@ namespace Mstc.Tests
 	{
 		public class when_getting_Individual_type_cost_in_september : WithSubject<MembershipCostCalculator>
 		{
-			private Because of = () =>  cost = Subject.GetTypeCost(MembershipType.Individual, new DateTime(DateTime.Now.Year, 9, 1));
+			private Because of = () =>  cost = Subject.GetTypeCostPence(MembershipType.Individual, new DateTime(DateTime.Now.Year, 9, 1));
 
-			private It is_40 = () => cost.ShouldEqual(40.00m);
+			private It is_4000_Pence = () => cost.ShouldEqual(4000);
 
 			private static decimal cost;
 		}
 
 		public class when_getting_Individual_type_cost_in_october : WithSubject<MembershipCostCalculator>
 		{
-			private Because of = () => cost = Subject.GetTypeCost(MembershipType.Individual, new DateTime(DateTime.Now.Year, 10, 1));
+			private Because of = () => cost = Subject.GetTypeCostPence(MembershipType.Individual, new DateTime(DateTime.Now.Year, 10, 1));
 
-			private It is_20 = () => cost.ShouldEqual(20.00m);
+			private It is_2000_Pence = () => cost.ShouldEqual(2000);
 
 			private static decimal cost;
 		}
@@ -53,7 +53,7 @@ namespace Mstc.Tests
 			},
 				new DateTime(DateTime.Now.Year, 9, 1));
 
-			private It is_100 = () => cost.ShouldEqual(100.00m);
+			private It is_10000_Pence = () => cost.ShouldEqual(10000);
 
 			private static decimal cost;
 		}
