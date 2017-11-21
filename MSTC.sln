@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "website", "website\", "{2FE6D272-E35E-4127-B4DE-8A521AEFEF52}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
 		ProjectReferences = "{159a837e-df0b-4ea1-8581-ec4f20bc0cdc}|Mstc.Core.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_56635"
 		Debug.AspNetCompiler.PhysicalPath = "website\"
@@ -23,6 +23,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "website", "website\", "{2FE
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "56635"
 		VWDVirtualPath = "/"
+		SlnRelativePath = "website\"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mstc.Core", "Mstc.Core\Mstc.Core.csproj", "{159A837E-DF0B-4EA1-8581-EC4F20BC0CDC}"

@@ -306,6 +306,11 @@
             A service for working with payout resources.
              </summary>
         </member>
+        <member name="P:GoCardless.GoCardlessClient.PayoutItems">
+             <summary>
+            A service for working with payout item resources.
+             </summary>
+        </member>
         <member name="P:GoCardless.GoCardlessClient.RedirectFlows">
              <summary>
             A service for working with redirect flow resources.
@@ -349,7 +354,7 @@
              <summary>
              Represents a bank details lookup resource.
             
-             Look up the name and reachability of a bank.
+             Look up the name and reachability of a bank account.
              </summary>
         </member>
         <member name="P:GoCardless.Resources.BankDetailsLookup.AvailableDebitSchemes">
@@ -366,7 +371,11 @@
         </member>
         <member name="P:GoCardless.Resources.BankDetailsLookup.Bic">
             <summary>
-            ISO 9362 SWIFT BIC of the bank with which the account is held.
+            ISO 9362 SWIFT BIC of the bank with which the account is held. <p
+            class="notice">Even if no BIC is returned for an account, GoCardless
+            may still be able to collect payments from it - you should refer to
+            the `available_debit_schemes` attribute to determine
+            reachability.</p>
             </summary>
         </member>
         <member name="T:GoCardless.Resources.BankDetailsLookupAvailableDebitScheme">
@@ -1737,6 +1746,115 @@
         <member name="F:GoCardless.Resources.PayoutStatus.Paid">
             <summary>`status` with a value of "paid"</summary>
         </member>
+        <member name="T:GoCardless.Resources.PayoutItem">
+             <summary>
+             Represents a payout item resource.
+            
+             When we collect a payment on your behalf, we add the money you've
+             collected to your
+             GoCardless balance, minus any fees paid. Periodically (usually every
+             working day),
+             we take any positive balance in your GoCardless account, and pay it out
+             to your
+             nominated bank account.
+             
+             Other actions in your GoCardless account can also affect your balance.
+             For example,
+             if a customer charges back a payment, we'll deduct the payment's amount
+             from your
+             balance, but add any fees you paid for that payment back to your
+             balance.
+             
+             The Payout Items API allows you to view, on a per-payout basis, the
+             credit and debit
+             items that make up that payout's amount.
+             
+             <p class="beta-notice"><strong>Beta</strong>:	The Payout Items API is in
+             beta, and is
+             subject to <a href="#overview-backwards-compatibility">backwards
+             incompatible changes</a>
+             with 30 days notice. Before making any breaking changes, we will contact
+             all integrators
+             who have used the API.</p>
+             
+             </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:GoCardless.Resources.PayoutItem.Amount" -->
+        <member name="P:GoCardless.Resources.PayoutItem.Links">
+            <summary>
+            Resources linked to this PayoutItem.
+            </summary>
+        </member>
+        <member name="P:GoCardless.Resources.PayoutItem.Type">
+            <summary>
+            The type of the credit (positive) or debit (negative) item in the
+            payout. One of:
+            <ul>
+            <li>`payment_paid_out` (credit)</li>
+            <li>`payment_failed` (debit): The payment failed to be
+            processed.</li>
+            <li>`payment_charged_back` (debit): The payment has been charged
+            back.</li>
+            <li>`payment_refunded` (debit)</li>
+            <li>`gocardless_fee` (credit/debit): The fees that GoCardless
+            charged for a payment. In the case of a payment failure or
+            chargeback, these will appear as credits.</li>
+            <li>`app_fee` (credit/debit): The optional fees that a partner may
+            have taken for a payment. In the case of a payment failure or
+            chargeback, these will appear as credits.</li>
+            <li>`revenue_share` (credit): Only shown in partner payouts.</li>
+            </ul>
+            
+            </summary>
+        </member>
+        <member name="T:GoCardless.Resources.PayoutItemLinks">
+            <summary>
+            Resources linked to this PayoutItem
+            </summary>
+        </member>
+        <member name="P:GoCardless.Resources.PayoutItemLinks.Payment">
+            <summary>
+            Unique identifier, beginning with "PM".
+            </summary>
+        </member>
+        <member name="T:GoCardless.Resources.PayoutItemType">
+            <summary>
+            The type of the credit (positive) or debit (negative) item in the payout. One of:
+            <ul>
+            <li>`payment_paid_out` (credit)</li>
+            <li>`payment_failed` (debit): The payment failed to be processed.</li>
+            <li>`payment_charged_back` (debit): The payment has been charged back.</li>
+            <li>`payment_refunded` (debit)</li>
+            <li>`gocardless_fee` (credit/debit): The fees that GoCardless charged for a payment. In the
+            case of a payment failure or chargeback, these will appear as credits.</li>
+            <li>`app_fee` (credit/debit): The optional fees that a partner may have taken for a payment.
+            In the case of a payment failure or chargeback, these will appear as credits.</li>
+            <li>`revenue_share` (credit): Only shown in partner payouts.</li>
+            </ul>
+            
+            </summary>
+        </member>
+        <member name="F:GoCardless.Resources.PayoutItemType.PaymentPaidOut">
+            <summary>`type` with a value of "payment_paid_out"</summary>
+        </member>
+        <member name="F:GoCardless.Resources.PayoutItemType.PaymentFailed">
+            <summary>`type` with a value of "payment_failed"</summary>
+        </member>
+        <member name="F:GoCardless.Resources.PayoutItemType.PaymentChargedBack">
+            <summary>`type` with a value of "payment_charged_back"</summary>
+        </member>
+        <member name="F:GoCardless.Resources.PayoutItemType.PaymentRefunded">
+            <summary>`type` with a value of "payment_refunded"</summary>
+        </member>
+        <member name="F:GoCardless.Resources.PayoutItemType.GocardlessFee">
+            <summary>`type` with a value of "gocardless_fee"</summary>
+        </member>
+        <member name="F:GoCardless.Resources.PayoutItemType.AppFee">
+            <summary>`type` with a value of "app_fee"</summary>
+        </member>
+        <member name="F:GoCardless.Resources.PayoutItemType.RevenueShare">
+            <summary>`type` with a value of "revenue_share"</summary>
+        </member>
         <member name="T:GoCardless.Resources.RedirectFlow">
              <summary>
              Represents a redirect flow resource.
@@ -2244,7 +2362,7 @@
              <summary>
              Service class for working with bank details lookup resources.
             
-             Look up the name and reachability of a bank.
+             Look up the name and reachability of a bank account.
              </summary>
         </member>
         <member name="M:GoCardless.Services.BankDetailsLookupService.#ctor(GoCardless.GoCardlessClient)">
@@ -2255,10 +2373,17 @@
         </member>
         <member name="M:GoCardless.Services.BankDetailsLookupService.CreateAsync(GoCardless.Services.BankDetailsLookupCreateRequest,GoCardless.Internals.RequestSettings)">
             <summary>
-            Performs a bank details lookup.
+            Performs a bank details lookup. As part of the lookup, a modulus
+            check and
+            reachability check are performed.
             
-            As part of the lookup a modulus check and reachability check are
-            performed.
+            If your request returns an [error](#api-usage-errors) or the
+            `available_debit_schemes`
+            attribute is an empty array, you will not be able to collect
+            payments from the
+            specified bank account. GoCardless may be able to collect payments
+            from an account
+            even if no `bic` is returned.
             
             Bank account details may be supplied using [local
             details](#appendix-local-bank-details) or an IBAN.
@@ -2274,10 +2399,17 @@
         </member>
         <member name="T:GoCardless.Services.BankDetailsLookupCreateRequest">
             <summary>
-            Performs a bank details lookup.
+            Performs a bank details lookup. As part of the lookup, a modulus check
+            and
+            reachability check are performed.
             
-            As part of the lookup a modulus check and reachability check are
-            performed.
+            If your request returns an [error](#api-usage-errors) or the
+            `available_debit_schemes`
+            attribute is an empty array, you will not be able to collect payments
+            from the
+            specified bank account. GoCardless may be able to collect payments from
+            an account
+            even if no `bic` is returned.
             
             Bank account details may be supplied using [local
             details](#appendix-local-bank-details) or an IBAN.
@@ -4191,7 +4323,7 @@
         </member>
         <member name="P:GoCardless.Services.MandateListRequest.Status">
             <summary>
-            At most three valid status values
+            At most four valid status values
             </summary>
         </member>
         <member name="T:GoCardless.Services.MandateListRequest.MandateStatus">
@@ -4758,6 +4890,119 @@
             </summary>
         </member>
         <member name="P:GoCardless.Services.PaymentListResponse.Meta">
+            <summary>
+            Response metadata (e.g. pagination cursors)
+            </summary>
+        </member>
+        <member name="T:GoCardless.Services.PayoutItemService">
+             <summary>
+             Service class for working with payout item resources.
+            
+             When we collect a payment on your behalf, we add the money you've
+             collected to your
+             GoCardless balance, minus any fees paid. Periodically (usually every
+             working day),
+             we take any positive balance in your GoCardless account, and pay it out
+             to your
+             nominated bank account.
+             
+             Other actions in your GoCardless account can also affect your balance.
+             For example,
+             if a customer charges back a payment, we'll deduct the payment's amount
+             from your
+             balance, but add any fees you paid for that payment back to your
+             balance.
+             
+             The Payout Items API allows you to view, on a per-payout basis, the
+             credit and debit
+             items that make up that payout's amount.
+             
+             <p class="beta-notice"><strong>Beta</strong>:	The Payout Items API is in
+             beta, and is
+             subject to <a href="#overview-backwards-compatibility">backwards
+             incompatible changes</a>
+             with 30 days notice. Before making any breaking changes, we will contact
+             all integrators
+             who have used the API.</p>
+             
+             </summary>
+        </member>
+        <member name="M:GoCardless.Services.PayoutItemService.#ctor(GoCardless.GoCardlessClient)">
+            <summary>
+            Constructor. Users of this library should not call this. An instance of this
+            class can be accessed through an initialised GoCardlessClient.
+            </summary>
+        </member>
+        <member name="M:GoCardless.Services.PayoutItemService.ListAsync(GoCardless.Services.PayoutItemListRequest,GoCardless.Internals.RequestSettings)">
+            <summary>
+            Returns a [cursor-paginated](#api-usage-cursor-pagination) list of
+            items in the payout.
+            
+            </summary>
+            <param name="request">An optional `PayoutItemListRequest` representing the query parameters for this list request.</param>
+            <param name="customiseRequestMessage">An optional `RequestSettings` allowing you to configure the request</param>
+            <returns>A set of payout item resources</returns>
+        </member>
+        <member name="M:GoCardless.Services.PayoutItemService.All(GoCardless.Services.PayoutItemListRequest,GoCardless.Internals.RequestSettings)">
+            <summary>
+            Get a lazily enumerated list of payout items.
+            This acts like the #list method, but paginates for you automatically.
+            </summary>
+        </member>
+        <member name="M:GoCardless.Services.PayoutItemService.AllAsync(GoCardless.Services.PayoutItemListRequest,GoCardless.Internals.RequestSettings)">
+            <summary>
+            Get a lazily enumerated list of payout items.
+            This acts like the #list method, but paginates for you automatically.
+            </summary>
+        </member>
+        <member name="T:GoCardless.Services.PayoutItemListRequest">
+            <summary>
+            Returns a [cursor-paginated](#api-usage-cursor-pagination) list of items
+            in the payout.
+            
+            </summary>
+        </member>
+        <member name="P:GoCardless.Services.PayoutItemListRequest.After">
+            <summary>
+            Cursor pointing to the start of the desired set.
+            </summary>
+        </member>
+        <member name="P:GoCardless.Services.PayoutItemListRequest.Before">
+            <summary>
+            Cursor pointing to the end of the desired set.
+            </summary>
+        </member>
+        <member name="P:GoCardless.Services.PayoutItemListRequest.Limit">
+            <summary>
+            Number of records to return.
+            </summary>
+        </member>
+        <member name="P:GoCardless.Services.PayoutItemListRequest.Payout">
+            <summary>
+            Unique identifier, beginning with "PO".
+            </summary>
+        </member>
+        <member name="T:GoCardless.Services.PayoutItemResponse">
+            <summary>
+            An API response for a request returning a single payout item.
+            </summary>
+        </member>
+        <member name="P:GoCardless.Services.PayoutItemResponse.PayoutItem">
+            <summary>
+            The payout item from the response.
+            </summary>
+        </member>
+        <member name="T:GoCardless.Services.PayoutItemListResponse">
+            <summary>
+            An API response for a request returning a list of payout items.
+            </summary>
+        </member>
+        <member name="P:GoCardless.Services.PayoutItemListResponse.PayoutItems">
+            <summary>
+            The list of payout items from the response.
+            </summary>
+        </member>
+        <member name="P:GoCardless.Services.PayoutItemListResponse.Meta">
             <summary>
             Response metadata (e.g. pagination cursors)
             </summary>
@@ -5611,6 +5856,9 @@
             
             This fails with:
             
+            - `validation_failed` if invalid data is provided when attempting to
+            update a subscription.
+            
             - `subscription_not_active` if the subscription is no longer active.
             
             - `subscription_already_ended` if the subscription has taken all
@@ -5876,6 +6124,43 @@
             Unique identifier, beginning with "MD".
             </summary>
         </member>
+        <member name="P:GoCardless.Services.SubscriptionListRequest.Status">
+            <summary>
+            At most four valid status values
+            </summary>
+        </member>
+        <member name="T:GoCardless.Services.SubscriptionListRequest.SubscriptionStatus">
+            <summary>
+            One of:
+            <ul>
+            <li>`pending_customer_approval`: the subscription is waiting for
+            customer approval before becoming active</li>
+            <li>`customer_approval_denied`: the customer did not approve the
+            subscription</li>
+            <li>`active`: the subscription is currently active and will continue
+            to create payments</li>
+            <li>`finished`: all of the payments scheduled for creation under
+            this subscription have been created</li>
+            <li>`cancelled`: the subscription has been cancelled and will no
+            longer create payments</li>
+            </ul>
+            </summary>
+        </member>
+        <member name="F:GoCardless.Services.SubscriptionListRequest.SubscriptionStatus.PendingCustomerApproval">
+            <summary>`status` with a value of "pending_customer_approval"</summary>
+        </member>
+        <member name="F:GoCardless.Services.SubscriptionListRequest.SubscriptionStatus.CustomerApprovalDenied">
+            <summary>`status` with a value of "customer_approval_denied"</summary>
+        </member>
+        <member name="F:GoCardless.Services.SubscriptionListRequest.SubscriptionStatus.Active">
+            <summary>`status` with a value of "active"</summary>
+        </member>
+        <member name="F:GoCardless.Services.SubscriptionListRequest.SubscriptionStatus.Finished">
+            <summary>`status` with a value of "finished"</summary>
+        </member>
+        <member name="F:GoCardless.Services.SubscriptionListRequest.SubscriptionStatus.Cancelled">
+            <summary>`status` with a value of "cancelled"</summary>
+        </member>
         <member name="T:GoCardless.Services.SubscriptionGetRequest">
             <summary>
             Retrieves the details of a single subscription.
@@ -5886,6 +6171,9 @@
             Updates a subscription object.
             
             This fails with:
+            
+            - `validation_failed` if invalid data is provided when attempting to
+            update a subscription.
             
             - `subscription_not_active` if the subscription is no longer active.
             
@@ -5903,6 +6191,12 @@
         <member name="P:GoCardless.Services.SubscriptionUpdateRequest.Amount">
             <summary>
             Amount in pence (GBP), cents (EUR), or öre (SEK).
+            </summary>
+        </member>
+        <member name="P:GoCardless.Services.SubscriptionUpdateRequest.AppFee">
+            <summary>
+            The amount to be deducted from the payment as the OAuth app's fee,
+            in pence (GBP), cents (EUR), or öre (SEK).
             </summary>
         </member>
         <member name="P:GoCardless.Services.SubscriptionUpdateRequest.Metadata">
