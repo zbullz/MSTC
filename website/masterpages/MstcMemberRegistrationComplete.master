@@ -26,12 +26,12 @@
             <div class="container edit-member">
                 <div class="row">
                     <div class="col-sm-12">
-                        <umbraco:Item ID="bodyText" runat="server" Field="bodyText" />
+                        <cf:RegisterMemberComplete ID="registerMemberComplete" runat="server" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <cf:RegisterMemberComplete ID="registerMemberComplete" runat="server" />
+                        <umbraco:Item ID="bodyText" runat="server" Field="bodyText" />
                     </div>
                 </div>
             </div>

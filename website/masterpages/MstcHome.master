@@ -101,49 +101,7 @@
             </div>
         </div>
     </div>
-    
-
-
-    <div class="section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h2>Our Sponsors</h2>
-                    <div class="clients-logo-wrapper text-center row">
-                        <div class="col-xs-4">
-                            <a href="http://www.davidjonespersonaltraining.co.uk/">
-                                <img src="/images/mstc/sponsors/djpt-logo.jpg" alt="Dave Jones Personal Training"></a>
-                        </div>
-                        <div class="col-xs-4">
-                            <a href="http://www.thetristore.com/">
-                                <img src="/images/mstc/sponsors/thetristore.jpg" alt="The Tri Store"></a>
-                        </div>
-                        <div class="col-xs-4">
-                            <a href="http://kneadmemassage.co.uk">
-                                <img src="/images/mstc/sponsors/massage-kneadme-200.png" alt="kneadmemassage"></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <h2>Local Clubs</h2>
-                    <div class="clients-logo-wrapper text-center row">
-                        <div class="col-xs-4">
-                            <a href="http://crawleywheelers.co.uk/">
-                                <img src="/images/mstc/sponsors/CrawleyWheelers.jpg" alt="Crawley Wheelers"></a>
-                        </div>
-                        <div class="col-xs-4">
-                            <a href="http://www.bhrunners.co.uk/">
-                                <img src="/images/mstc/sponsors/BHRunners.jpg" alt="Burgess Hill Runners"></a>
-                        </div>
-                        <div class="col-xs-4">
-                            <a href="http://brightontriathlonraceseries.co.uk/">
-                                <img src="/images/mstc/sponsors/btrs.jpg" alt="Brighton Triathlon Race Series"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+ 
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="FooterScripts" runat="server">
