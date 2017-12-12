@@ -36,7 +36,7 @@ public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.
 		        _sessionProvider.SessionId);
             registrationFullDetails.RegistrationDetails.DirectDebitMandateId = mandateId;
 
-            int cost = (new MembershipCostCalculator()).Calculate(registrationFullDetails.MembershipOptions, DateTime.Now);
+            int cost = MembershipCostCalculator.Calculate(registrationFullDetails.MembershipOptions, DateTime.Now);
             string paymentDescription = _memberProvider.GetPaymentDescription(registrationFullDetails.MembershipOptions);
 
             var regDetails = registrationFullDetails.RegistrationDetails;

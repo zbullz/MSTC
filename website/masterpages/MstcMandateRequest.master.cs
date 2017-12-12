@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using cFront.Umbraco.Membership;
 using Mstc.Core.Domain;
@@ -18,8 +17,6 @@ public partial class masterpages_MstcMandateRequest : System.Web.UI.MasterPage
         _sessionProvider = new SessionProvider();
         _goCardlessProvider = new GoCardlessProvider();
     }
-
- 
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -57,7 +54,7 @@ public partial class masterpages_MstcMandateRequest : System.Web.UI.MasterPage
             Email = currentmemdata[MemberProperty.Email] as string
         };
 
-        string page = "payment-complete";
+        string page = _sessionProvider.MandateSuccessPage;
         string state = Request.QueryString["state"];
 
         string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,

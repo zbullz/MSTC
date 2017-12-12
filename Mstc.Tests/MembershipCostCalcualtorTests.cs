@@ -11,7 +11,7 @@ namespace Mstc.Tests
 	{
 		public class when_getting_Individual_type_cost_in_september : WithSubject<MembershipCostCalculator>
 		{
-			private Because of = () =>  cost = Subject.GetTypeCostPence(MembershipType.Individual, new DateTime(DateTime.Now.Year, 9, 1));
+			private Because of = () =>  cost = MembershipCostCalculator.GetTypeCostPence(MembershipType.Individual, new DateTime(DateTime.Now.Year, 9, 1));
 
 			private It is_4000_Pence = () => cost.ShouldEqual(4000);
 
@@ -20,7 +20,7 @@ namespace Mstc.Tests
 
 		public class when_getting_Individual_type_cost_in_october : WithSubject<MembershipCostCalculator>
 		{
-			private Because of = () => cost = Subject.GetTypeCostPence(MembershipType.Individual, new DateTime(DateTime.Now.Year, 10, 1));
+			private Because of = () => cost = MembershipCostCalculator.GetTypeCostPence(MembershipType.Individual, new DateTime(DateTime.Now.Year, 10, 1));
 
 			private It is_2000_Pence = () => cost.ShouldEqual(2000);
 
@@ -45,7 +45,7 @@ namespace Mstc.Tests
 
 		public class when_calculating_full_member_cost_with_both_swim_subs_in_september : WithSubject<MembershipCostCalculator>
 		{
-			private Because of = () => cost = Subject.Calculate(new MembershipOptions()
+			private Because of = () => cost = MembershipCostCalculator.Calculate(new MembershipOptions()
 			{
 				MembershipType = MembershipType.Individual,
 				SwimSubsAprToSept = true,

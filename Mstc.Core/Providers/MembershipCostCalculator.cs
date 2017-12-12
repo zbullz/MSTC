@@ -9,7 +9,7 @@ namespace Mstc.Core.Providers
 	/// </summary>
 	public class MembershipCostCalculator
 	{
-		private Dictionary<MembershipType, int> TypeCosts = new Dictionary<MembershipType, int>()
+		private static Dictionary<MembershipType, int> TypeCosts = new Dictionary<MembershipType, int>()
 		{
 			{MembershipType.Individual, 4000},
 			{MembershipType.Couple,3500},
@@ -23,12 +23,12 @@ namespace Mstc.Core.Providers
 
 		private static int SwimsSubsCost = 3000;
 
-		public int GetTypeCostPence(MembershipType type, DateTime currentDate)
+		public static int GetTypeCostPence(MembershipType type, DateTime currentDate)
 		{
 			return DiscountedMonths.Contains(currentDate.Month) ? TypeCosts[type]/2 : TypeCosts[type];
 		}
 
-		public int Calculate(MembershipOptions membershipOptions, DateTime currentDate)
+		public static int Calculate(MembershipOptions membershipOptions, DateTime currentDate)
 		{
 			var cost = GetTypeCostPence(membershipOptions.MembershipType, currentDate);		
 			if (membershipOptions.SwimSubsAprToSept)

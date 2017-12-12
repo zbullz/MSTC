@@ -139,7 +139,9 @@ public partial class masterpages_MstcClubEventEntry : System.Web.UI.MasterPage
 
 	private void RedirectToPaymentPages(IDictionary<String, object> currentmemdata, string state)
 	{
-	    bool hasMandate = string.IsNullOrWhiteSpace(currentmemdata[MemberProperty.directDebitMandateId] as string) == false;
+	    _sessionProvider.MandateSuccessPage = "payment-complete";
+
+        bool hasMandate = string.IsNullOrWhiteSpace(currentmemdata[MemberProperty.directDebitMandateId] as string) == false;
 	    string page = hasMandate ? "payment-complete" : "mandate-request";
 
         string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,

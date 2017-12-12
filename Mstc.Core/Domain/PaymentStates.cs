@@ -28,5 +28,10 @@ namespace Mstc.Core.Domain
 		[Description("Swim subs Apr to Sept")] SS05991 = 401,
 		[Description("Swim subs Oct to Mar")] SS05992 = 402,
 		[Description("Swim subs Jan to Mar")] SS05996 = 403,
-	}
+
+        [Description("MSTC Membership Renewal")]
+        MemberRenewal = 501,
+        [Description("MSTC Membership Upgrade")]
+        MemberUpgrade = 502,
+    }
 }
