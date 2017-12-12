@@ -62,7 +62,7 @@ public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.
 		            "New MSTC member registration", content);
 
 		        _sessionProvider.RegistrationFullDetails = null;
-
+		        _sessionProvider.GoCardlessRedirectFlowId = null;
 		    }
 		    else
 		    {

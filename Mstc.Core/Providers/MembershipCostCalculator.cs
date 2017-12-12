@@ -21,7 +21,7 @@ namespace Mstc.Core.Providers
 			get { return new List<int>() {10, 11, 12, 1, 2}; }
 		}
 
-		private int SwimsSubsCost = 3000;
+		private static int SwimsSubsCost = 3000;
 
 		public int GetTypeCostPence(MembershipType type, DateTime currentDate)
 		{
@@ -43,9 +43,58 @@ namespace Mstc.Core.Providers
 			return cost;
 		}
 
-		public int SwimCreditsCost(PaymentStates credits, MembershipType membershipType)
+		public static int SwimCreditsCost(PaymentStates credits)
 		{
 			return (int) credits * 100;
 		}
-	}
+
+        public static int EventCost(PaymentStates state, bool hasBTFNumber)
+        {
+            switch (state)
+            {
+                case PaymentStates.S00599C:
+                case PaymentStates.S001099C:
+                case PaymentStates.S001599C:
+                case PaymentStates.S002499C:
+                {
+                    return SwimCreditsCost(state);
+                    }
+                case PaymentStates.E00D101C:
+                {
+                    return 1000;
+                }
+                case PaymentStates.E00TRIOI201C:
+                case PaymentStates.E00TRIMI203C:
+                
+                case PaymentStates.E00TRISI205C:
+                {
+                    return hasBTFNumber ? 2000 : 2300;
+                }
+                case PaymentStates.E00TRIOR202C:
+                case PaymentStates.E00TRIMR204C:
+                {
+                    return hasBTFNumber ? 1000 : 1300;
+                }
+                case PaymentStates.E00S1KM301C:
+                case PaymentStates.E00S3KM302C:
+                case PaymentStates.E00S5KM303C:
+                case PaymentStates.E00S1KM3KM304C:
+                case PaymentStates.E00S1KM5KM305C:
+                case PaymentStates.E00S3KM5KM306C:
+                case PaymentStates.E00S1KM3KM5KM307C:
+                    {
+                        return 2000;
+                    }
+                case PaymentStates.SS05991:
+                case PaymentStates.SS05992:
+                case PaymentStates.SS05996:
+                    {
+                        return SwimsSubsCost;
+                    }
+            }
+
+            throw new Exception("Unknown cost");
+        }
+
+    }
 }

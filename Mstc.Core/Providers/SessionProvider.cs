@@ -14,7 +14,7 @@ namespace Mstc.Core.Providers
 		private const string _renewalOptionsKey = "RenewalOptions";
 		private const string _regFullDetails = "RegistrationFullDetails";
 		private const string _canProcessPaymentCompletion = "CanProcessPaymentCompletion";
-		private const string _goCardlessRedirectFlowId = "GoCardlessRedirectFlowId";
+        private const string _goCardlessRedirectFlowId = "GoCardlessRedirectFlowId";
 
 		public MembershipOptions RenewalOptions
 		{
@@ -34,7 +34,7 @@ namespace Mstc.Core.Providers
 			set { CurrentSession[_canProcessPaymentCompletion] = value; }
 		}
 
-	    public string GoCardlessRedirectFlowId
+        public string GoCardlessRedirectFlowId
 	    {
             get { return (string) CurrentSession[_goCardlessRedirectFlowId]; }
             set { CurrentSession[_goCardlessRedirectFlowId] = value; }
