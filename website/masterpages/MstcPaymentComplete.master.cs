@@ -96,7 +96,6 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
             case PaymentStates.E00S3KM5KM306C:
             case PaymentStates.E00S1KM3KM5KM307C:
             {
-                //decimal cost = 20m;
                 EnterMemberInCharitySwim(currentmemdata, paymentState);
                 DisplayEventEnteredMessage(currentmemdata, paymentState);
                 break;
@@ -117,7 +116,7 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
         string mandateId = currentmemdata[MemberProperty.directDebitMandateId] as string;
         string email = currentmemdata[MemberProperty.Email] as string;
         bool hasBTFNumber = string.IsNullOrWhiteSpace(currentmemdata[MemberProperty.BTFNumber] as string) == false; 
-        int costInPence = MembershipCostCalculator.EventCost(paymentState, hasBTFNumber);
+        int costInPence = MembershipCostCalculator.PaymentStateCost(paymentState, hasBTFNumber);
         string description = paymentState.GetAttributeOfType<DescriptionAttribute>().Description;
 
         bool paymentSucceeded = _goCardlessProvider.CreatePayment(mandateId, email, costInPence, description);
@@ -137,7 +136,7 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 		litEventEntered.Text = paymentState.GetAttributeOfType<DescriptionAttribute>().Description;
 
         bool hasBTFNumber = string.IsNullOrWhiteSpace(currentmemdata[MemberProperty.BTFNumber] as string) == false;
-        int costInPence = MembershipCostCalculator.EventCost(paymentState, hasBTFNumber);
+        int costInPence = MembershipCostCalculator.PaymentStateCost(paymentState, hasBTFNumber);
 
 	    litEventCost.Text = (costInPence / 100).ToString();
 	}
@@ -146,6 +145,7 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 	{
 		ShowSwimSubsConfirmation = true;
 		litSwimSubs.Text = paymentState.GetAttributeOfType<DescriptionAttribute>().Description;
+	    litSwimSubsCost.Text = (((decimal) MembershipCostCalculator.SwimsSubsCostInPence) / 100).ToString();
 	}
 
 	private void UpdateMemberSwimCredits(IDictionary<String, object> currentmemdata, int credits)

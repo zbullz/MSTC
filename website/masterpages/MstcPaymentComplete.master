@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-sm-12 <%=ShowSwimSubsConfirmation ? "" : "hide"%>">
                         <p>Thank you for purchasing additional swim subs, enjoy your swim!</p>
-                        <p>You have purchased <asp:Literal ID="litSwimSubs" runat="server"></asp:Literal></p>
+                        <p>You have purchased <asp:Literal ID="litSwimSubs" runat="server"></asp:Literal> for £<asp:Literal ID="litSwimSubsCost" runat="server"></asp:Literal></p>
                         <p>Please go to <a href="/members-area/my-details">your details page</a> to check out all your full member profile.</p>
                     </div>
                 </div>

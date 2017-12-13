@@ -21,7 +21,7 @@ namespace Mstc.Core.Providers
 			get { return new List<int>() {10, 11, 12, 1, 2}; }
 		}
 
-		private static int SwimsSubsCost = 3000;
+		public static int SwimsSubsCostInPence = 3000;
 
 		public static int GetTypeCostPence(MembershipType type, DateTime currentDate)
 		{
@@ -33,11 +33,11 @@ namespace Mstc.Core.Providers
 			var cost = GetTypeCostPence(membershipOptions.MembershipType, currentDate);		
 			if (membershipOptions.SwimSubsAprToSept)
 			{
-				cost += SwimsSubsCost;
+				cost += SwimsSubsCostInPence;
 			}
 			if (membershipOptions.SwimSubsOctToMar)
 			{
-				cost += SwimsSubsCost;
+				cost += SwimsSubsCostInPence;
 			}
 	
 			return cost;
@@ -48,7 +48,7 @@ namespace Mstc.Core.Providers
 			return (int) credits * 100;
 		}
 
-        public static int EventCost(PaymentStates state, bool hasBTFNumber)
+        public static int PaymentStateCost(PaymentStates state, bool hasBTFNumber)
         {
             switch (state)
             {
@@ -89,7 +89,7 @@ namespace Mstc.Core.Providers
                 case PaymentStates.SS05992:
                 case PaymentStates.SS05996:
                     {
-                        return SwimsSubsCost;
+                        return SwimsSubsCostInPence;
                     }
             }
 
