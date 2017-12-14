@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using cFront.Umbraco.Membership;
 using Mstc.Core.Domain;
+using Mstc.Core.Dto;
 using Mstc.Core.Providers;
 using umbraco.cms.businesslogic.member;
 
@@ -44,11 +45,15 @@ public partial class masterpages_MstcMemberRenewalComplete : System.Web.UI.Maste
                 _sessionProvider.GoCardlessRedirectFlowId = null;
             }
 
-            var paymentSucceeded = CreatePayment(currentmemdata, membershipOptions);
+            var paymentResponse = CreatePayment(currentmemdata, membershipOptions);
 
-		    if (paymentSucceeded)
+		    if (paymentResponse == PaymentResponseDto.Success)
 		    {
 		        _memberProvider.UpdateMemberOptions(member, membershipOptions);
+		    }
+            else if (paymentResponse == PaymentResponseDto.MandateError)
+		    {
+		        RedirectToMandatePage(Request.QueryString["state"]);
 		    }
 		    else
 		    {
@@ -60,16 +65,27 @@ public partial class masterpages_MstcMemberRenewalComplete : System.Web.UI.Maste
 		}
 	}
 
-    private bool CreatePayment(IDictionary<String, object> currentmemdata, MembershipOptions membershipOptions)
+    private PaymentResponseDto CreatePayment(IDictionary<String, object> currentmemdata, MembershipOptions membershipOptions)
     {
         string mandateId = currentmemdata[MemberProperty.directDebitMandateId] as string;
         string email = currentmemdata[MemberProperty.Email] as string;
         int costInPence = MembershipCostCalculator.Calculate(membershipOptions, DateTime.Now);
         string description = Request.QueryString["state"];
 
-        bool paymentSucceeded = _goCardlessProvider.CreatePayment(mandateId, email, costInPence, description);
+        return _goCardlessProvider.CreatePayment(mandateId, email, costInPence, description);
+    }
 
-        return paymentSucceeded;
+    private void RedirectToMandatePage(string state)
+    {
+        _sessionProvider.MandateSuccessPage = "members-area/membership-renewal-complete";
+        string page = "mandate-request";
+
+        _sessionProvider.CanProcessPaymentCompletion = true;
+
+        string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
+            Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
+        string redirectUrl = string.Format("{0}/{1}?state={2}", rootUrl, page, state);
+        Response.Redirect(redirectUrl);
     }
 
 

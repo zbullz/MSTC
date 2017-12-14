@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using GoCardless;
+using GoCardless.Exceptions;
 using GoCardless.Services;
 using Mstc.Core.Dto;
 using umbraco.BusinessLogic;
@@ -67,7 +68,7 @@ namespace Mstc.Core.Providers
 	        return redirectFlowResponse.RedirectFlow.Links.Mandate;
 	    }
 
-	    public bool CreatePayment(string memberMandateId, string memberEmail, int costInPence, string description)
+	    public PaymentResponseDto CreatePayment(string memberMandateId, string memberEmail, int costInPence, string description)
 	    {
             int retries = 5;
             int tried = 0;
@@ -75,43 +76,60 @@ namespace Mstc.Core.Providers
             return TryCreatePayment(idempotencyKey, memberMandateId, memberEmail, costInPence, description, retries, tried);
         }
 
-        public bool TryCreatePayment(string idempotencyKey, string memberMandateId, string memberEmail, int costInPence, string description,int retries, int tried)
-        {
-            if (tried >= retries)
-            {
-                return false;
-            }
+	    public PaymentResponseDto TryCreatePayment(string idempotencyKey, string memberMandateId, string memberEmail,
+	        int costInPence, string description, int retries, int tried)
+	    {
+	        if (tried >= retries)
+	        {
+	            return PaymentResponseDto.UnknownError;
+	        }
 
-            try
-            {
-                tried++;
+	        try
+	        {
+	            tried++;
 
-                var createResponse = _client.Payments.CreateAsync(new PaymentCreateRequest()
-                {
-                    Amount = costInPence,
-                    Currency = PaymentCreateRequest.PaymentCurrency.GBP,
-                    Links = new PaymentCreateRequest.PaymentLinks()
-                    {
-                        Mandate = memberMandateId,
-                    },
-                    Metadata = new Dictionary<string, string>()
-                    {
-                        {"description", description}
-                    },
-                    IdempotencyKey = idempotencyKey
-                }).Result;
+	            var createResponse = _client.Payments.CreateAsync(new PaymentCreateRequest()
+	            {
+	                Amount = costInPence,
+	                Currency = PaymentCreateRequest.PaymentCurrency.GBP,
+	                Links = new PaymentCreateRequest.PaymentLinks()
+	                {
+	                    Mandate = memberMandateId,
+	                },
+	                Metadata = new Dictionary<string, string>()
+	                {
+	                    {"description", description}
+	                },
+	                IdempotencyKey = idempotencyKey
+	            }).Result;
 
-                string message = $"New CreatePayment request. memberEmail: {memberEmail}, memberMandateId: {memberMandateId}, " +
-                            $"cost: {costInPence}, description: {description}";
-                Log.Add(LogTypes.Custom, -1, message);
+	            string message =
+	                $"New CreatePayment request. memberEmail: {memberEmail}, memberMandateId: {memberMandateId}, " +
+	                $"cost: {costInPence}, description: {description}";
+	            Log.Add(LogTypes.Custom, -1, message);
 
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Log.Add(LogTypes.Error, -1, string.Format($"Unable to CreatePayment for memberEmail: {memberEmail}, memberMandateId: {memberMandateId},, exception: {0}", ex));
-                return TryCreatePayment(idempotencyKey, memberMandateId, memberEmail, costInPence, description, retries, tried);
-            }
-        }
-    }
+	            return PaymentResponseDto.Success;
+	        }
+	        catch (Exception ex)
+	        {
+	            Log.Add(LogTypes.Error, -1,
+	                string.Format(
+	                    $"Unable to CreatePayment for memberEmail: {memberEmail}, memberMandateId: {memberMandateId},, exception: {0}",
+	                    ex));
+
+	            var exception = ex.InnerException as ApiException;
+	            if (exception != null)
+	            {
+	                var mandateErrors = new List<string>() {"Mandate is failed, cancelled or expired", "Mandate not found"};
+	                if (mandateErrors.Contains(exception.ApiErrorResponse.Error.Message))
+	                {
+	                    return PaymentResponseDto.MandateError;
+	                }
+	            }
+
+	            return TryCreatePayment(idempotencyKey, memberMandateId, memberEmail, costInPence, description, retries,
+	                tried);
+	        }
+	    }
+	}
 }

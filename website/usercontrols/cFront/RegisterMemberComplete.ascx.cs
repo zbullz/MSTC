@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Web.Security;
 using Mstc.Core.Domain;
+using Mstc.Core.Dto;
 using Mstc.Core.Providers;
 using Newtonsoft.Json;
 
@@ -40,12 +41,12 @@ public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.
             string paymentDescription = _memberProvider.GetPaymentDescription(registrationFullDetails.MembershipOptions);
 
             var regDetails = registrationFullDetails.RegistrationDetails;
-		    bool paymentSucceeded = _goCardlessProvider.CreatePayment(regDetails.DirectDebitMandateId, regDetails.Email, cost,
+		    var paymentResponse = _goCardlessProvider.CreatePayment(regDetails.DirectDebitMandateId, regDetails.Email, cost,
 		        paymentDescription);
 
-		    IsRegistered = paymentSucceeded;
+		    IsRegistered = paymentResponse == PaymentResponseDto.Success;
 
-            if (paymentSucceeded)
+            if (IsRegistered)
 		    {
 		        var member = _memberProvider.CreateMember(regDetails, new string[] {"Member"});
 		        _memberProvider.UpdateMemberDetails(member, registrationFullDetails);

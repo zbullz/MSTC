@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using cFront.Umbraco.Membership;
 using Mstc.Core.Domain;
+using Mstc.Core.Dto;
 using Mstc.Core.Providers;
 
 public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
@@ -44,11 +45,16 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 		    string state = Request.QueryString["state"];
             var paymentState = (PaymentStates)Enum.Parse(typeof(PaymentStates), state);
 
-            var paymentSucceeded = CreatePayment(currentmemdata, paymentState);
+            var paymentResponse = CreatePayment(currentmemdata, paymentState);
 
-		    if (paymentSucceeded)
+		    if (paymentResponse == PaymentResponseDto.Success)
 		    {
 		        ProcessPaymentState(currentmemdata, paymentState);
+		    }
+            else if (paymentResponse == PaymentResponseDto.MandateError)
+		    {
+		        RedirectToMandatePage(paymentState);
+
 		    }
 		    else
 		    {
@@ -57,6 +63,17 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 
 		    _sessionProvider.CanProcessPaymentCompletion = false;
 		}
+    }
+
+    private void RedirectToMandatePage(PaymentStates state)
+    {
+        _sessionProvider.MandateSuccessPage = "payment-complete";
+        string page = "mandate-request";
+
+        string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
+            Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
+        string redirectUrl = string.Format("{0}/{1}?state={2}", rootUrl, page, state);
+        Response.Redirect(redirectUrl);
     }
 
     private void ProcessPaymentState(IDictionary<String, object> currentmemdata, PaymentStates paymentState)
@@ -111,7 +128,7 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
         }
     }
 
-    private bool CreatePayment(IDictionary<String, object> currentmemdata, PaymentStates paymentState)
+    private PaymentResponseDto CreatePayment(IDictionary<String, object> currentmemdata, PaymentStates paymentState)
     {
         string mandateId = currentmemdata[MemberProperty.directDebitMandateId] as string;
         string email = currentmemdata[MemberProperty.Email] as string;
@@ -119,9 +136,7 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
         int costInPence = MembershipCostCalculator.PaymentStateCost(paymentState, hasBTFNumber);
         string description = paymentState.GetAttributeOfType<DescriptionAttribute>().Description;
 
-        bool paymentSucceeded = _goCardlessProvider.CreatePayment(mandateId, email, costInPence, description);
-
-        return paymentSucceeded;
+        return _goCardlessProvider.CreatePayment(mandateId, email, costInPence, description);
     }
 
     private void DisplaySwimCreditConfirmationMessage(int credits)
