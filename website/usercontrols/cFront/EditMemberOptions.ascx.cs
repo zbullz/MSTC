@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
-using System.Data;
 using System.Linq;
 using System.Web.Security;
-using GoCardlessSdk.Connect;
+using cFront.Umbraco.Membership;
 using Mstc.Core.Domain;
 using Mstc.Core.Providers;
 
 public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserControl
 {
-	protected MembershipCostCalculator _membershipCostCalcualtor;
+    private readonly SessionProvider _sessionProvider;
 
     public bool IsGuest { get; set; }
 	public bool EnableMemberRenewal { get; set; }
@@ -24,9 +23,14 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 	public bool EnableGuestRenewal { get; set; }
 	public bool ShowIceLink { get; set; }
 
+    public usercontrols_cFront_EditMemberOptions()
+    {
+        _sessionProvider = new SessionProvider();
+    }
+
 	protected void Page_Load(object sender, EventArgs e)
 	{
-		_membershipCostCalcualtor = new MembershipCostCalculator();
+
 	}
 
 	public void LoadOptions(IDictionary<String, object> memberData)
@@ -182,41 +186,26 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 
     private void MakeSwimSubsPayment(PaymentStates paymentState)
 	{
-		var goCardlessProvider = new GoCardlessProvider();
-
-		MembershipType memberType = (MembershipType)Enum.Parse(typeof(MembershipType), membershipType.Text);
-		var redirectUrl = goCardlessProvider.CreateSimpleBill(hiddenEmail.Value, paymentState == PaymentStates.SS05996 ? 15m : 30m,
-			"Swim subs payment",
-			string.Format("{0}", paymentState.GetAttributeOfType<DescriptionAttribute>().Description), paymentState, Request.Url);
-
-		var sessionProvider = new SessionProvider();
-		sessionProvider.CanProcessPaymentCompletion = true;
-		//RedirectToCompletePage(paymentState.ToString()); //Can be used for testing
-		Response.Redirect(redirectUrl);
-	}
+        RedirectToPaymentPages(paymentState);
+    }
 
 	private void MakeSwimPayment(PaymentStates paymentState)
 	{
-		var goCardlessProvider = new GoCardlessProvider();
-
-		MembershipType memberType = (MembershipType)Enum.Parse(typeof(MembershipType), membershipType.Text);
-		var redirectUrl = goCardlessProvider.CreateSimpleBill(hiddenEmail.Value, _membershipCostCalcualtor.SwimCreditsCost(paymentState, memberType),
-			"Open water swim credits",
-			string.Format("Open water swim, GBP{0} credits", (int)paymentState), paymentState, Request.Url);
-
-		var sessionProvider = new SessionProvider();
-		sessionProvider.CanProcessPaymentCompletion = true;
-		//RedirectToCompletePage(paymentState.ToString()); //Can be used for testing
-		Response.Redirect(redirectUrl);
+        RedirectToPaymentPages(paymentState);
 	}
 
-	private void RedirectToCompletePage(string state)
-	{
-		string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
-			Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
-		string redirectUrl = string.Format("{0}/payment-complete?state={1}", rootUrl, state);
-		Response.Redirect(redirectUrl);
-	}
+    private void RedirectToPaymentPages(PaymentStates state)
+    {
+        _sessionProvider.MandateSuccessPage = "payment-complete";
+        _sessionProvider.CanProcessPaymentCompletion = true;
 
-	
+        var currentmemdata = MemberHelper.Get();
+        bool hasMandate = string.IsNullOrWhiteSpace(currentmemdata[MemberProperty.directDebitMandateId] as string) == false;
+        string page = hasMandate ? "payment-complete" : "mandate-request";
+
+        string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
+            Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
+        string redirectUrl = string.Format("{0}/{1}?state={2}", rootUrl, page, state);
+        Response.Redirect(redirectUrl);
+    }
 }

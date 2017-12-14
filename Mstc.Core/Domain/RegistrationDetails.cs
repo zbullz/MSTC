@@ -5,8 +5,9 @@ namespace Mstc.Core.Domain
 	[Serializable]
 	public class RegistrationDetails
 	{
-		public string FullName { get; set; }
-		public string Email { get; set; }
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
+        public string Email { get; set; }
 		public string Password { get; set; }
 		public string Gender { get; set; }
 		public DateTime DateOfBirth { get; set; }
@@ -18,5 +19,6 @@ namespace Mstc.Core.Domain
 		public string MedicalConditions { get; set; }
 		public string EmergencyContactName { get; set; }
 		public string EmergencyContactPhone { get; set; }
+        public string DirectDebitMandateId { get; set; }
 	}
 }

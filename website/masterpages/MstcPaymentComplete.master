@@ -27,6 +27,10 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-sm-12 <%=ShowPaymentFailed ? "" : "hide"%>">
+                        <p>Sorry, there has been a problem completing your payment. Please <a href="the-club/contact-us.aspx">send us a message</a> for further assistance </p>
+                    </div>
+
                     <div class="col-sm-12 <%=ShowSwimCreditsConfirmation ? "" : "hide"%>">
                         <p>Thank you for purchasing additional swim credits, enjoy your swim!</p>
                         <p>You have purchased £<asp:Literal ID="litSwimCredits" runat="server"></asp:Literal> additional credits</p>
@@ -34,12 +38,12 @@
                     </div>
                     <div class="col-sm-12 <%=ShowEventConfirmation ? "" : "hide"%>">
                         <p>Thank you for entering the club event, good luck!</p>
-                        <p>You have purchased <strong><asp:Literal ID="litEventEntered" runat="server"></asp:Literal></strong> event entry. 
+                        <p>You have purchased <strong><asp:Literal ID="litEventEntered" runat="server"></asp:Literal></strong> event entry for £<strong><asp:Literal ID="litEventCost" runat="server"></asp:Literal></strong>. 
                             Go to <a href="/members-area/my-details">your details page</a> to check all your event entries.</p>
                     </div>
                     <div class="col-sm-12 <%=ShowSwimSubsConfirmation ? "" : "hide"%>">
                         <p>Thank you for purchasing additional swim subs, enjoy your swim!</p>
-                        <p>You have purchased <asp:Literal ID="litSwimSubs" runat="server"></asp:Literal></p>
+                        <p>You have purchased <asp:Literal ID="litSwimSubs" runat="server"></asp:Literal> for £<asp:Literal ID="litSwimSubsCost" runat="server"></asp:Literal></p>
                         <p>Please go to <a href="/members-area/my-details">your details page</a> to check out all your full member profile.</p>
                     </div>
                 </div>

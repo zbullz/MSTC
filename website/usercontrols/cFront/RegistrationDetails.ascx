@@ -5,11 +5,19 @@
             <h3 class="col-sm-12">Personal Details</h3>
         </div>
         <div class="form-group">
-            <label for="tbFullName" class="col-sm-2 control-label"><b>Your Full Name*</b></label>
+            <label for="tbFirstName" class="col-sm-2 control-label"><b>Your First Name*</b></label>
             <div class="col-sm-7">
-                <asp:TextBox ID="tbFullName" runat="server" CssClass="form-control"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="requiredFullName" runat="server" ErrorMessage="Please enter your full name" 
-                    ControlToValidate="tbFullName" CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
+                <asp:TextBox ID="tbFirstName" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="requiredFirstName" runat="server" ErrorMessage="Please enter your first name" 
+                    ControlToValidate="tbFirstName" CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
+            </div>
+        </div>
+                <div class="form-group">
+            <label for="tbLastName" class="col-sm-2 control-label"><b>Your Last Name*</b></label>
+            <div class="col-sm-7">
+                <asp:TextBox ID="tbLastName" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter your last name" 
+                    ControlToValidate="tbLastName" CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
             </div>
         </div>
         <div class="form-group">

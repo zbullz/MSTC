@@ -38,7 +38,7 @@ namespace Mstc.Core.Providers
 
 		public umbraco.cms.businesslogic.member.Member CreateMember(RegistrationDetails regDetails, string[] roles)
 		{
-			return MemberHelper.Create(regDetails.Email, regDetails.Password, regDetails.FullName, regDetails.Email, "Member",
+			return MemberHelper.Create(regDetails.Email, regDetails.Password, $"{regDetails.FirstName} {regDetails.LastName}", regDetails.Email, "Member",
 				roles);
 		}
 
@@ -86,7 +86,9 @@ namespace Mstc.Core.Providers
 			currentmemdata[MemberProperty.medicalConditions] = registrationDetails.MedicalConditions;
 			currentmemdata[MemberProperty.emergencyContactName] = registrationDetails.EmergencyContactName;
 			currentmemdata[MemberProperty.emergencyContactNumber] = registrationDetails.EmergencyContactPhone;
-		}
+			currentmemdata[MemberProperty.directDebitMandateId] = registrationDetails.DirectDebitMandateId;
+
+        }
 
 		private void SetMembershipOptions(IDictionary<String, object> currentmemdata, MembershipOptions membershipOptions, DateTime membershipExpiry, bool zeroSwimCredits)
 		{

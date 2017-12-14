@@ -26,7 +26,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 <%=ShowPaymentFailed ? "" : "hide"%>">
+                        <p>Sorry, there has been a problem completing your payment. Please <a href="the-club/contact-us.aspx">send us a message</a> for further assistance </p>
+                    </div>
+
+                    <div class="col-sm-12" <%=ShowPaymentFailed ? "hide" : ""%>">
                         <p>Thank you for updating your membership.</p> 
                         <p>Please go to <a href="/members-area/my-details">your details page</a> to make sure your information is up to date and retrieve your open water swim authorisation number.</p>
                     </div>

@@ -1,25 +1,26 @@
 ﻿using System;
-using System.Collections.Specialized;
+using System.Collections.Generic;
 using System.Configuration;
-using GoCardlessSdk;
-using GoCardlessSdk.Connect;
-using Mstc.Core.Domain;
+using GoCardless;
+using GoCardless.Exceptions;
+using GoCardless.Services;
+using Mstc.Core.Dto;
 using umbraco.BusinessLogic;
 
 namespace Mstc.Core.Providers
 {
 	public class GoCardlessProvider
 	{
-		public GoCardlessProvider()
+	    private GoCardlessClient _client;
+
+        public GoCardlessProvider()
 		{
-			GoCardless.Environment = (GoCardless.Environments)
-				Enum.Parse(typeof (GoCardless.Environments), ConfigurationManager.AppSettings["gocardlessEnvironment"]);
-			GoCardless.AccountDetails = new AccountDetails
-			{
-				AppId = ConfigurationManager.AppSettings["gocardlessAppId"],
-				AppSecret = ConfigurationManager.AppSettings["gocardlessAppSecret"], 
-				Token = ConfigurationManager.AppSettings["gocardlessToken"]
-			};
+		    var environment = ConfigurationManager.AppSettings["gocardlessEnvironment"] == "Production"
+		        ? GoCardlessClient.Environment.LIVE
+		        : GoCardlessClient.Environment.SANDBOX;
+
+		    _client = GoCardlessClient.Create(ConfigurationManager.AppSettings["gocardlessAccessToken"],
+		        environment);
 		}
 
 		public string MerchantId
@@ -27,65 +28,108 @@ namespace Mstc.Core.Providers
 			get { return ConfigurationManager.AppSettings["gocardlessMerchantId"]; }
 		}
 
-		public string CreateSimpleBill(string memberEmail, decimal cost, string name, string description, PaymentStates paymentState, Uri requestUri)
-		{
-			Log.Add(LogTypes.Custom, -1,
-				string.Format(
-					"New CreateSimpleBill request. memberEmail: {0}, cost: {1}, name: {2}, description: {3}, paymentState: {4}",
-					memberEmail, cost, name, description, paymentState.ToString()));
+	    public RedirectResponseDto CreateRedirectRequest(CustomerDto customer, string sessionToken, string successUrl)
+	    {
+	        var redirectFlowResponse =  _client.RedirectFlows.CreateAsync(new RedirectFlowCreateRequest()
+	        {
+	            Description = "MSTC Member",
+	            SessionToken = sessionToken,
+	            SuccessRedirectUrl = successUrl,
+	            // Optionally, prefill customer details on the payment page
+	            PrefilledCustomer = new RedirectFlowCreateRequest.RedirectFlowPrefilledCustomer()
+	            {
+	                GivenName = customer.GivenName,
+	                FamilyName = customer.FamilyName,
+	                Email = customer.Email,
+	                AddressLine1 = customer.AddressLine1,
+	                City = customer.City,
+	                PostalCode = customer.PostalCode
+	            }
+	        }).Result;
 
-			var goCardlessProvider = new GoCardlessProvider();
-			var billRequest = new BillRequest(goCardlessProvider.MerchantId, cost)
-			{
-				Name = name,
-				Description = description,
-				User = new UserRequest()
-				{
-					Email = memberEmail,
-				}
-			};
+            var redirectFlow = redirectFlowResponse.RedirectFlow;
+            return new RedirectResponseDto()
+            {
+                Id = redirectFlow.Id,
+                RedirectUrl = redirectFlow.RedirectUrl
+            };
+        }
 
-			//Could wrap this in a provider
-			string rootUrl = string.Format("{0}://{1}{2}", requestUri.Scheme, requestUri.Host,
-				requestUri.Port == 80 ? string.Empty : ":" + requestUri.Port);
-			string redirectUrl = string.Format("{0}/payment-complete", rootUrl);
-			string cancelUrl = string.Format("{0}", rootUrl);
+	    public string CompleteRedirectRequest(string requestId, string sessionToken)
+	    {
+	        var redirectFlowResponse = _client.RedirectFlows
+	            .CompleteAsync(requestId,
+	                new RedirectFlowCompleteRequest()
+	                {
+	                    SessionToken = sessionToken
+	                }
+	            ).Result;
 
-			string requestUrl = new GoCardlessSdk.Connect.ConnectClient().NewBillUrl(billRequest, redirectUrl, cancelUrl, paymentState.ToString());
-			return requestUrl;
-		}
+	        return redirectFlowResponse.RedirectFlow.Links.Mandate;
+	    }
 
-		public string CreateBill(BillRequest billRequest, string redirectUri, string cancelUri)
-		{
-			string requestUrl = new GoCardlessSdk.Connect.ConnectClient().NewBillUrl(billRequest, redirectUri, cancelUri);
-			return requestUrl;
-		}
+	    public PaymentResponseDto CreatePayment(string memberMandateId, string memberEmail, int costInPence, string description)
+	    {
+            int retries = 5;
+            int tried = 0;
+	        string idempotencyKey = Guid.NewGuid().ToString();
+            return TryCreatePayment(idempotencyKey, memberMandateId, memberEmail, costInPence, description, retries, tried);
+        }
 
-		public void ConfirmBill(NameValueCollection confirmQueryStringCollection)
-		{
-			//There have been some connectivity issues with the confirm bill request to go cardless so have put 5 retries in to guard against it
-			int retries = 5;
-			int tried = 0;
-			TryConfirmBill(confirmQueryStringCollection, retries, tried);
-		}
+	    public PaymentResponseDto TryCreatePayment(string idempotencyKey, string memberMandateId, string memberEmail,
+	        int costInPence, string description, int retries, int tried)
+	    {
+	        if (tried >= retries)
+	        {
+	            return PaymentResponseDto.UnknownError;
+	        }
 
-		public void TryConfirmBill(NameValueCollection confirmQueryStringCollection, int retries, int tried)
-		{
-			if (tried >= retries)
-			{
-				return;
-			}
+	        try
+	        {
+	            tried++;
 
-			try
-			{
-				tried++;
-				GoCardless.Connect.ConfirmResource(confirmQueryStringCollection);
-			}
-			catch (Exception ex)
-			{
-				Log.Add(LogTypes.Error, -1, string.Format("Unable to ConfirmBill, exception: {0}", ex.ToString()));
-				TryConfirmBill(confirmQueryStringCollection, retries, tried);
-			}
-		}
+	            var createResponse = _client.Payments.CreateAsync(new PaymentCreateRequest()
+	            {
+	                Amount = costInPence,
+	                Currency = PaymentCreateRequest.PaymentCurrency.GBP,
+	                Links = new PaymentCreateRequest.PaymentLinks()
+	                {
+	                    Mandate = memberMandateId,
+	                },
+	                Metadata = new Dictionary<string, string>()
+	                {
+	                    {"description", description}
+	                },
+	                IdempotencyKey = idempotencyKey
+	            }).Result;
+
+	            string message =
+	                $"New CreatePayment request. memberEmail: {memberEmail}, memberMandateId: {memberMandateId}, " +
+	                $"cost: {costInPence}, description: {description}";
+	            Log.Add(LogTypes.Custom, -1, message);
+
+	            return PaymentResponseDto.Success;
+	        }
+	        catch (Exception ex)
+	        {
+	            Log.Add(LogTypes.Error, -1,
+	                string.Format(
+	                    $"Unable to CreatePayment for memberEmail: {memberEmail}, memberMandateId: {memberMandateId},, exception: {0}",
+	                    ex));
+
+	            var exception = ex.InnerException as ApiException;
+	            if (exception != null)
+	            {
+	                var mandateErrors = new List<string>() {"Mandate is failed, cancelled or expired", "Mandate not found"};
+	                if (mandateErrors.Contains(exception.ApiErrorResponse.Error.Message))
+	                {
+	                    return PaymentResponseDto.MandateError;
+	                }
+	            }
+
+	            return TryCreatePayment(idempotencyKey, memberMandateId, memberEmail, costInPence, description, retries,
+	                tried);
+	        }
+	    }
 	}
 }

@@ -1,75 +1,81 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using cFront.Umbraco;
 using Mstc.Core.Domain;
+using Mstc.Core.Dto;
 using Mstc.Core.Providers;
 using Newtonsoft.Json;
-using umbraco.cms.businesslogic.property;
-using umbraco.providers.members;
 
 public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.UserControl
 {
-	protected SessionProvider _sessionProvider;
-	protected SessionProvider SessionProvider
-	{
-		get
-		{
-			if (_sessionProvider == null)
-			{
-				_sessionProvider = new SessionProvider();
-			}
-			return _sessionProvider;
-		}
-	}
+    protected bool IsRegistered;
+
+    private SessionProvider _sessionProvider;
+    private GoCardlessProvider _goCardlessProvider;
+    private MemberProvider _memberProvider;
+    EmailProvider _emailProvider;
+
+    public usercontrols_cFront_RegisterMemberComplete()
+    {
+        _sessionProvider = new SessionProvider();
+        _goCardlessProvider = new GoCardlessProvider();
+        _memberProvider = new MemberProvider();
+        _emailProvider = new EmailProvider();
+    }
 
     protected void Page_Load(object sender, EventArgs e)
     {
 		if (IsPostBack == false)
 		{
-			RegistrationFullDetails registrationFullDetails = SessionProvider.RegistrationFullDetails;
-			if (registrationFullDetails == null)
+			RegistrationFullDetails registrationFullDetails = _sessionProvider.RegistrationFullDetails;
+			if (registrationFullDetails == null || string.IsNullOrWhiteSpace(_sessionProvider.GoCardlessRedirectFlowId))
 			{
 				return; //Prevent duplicate registration
 			}
 
-		    if (Request.QueryString["resource_uri"] != null)
+		    string mandateId = _goCardlessProvider.CompleteRedirectRequest(_sessionProvider.GoCardlessRedirectFlowId,
+		        _sessionProvider.SessionId);
+            registrationFullDetails.RegistrationDetails.DirectDebitMandateId = mandateId;
+
+            int cost = MembershipCostCalculator.Calculate(registrationFullDetails.MembershipOptions, DateTime.Now);
+            string paymentDescription = _memberProvider.GetPaymentDescription(registrationFullDetails.MembershipOptions);
+
+            var regDetails = registrationFullDetails.RegistrationDetails;
+		    var paymentResponse = _goCardlessProvider.CreatePayment(regDetails.DirectDebitMandateId, regDetails.Email, cost,
+		        paymentDescription);
+
+		    IsRegistered = paymentResponse == PaymentResponseDto.Success;
+
+            if (IsRegistered)
 		    {
-			    ConfirmPaymentRequest();
+		        var member = _memberProvider.CreateMember(regDetails, new string[] {"Member"});
+		        _memberProvider.UpdateMemberDetails(member, registrationFullDetails);
+
+		        //Login the member
+		        FormsAuthentication.SetAuthCookie(member.LoginName, true);
+		        
+		        string content = string.Format("<p>A new member has registered with the club</p><p>Member details: {0}</p>",
+		            JsonConvert.SerializeObject(registrationFullDetails, Formatting.Indented));
+		        var passwordObfuscator = new PasswordObfuscator();
+		        content = passwordObfuscator.ObfuscateString(content);
+
+		        _emailProvider.SendEmail(ConfigurationManager.AppSettings["newRegistrationEmailTo"], EmailProvider.SupportEmail,
+		            "New MSTC member registration", content);
+
+		        _sessionProvider.RegistrationFullDetails = null;
+		        _sessionProvider.GoCardlessRedirectFlowId = null;
 		    }
+		    else
+		    {
+                string content = string.Format("<p>A new member has NOT been registered with the club</p><p>Member details: {0}</p>",
+                    JsonConvert.SerializeObject(registrationFullDetails, Formatting.Indented));
+                var passwordObfuscator = new PasswordObfuscator();
+                content = passwordObfuscator.ObfuscateString(content);
 
-			//lblMemberOptions.Text = JsonConvert.SerializeObject(registrationFullDetails);
-			
-			var memberProvider = new MemberProvider();
-			var member = memberProvider.CreateMember(registrationFullDetails.RegistrationDetails, new string[] {"Member"});
-			memberProvider.UpdateMemberDetails(member, registrationFullDetails);
+                _emailProvider.SendEmail(EmailProvider.SupportEmail, EmailProvider.SupportEmail,
+                    "MSTC member registration problem", content);
+            }
 
-			//Login the member
-			FormsAuthentication.SetAuthCookie(member.LoginName, true);
-
-			var emailProvider = new EmailProvider();
-		    string content = string.Format("<p>A new member has registered with the club</p><p>Member details: {0}</p>",
-		        JsonConvert.SerializeObject(registrationFullDetails, Formatting.Indented));
-		    var passwordObfuscator = new PasswordObfuscator();
-		    content = passwordObfuscator.ObfuscateString(content);
-
-            emailProvider.SendEmail(ConfigurationManager.AppSettings["newRegistrationEmailTo"], EmailProvider.SupportEmail, "New MSTC member registration", content);
-
-			SessionProvider.RegistrationFullDetails = null;
 		}
     }
-
-	private void ConfirmPaymentRequest()
-	{
-		var goCardlessProvider = new GoCardlessProvider();
-		goCardlessProvider.ConfirmBill(Request.QueryString);
-	}
-
-
 }

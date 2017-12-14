@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using cFront.Umbraco.Membership;
-using GoCardlessSdk;
-using GoCardlessSdk.Connect;
 using Mstc.Core.Domain;
 using Mstc.Core.Providers;
 
@@ -94,11 +88,7 @@ public partial class masterpages_MstcClubEventEntry : System.Web.UI.MasterPage
 		}
 
 		SessionProvider.CanProcessPaymentCompletion = true;
-
-		decimal cost = 10m;
-		string memberEmail = currentmemdata[MemberProperty.Email] as string;
-		RedirectToGocardless(memberEmail, cost, "MSTC Duathlon Entry", "Mid Sussex Tri Club Duathlon Entry", PaymentStates.E00D101C);
-		//RedirectToCompletePage(PaymentStates.E00D101C.ToString()); //Can use this for local testing
+		RedirectToPaymentPages(currentmemdata, PaymentStates.E00D101C.ToString()); 
 	}
 
 	protected void TriFestEnter_OnClick(object sender, EventArgs e)
@@ -117,19 +107,14 @@ public partial class masterpages_MstcClubEventEntry : System.Web.UI.MasterPage
 		SessionProvider.CanProcessPaymentCompletion = true;
 
 		PaymentStates entryType = (PaymentStates)Enum.Parse(typeof(PaymentStates), triFestEventType.SelectedValue);
-
-		decimal cost = (entryType == PaymentStates.E00TRIOI201C || entryType == PaymentStates.E00TRIMI203C || entryType == PaymentStates.E00TRISI205C) ? 23m : 13m;
+		
 		if (string.IsNullOrEmpty(tbTriFestBTFNumber.Text) == false)
 		{
-			cost = cost - 3;
 			currentmemdata[MemberProperty.BTFNumber] = tbTriFestBTFNumber.Text;
 			MemberHelper.Update(currentmemdata);
 		}
-
-		string memberEmail = currentmemdata[MemberProperty.Email] as string;
-		string paymentDescription = string.Format("{0}", entryType.GetAttributeOfType<DescriptionAttribute>().Description);
-		RedirectToGocardless(memberEmail, cost, "MSTC Tri Fest", paymentDescription, entryType);
-		//RedirectToCompletePage(entryType.ToString()); //Can use this for local testing
+	
+		RedirectToPaymentPages(currentmemdata, entryType.ToString());
 	}
 
 	protected void CharitySwimEnter_OnClick(object sender, EventArgs e)
@@ -148,26 +133,20 @@ public partial class masterpages_MstcClubEventEntry : System.Web.UI.MasterPage
 		SessionProvider.CanProcessPaymentCompletion = true;
 
 		PaymentStates entryType = (PaymentStates)Enum.Parse(typeof(PaymentStates), charitySwimEventType.SelectedValue);
-
-		decimal cost = 20m;
-		string memberEmail = currentmemdata[MemberProperty.Email] as string;
-		string paymentDescription = string.Format("{0}", entryType.GetAttributeOfType<DescriptionAttribute>().Description);
-		RedirectToGocardless(memberEmail, cost, "MSTC 5-3-1 Charity Swim", paymentDescription, entryType);
-		//RedirectToCompletePage(entryType.ToString()); //Can use this for local testing
+		
+		RedirectToPaymentPages(currentmemdata, entryType.ToString()); 
 	}
 
-	private void RedirectToCompletePage(string state)
+	private void RedirectToPaymentPages(IDictionary<String, object> currentmemdata, string state)
 	{
-		string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
+	    _sessionProvider.MandateSuccessPage = "payment-complete";
+
+        bool hasMandate = string.IsNullOrWhiteSpace(currentmemdata[MemberProperty.directDebitMandateId] as string) == false;
+	    string page = hasMandate ? "payment-complete" : "mandate-request";
+
+        string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
 			Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
-		string redirectUrl = string.Format("{0}/payment-complete?state={1}", rootUrl, state);
-		Response.Redirect(redirectUrl);
-	}
-
-	private void RedirectToGocardless(string memberEmail, decimal cost, string name, string description, PaymentStates paymentState)
-	{
-		var goCardlessProvider = new GoCardlessProvider();
-		var redirectUrl = goCardlessProvider.CreateSimpleBill(memberEmail, cost, name, description, paymentState, Request.Url);
+		string redirectUrl = string.Format("{0}/{1}?state={2}", rootUrl, page, state);
 		Response.Redirect(redirectUrl);
 	}
 

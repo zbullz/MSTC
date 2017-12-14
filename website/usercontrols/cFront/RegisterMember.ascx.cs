@@ -1,13 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using Mstc.Core.Domain;
+using Mstc.Core.Dto;
 using Mstc.Core.Providers;
 using Newtonsoft.Json;
-using GoCardlessSdk.Connect;
 using umbraco.BusinessLogic;
 
 public partial class usercontrols_cFront_RegisterMember : System.Web.UI.UserControl
 {
+    private SessionProvider _sessionProvider;
+    private GoCardlessProvider _goCardlessProvider;
+
+    public usercontrols_cFront_RegisterMember()
+    {
+        _sessionProvider = new SessionProvider();
+        _goCardlessProvider = new GoCardlessProvider();
+
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -26,47 +36,29 @@ public partial class usercontrols_cFront_RegisterMember : System.Web.UI.UserCont
 			RegistrationDetails = registrationDetailsControl.GetRegistrationDetails()
 		};
 
-		var sessionProvider = new SessionProvider();
-		sessionProvider.RegistrationFullDetails = registrationFullDetails;
+        _sessionProvider.RegistrationFullDetails = registrationFullDetails;
 
 		Log.Add(LogTypes.Custom, -1, string.Format("New member registration request: {0}",
 			JsonConvert.SerializeObject(registrationFullDetails)));
 
-		decimal cost = (new MembershipCostCalculator()).Calculate(registrationFullDetails.MembershipOptions, DateTime.Now);
-		var memberProvider = new MemberProvider();
-		RedirectToGocardless(registrationFullDetails.RegistrationDetails.Email, cost, memberProvider.GetPaymentDescription(registrationFullDetails.MembershipOptions));
-		//RedirectToCompletePage(); //Can use this for local testing
-	}
+        var customerDto = new CustomerDto()
+        {
+            GivenName = registrationFullDetails.RegistrationDetails.FirstName,
+            FamilyName = registrationFullDetails.RegistrationDetails.LastName,
+            AddressLine1 = registrationFullDetails.RegistrationDetails.Address1,
+            City = registrationFullDetails.RegistrationDetails.City,
+            PostalCode = registrationFullDetails.RegistrationDetails.Postcode,
+            Email = registrationFullDetails.RegistrationDetails.Email
+        };
+	    string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
+	        Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
+        string successUrl = string.Format("{0}/the-club/membership-registration-complete", rootUrl);
 
-	private void RedirectToCompletePage()
-	{
-		string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
-			Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
-		string redirectUrl = string.Format("{0}/the-club/membership-registration-complete", rootUrl);
-		Response.Redirect(redirectUrl);
-	}
-
-	private void RedirectToGocardless(string memberEmail, decimal cost, string description)
-	{
-		var goCardlessProvider = new GoCardlessProvider();
-		var billRequest = new BillRequest(goCardlessProvider.MerchantId, cost)
-		{
-			Name = "MSTC Membership Registration",
-			Description = description,
-			User = new UserRequest()
-			{
-				Email = memberEmail
-			},
-		};
-
-		//Could wrap this in a provider
-		string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
-			Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
-		string redirectUrl = string.Format("{0}/the-club/membership-registration-complete", rootUrl);
-		string cancelUrl = string.Format("{0}", rootUrl);
-
-		string paymentGatewayUrl = goCardlessProvider.CreateBill(billRequest, redirectUrl, cancelUrl);
-		Response.Redirect(paymentGatewayUrl);
+	    var redirectResponse = _goCardlessProvider.CreateRedirectRequest(customerDto, _sessionProvider.SessionId,
+	        successUrl);
+        
+        _sessionProvider.GoCardlessRedirectFlowId = redirectResponse.Id;
+        Response.Redirect(redirectResponse.RedirectUrl);
 	}
 
 	public int FromYear { get { return DateTime.Now.Month < 3 ? DateTime.Now.Year - 1 : DateTime.Now.Year; } }

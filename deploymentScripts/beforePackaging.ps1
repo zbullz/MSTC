@@ -40,6 +40,8 @@ $webconfig = $webconfig -replace "<add key=`"gocardlessAppId`" value=`"([^`"]+)`
 $webconfig = $webconfig -replace "<add key=`"gocardlessAppSecret`" value=`"([^`"]+)`"","<add key=`"gocardlessAppSecret`" value=`"$env:gocardlessAppSecret`""
 $webconfig = $webconfig -replace "<add key=`"gocardlessToken`" value=`"([^`"]+)`"","<add key=`"gocardlessToken`" value=`"$env:gocardlessToken`""
 $webconfig = $webconfig -replace "<add key=`"gocardlessMerchantId`" value=`"([^`"]+)`"","<add key=`"gocardlessMerchantId`" value=`"$env:gocardlessMerchantId`""
+$webconfig = $webconfig -replace "<add key=`"gocardlessAccessToken`" value=`"([^`"]+)`"","<add key=`"gocardlessAccessToken`" value=`"$env:gocardlessAccessToken`""
+
 
 if ($env:renewalsEnabled)
 {

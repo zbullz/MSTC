@@ -9,11 +9,11 @@ namespace Mstc.Core.Providers
 	/// </summary>
 	public class MembershipCostCalculator
 	{
-		private Dictionary<MembershipType, decimal> TypeCosts = new Dictionary<MembershipType, decimal>()
+		private static Dictionary<MembershipType, int> TypeCosts = new Dictionary<MembershipType, int>()
 		{
-			{MembershipType.Individual, new decimal(40.00)},
-			{MembershipType.Couple, new decimal(35.00)},
-			{MembershipType.Concession, new decimal(30.00)},
+			{MembershipType.Individual, 4000},
+			{MembershipType.Couple,3500},
+			{MembershipType.Concession, 3000},
 		};
 
 		public static List<int> DiscountedMonths
@@ -21,31 +21,80 @@ namespace Mstc.Core.Providers
 			get { return new List<int>() {10, 11, 12, 1, 2}; }
 		}
 
-		private decimal SwimsSubsCost = new decimal(30);
+		public static int SwimsSubsCostInPence = 3000;
 
-		public decimal GetTypeCost(MembershipType type, DateTime currentDate)
+		public static int GetTypeCostPence(MembershipType type, DateTime currentDate)
 		{
 			return DiscountedMonths.Contains(currentDate.Month) ? TypeCosts[type]/2 : TypeCosts[type];
 		}
 
-		public decimal Calculate(MembershipOptions membershipOptions, DateTime currentDate)
+		public static int Calculate(MembershipOptions membershipOptions, DateTime currentDate)
 		{
-			var cost = GetTypeCost(membershipOptions.MembershipType, currentDate);		
+			var cost = GetTypeCostPence(membershipOptions.MembershipType, currentDate);		
 			if (membershipOptions.SwimSubsAprToSept)
 			{
-				cost += SwimsSubsCost;
+				cost += SwimsSubsCostInPence;
 			}
 			if (membershipOptions.SwimSubsOctToMar)
 			{
-				cost += SwimsSubsCost;
+				cost += SwimsSubsCostInPence;
 			}
 	
 			return cost;
 		}
 
-		public decimal SwimCreditsCost(PaymentStates credits, MembershipType membershipType)
+		public static int SwimCreditsCost(PaymentStates credits)
 		{
-			return new decimal((int) credits);
+			return (int) credits * 100;
 		}
-	}
+
+        public static int PaymentStateCost(PaymentStates state, bool hasBTFNumber)
+        {
+            switch (state)
+            {
+                case PaymentStates.S00599C:
+                case PaymentStates.S001099C:
+                case PaymentStates.S001599C:
+                case PaymentStates.S002499C:
+                {
+                    return SwimCreditsCost(state);
+                    }
+                case PaymentStates.E00D101C:
+                {
+                    return 1000;
+                }
+                case PaymentStates.E00TRIOI201C:
+                case PaymentStates.E00TRIMI203C:
+                
+                case PaymentStates.E00TRISI205C:
+                {
+                    return hasBTFNumber ? 2000 : 2300;
+                }
+                case PaymentStates.E00TRIOR202C:
+                case PaymentStates.E00TRIMR204C:
+                {
+                    return hasBTFNumber ? 1000 : 1300;
+                }
+                case PaymentStates.E00S1KM301C:
+                case PaymentStates.E00S3KM302C:
+                case PaymentStates.E00S5KM303C:
+                case PaymentStates.E00S1KM3KM304C:
+                case PaymentStates.E00S1KM5KM305C:
+                case PaymentStates.E00S3KM5KM306C:
+                case PaymentStates.E00S1KM3KM5KM307C:
+                    {
+                        return 2000;
+                    }
+                case PaymentStates.SS05991:
+                case PaymentStates.SS05992:
+                case PaymentStates.SS05996:
+                    {
+                        return SwimsSubsCostInPence;
+                    }
+            }
+
+            throw new Exception("Unknown cost");
+        }
+
+    }
 }

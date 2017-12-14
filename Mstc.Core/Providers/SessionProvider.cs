@@ -4,9 +4,6 @@ using Mstc.Core.Domain;
 
 namespace Mstc.Core.Providers
 {
-	/// <summary>
-	/// Summary description for SessionProvider
-	/// </summary>
 	public class SessionProvider
 	{
 		private HttpSessionState CurrentSession
@@ -17,15 +14,10 @@ namespace Mstc.Core.Providers
 		private const string _renewalOptionsKey = "RenewalOptions";
 		private const string _regFullDetails = "RegistrationFullDetails";
 		private const string _canProcessPaymentCompletion = "CanProcessPaymentCompletion";
+        private const string _goCardlessRedirectFlowId = "GoCardlessRedirectFlowId";
+	    private const string _mandateSuccessPage = "MandateSuccessPage";
 
-		public SessionProvider()
-		{
-			//
-			// TODO: Add constructor logic here
-			//
-		}
-
-		public MembershipOptions RenewalOptions
+        public MembershipOptions RenewalOptions
 		{
 			get { return (MembershipOptions) CurrentSession[_renewalOptionsKey]; }
 			set { CurrentSession[_renewalOptionsKey] = value; }
@@ -41,6 +33,20 @@ namespace Mstc.Core.Providers
 		{
 			get { return CurrentSession[_canProcessPaymentCompletion] != null ? (bool) CurrentSession[_canProcessPaymentCompletion] : false; }
 			set { CurrentSession[_canProcessPaymentCompletion] = value; }
-		} 
-	}
+		}
+
+        public string GoCardlessRedirectFlowId
+	    {
+            get { return (string) CurrentSession[_goCardlessRedirectFlowId]; }
+            set { CurrentSession[_goCardlessRedirectFlowId] = value; }
+	    }
+
+        public string MandateSuccessPage
+        {
+            get { return (string)CurrentSession[_mandateSuccessPage]; }
+            set { CurrentSession[_mandateSuccessPage] = value; }
+        }
+
+        public string SessionId => CurrentSession.SessionID;
+    }
 }
