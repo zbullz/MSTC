@@ -7,7 +7,7 @@ From (SELECT id FROM dbo.umbracoNode WHERE (nodeObjectType = '9b5416fb-e72f-45a9
 						AND MemberDataTable.propertytypeid = MemberTypes.id 
 					LEFT OUTER JOIN dbo.cmsMember AS CmsMember ON CmsMember.nodeId = MemberList.nodeId
 					inner join dbo.umbracoNode n on n.id = MemberList.nodeId 
-			Where	MemberTypes.Alias in ('openWaterIndemnityAcceptance', 'duathlonEntered')
+			Where	MemberTypes.Alias in ('openWaterIndemnityAcceptance', 'duathlonEntered','swimAuthNumber')
 	
 Update MemberDataTable
 Set MemberDataTable.[dataNVarChar] = null		
