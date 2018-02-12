@@ -96,10 +96,7 @@ namespace Mstc.Core.Providers
 	                {
 	                    Mandate = memberMandateId,
 	                },
-	                Metadata = new Dictionary<string, string>()
-	                {
-	                    {"description", description}
-	                },
+	                Description = description,
 	                IdempotencyKey = idempotencyKey
 	            }).Result;
 
