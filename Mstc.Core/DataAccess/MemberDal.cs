@@ -86,12 +86,12 @@ namespace Mstc.Core.DataAccess
 		{
 			string query = BaseSelectQuery +
 			               string.Format(@" WHERE	(MemberList.nodeId IS NOT NULL)
-					        and MemberTypes.Alias in ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}')",
+					        and MemberTypes.Alias in ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}')",
 				               MemberProperty.Phone, MemberProperty.membershipType, MemberProperty.swimSubsAprToSept,
 				               MemberProperty.SwimSubsOctToMar, MemberProperty.OpenWaterIndemnityAcceptance,
 				               MemberProperty.Volunteering, MemberProperty.MembershipExpiry, MemberProperty.SwimAuthNumber,
 				               MemberProperty.DuathlonEntered, MemberProperty.SwimCreditsBought, MemberProperty.SwimCreditsUsed,
-				               MemberProperty.TriFestEntry, MemberProperty.CharitySwimEntry, MemberProperty.SwimBalanceLastYear);
+				               MemberProperty.TriFestEntry, MemberProperty.CharitySwimEntry, MemberProperty.SwimBalanceLastYear, MemberProperty.EnglandAthleticsMembership);
 
 			IEnumerable<MemberData> memberData;
 			using (IDbConnection connection = _dataConnection.SqlConnection)
@@ -187,7 +187,8 @@ namespace Mstc.Core.DataAccess
 				Phone = GetPropertyValueForAlias(groupedMemberData, MemberProperty.Phone),
 				SwimSubsAprToSept = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.swimSubsAprToSept)),
 				SwimSubsOctToMar = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.SwimSubsOctToMar)),
-				DuathlonEntered = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.DuathlonEntered)),
+                EnglandAthleticsMembership = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.EnglandAthleticsMembership)),
+                DuathlonEntered = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.DuathlonEntered)),
 				OpenWaterIndemnityAcceptance =
 					GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.OpenWaterIndemnityAcceptance)),
 				Volunteering = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.Volunteering)),

@@ -43,8 +43,9 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 			extrasList.Add(new ListItem("Swim subs April to Sept - &pound;30", MembershipExtras.SwimSubsAprToSept.ToString()));
 		}
 		extrasList.Add(new ListItem("Swim subs Oct to March - &pound;30", MembershipExtras.SwimSubsOctToMar.ToString()));
-	    
-		extras.Items.AddRange(extrasList.ToArray());
+		extrasList.Add(new ListItem("England Athletics Membership* - &pound;15", MembershipExtras.EnglandAthletics.ToString()));
+
+        extras.Items.AddRange(extrasList.ToArray());
 
 		var indemnityOptionsList = new List<ListItem>()
 	    {
@@ -64,7 +65,12 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 		e.IsValid = volunteering.Checked;
 	}
 
-	public MembershipOptions GetMembershipOptions()
+    protected void PersonalDataRequired_ServerValidate(object sender, ServerValidateEventArgs e)
+    {
+        e.IsValid = personalData.Checked;
+    }
+
+    public MembershipOptions GetMembershipOptions()
 	{
 		var swimSubAprToSeptItem = extras.Items.FindByValue(MembershipExtras.SwimSubsAprToSept.ToString());
 		return new MembershipOptions()
@@ -72,7 +78,8 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 			MembershipType = (MembershipType) Enum.Parse(typeof(MembershipType), membershipType.SelectedValue),
 			SwimSubsAprToSept = swimSubAprToSeptItem != null && swimSubAprToSeptItem.Selected,
 			SwimSubsOctToMar = extras.Items.FindByValue(MembershipExtras.SwimSubsOctToMar.ToString()).Selected,
-			OpenWaterIndemnityAcceptance = indemnityOptions.SelectedValue == AcceptIndemnity,
+            EnglandAthleticsMembership = extras.Items.FindByValue(MembershipExtras.EnglandAthletics.ToString()).Selected,
+            OpenWaterIndemnityAcceptance = indemnityOptions.SelectedValue == AcceptIndemnity,
 			Volunteering = true //Hardcode to true as can't renew unless this is selected :)
 		};
 	}

@@ -48,5 +48,7 @@
 		public static string MedicalConditions = "medicalConditions";
 		public static string EmergencyContactName = "emergencyContactName";
 		public static string EmergencyContactNumber = "emergencyContactNumber";
+
+	    public static string EnglandAthleticsMembership = "englandAthleticsMembership";
 	}
 }

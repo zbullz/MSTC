@@ -21,7 +21,9 @@
             <label for="contact-email" class="col-sm-2 control-label"><b>Optional extras</b></label>
             <div class="col-sm-10">
                 <asp:CheckBoxList ID="extras" runat="server" CssClass="checkbox"></asp:CheckBoxList>
+                <span class="help-block alert-info">*If you choose England Athletics Membership we will provide England Athletics with your personal data which they will use to enable access to an online portal for you. England Athletics will contact you to invite you to sign in and update your MyAthletics portal which allows you, amongst other things, to set and amend your privacy settings.</span>
             </div>
+
         </div>
         <div class="form-group">
             <label for="contact-message" class="col-sm-2 control-label"><b>Open water swimming indemnity waiver*</b></label>
@@ -41,5 +43,14 @@
                     Please accept the volunteering agreement to proceed</asp:CustomValidator>
             </div>
             
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label"><b>Personal data agreement*</b></label>
+            <div class="col-sm-10">
+                <asp:CheckBox ID="personalData" runat="server" CssClass="checkbox" 
+                    Text="I agree to allow the club to store my personal data." />
+                <asp:CustomValidator runat="server" ID="requiredPersonalData" OnServerValidate="PersonalDataRequired_ServerValidate" CssClass="help-block alert-danger">
+                    Please accept the personal data agreement to proceed</asp:CustomValidator>
+            </div>
         </div>
     </div>

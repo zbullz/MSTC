@@ -25,8 +25,12 @@ namespace Mstc.Core.Providers
 			{
 				descriptionList.Add("Swim subs Oct to Mar");
 			}
+		    if (membershipOptions.EnglandAthleticsMembership)
+		    {
+				descriptionList.Add("England Athletics Membership");
+            }
 
-			return string.Join(", ", descriptionList);
+            return string.Join(", ", descriptionList);
 		}
 
 		public DateTime GetNewMemberExpiry(DateTime currentDate)
@@ -96,6 +100,7 @@ namespace Mstc.Core.Providers
 			currentmemdata[MemberProperty.OpenWaterIndemnityAcceptance] = membershipOptions.OpenWaterIndemnityAcceptance;
 			currentmemdata[MemberProperty.swimSubsAprToSept] = membershipOptions.SwimSubsAprToSept;
 			currentmemdata[MemberProperty.SwimSubsOctToMar] = membershipOptions.SwimSubsOctToMar;
+		    currentmemdata[MemberProperty.EnglandAthleticsMembership] = membershipOptions.EnglandAthleticsMembership;
 			currentmemdata[MemberProperty.Volunteering] = membershipOptions.Volunteering;
 			currentmemdata[MemberProperty.MembershipExpiry] = membershipExpiry;
 			if (zeroSwimCredits)

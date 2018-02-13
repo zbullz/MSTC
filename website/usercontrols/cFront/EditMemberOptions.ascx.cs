@@ -134,6 +134,10 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 		{
 			extras.Add("Pool swim Oct - Mar.");
 		}
+        if (GetMemberBool(memberData, MemberProperty.EnglandAthleticsMembership))
+        {
+            extras.Add("England Athletics Member.");
+        }
 
         if (extras.Any() == false)
         {

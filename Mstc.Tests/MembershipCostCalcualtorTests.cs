@@ -43,7 +43,7 @@ namespace Mstc.Tests
 			static List<int> discountedMonths;
 		}
 
-		public class when_calculating_full_member_cost_with_both_swim_subs_in_september : WithSubject<MembershipCostCalculator>
+		public class when_calculating_member_cost_with_both_swim_subs_in_september : WithSubject<MembershipCostCalculator>
 		{
 			private Because of = () => cost = MembershipCostCalculator.Calculate(new MembershipOptions()
 			{
@@ -58,6 +58,22 @@ namespace Mstc.Tests
 			private static decimal cost;
 		}
 
+        public class when_calculating_member_cost_with_swim_subs_and_EA_membership_in_september : WithSubject<MembershipCostCalculator>
+        {
+            private Because of = () => cost = MembershipCostCalculator.Calculate(new MembershipOptions()
+            {
+                MembershipType = MembershipType.Individual,
+                SwimSubsAprToSept = true,
+                SwimSubsOctToMar = true,
+                EnglandAthleticsMembership = true
+            },
+                new DateTime(DateTime.Now.Year, 9, 1));
 
-	}
+            private It is_11500_Pence = () => cost.ShouldEqual(11500);
+
+            private static decimal cost;
+        }
+
+
+    }
 }

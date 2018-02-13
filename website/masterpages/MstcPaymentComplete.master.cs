@@ -153,7 +153,7 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
         bool hasBTFNumber = string.IsNullOrWhiteSpace(currentmemdata[MemberProperty.BTFNumber] as string) == false;
         int costInPence = MembershipCostCalculator.PaymentStateCost(paymentState, hasBTFNumber);
 
-	    litEventCost.Text = (costInPence / 100).ToString();
+	    litEventCost.Text = (costInPence / 100m).ToString("N2");
 	}
 
 	private void DisplaySwimSubsConfirmationMessage(PaymentStates paymentState)

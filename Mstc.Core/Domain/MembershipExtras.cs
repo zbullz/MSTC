@@ -3,6 +3,7 @@
 	public enum MembershipExtras
 	{
 		SwimSubsAprToSept,
-		SwimSubsOctToMar
+		SwimSubsOctToMar,
+        EnglandAthletics
 	}
 }

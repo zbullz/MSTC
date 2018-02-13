@@ -2,7 +2,7 @@
 
 <% if (IsRegistered){ %>
 
-    <p>Thank you for registering with the Mid Sussex Tri Club!</p> 
+    <p>Thank you for registering with the Mid Sussex Tri Club! We have setup a payment for £<asp:Literal ID="litCost" runat="server"></asp:Literal></p> 
 
     <p>Please go to <a href="/members-area/my-details">your details page</a> to make sure your information is up to date and retrieve your open water swim authorisation number.</p>
 

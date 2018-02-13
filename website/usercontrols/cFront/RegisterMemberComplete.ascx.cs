@@ -37,11 +37,11 @@ public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.
 		        _sessionProvider.SessionId);
             registrationFullDetails.RegistrationDetails.DirectDebitMandateId = mandateId;
 
-            int cost = MembershipCostCalculator.Calculate(registrationFullDetails.MembershipOptions, DateTime.Now);
+            int costInPence = MembershipCostCalculator.Calculate(registrationFullDetails.MembershipOptions, DateTime.Now);
             string paymentDescription = _memberProvider.GetPaymentDescription(registrationFullDetails.MembershipOptions);
 
             var regDetails = registrationFullDetails.RegistrationDetails;
-		    var paymentResponse = _goCardlessProvider.CreatePayment(regDetails.DirectDebitMandateId, regDetails.Email, cost,
+		    var paymentResponse = _goCardlessProvider.CreatePayment(regDetails.DirectDebitMandateId, regDetails.Email, costInPence,
 		        paymentDescription);
 
 		    IsRegistered = paymentResponse == PaymentResponseDto.Success;
@@ -50,9 +50,11 @@ public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.
 		    {
 		        var member = _memberProvider.CreateMember(regDetails, new string[] {"Member"});
 		        _memberProvider.UpdateMemberDetails(member, registrationFullDetails);
+		        
+                litCost.Text = (costInPence / 100m).ToString("N2");
 
-		        //Login the member
-		        FormsAuthentication.SetAuthCookie(member.LoginName, true);
+                //Login the member
+                FormsAuthentication.SetAuthCookie(member.LoginName, true);
 		        
 		        string content = string.Format("<p>A new member has registered with the club</p><p>Member details: {0}</p>",
 		            JsonConvert.SerializeObject(registrationFullDetails, Formatting.Indented));
