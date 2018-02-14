@@ -7,6 +7,7 @@ using System.Web.Security;
 using cFront.Umbraco.Membership;
 using Mstc.Core.Domain;
 using Mstc.Core.Providers;
+using umbraco.cms.businesslogic.member;
 
 public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserControl
 {
@@ -187,6 +188,14 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 	{
 		MakeSwimPayment(PaymentStates.S001599C);
 	}
+
+    public void btn_openWaterWaiverClick(object sender, EventArgs e)
+    {
+        var member = Member.GetCurrentMember();
+        var memberProvider = new MemberProvider();
+        memberProvider.AcceptOpenWaterWaiver(member);
+        Response.Redirect(Request.RawUrl);
+    }
 
     private void MakeSwimSubsPayment(PaymentStates paymentState)
 	{

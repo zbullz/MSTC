@@ -89,6 +89,11 @@
                 </div>
             </div>
         </div>
+        <div class="form-group <%=!EnableOpenWater && !IsGuest ? "" : "hide"%>">
+            <p>If you would like to take part in open water swimming please read the waiver and indicate your acceptance.</p>
+            <p><a href="http://midsussextriclub.com/media/47452/MSTCIndemnityWaiver.pdf" target="_blank">Open water swim indemnity waiver</a></p>
+            <asp:Button ID="Button1" runat="server" Text="Accept Open Water Indemnity Waiver" CssClass="btn btn-yellow pull-left" OnClick="btn_openWaterWaiverClick" />
+        </div>
         <div class="form-group">
             <label class="control-label"><b>O/W Swim Balance</b></label>
             <p class="form-control-static">
