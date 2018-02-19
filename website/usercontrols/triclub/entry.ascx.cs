@@ -155,8 +155,7 @@ VALUES (@FirstName, @LastName, @Gender, @DOB, @Addr1, @Addr2, @Addr3, @Addr4, @P
                          "Please allow up to 48 hours for this. Please familiarise yourself with the <a href='http://www.midsussextriclub.com/the-mid-sussex-triathlon/race-info/race-instructions.aspx'>race instructions</a>.</p>" +
                          "<p>We do not post anything out so you will pick your number up at registration on the Saturday from 17:00 until 18:30 " +
                          "or on race day before 06:45 when registration closes.</p>" +
-                         "<p>We are running a <a href='http://www.midsussextriclub.com/the-mid-sussex-triathlon/course-details/course-familiarisation-day.aspx'>course familiarisation day</a> of the cycle and run courses. " +
-                         "Please <a href='http://www.midsussextriclub.com/the-mid-sussex-triathlon/course-details/course-familiarisation-day.aspx'>check the website for details</a> and let us know if you want to attend.</p>" +
+                         "<p>We are unable to run the course familiarisation day this year due to Wineham Lane being closed  until 25th May 2018.</p>" +
                          "<p>A member of our club has developed an iPhone app to aid in triathlon training. Its free so why not give it a go?<br/>" +
                          "The app can be downloaded from the iTunes store here: <a href='https://itunes.apple.com/us/app/mytriathlonbuddy/id1182728584?ls=1&mt=8'>Download MyTriathlonBuddy</a></p>" +
                          "<p>As a race entrant you can also request a promo code to unlock the apps long distance training plans. Please send us an email if you are interested.</p>" +
