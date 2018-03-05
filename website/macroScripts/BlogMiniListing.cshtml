@@ -15,16 +15,16 @@ RenderPage("~/macroscripts/BlogMiniListing.cshtml", "Latest race reports", "race
 
 @if (blogNode != null && blogNode.Name != string.Empty)
 {
-    <div class="col-sm-6 featured-news">
+    <div class="col-sm-12 featured-news">
         <h2>@title</h2>
         @foreach (var item in blogNode.Descendants("BlogPost").OrderBy("PostDate descending").Take(numberOfItems))
         {
             dynamic mediaNode = item.newsPhotoThumbnail is int ? Library.MediaById(item.newsPhotoThumbnail) : null;
             <div class="row">
-                <div class="col-xs-4">
+                <div class="col-xs-2">
                     @if (mediaNode != null) { <a href="@item.Url"><img src="@mediaNode.Url" alt="@item.Name"></a> }
                 </div>
-                <div class="col-xs-8">
+                <div class="col-xs-10">
                     <div class="caption"><a href="@item.Url">@item.Name</a></div>
                     <div class="date">@(item.PostDate.ToString("dd MMM yyyy")) </div>
                     <div class="intro">@item.newsPrecis <a href="@item.Url">Read more...</a></div>

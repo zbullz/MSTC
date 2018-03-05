@@ -56,9 +56,6 @@
                 <!-- Race reports -->
                 <umbraco:Macro ID="Macro2" runat="server" Language="cshtml">@RenderPage("~/macroscripts/BlogMiniListing.cshtml", "Latest race reports", "raceReportsPage")
                 </umbraco:Macro>
-
-                <umbraco:Macro ID="Macro1" runat="server" Language="cshtml">@RenderPage("~/macroscripts/TrainingArticlesMiniListing.cshtml", "Latest training articles", "trainingArticlesPage")
-                </umbraco:Macro>
             </div>
         </div>
     </div>
