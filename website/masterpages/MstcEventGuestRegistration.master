@@ -1,0 +1,87 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" CodeFile="MstcEventGuestRegistration.master.cs" Inherits="masterpages_MstcEventGuestRegistration" %>
+
+<%@ Register TagPrefix="cf" TagName="RegistrationDetails" Src="~/usercontrols/cFront/RegistrationDetails.ascx" %>
+
+
+<asp:Content ID="Content3" ContentPlaceHolderID="PageScripts" runat="server">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+</asp:Content>
+
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MainContent">
+    <!-- Page Title -->
+    <div class="section section-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>
+                        <umbraco:Item ID="pageName" runat="server" Field="pageName" />
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="section">
+        <form id="Form1" role="form" class="form-horizontal" runat="server">
+            <div class="container edit-member">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <umbraco:Item ID="bodyText" runat="server" Field="bodyText" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-wrapper">
+                            <p>Please complete the form below to register as a guest.</p>
+
+                            <!--Registration details-->
+                            <cf:RegistrationDetails ID="registrationDetailsControl" runat="server" />
+
+                            <div class="member-options">
+								<p>Please provide a valid sign up code.</p>
+                                <div class="form-group">
+                                    <asp:Label ID="Label5" runat="server" CssClass="col-sm-2 control-label" AssociatedControlID="tbSecretCode">Sign up code:</asp:Label>
+                                    <div class="col-sm-7">
+                                        <asp:TextBox ID="tbSecretCode" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:CustomValidator ID="tbSecretCodeValidator" runat="server" 
+                                            ErrorMessage="Please provide either a valid sign up code."
+                                            OnServerValidate="tbSecretCodeValidator_ServerValidate" CssClass="help-block alert-danger">
+                                        </asp:CustomValidator>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-10">
+                                    <asp:Button ID="Enter" runat="server" Text="Complete registration" CssClass="btn pull-left btn-yellow" OnClick="Enter_OnClick" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Secondary content -->
+    <div class="section">
+        <div class="container">
+            <umbraco:Item ID="secondaryContent" runat="server" Field="secondaryContent" />
+        </div>
+    </div>
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="FooterScripts" runat="server">
+    <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("input[name*='dateOfBirth']").datepicker({
+                dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true, maxDate: +0, yearRange: "c-60:c+20", defaultDate: "-30y"
+            });
+        });
+    </script>
+</asp:Content>

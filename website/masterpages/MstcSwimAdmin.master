@@ -35,6 +35,8 @@
                     <div class="col-sm-2">
                         <label id="creditsRemoving"></label>
                         <label>Member credit cost: £<span id="memberCreditCost"><umbraco:Item ID="Item1" runat="server" field="creditCost" /></span></label>
+                        <label>Guest credit cost: £<span id="guestCreditCost"><umbraco:Item ID="creditCostItem" runat="server" field="guestCreditCost" /></span></label>
+
                         
                         <input id="updateSwimCredits" type="submit" value="Update credits" class="btn pull-left btn-yellow"  />
                     </div>
@@ -68,10 +70,16 @@
             $("#updateSwimCredits").bind("click", function (e) {
                 e.preventDefault();
                 var memberNodeIdsToUpdate = [];
-           
+                var guestNodeIdsToUpdate = [];
                 $('input[name="RemoveCredit"]:checked').each(function (index, checkbox) {
                     var nodeId = checkbox.value;
-                    memberNodeIdsToUpdate.push(nodeId);
+                    var guestId = "#IsGuest-" + nodeId;
+                    var isGuest =  $(guestId).val();
+                    if (isGuest === 'True') {
+                        guestNodeIdsToUpdate.push(nodeId);
+                    } else {
+                        memberNodeIdsToUpdate.push(nodeId);
+                    }
                 });
 
                 if (memberNodeIdsToUpdate.length === 0 && guestNodeIdsToUpdate.length ===0) {
@@ -81,7 +89,9 @@
 
                 var data = {
                     memberNodeIds: memberNodeIdsToUpdate + "",
-                    memberCost: $("#memberCreditCost").html()
+                    memberCost: $("#memberCreditCost").html(),
+                    guestNodeIds: guestNodeIdsToUpdate + "",
+                    guestCost: $("#guestCreditCost").html()
                 };
                 if (console) {
                     console.log(data);
@@ -91,7 +101,7 @@
                     url: "/Base/SwimAdmin/UpdateSwimCredits",
                     data: data,
                     type: 'post',
-                    success: function(response) {
+                    success: function(data) {
                         location.reload(true);
                     }
                 });
