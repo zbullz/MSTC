@@ -42,7 +42,6 @@
                 <asp:CustomValidator runat="server" ID="requiredVolunteering" OnServerValidate="CheckBoxRequired_ServerValidate" CssClass="help-block alert-danger">
                     Please accept the volunteering agreement to proceed</asp:CustomValidator>
             </div>
-            
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label"><b>Personal data agreement*</b></label>

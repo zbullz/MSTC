@@ -19,14 +19,8 @@ public partial class masterpages_MstcOwsTasterRegistration : System.Web.UI.Maste
 
     }
 
-    private const string AcceptIndemnity = "Accept";
-
     protected void Page_Load(object sender, EventArgs e)
     {
-	    if (Page.IsPostBack == false)
-	    {
-		    BindControls();
-	    }
     }
 
 	protected void Enter_OnClick(object sender, EventArgs e)
@@ -37,13 +31,12 @@ public partial class masterpages_MstcOwsTasterRegistration : System.Web.UI.Maste
 		}
 
 		var regDetails = registrationDetailsControl.GetRegistrationDetails();
-		bool openWaterSwimAccepted = indemnityOptions.SelectedValue == AcceptIndemnity;
 		var registrationFullDetails = new RegistrationFullDetails()
 		{
 			MembershipOptions = new MembershipOptions()
 			{
 				MembershipType = MembershipType.Guest,
-				OpenWaterIndemnityAcceptance = openWaterSwimAccepted,
+				OpenWaterIndemnityAcceptance = true,
 				SwimSubsAprToSept = false,
 				SwimSubsOctToMar = false,
 				Volunteering = false,
@@ -79,18 +72,8 @@ public partial class masterpages_MstcOwsTasterRegistration : System.Web.UI.Maste
 
     }
 
-	private void BindControls()
-	{
-		var indemnityOptionsList = new List<ListItem>()
-	    {
-		    new ListItem(
-			    @"I have read and understand the open water swimming indemnity document.<br />I agree to and accept the terms without qualification.",
-			    AcceptIndemnity),
-		    new ListItem(
-                @"I do not wish to take part in open water swimming.",
-			    "NotAccepted")
-	    };
-
-		indemnityOptions.Items.AddRange(indemnityOptionsList.ToArray());
-	}
+    protected void CheckBoxRequired_ServerValidate(object sender, ServerValidateEventArgs e)
+    {
+        e.IsValid = indemnityAcceptance.Checked;
+    }
 }

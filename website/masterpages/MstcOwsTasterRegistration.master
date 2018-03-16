@@ -40,12 +40,13 @@
 
                             <div class="member-options">
                                 <div class="form-group">
-                                    <asp:Label ID="Label1" runat="server" CssClass="col-sm-2 control-label" AssociatedControlID="indemnityOptions"><b>Open water swimming indemnity waiver*</b></asp:Label>
+                                    <asp:Label ID="Label1" runat="server" CssClass="col-sm-2 control-label" AssociatedControlID="indemnityAcceptance"><b>Open water swimming indemnity waiver*</b></asp:Label>
                                     <div class="col-sm-7">
                                         <p><a href="http://midsussextriclub.com/media/47452/MSTCIndemnityWaiver.pdf" target="_blank">Click here to view the Open Water Swimming Indemnity Document</a></p>
-                                        <asp:RadioButtonList ID="indemnityOptions" runat="server" RepeatLayout="Flow" CssClass="radio"></asp:RadioButtonList>
-                                        <asp:RequiredFieldValidator ID="requiredIndemnityOptions" runat="server" ErrorMessage="Please select your open water indemnity waiver response"
-                                            ControlToValidate="indemnityOptions" CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
+                                        <asp:CheckBox ID="indemnityAcceptance" runat="server" CssClass="checkbox" 
+                                            Text="I have read and understand the open water swimming indemnity document. I agree to and accept the terms without qualification." />
+                                        <asp:CustomValidator runat="server" ID="requiredIndemnity" OnServerValidate="CheckBoxRequired_ServerValidate" CssClass="help-block alert-danger">
+                                            Please accept the indemnity waiver to proceed</asp:CustomValidator>
                                     </div>
                                 </div>
                             </div>

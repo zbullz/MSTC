@@ -5,6 +5,7 @@ using Mstc.Core.Domain;
 using Mstc.Core.Providers;
 using Newtonsoft.Json;
 using Mstc.Core.Dto;
+using cFront.Umbraco;
 
 public partial class masterpages_MstcOwsTasterRegComplete : System.Web.UI.MasterPage
 {
@@ -50,6 +51,12 @@ public partial class masterpages_MstcOwsTasterRegComplete : System.Web.UI.Master
             {
                 var member = _memberProvider.CreateMember(regDetails, new string[] { "Guest" });
                 _memberProvider.UpdateMemberDetails(member, registrationFullDetails);
+
+                var currentmemdata = MemberHelper.Get(member);
+                currentmemdata[MemberProperty.SwimCreditsBought] = costInPence / 100m;
+                MemberHelper.Update(member, currentmemdata);
+
+                litCost.Text = (costInPence / 100m).ToString("N2");
 
                 //Login the member
                 FormsAuthentication.SetAuthCookie(member.LoginName, true);
