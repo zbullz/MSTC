@@ -44,12 +44,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label"><b>Personal data agreement*</b></label>
+            <label class="col-sm-2 control-label"><b>Personal data</b></label>
             <div class="col-sm-10">
-                <asp:CheckBox ID="personalData" runat="server" CssClass="checkbox" 
-                    Text="I agree to allow the club to store my personal data." />
-                <asp:CustomValidator runat="server" ID="requiredPersonalData" OnServerValidate="PersonalDataRequired_ServerValidate" CssClass="help-block alert-danger">
-                    Please accept the personal data agreement to proceed</asp:CustomValidator>
+                <p class="form-control-static">The club will store your personal data.</p>
             </div>
         </div>
     </div>

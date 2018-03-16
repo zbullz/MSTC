@@ -65,11 +65,6 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 		e.IsValid = volunteering.Checked;
 	}
 
-    protected void PersonalDataRequired_ServerValidate(object sender, ServerValidateEventArgs e)
-    {
-        e.IsValid = personalData.Checked;
-    }
-
     public MembershipOptions GetMembershipOptions()
 	{
 		var swimSubAprToSeptItem = extras.Items.FindByValue(MembershipExtras.SwimSubsAprToSept.ToString());
