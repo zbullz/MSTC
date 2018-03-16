@@ -1,0 +1,56 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" CodeFile="MstcOwsTasterRegComplete.master.cs" Inherits="masterpages_MstcOwsTasterRegComplete" %>
+
+
+<asp:Content ID="Content3" ContentPlaceHolderID="PageScripts" runat="server">
+
+</asp:Content>
+
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MainContent">
+    <!-- Page Title -->
+    <div class="section section-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>
+                        <umbraco:Item ID="pageName" runat="server" Field="pageName" />
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="section">
+        <form id="Form1" role="form" class="form-horizontal" runat="server">
+            <div class="container edit-member">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <% if (IsRegistered){ %>
+
+                            <p>Thank you for registering for an open water swim taster session with the Mid Sussex Tri Club! We have setup a payment of £<asp:Literal ID="litCost" runat="server"></asp:Literal> for the session.</p> 
+                            <p>You will shortly be contacted by our open water swim coordinator to arrange your session date.</p>
+                            <p>In the mean time please go to <a href="/members-area/my-details">your details page</a> to make sure your information is correct and retrieve your open water swim authorisation number.</p>
+
+
+                        <% }else { %>
+
+                            <p>Sorry, there has been a problem completing your registration. Please <a href="the-club/contact-us.aspx">send us a message</a> for further assistance </p>
+
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Secondary content -->
+    <div class="section">
+        <div class="container">
+            <umbraco:Item ID="secondaryContent" runat="server" Field="secondaryContent" />
+        </div>
+    </div>
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="FooterScripts" runat="server">
+</asp:Content>

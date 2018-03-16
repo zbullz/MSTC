@@ -33,7 +33,8 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-wrapper">
-                            <p>Please complete the form below to register as a guest.</p>
+                            <p>Please complete the form below to register as an event guest. <br/> 
+                                Note, you need to register for the event itself afterwards.</p>
 
                             <!--Registration details-->
                             <cf:RegistrationDetails ID="registrationDetailsControl" runat="server" />

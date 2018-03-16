@@ -44,7 +44,7 @@ public partial class masterpages_MstcEventGuestRegistration : System.Web.UI.Mast
 		FormsAuthentication.SetAuthCookie(member.LoginName, true);
 
 		var emailProvider = new EmailProvider();
-		string content = string.Format("<p>A new guest has registered with the club</p><p>Guest details: {0}</p>",
+		string content = string.Format("<p>A new event guest has registered with the club</p><p>Guest details: {0}</p>",
 			JsonConvert.SerializeObject(registrationFullDetails, Formatting.Indented));
         var passwordObfuscator = new PasswordObfuscator();
         content = passwordObfuscator.ObfuscateString(content);
@@ -59,7 +59,7 @@ public partial class masterpages_MstcEventGuestRegistration : System.Web.UI.Mast
 		string code = tbSecretCode.Text.ToLower();
 		if (string.IsNullOrWhiteSpace(code) == false)
 		{
-			args.IsValid = (code == "btrslegend" || code == "bhrunnermates" || code == "cwheelerbuds" || code == "swim1sttrifriends" || code == "festguest");
+			args.IsValid = (code == "festguest");
 			return;
 		}
 
