@@ -41,6 +41,11 @@ if ($env:contactFormEmailTo)
 {
 	$webconfig = ReplaceAppSetting $webconfig "contactFormEmailTo" $env:contactFormEmailTo
 }
+if ($env:owsEmailTo)
+{
+	$webconfig = ReplaceAppSetting $webconfig "owsEmailTo" $env:owsEmailTo
+}
+
 
 $webconfig = ReplaceAppSetting $webconfig "gocardlessEnvironment" $env:gocardlessEnvironment
 $webconfig = ReplaceAppSetting $webconfig "gocardlessMerchantId" $env:gocardlessMerchantId
