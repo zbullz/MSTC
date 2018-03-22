@@ -11,6 +11,7 @@
         <th>Swim Auth Number</th>
         <th>Name</th>
         <th>Email</th>
+        <th>Is Guest</th>
         <th>Swim Balance last year</th>
         <th>Swim Credits Bought</th>
         <th>Swim Credits Used</th>
@@ -25,6 +26,7 @@
             <td>@member.SwimAuthNumber</td>
             <td>@member.Name</td>
             <td>@member.Email</td>
+            <td>@(member.IsGuest ? "Yes" : "No")</td>
             <td>£@member.SwimBalanceLastYear</td>
             <td>£@member.SwimCreditsBought</td>
             <td>£@member.SwimCreditsUsed</td>

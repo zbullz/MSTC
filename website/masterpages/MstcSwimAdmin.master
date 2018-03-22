@@ -31,8 +31,8 @@
                     @RenderPage("~/macroscripts/SwimAdmin.cshtml") 
                 </umbraco:Macro>
                 <div class="form-group">
-                    <div class="col-sm-10"></div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-9"></div>
+                    <div class="col-sm-3">
                         <label id="creditsRemoving"></label>
                         <label>Member credit cost: £<span id="memberCreditCost"><umbraco:Item ID="Item1" runat="server" field="creditCost" /></span></label>
                         <label>Guest credit cost: £<span id="guestCreditCost"><umbraco:Item ID="creditCostItem" runat="server" field="guestCreditCost" /></span></label>
