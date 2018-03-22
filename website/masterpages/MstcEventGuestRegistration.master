@@ -40,7 +40,7 @@
                             <cf:RegistrationDetails ID="registrationDetailsControl" runat="server" />
 
                             <div class="member-options">
-								<p>Please provide a valid sign up code.</p>
+                <p>Please provide a valid sign up code.</p>
                                 <div class="form-group">
                                     <asp:Label ID="Label5" runat="server" CssClass="col-sm-2 control-label" AssociatedControlID="tbSecretCode">Sign up code:</asp:Label>
                                     <div class="col-sm-7">
