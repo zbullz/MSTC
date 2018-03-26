@@ -74,9 +74,9 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
             EnableGuestUpgrade = isGuest && hasExpired == false;
 			EnableGuestRenewal = isGuest && hasExpired;
 
-			ShowBuySwimSubs1 = memberType != MembershipType.Guest &&
+			ShowBuySwimSubs1 = EnableMemberRenewal == false && memberType != MembershipType.Guest &&
 			                   GetMemberBool(memberData, MemberProperty.swimSubsAprToSept) == false && DateTime.Now.Month <= 9;
-			ShowBuySwimSubs2 = memberType != MembershipType.Guest &&
+			ShowBuySwimSubs2 = EnableMemberRenewal == false && memberType != MembershipType.Guest &&
 			                   GetMemberBool(memberData, MemberProperty.SwimSubsOctToMar) == false;
 
 			membershipOptionalExtras.Text = string.Join("<br/>", OptionalExtras(memberData));

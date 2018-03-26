@@ -12,7 +12,7 @@ Select CmsMember.NodeID, ISNULL(DataInt,0), 0 From (SELECT id FROM dbo.umbracoNo
 					LEFT OUTER JOIN dbo.cmsMember AS CmsMember ON CmsMember.nodeId = MemberList.nodeId
 					inner join dbo.umbracoNode n on n.id = MemberList.nodeId 
 			Where	MemberTypes.Alias in ('swimCreditsBought') 
-			--#swimdata
+
 			
 Update #swimdata
 Set CreditsUsed = 
@@ -28,9 +28,9 @@ Set CreditsUsed =
 			
 Select * from #swimData
 
--- Set Credits remaining last year = Credits remaining
+-- Set swimBalanceLastYear = swimBalanceLastYear + Credits Bought - Credits Used
 Update MemberDataTable
-Set MemberDataTable.[dataInt] = (MemberDataTable.[dataInt] + #swimdata.CreditsBought - #swimdata.CreditsUsed)*3
+Set MemberDataTable.[dataInt] = ISNULL(MemberDataTable.[dataInt],0) + #swimdata.CreditsBought - #swimdata.CreditsUsed
 							From (SELECT id FROM dbo.umbracoNode WHERE (nodeObjectType = '9b5416fb-e72f-45a9-a07b-5a9a2709ce43')) AS MemberTypeId 
 						LEFT OUTER JOIN (SELECT nodeId, contentType FROM dbo.cmsContent) AS MemberList ON MemberList.contentType = MemberTypeId.id 
 						LEFT OUTER JOIN dbo.cmsPropertyType AS MemberTypes ON MemberTypes.contentTypeId = MemberList.contentType 
@@ -39,7 +39,7 @@ Set MemberDataTable.[dataInt] = (MemberDataTable.[dataInt] + #swimdata.CreditsBo
 						LEFT OUTER JOIN dbo.cmsMember AS CmsMember ON CmsMember.nodeId = MemberList.nodeId
 						inner join dbo.umbracoNode n on n.id = MemberList.nodeId 
 						inner join #swimdata on #swimdata.NodeID = CmsMember.NodeID
-						Where	MemberTypes.Alias = 'swimCreditsRemaingLastYear'
+						Where	MemberTypes.Alias = 'swimBalanceLastYear' 
 						
 -- Set Credits bought = 0				
 Update MemberDataTable
@@ -52,7 +52,7 @@ Set MemberDataTable.[dataInt] = 0
 						LEFT OUTER JOIN dbo.cmsMember AS CmsMember ON CmsMember.nodeId = MemberList.nodeId
 						inner join dbo.umbracoNode n on n.id = MemberList.nodeId 
 						inner join #swimdata on #swimdata.NodeID = CmsMember.NodeID
-						Where	MemberTypes.Alias = 'swimCreditsBought'
+						Where	MemberTypes.Alias = 'swimCreditsBought'  
 						
 -- Set Credits used = 0				
 Update MemberDataTable
@@ -65,6 +65,6 @@ Set MemberDataTable.[dataInt] = 0
 						LEFT OUTER JOIN dbo.cmsMember AS CmsMember ON CmsMember.nodeId = MemberList.nodeId
 						inner join dbo.umbracoNode n on n.id = MemberList.nodeId 
 						inner join #swimdata on #swimdata.NodeID = CmsMember.NodeID
-						Where	MemberTypes.Alias = 'swimCreditsUsed'
+						Where	MemberTypes.Alias = 'swimCreditsUsed' 
 
 drop table #swimData
