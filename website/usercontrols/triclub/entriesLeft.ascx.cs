@@ -18,7 +18,7 @@ public partial class usercontrols_triclub_entriesLeft : System.Web.UI.UserContro
 
 	protected void getEntries()
 	{
-		int intEntriesAvailable = 350;
+		int intEntriesAvailable = 300;
 		int intEntriesLeft;
 		using (SqlConnection objConn = new SqlConnection(ConfigurationManager.AppSettings["triclubDSN"]))
 		{
