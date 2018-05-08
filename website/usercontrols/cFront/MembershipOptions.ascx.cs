@@ -50,7 +50,7 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 		var indemnityOptionsList = new List<ListItem>()
 	    {
 		    new ListItem(
-                @"I have read and understand the open water swimming indemnity document.<br />I agree to and accept the terms without qualification and agree to be included in the duty rota for OWS by attending sessions as a spotter or kayaker.",
+                @"I wish to take part in open water swimming.<br />I have read and understand the open water swimming indemnity document.<br />I agree to and accept the terms without qualification and agree to be included in the duty rota for the safety team by attending sessions as a spotter or kayaker.",
 			    AcceptIndemnity),
 		    new ListItem(
                 @"I do not wish to take part in open water swimming this season.",
