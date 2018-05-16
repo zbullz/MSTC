@@ -4,12 +4,20 @@ using System.Web.UI.WebControls;
 using cFront.Umbraco;
 using Mstc.Core.Domain;
 using Mstc.Core.Providers;
+using umbraco.cms.businesslogic.member;
 
 public partial class masterpages_MstcGuestRenewal : System.Web.UI.MasterPage
 {
-	private const string AcceptIndemnity = "Accept";
+    private MemberProvider _memberProvider;
 
-	protected void Page_Load(object sender, EventArgs e)
+    private const string AcceptIndemnity = "Accept";
+
+    public masterpages_MstcGuestRenewal()
+    {
+        _memberProvider = new MemberProvider();
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
 	{
 		var indemnityOptionsList = new List<ListItem>()
 	    {
@@ -36,8 +44,7 @@ public partial class masterpages_MstcGuestRenewal : System.Web.UI.MasterPage
 		{
 			return; //Ensure the form is behind a login form
 		}
-
-		var sessionProvider = new SessionProvider();
+	
 		MembershipOptions membershipOptions = new MembershipOptions()
 		{
 			MembershipType = MembershipType.Guest,
@@ -46,8 +53,8 @@ public partial class masterpages_MstcGuestRenewal : System.Web.UI.MasterPage
 			OpenWaterIndemnityAcceptance = indemnityOptions.SelectedValue == AcceptIndemnity,
 			Volunteering = true //Hardcode to true as can't renew unless this is selected :)
 		};
-
-		sessionProvider.RenewalOptions = membershipOptions;
+        var member = Member.GetCurrentMember();
+        _memberProvider.UpdateMemberOptions(member, membershipOptions);
 
 		RedirectToCompletePage(); //Can use this for local testing
 	}
@@ -56,7 +63,7 @@ public partial class masterpages_MstcGuestRenewal : System.Web.UI.MasterPage
 	{
 		string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
 			Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
-		string redirectUrl = string.Format("{0}/members-area/membership-renewal-complete", rootUrl);
+		string redirectUrl = string.Format("{0}/members-area/my-details", rootUrl);
 		Response.Redirect(redirectUrl);
 	}
 }
