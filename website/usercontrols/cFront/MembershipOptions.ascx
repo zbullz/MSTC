@@ -49,8 +49,8 @@
                 <p class="form-control-static">In becoming a member of Mid Sussex Triathlon Club ("the Club"), the Club will collect certain 
                                                 personal information about you. This data will be used for the purposes of administration of Club
                                                 membership, Club management, sending communications to you about the Club, and administration
-                                                of training sessions and club competitions. Further details can be found in the Club's privacy
-                                                statement and policy.</p>
+                                                of training sessions and club competitions. Further details can be found in the Club's <a href="https://midsussextriclub.com/media/69408/mstcprivacypolicymay2018.pdf" target="_blank">privacy
+                                                statement and policy</a>.</p>
             </div>
         </div>
     </div>
