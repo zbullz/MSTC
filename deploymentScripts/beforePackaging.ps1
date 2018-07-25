@@ -59,6 +59,10 @@ if ($env:openWaterEnabled)
 {
     $webconfig = ReplaceAppSetting $webconfig "openWaterEnabled" $env:openWaterEnabled
 }
+if ($env:umbracoUseSSL)
+{
+    $webconfig = ReplaceAppSetting $webconfig "umbracoUseSSL" $env:umbracoUseSSL
+}
 
 [System.IO.File]::WriteAllLines($configPath, $webconfig)
 
