@@ -12,8 +12,7 @@
 			<label>Send To:</label>
 			<asp:DropDownList id="ddlRecipient" runat="server" CssClass="ddlbox">
 				<asp:ListItem Value="1">Steve McMenamin (Race Director)</asp:ListItem>
-				<asp:ListItem Value="3">Emma (Sponsorship)</asp:ListItem>
-				<asp:ListItem Value="5">Roger (Press)</asp:ListItem>
+				<asp:ListItem Value="3">Emma (Sponsorship)</asp:ListItem>		
 			</asp:DropDownList>
 		</p>
 		<p class="contacts_form">

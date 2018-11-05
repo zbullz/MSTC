@@ -54,10 +54,7 @@
 
                 <ul>
                     <li class="@(isMainSite ? "active" : "")"><a href="@homepage.Url">Club Site</a> | </li>
-                    @if (triathlonPageNode != null)
-                    {
-                        <li class="@(Model.Url.Contains(triathlonPageNode.UrlName) ? "active" : "")"><a href="@triathlonPageNode.Url">@triathlonPageNode.Name</a> | </li>
-                    }
+                    <li><a href="https://midsussextriathlon.com/" target="_blank">The Mid Sussex Triathlon</a> | </li>                    
                     @if (juniorsPageNode != null)
                     {
                         <li class="@(Model.Url.Contains(juniorsPageNode.UrlName) ? "active" : "")"><a href="@juniorsPageNode.Url">@juniorsPageNode.Name</a></li>
