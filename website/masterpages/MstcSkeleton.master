@@ -30,7 +30,7 @@
         <!--[if lte IE 8]>
         <link rel="stylesheet" href="/css/mstc/leaflet.ie.css" />
         <![endif]-->
-        <link rel="stylesheet" href="/css/mstc/main-yellow.css">
+        <link rel="stylesheet" href="/css/mstc/main-yellow.css?v=1.1">
 
         <script src="/scripts/mstc/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 
