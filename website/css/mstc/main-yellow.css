@@ -196,6 +196,17 @@ span.help-block[style*="hidden"] {
 .home-social .service-wrapper p {
   margin-top: 10px;
 }
+
+.affiliation-logo {
+    max-height: 189px;
+}
+
+@media (max-width: 1024px) {
+    .affiliation-logo {
+        max-height: 147px;
+    }
+}
+
 /* small screen styling for the strava widget */
 @media (max-width: 320px) {
   .home-social .service-wrapper.strava {
