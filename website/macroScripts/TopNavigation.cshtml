@@ -3,13 +3,10 @@
 @inherits umbraco.MacroEngines.DynamicNodeContext
    
 @{
-    var homepage = @Model.AncestorOrSelf(1);
-    var triathlonPageNode = homepage.triathlonPage is int ? new Node(homepage.triathlonPage) : null;
+    var homepage = @Model.AncestorOrSelf(1);  
     var juniorsPageNode = homepage.juniorsPage is int ? new Node(homepage.juniorsPage) : null;
 
-    bool isMainSite = triathlonPageNode == null || juniorsPageNode == null ?
-                          true :
-                          Model.Url.Contains(triathlonPageNode.UrlName) == false && Model.Url.Contains(juniorsPageNode.UrlName) == false;
+    bool isMainSite = juniorsPageNode == null ? true : Model.Url.Contains(juniorsPageNode.UrlName) == false;
 
     var isSubmitLogout = (IsPost && Request["submit"] == "Log out");
     if (isSubmitLogout)
