@@ -49,7 +49,9 @@ public partial class masterpages_MstcMemberRenewalComplete : System.Web.UI.Maste
 
 		    if (paymentResponse == PaymentResponseDto.Success)
 		    {
-		        _memberProvider.UpdateMemberOptions(member, membershipOptions);
+                bool isRenewing = Request.QueryString["state"] == PaymentStates.MemberRenewal.ToString();
+                bool resetEventEntries = isRenewing;
+                _memberProvider.UpdateMemberOptions(member, membershipOptions, resetEventEntries);
                 int costInPence = MembershipCostCalculator.Calculate(membershipOptions, DateTime.Now);
                 litCost.Text = (costInPence / 100m).ToString("N2");
             }

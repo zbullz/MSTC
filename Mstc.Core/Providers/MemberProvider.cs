@@ -52,7 +52,10 @@ namespace Mstc.Core.Providers
 
 			SetMemberDetails(currentmemdata, regDetails.RegistrationDetails);
 			var membershipExpiry = GetNewMemberExpiry(DateTime.Now);
-			SetMembershipOptions(currentmemdata, regDetails.MembershipOptions, membershipExpiry, zeroSwimCredits: true);
+            bool zeroSwimCredits = true;
+            bool resetEventEntries = false;
+
+            SetMembershipOptions(currentmemdata, regDetails.MembershipOptions, membershipExpiry, zeroSwimCredits, resetEventEntries);
 
 			foreach (Property property in (List<Property>)member.GenericProperties)
 			{
@@ -62,12 +65,14 @@ namespace Mstc.Core.Providers
 			member.Save();
 		}
 
-		public void UpdateMemberOptions(umbraco.cms.businesslogic.member.Member member, MembershipOptions membershipOptions)
+		public void UpdateMemberOptions(umbraco.cms.businesslogic.member.Member member, MembershipOptions membershipOptions, bool resetEventEntries)
 		{
 			IDictionary<String, object> currentmemdata = MemberHelper.Get(member);
 
 			var membershipExpiry = GetNewMemberExpiry(DateTime.Now);
-			SetMembershipOptions(currentmemdata, membershipOptions, membershipExpiry, zeroSwimCredits: false);
+            bool zeroSwimCredits = false;
+
+            SetMembershipOptions(currentmemdata, membershipOptions, membershipExpiry, zeroSwimCredits, resetEventEntries);
 
 			foreach (Property property in (List<Property>)member.GenericProperties)
 			{
@@ -115,7 +120,7 @@ namespace Mstc.Core.Providers
 
         }
 
-		private void SetMembershipOptions(IDictionary<String, object> currentmemdata, MembershipOptions membershipOptions, DateTime membershipExpiry, bool zeroSwimCredits)
+		private void SetMembershipOptions(IDictionary<String, object> currentmemdata, MembershipOptions membershipOptions, DateTime membershipExpiry, bool zeroSwimCredits, bool resetEventEntries)
 		{
 			currentmemdata[MemberProperty.membershipType] = ((int)membershipOptions.MembershipType).ToString();
 			currentmemdata[MemberProperty.OpenWaterIndemnityAcceptance] = membershipOptions.OpenWaterIndemnityAcceptance;
@@ -136,7 +141,14 @@ namespace Mstc.Core.Providers
 				int swimAuthNumber = GetSwimAuthNumber(membershipOptions.MembershipType);
 				currentmemdata[MemberProperty.SwimAuthNumber] = swimAuthNumber;
 			}
-		}
+
+            if (resetEventEntries)
+            {
+                currentmemdata[MemberProperty.DuathlonEntered] = false;
+                currentmemdata[MemberProperty.TriFestEntry] = "";
+                currentmemdata[MemberProperty.CharitySwimEntry] = "";
+            }
+        }
 
 		private int GetSwimAuthNumber(MembershipType membershipType)
 		{

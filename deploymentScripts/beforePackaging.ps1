@@ -48,7 +48,6 @@ if ($env:owsEmailTo)
 
 
 $webconfig = ReplaceAppSetting $webconfig "gocardlessEnvironment" $env:gocardlessEnvironment
-$webconfig = ReplaceAppSetting $webconfig "gocardlessMerchantId" $env:gocardlessMerchantId
 $webconfig = ReplaceAppSetting $webconfig "gocardlessAccessToken" $env:gocardlessAccessToken
 
 if ($env:renewalsEnabled)

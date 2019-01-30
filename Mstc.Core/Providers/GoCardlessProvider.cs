@@ -23,11 +23,6 @@ namespace Mstc.Core.Providers
 		        environment);
 		}
 
-		public string MerchantId
-		{
-			get { return ConfigurationManager.AppSettings["gocardlessMerchantId"]; }
-		}
-
 	    public RedirectResponseDto CreateRedirectRequest(CustomerDto customer, string sessionToken, string successUrl)
 	    {
 	        var redirectFlowResponse =  _client.RedirectFlows.CreateAsync(new RedirectFlowCreateRequest()

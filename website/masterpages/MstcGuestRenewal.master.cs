@@ -54,7 +54,8 @@ public partial class masterpages_MstcGuestRenewal : System.Web.UI.MasterPage
 			Volunteering = true //Hardcode to true as can't renew unless this is selected :)
 		};
         var member = Member.GetCurrentMember();
-        _memberProvider.UpdateMemberOptions(member, membershipOptions);
+        bool resetEventEntries = true;
+        _memberProvider.UpdateMemberOptions(member, membershipOptions, resetEventEntries);
 
 		RedirectToCompletePage(); //Can use this for local testing
 	}
