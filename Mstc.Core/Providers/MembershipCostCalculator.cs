@@ -21,7 +21,10 @@ namespace Mstc.Core.Providers
 			get { return new List<int>() {10, 11, 12, 1, 2}; }
 		}
 
-		public static int SwimsSubsCostInPence = 3000;
+        public static int SwimsSubsCostInPence(MembershipType type)
+        {
+            return type == MembershipType.Concession ? 1500 : 3000;
+        }
 	    public static int EnglandAthleticsCostInPence = 1500;
 	    public static int OwsTasterCost = 600;
 
@@ -33,14 +36,14 @@ namespace Mstc.Core.Providers
 		public static int Calculate(MembershipOptions membershipOptions, DateTime currentDate)
 		{
 			var cost = GetTypeCostPence(membershipOptions.MembershipType, currentDate);		
-			if (membershipOptions.SwimSubsAprToSept)
+			if (!string.IsNullOrWhiteSpace(membershipOptions.SwimSubs1))
 			{
-				cost += SwimsSubsCostInPence;
+				cost += SwimsSubsCostInPence(membershipOptions.MembershipType);
 			}
-			if (membershipOptions.SwimSubsOctToMar)
+			if (!string.IsNullOrWhiteSpace(membershipOptions.SwimSubs2))
 			{
-				cost += SwimsSubsCostInPence;
-			}
+				cost += SwimsSubsCostInPence(membershipOptions.MembershipType);
+            }
 		    if (membershipOptions.EnglandAthleticsMembership)
 		    {
 		        cost += EnglandAthleticsCostInPence;
@@ -54,7 +57,7 @@ namespace Mstc.Core.Providers
 			return (int) credits * 100;
 		}
 
-        public static int PaymentStateCost(PaymentStates state, bool hasBTFNumber)
+        public static int PaymentStateCost(PaymentStates state, bool hasBTFNumber, MembershipType type)
         {
             switch (state)
             {
@@ -95,7 +98,7 @@ namespace Mstc.Core.Providers
                 case PaymentStates.SS05992:
                 case PaymentStates.SS05996:
                     {
-                        return SwimsSubsCostInPence;
+                        return SwimsSubsCostInPence(type);
                     }
             }
 

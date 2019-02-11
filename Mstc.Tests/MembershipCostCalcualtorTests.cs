@@ -48,8 +48,8 @@ namespace Mstc.Tests
 			private Because of = () => cost = MembershipCostCalculator.Calculate(new MembershipOptions()
 			{
 				MembershipType = MembershipType.Individual,
-				SwimSubsAprToSept = true,
-				SwimSubsOctToMar = true
+				SwimSubs1 = "x",
+				SwimSubs2 = "y"
 			},
 				new DateTime(DateTime.Now.Year, 9, 1));
 
@@ -63,8 +63,8 @@ namespace Mstc.Tests
             private Because of = () => cost = MembershipCostCalculator.Calculate(new MembershipOptions()
             {
                 MembershipType = MembershipType.Individual,
-                SwimSubsAprToSept = true,
-                SwimSubsOctToMar = true,
+                SwimSubs1 = "x",
+                SwimSubs2 = "y",
                 EnglandAthleticsMembership = true
             },
                 new DateTime(DateTime.Now.Year, 9, 1));

@@ -10,8 +10,8 @@ namespace Mstc.Core.Dto
 		public string Email { get; set; }
 		public string Phone { get; set; }
 		public MembershipType? MembershipType { get; set; }
-		public bool SwimSubsAprToSept { get; set; }
-		public bool SwimSubsOctToMar { get; set; }
+		public string SwimSubs1 { get; set; }
+		public string SwimSubs2 { get; set; }
         public bool EnglandAthleticsMembership { get; set; }
         public bool OpenWaterIndemnityAcceptance { get; set; }
 		public bool Volunteering { get; set; }
@@ -21,7 +21,7 @@ namespace Mstc.Core.Dto
 		public int SwimCreditsBought { get; set; }
 		public int SwimCreditsUsed { get; set; }
 
-		public bool DuathlonEntered { get; set; }
+		public string DuathlonEntry { get; set; }
 		public string TriFestEntry { get; set; }
 		public string CharitySwimEntry { get; set; }
 

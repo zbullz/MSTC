@@ -54,7 +54,7 @@ public partial class usercontrols_cFront_RegisterMember : System.Web.UI.UserCont
 	        Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
         string successUrl = string.Format("{0}/the-club/membership-registration-complete", rootUrl);
 
-	    var redirectResponse = _goCardlessProvider.CreateRedirectRequest(customerDto, _sessionProvider.SessionId,
+	    var redirectResponse = _goCardlessProvider.CreateRedirectRequest(customerDto, "MSTC Member Registration", _sessionProvider.SessionId,
 	        successUrl);
         
         _sessionProvider.GoCardlessRedirectFlowId = redirectResponse.Id;

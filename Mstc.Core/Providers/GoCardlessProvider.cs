@@ -23,11 +23,11 @@ namespace Mstc.Core.Providers
 		        environment);
 		}
 
-	    public RedirectResponseDto CreateRedirectRequest(CustomerDto customer, string sessionToken, string successUrl)
+	    public RedirectResponseDto CreateRedirectRequest(CustomerDto customer, string description, string sessionToken, string successUrl)
 	    {
 	        var redirectFlowResponse =  _client.RedirectFlows.CreateAsync(new RedirectFlowCreateRequest()
 	        {
-	            Description = "MSTC Member",
+	            Description = description,
 	            SessionToken = sessionToken,
 	            SuccessRedirectUrl = successUrl,
 	            // Optionally, prefill customer details on the payment page

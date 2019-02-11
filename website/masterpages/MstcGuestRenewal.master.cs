@@ -48,8 +48,8 @@ public partial class masterpages_MstcGuestRenewal : System.Web.UI.MasterPage
 		MembershipOptions membershipOptions = new MembershipOptions()
 		{
 			MembershipType = MembershipType.Guest,
-			SwimSubsAprToSept = false,
-			SwimSubsOctToMar = false,
+			SwimSubs1 = "",
+			SwimSubs2 = "",
 			OpenWaterIndemnityAcceptance = indemnityOptions.SelectedValue == AcceptIndemnity,
 			Volunteering = true //Hardcode to true as can't renew unless this is selected :)
 		};

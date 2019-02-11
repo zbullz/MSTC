@@ -37,8 +37,8 @@ public partial class masterpages_MstcOwsTasterRegistration : System.Web.UI.Maste
 			{
 				MembershipType = MembershipType.Guest,
 				OpenWaterIndemnityAcceptance = true,
-				SwimSubsAprToSept = false,
-				SwimSubsOctToMar = false,
+				SwimSubs1 = "",
+				SwimSubs2 = "",
 				Volunteering = false,
                 GuestCode = "OWS Taster"
             },
@@ -63,7 +63,8 @@ public partial class masterpages_MstcOwsTasterRegistration : System.Web.UI.Maste
             Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
         string successUrl = string.Format("{0}/training-zone/ows-taster-registration-complete", rootUrl);
 
-        var redirectResponse = _goCardlessProvider.CreateRedirectRequest(customerDto, _sessionProvider.SessionId,
+        string paymentDescription = "Open Water Swim Taster Session";
+        var redirectResponse = _goCardlessProvider.CreateRedirectRequest(customerDto, paymentDescription, _sessionProvider.SessionId,
             successUrl);
 
         _sessionProvider.GoCardlessRedirectFlowId = redirectResponse.Id;

@@ -31,8 +31,8 @@ public partial class masterpages_MstcEventGuestRegistration : System.Web.UI.Mast
 			{
 				MembershipType = MembershipType.Guest,
 				OpenWaterIndemnityAcceptance = false,
-				SwimSubsAprToSept = false,
-				SwimSubsOctToMar = false,
+				SwimSubs1 = "",
+				SwimSubs2 = "",
 				Volunteering = false,
 				GuestCode = tbSecretCode.Text
 			},

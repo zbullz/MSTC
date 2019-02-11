@@ -61,7 +61,7 @@ public partial class masterpages_MstcMandateRequest : System.Web.UI.MasterPage
             Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
         string redirectUrl = string.Format("{0}/{1}?state={2}", rootUrl, page, state);
 
-        var redirectResponse = _goCardlessProvider.CreateRedirectRequest(customerDto, _sessionProvider.SessionId,
+        var redirectResponse = _goCardlessProvider.CreateRedirectRequest(customerDto, "Mid Sussex Tri Club DD Mandate Setup", _sessionProvider.SessionId,
             redirectUrl);
 
         _sessionProvider.GoCardlessRedirectFlowId = redirectResponse.Id;

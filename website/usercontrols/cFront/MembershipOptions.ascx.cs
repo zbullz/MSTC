@@ -18,6 +18,8 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 
 	private void BindControls()
 	{
+        var membershipProvider = new MemberProvider();
+
 		var membershipTypes = new List<ListItem>()
 		{
 			new ListItem(
@@ -30,7 +32,7 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
                     (decimal)MembershipCostCalculator.GetTypeCostPence(MembershipType.Couple, DateTime.Now)/100),
 				((int) MembershipType.Couple).ToString()),
 			new ListItem(
-				string.Format("Youth (age 16-17), student (18+) or unemployed - &pound;{0}",
+				string.Format("Concession: Youth (16-17) / Student / Unemployed - &pound;{0}",
                     (decimal)MembershipCostCalculator.GetTypeCostPence(MembershipType.Concession, DateTime.Now)/100),
 				((int) MembershipType.Concession).ToString())
 		};
@@ -40,9 +42,12 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 
 		if (2 < DateTime.Now.Month && DateTime.Now.Month < 10)
 		{
-			extrasList.Add(new ListItem("Swim subs April to Sept - &pound;30", MembershipExtras.SwimSubsAprToSept.ToString()));
+            string swim1Desc = string.Format("{0} - Standard &pound;30 / Concessions &pound;15", membershipProvider.GetSwimSub1Description(DateTime.Now));
+            extrasList.Add(new ListItem(swim1Desc, MembershipExtras.SwimSubsAprToSept.ToString()));
 		}
-		extrasList.Add(new ListItem("Swim subs Oct to March - &pound;30", MembershipExtras.SwimSubsOctToMar.ToString()));
+        string swim2Desc = string.Format("{0} - Standard &pound;30 / Concessions &pound;15", membershipProvider.GetSwimSub2Description(DateTime.Now));
+
+        extrasList.Add(new ListItem(swim2Desc, MembershipExtras.SwimSubsOctToMar.ToString()));
 		extrasList.Add(new ListItem("England Athletics Membership* - &pound;15", MembershipExtras.EnglandAthletics.ToString()));
 
         extras.Items.AddRange(extrasList.ToArray());
@@ -67,12 +72,16 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 
     public MembershipOptions GetMembershipOptions()
 	{
-		var swimSubAprToSeptItem = extras.Items.FindByValue(MembershipExtras.SwimSubsAprToSept.ToString());
-		return new MembershipOptions()
+        var membershipProvider = new MemberProvider();
+
+        var swimSubs1Item = extras.Items.FindByValue(MembershipExtras.SwimSubsAprToSept.ToString());
+        var swimSubs2Item = extras.Items.FindByValue(MembershipExtras.SwimSubsOctToMar.ToString());
+
+        return new MembershipOptions()
 		{
 			MembershipType = (MembershipType) Enum.Parse(typeof(MembershipType), membershipType.SelectedValue),
-			SwimSubsAprToSept = swimSubAprToSeptItem != null && swimSubAprToSeptItem.Selected,
-			SwimSubsOctToMar = extras.Items.FindByValue(MembershipExtras.SwimSubsOctToMar.ToString()).Selected,
+			SwimSubs1 = swimSubs1Item != null && swimSubs1Item.Selected ? membershipProvider.GetSwimSub1Description(DateTime.Now) : "",
+			SwimSubs2 = swimSubs2Item != null && swimSubs2Item.Selected ? membershipProvider.GetSwimSub2Description(DateTime.Now) : "",
             EnglandAthleticsMembership = extras.Items.FindByValue(MembershipExtras.EnglandAthletics.ToString()).Selected,
             OpenWaterIndemnityAcceptance = indemnityOptions.SelectedValue == AcceptIndemnity,
 			Volunteering = true //Hardcode to true as can't renew unless this is selected :)

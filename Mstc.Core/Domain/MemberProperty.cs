@@ -28,15 +28,15 @@
 		public const string serviceDescription = "serviceDescription";
 
 		public const string membershipType = "membershipType";
-		public const string swimSubsAprToSept = "swimSubsAprToSept";
-		public const string SwimSubsOctToMar = "swimSubsOctToMar";
+		public const string swimSubs1 = "swimSubs1";
+		public const string swimSubs2 = "swimSubs2";
 		public const string OpenWaterIndemnityAcceptance = "openWaterIndemnityAcceptance";
 		public const string Volunteering = "volunteering";
 		public const string MembershipExpiry = "membershipExpiry";
 		public const string SwimAuthNumber = "swimAuthNumber";
 
-		public const string DuathlonEntered = "duathlonEntered";
-		public const string TriFestEntry = "triFestEntry";
+        public const string DuathlonEntry = "duathlonEntry";
+        public const string TriFestEntry = "triFestEntry";
 		public const string CharitySwimEntry = "charitySwimEntry";
 
 		public const string SwimBalanceLastYear = "swimBalanceLastYear";

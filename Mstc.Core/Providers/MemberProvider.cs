@@ -14,16 +14,36 @@ namespace Mstc.Core.Providers
 	/// </summary>
 	public class MemberProvider
 	{
-		public string GetPaymentDescription(MembershipOptions membershipOptions)
+        public string GetSwimSub1Description(DateTime now)
+        {
+            int year = now.Year;
+            if (now.Month == 1 || now.Month == 2)
+            {
+                year--;
+            }
+            return string.Format("Swim subs Apr to Sept {0}", year);
+        }
+
+        public string GetSwimSub2Description(DateTime now)
+        {
+            int year = now.Year;
+            if (now.Month == 1 || now.Month == 2)
+            {
+                year--;
+            }
+            return string.Format("Swim subs Oct {0} to March {1}", year, (year + 1));
+        }
+
+        public string GetPaymentDescription(MembershipOptions membershipOptions)
 		{
 			List<string> descriptionList = new List<string>() { membershipOptions.MembershipType.ToString() };
-			if (membershipOptions.SwimSubsAprToSept)
+			if (!string.IsNullOrWhiteSpace(membershipOptions.SwimSubs1))
 			{
-				descriptionList.Add("Swim subs Apr to Sept");
+				descriptionList.Add(membershipOptions.SwimSubs1);
 			}
-			if (membershipOptions.SwimSubsOctToMar)
-			{
-				descriptionList.Add("Swim subs Oct to Mar");
+            if (!string.IsNullOrWhiteSpace(membershipOptions.SwimSubs2))
+            {
+				descriptionList.Add(membershipOptions.SwimSubs2);
 			}
 		    if (membershipOptions.EnglandAthleticsMembership)
 		    {
@@ -124,8 +144,9 @@ namespace Mstc.Core.Providers
 		{
 			currentmemdata[MemberProperty.membershipType] = ((int)membershipOptions.MembershipType).ToString();
 			currentmemdata[MemberProperty.OpenWaterIndemnityAcceptance] = membershipOptions.OpenWaterIndemnityAcceptance;
-			currentmemdata[MemberProperty.swimSubsAprToSept] = membershipOptions.SwimSubsAprToSept;
-			currentmemdata[MemberProperty.SwimSubsOctToMar] = membershipOptions.SwimSubsOctToMar;
+            //todo - Set these to the right strings
+            currentmemdata[MemberProperty.swimSubs1] = membershipOptions.SwimSubs1;
+			currentmemdata[MemberProperty.swimSubs2] = membershipOptions.SwimSubs2;
 		    currentmemdata[MemberProperty.EnglandAthleticsMembership] = membershipOptions.EnglandAthleticsMembership;
 			currentmemdata[MemberProperty.Volunteering] = membershipOptions.Volunteering;
 			currentmemdata[MemberProperty.MembershipExpiry] = membershipExpiry;
@@ -144,7 +165,7 @@ namespace Mstc.Core.Providers
 
             if (resetEventEntries)
             {
-                currentmemdata[MemberProperty.DuathlonEntered] = false;
+                currentmemdata[MemberProperty.DuathlonEntry] = "";
                 currentmemdata[MemberProperty.TriFestEntry] = "";
                 currentmemdata[MemberProperty.CharitySwimEntry] = "";
             }

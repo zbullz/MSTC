@@ -5,6 +5,7 @@ using cFront.Umbraco.Membership;
 using Mstc.Core.Domain;
 using Mstc.Core.Dto;
 using Mstc.Core.Providers;
+using System.Linq;
 
 public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 {
@@ -122,7 +123,7 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
             case PaymentStates.SS05996:
             {
                 UpdateMemberSwimSubs(currentmemdata, paymentState);
-                DisplaySwimSubsConfirmationMessage(paymentState);
+                DisplaySwimSubsConfirmationMessage(currentmemdata, paymentState);
                 break;
             }
         }
@@ -130,10 +131,13 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 
     private PaymentResponseDto CreatePayment(IDictionary<String, object> currentmemdata, PaymentStates paymentState)
     {
+        MembershipType membershipType;
+        Enum.TryParse(currentmemdata[MemberProperty.membershipType] as string, out membershipType);
+
         string mandateId = currentmemdata[MemberProperty.directDebitMandateId] as string;
         string email = currentmemdata[MemberProperty.Email] as string;
         bool hasBTFNumber = string.IsNullOrWhiteSpace(currentmemdata[MemberProperty.BTFNumber] as string) == false; 
-        int costInPence = MembershipCostCalculator.PaymentStateCost(paymentState, hasBTFNumber);
+        int costInPence = MembershipCostCalculator.PaymentStateCost(paymentState, hasBTFNumber, membershipType);
         string description = paymentState.GetAttributeOfType<DescriptionAttribute>().Description;
 
         return _goCardlessProvider.CreatePayment(mandateId, email, costInPence, description);
@@ -151,16 +155,23 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 		litEventEntered.Text = paymentState.GetAttributeOfType<DescriptionAttribute>().Description;
 
         bool hasBTFNumber = string.IsNullOrWhiteSpace(currentmemdata[MemberProperty.BTFNumber] as string) == false;
-        int costInPence = MembershipCostCalculator.PaymentStateCost(paymentState, hasBTFNumber);
+
+        MembershipType membershipType;
+        Enum.TryParse(currentmemdata[MemberProperty.membershipType] as string, out membershipType);
+        int costInPence = MembershipCostCalculator.PaymentStateCost(paymentState, hasBTFNumber, membershipType);
 
 	    litEventCost.Text = (costInPence / 100m).ToString("N2");
 	}
 
-	private void DisplaySwimSubsConfirmationMessage(PaymentStates paymentState)
+	private void DisplaySwimSubsConfirmationMessage(IDictionary<String, object> currentmemdata, PaymentStates paymentState)
 	{
 		ShowSwimSubsConfirmation = true;
 		litSwimSubs.Text = paymentState.GetAttributeOfType<DescriptionAttribute>().Description;
-	    litSwimSubsCost.Text = (((decimal) MembershipCostCalculator.SwimsSubsCostInPence) / 100).ToString();
+
+        MembershipType membershipType;
+        Enum.TryParse(currentmemdata[MemberProperty.membershipType] as string, out membershipType);
+
+	    litSwimSubsCost.Text = (((decimal) MembershipCostCalculator.SwimsSubsCostInPence(membershipType) ) / 100).ToString();
 	}
 
 	private void UpdateMemberSwimCredits(IDictionary<String, object> currentmemdata, int credits)
@@ -175,20 +186,20 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 	}
 
 	private void EnterMemberInDuathlon(IDictionary<String, object> currentmemdata)
-	{
-		currentmemdata[MemberProperty.DuathlonEntered] = true;
-		MemberHelper.Update(currentmemdata);
+	{	
+		currentmemdata[MemberProperty.DuathlonEntry] = string.Format("Duathlon - {0}", DateTime.Now.Year);
+        MemberHelper.Update(currentmemdata);
 	}
 
 	private void EnterMemberInTriFest(IDictionary<String, object> currentmemdata, PaymentStates paymentState)
 	{
-		currentmemdata[MemberProperty.TriFestEntry] = paymentState.GetAttributeOfType<DescriptionAttribute>().Description;
+		currentmemdata[MemberProperty.TriFestEntry] = string.Format("{0} - {1}", paymentState.GetAttributeOfType<DescriptionAttribute>().Description, DateTime.Now.Year);
 		MemberHelper.Update(currentmemdata);
 	}
 
 	private void EnterMemberInCharitySwim(IDictionary<String, object> currentmemdata, PaymentStates paymentState)
 	{
-		currentmemdata[MemberProperty.CharitySwimEntry] = paymentState.GetAttributeOfType<DescriptionAttribute>().Description;
+		currentmemdata[MemberProperty.CharitySwimEntry] = string.Format("{0} - {1}", paymentState.GetAttributeOfType<DescriptionAttribute>().Description, DateTime.Now.Year);
 		MemberHelper.Update(currentmemdata);
 	}
 
@@ -196,11 +207,13 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 	{
 		if (paymentState == PaymentStates.SS05991)
 		{
-			currentmemdata[MemberProperty.swimSubsAprToSept] = true;
+			currentmemdata[MemberProperty.swimSubs1] = string.Format("Apr - Sept {0}", DateTime.Now.Year);
 		}
 		if (paymentState == PaymentStates.SS05992)
 		{
-			currentmemdata[MemberProperty.SwimSubsOctToMar] = true;
+            var octToDec = new List<int>() { 10,11,12};
+            int year1 = octToDec.Any(m => m == DateTime.Now.Month) ? DateTime.Now.Year : DateTime.Now.Year - 1;
+            currentmemdata[MemberProperty.swimSubs2] = string.Format("Oct {0} - Mar {1}", year1, year1 + 1);
 		}
 
 		MemberHelper.Update(currentmemdata);

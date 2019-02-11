@@ -75,9 +75,9 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 			EnableGuestRenewal = isGuest && hasExpired;
 
 			ShowBuySwimSubs1 = EnableMemberRenewal == false && memberType != MembershipType.Guest &&
-			                   GetMemberBool(memberData, MemberProperty.swimSubsAprToSept) == false && DateTime.Now.Month < 10 && DateTime.Now.Month > 3;
-			ShowBuySwimSubs2 = EnableMemberRenewal == false && memberType != MembershipType.Guest &&
-			                   GetMemberBool(memberData, MemberProperty.SwimSubsOctToMar) == false;
+			                   string.IsNullOrEmpty(memberData[MemberProperty.swimSubs1] as string) && DateTime.Now.Month < 10 && DateTime.Now.Month > 3;
+            ShowBuySwimSubs2 = EnableMemberRenewal == false && memberType != MembershipType.Guest &&
+                               string.IsNullOrEmpty(memberData[MemberProperty.swimSubs2] as string);
 
 			membershipOptionalExtras.Text = string.Join("<br/>", OptionalExtras(memberData));
 
@@ -101,10 +101,12 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 			hiddenEmail.Value = memberData[MemberProperty.Email].ToString();
 
 
-			//Bind events
-			if (GetMemberBool(memberData, MemberProperty.DuathlonEntered))
+            //Bind events
+            string duathlonEntry = memberData[MemberProperty.DuathlonEntry] as string;
+
+            if (string.IsNullOrWhiteSpace(duathlonEntry) == false)
 			{
-				EventList.Items.Add("Duathlon");
+				EventList.Items.Add(duathlonEntry);
 			}
 			string triFestEntry = memberData[MemberProperty.TriFestEntry] as string;
 			if (string.IsNullOrWhiteSpace(triFestEntry) == false)
@@ -127,14 +129,16 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 	private List<string> OptionalExtras(IDictionary<String, object> memberData)
 	{
 		var extras = new List<string>();
-        if (GetMemberBool(memberData, MemberProperty.swimSubsAprToSept))
+        string swimSub1 = memberData[MemberProperty.swimSubs1] as string;
+        if (!string.IsNullOrWhiteSpace(swimSub1))
 		{
-			extras.Add("Pool swim Apr - Sept.");
+			extras.Add(swimSub1);
 		}
-		if (GetMemberBool(memberData, MemberProperty.SwimSubsOctToMar))
-		{
-			extras.Add("Pool swim Oct - Mar.");
-		}
+        string swimSub2 = memberData[MemberProperty.swimSubs2] as string;
+        if (!string.IsNullOrWhiteSpace(swimSub2))
+        {
+            extras.Add(swimSub2);
+        }
         if (GetMemberBool(memberData, MemberProperty.EnglandAthleticsMembership))
         {
             extras.Add("England Athletics Member.");
