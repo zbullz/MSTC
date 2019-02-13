@@ -26,6 +26,20 @@
                         <umbraco:Item ID="bodyText" runat="server" Field="bodyText" />
                     </div>
                 </div>
+        <%if (!HasPaymentDetails)
+        {%>
+            <div class="row">                    
+                    <p>No pending payment has been found.</p>
+            </div>
+        <%}
+        else if (!PaymentConfirmed){ %>
+                <div class="row">                    
+                    <p>Please confirm that you would like to purchase <strong><%=PaymentDescription %></strong> for <strong>£<%=Cost %></strong></p>
+                    <asp:Button ID="ConfirmButton" runat="server" Text="Confirm Payment" CssClass="btn pull-left btn-yellow" OnClick="Confirm_OnClick"/>
+                </div>
+       <%}
+       else
+       { %>
                 <div class="row">
                     <div class="col-sm-12 <%=ShowPaymentFailed ? "" : "hide"%>">
                         <p>Sorry, there has been a problem completing your payment. Please <a href="the-club/contact-us.aspx">send us a message</a> for further assistance </p>
@@ -46,11 +60,13 @@
                         <p>You have purchased <asp:Literal ID="litSwimSubs" runat="server"></asp:Literal> for £<asp:Literal ID="litSwimSubsCost" runat="server"></asp:Literal></p>
                         <p>Please go to <a href="/members-area/my-details">your details page</a> to check out all your full member profile.</p>
                     </div>
+                    <div class="col-sm-12" <%=ShowRenewed ? "" : "hide"%>">
+                        <p>Thank you for updating your membership for <%=DateTime.Now.Year %>.</p> 
+                        <p>Please go to <a href="/members-area/my-details">your details page</a> to make sure your information is up to date and retrieve your open water swim authorisation number.</p>
+                    </div>
                 </div>
             </div>
-
-
-
+        <%}%>
         </form>
     </div>
 

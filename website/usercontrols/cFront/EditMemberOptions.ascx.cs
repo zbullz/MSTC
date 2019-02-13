@@ -213,12 +213,12 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 
     private void RedirectToPaymentPages(PaymentStates state)
     {
-        _sessionProvider.MandateSuccessPage = "payment-complete";
+        _sessionProvider.MandateSuccessPage = "payment-confirmation";
         _sessionProvider.CanProcessPaymentCompletion = true;
 
         var currentmemdata = MemberHelper.Get();
         bool hasMandate = string.IsNullOrWhiteSpace(currentmemdata[MemberProperty.directDebitMandateId] as string) == false;
-        string page = hasMandate ? "payment-complete" : "mandate-request";
+        string page = hasMandate ? "payment-confirmation" : "mandate-request";
 
         string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
             Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);

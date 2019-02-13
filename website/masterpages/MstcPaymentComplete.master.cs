@@ -6,69 +6,102 @@ using Mstc.Core.Domain;
 using Mstc.Core.Dto;
 using Mstc.Core.Providers;
 using System.Linq;
+using umbraco.cms.businesslogic.member;
 
 public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 {
     private SessionProvider _sessionProvider;
     private GoCardlessProvider _goCardlessProvider;
+    private MemberProvider _memberProvider;
 
+    protected bool HasPaymentDetails= true;
+    protected bool PaymentConfirmed = false;
     protected bool ShowPaymentFailed = false;
     protected bool ShowSwimCreditsConfirmation = false;
     protected bool ShowEventConfirmation = false;
     protected bool ShowSwimSubsConfirmation = false;
+    protected bool ShowRenewed = false;
+
+    protected string PaymentDescription = "";
+    protected string Cost = "";
 
     public masterpages_MstcPaymentComplete()
     {
         _sessionProvider = new SessionProvider();
         _goCardlessProvider = new GoCardlessProvider();
+        _memberProvider = new MemberProvider();
     }
 
     protected void Page_Load(object sender, EventArgs e)
     {
-		if (IsPostBack == false)
-		{
-			IDictionary<String, object> currentmemdata = MemberHelper.Get();
-			if (currentmemdata == null || _sessionProvider.CanProcessPaymentCompletion == false || Request.QueryString["state"] == null)
-			{
-				return; //Ensure the form is behind a login form and not a duplicate request
-			}
-            
-		    if (string.IsNullOrWhiteSpace(_sessionProvider.GoCardlessRedirectFlowId) == false)
-		    {
-                //Complete the mandate request if required
-		        string mandateId = _goCardlessProvider.CompleteRedirectRequest(_sessionProvider.GoCardlessRedirectFlowId,
-		            _sessionProvider.SessionId);
-                currentmemdata[MemberProperty.directDebitMandateId] = mandateId;
-                MemberHelper.Update(currentmemdata);
-		        _sessionProvider.GoCardlessRedirectFlowId = null;
-		    }
+        IDictionary<String, object> currentmemdata = MemberHelper.Get();
+        string state = Request.QueryString["state"];
+        if (currentmemdata == null || _sessionProvider.CanProcessPaymentCompletion == false || string.IsNullOrEmpty(state))
+        {
+            HasPaymentDetails = false;
+            return; //Ensure the form is behind a login form and not a duplicate request
+        }
 
-		    string state = Request.QueryString["state"];
-            var paymentState = (PaymentStates)Enum.Parse(typeof(PaymentStates), state);
+        var paymentState = (PaymentStates)Enum.Parse(typeof(PaymentStates), state);
 
-            var paymentResponse = CreatePayment(currentmemdata, paymentState);
+        string mandateId = currentmemdata[MemberProperty.directDebitMandateId] as string;
+        if (string.IsNullOrWhiteSpace(_sessionProvider.GoCardlessRedirectFlowId) == false)
+        {
+            //Complete the mandate request if required
+            mandateId = _goCardlessProvider.CompleteRedirectRequest(_sessionProvider.GoCardlessRedirectFlowId,
+                _sessionProvider.SessionId);
+            currentmemdata[MemberProperty.directDebitMandateId] = mandateId;
+            MemberHelper.Update(currentmemdata);
+            _sessionProvider.GoCardlessRedirectFlowId = null;
+        } else if (string.IsNullOrEmpty(mandateId)) {
+            RedirectToMandatePage(paymentState);
+        }
+        
+        PaymentDescription = paymentState.GetAttributeOfType<DescriptionAttribute>().Description;
 
-		    if (paymentResponse == PaymentResponseDto.Success)
-		    {
-		        ProcessPaymentState(currentmemdata, paymentState);
-		    }
-            else if (paymentResponse == PaymentResponseDto.MandateError)
-		    {
-		        RedirectToMandatePage(paymentState);
+        MembershipType membershipType;
+        Enum.TryParse(currentmemdata[MemberProperty.membershipType] as string, out membershipType);
+        bool hasBTFNumber = string.IsNullOrWhiteSpace(currentmemdata[MemberProperty.BTFNumber] as string) == false;        
+        int costInPence = paymentState == PaymentStates.MemberRenewal ? MembershipCostCalculator.Calculate(_sessionProvider.RenewalOptions, DateTime.Now) : 
+            MembershipCostCalculator.PaymentStateCost(paymentState, hasBTFNumber, membershipType);
 
-		    }
-		    else
-		    {
-		        ShowPaymentFailed = true;
-		    }
+        Cost = (costInPence / 100m).ToString("N2");
+    }
 
-		    _sessionProvider.CanProcessPaymentCompletion = false;
-		}
+    protected void Confirm_OnClick(object sender, EventArgs e)
+    {
+        IDictionary<String, object> currentmemdata = MemberHelper.Get();
+        if (currentmemdata == null || _sessionProvider.CanProcessPaymentCompletion == false || Request.QueryString["state"] == null)
+        {
+            return; //Ensure the form is behind a login form and not a duplicate request
+        }        
+
+        string state = Request.QueryString["state"];
+        var paymentState = (PaymentStates)Enum.Parse(typeof(PaymentStates), state);
+
+        var paymentResponse = CreatePayment(currentmemdata, paymentState);
+
+        if (paymentResponse == PaymentResponseDto.Success)
+        {
+            ProcessPaymentState(currentmemdata, paymentState);
+            PaymentConfirmed = true;
+
+        }
+        else if (paymentResponse == PaymentResponseDto.MandateError)
+        {
+            RedirectToMandatePage(paymentState);
+        }
+        else
+        {
+            ShowPaymentFailed = true;
+        }
+
+        _sessionProvider.CanProcessPaymentCompletion = false;
     }
 
     private void RedirectToMandatePage(PaymentStates state)
     {
-        _sessionProvider.MandateSuccessPage = "payment-complete";
+        _sessionProvider.MandateSuccessPage = "payment-confirmation";
         string page = "mandate-request";
 
         string rootUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Host,
@@ -126,6 +159,11 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
                 DisplaySwimSubsConfirmationMessage(currentmemdata, paymentState);
                 break;
             }
+            case PaymentStates.MemberRenewal:
+            {
+                RenewMember();
+                break;
+            }
         }
     }
 
@@ -137,7 +175,9 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
         string mandateId = currentmemdata[MemberProperty.directDebitMandateId] as string;
         string email = currentmemdata[MemberProperty.Email] as string;
         bool hasBTFNumber = string.IsNullOrWhiteSpace(currentmemdata[MemberProperty.BTFNumber] as string) == false; 
-        int costInPence = MembershipCostCalculator.PaymentStateCost(paymentState, hasBTFNumber, membershipType);
+        int costInPence = paymentState == PaymentStates.MemberRenewal 
+            ? MembershipCostCalculator.Calculate(_sessionProvider.RenewalOptions, DateTime.Now) 
+            : MembershipCostCalculator.PaymentStateCost(paymentState, hasBTFNumber, membershipType);
         string description = paymentState.GetAttributeOfType<DescriptionAttribute>().Description;
 
         return _goCardlessProvider.CreatePayment(mandateId, email, costInPence, description);
@@ -207,16 +247,23 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 	{
 		if (paymentState == PaymentStates.SS05991)
 		{
-			currentmemdata[MemberProperty.swimSubs1] = string.Format("Apr - Sept {0}", DateTime.Now.Year);
+			currentmemdata[MemberProperty.swimSubs1] = string.Format("Swim Subs Apr - Sept {0}", DateTime.Now.Year);
 		}
 		if (paymentState == PaymentStates.SS05992)
 		{
             var octToDec = new List<int>() { 10,11,12};
             int year1 = octToDec.Any(m => m == DateTime.Now.Month) ? DateTime.Now.Year : DateTime.Now.Year - 1;
-            currentmemdata[MemberProperty.swimSubs2] = string.Format("Oct {0} - Mar {1}", year1, year1 + 1);
+            currentmemdata[MemberProperty.swimSubs2] = string.Format("Swim Subs Oct {0} - Mar {1}", year1, year1 + 1);
 		}
 
 		MemberHelper.Update(currentmemdata);
 	}
+
+    private void RenewMember()
+    {
+        ShowRenewed = true;
+        var member = Member.GetCurrentMember();
+        _memberProvider.UpdateMemberOptions(member, _sessionProvider.RenewalOptions, resetEventEntries: true);
+    }
 
 }

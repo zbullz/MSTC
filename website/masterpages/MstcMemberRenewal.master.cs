@@ -50,10 +50,10 @@ public partial class masterpages_MstcMemberRenewal : System.Web.UI.MasterPage
 
     private void RedirectToPaymentPages(IDictionary<String, object> currentmemdata, PaymentStates state)
     {
-        _sessionProvider.MandateSuccessPage = "members-area/membership-renewal-complete";
+        _sessionProvider.MandateSuccessPage = "payment-confirmation";
 
         bool hasMandate = string.IsNullOrWhiteSpace(currentmemdata[MemberProperty.directDebitMandateId] as string) == false;
-        string page = hasMandate ? "members-area/membership-renewal-complete" : "mandate-request";
+        string page = hasMandate ? "payment-confirmation" : "mandate-request";
 
         _sessionProvider.CanProcessPaymentCompletion = true;
 
