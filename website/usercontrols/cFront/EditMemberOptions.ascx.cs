@@ -20,7 +20,8 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 	public bool ShowSwimAdminLink { get; set; }
 	public bool ShowBuySwimSubs1 { get; set; }
 	public bool ShowBuySwimSubs2 { get; set; }
-	public bool EnableGuestUpgrade { get; set; }
+	public bool ShowBuy1SwimCredit { get; set; }    
+    public bool EnableGuestUpgrade { get; set; }
 	public bool EnableGuestRenewal { get; set; }
 	public bool ShowIceLink { get; set; }
 
@@ -81,6 +82,8 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
             decimal swimSubsCost = MembershipCostCalculator.SwimsSubsCostInPence(memberType) /100;
             BuySwimSubs1.Text = string.Format("Buy pool swim subs Apr-Sept @ £{0:N2}", swimSubsCost );
             BuySwimSubs2.Text = string.Format("Buy pool swim subs Oct-Mar  @ £{0:N2}", swimSubsCost );
+
+            ShowBuy1SwimCredit = !isGuest && DateTime.Now.Month > 8;
 
             membershipOptionalExtras.Text = string.Join("<br/>", OptionalExtras(memberData));
 
@@ -181,7 +184,12 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 		MakeSwimSubsPayment(PaymentStates.SS05992);
 	}
 
-	public void btn_5SwimCreditsClick(object sender, EventArgs e)
+    public void btn_1SwimCreditsClick(object sender, EventArgs e)
+    {
+        MakeSwimPayment(PaymentStates.S00199C);
+    }
+
+    public void btn_5SwimCreditsClick(object sender, EventArgs e)
 	{
 		MakeSwimPayment(PaymentStates.S00599C);
 	}

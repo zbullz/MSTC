@@ -73,6 +73,11 @@
                             title="Take this number with you to open water swim sessions. You can't get in the water unless you have your number!"></asp:HyperLink>
                     </p>
             </div>
+            <div class="form-group <%=ShowBuy1SwimCredit ? "" : "hide"%>">
+                <div>
+                    <asp:Button ID="btn_1SwimCredits" runat="server" Text="Buy £4 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_1SwimCreditsClick" />
+                </div>
+            </div>
             <div class="form-group <%=IsGuest ? "hide" : ""%>">
                 <div>
                     <asp:Button ID="btn_5SwimCredits" runat="server" Text="Buy £16 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_5SwimCreditsClick" />

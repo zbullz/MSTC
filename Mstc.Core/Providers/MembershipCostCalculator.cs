@@ -61,6 +61,7 @@ namespace Mstc.Core.Providers
         {
             switch (state)
             {
+                case PaymentStates.S00199C:
                 case PaymentStates.S00599C:
                 case PaymentStates.S001099C:
                 case PaymentStates.S001599C:
