@@ -111,6 +111,6 @@
 </div>
 
 <div id="events-section">
-    <h2><a href="/club-events/seasons-events.aspx"><%=DateTime.Now.Year %> Club Events Entered</a></h2>
+    <h2><a href="/club-events/seasons-events.aspx">Club Events Entered</a></h2>
     <asp:BulletedList ID="EventList" runat="server"></asp:BulletedList>
 </div>

@@ -60,7 +60,7 @@
                         <p>You have purchased <asp:Literal ID="litSwimSubs" runat="server"></asp:Literal> for £<asp:Literal ID="litSwimSubsCost" runat="server"></asp:Literal></p>
                         <p>Please go to <a href="/members-area/my-details">your details page</a> to check out all your full member profile.</p>
                     </div>
-                    <div class="col-sm-12" <%=ShowRenewed ? "" : "hide"%>">
+                    <div class="col-sm-12 <%=ShowRenewed ? "" : "hide"%>">
                         <p>Thank you for updating your membership for <%=DateTime.Now.Year %>.</p> 
                         <p>Please go to <a href="/members-area/my-details">your details page</a> to make sure your information is up to date and retrieve your open water swim authorisation number.</p>
                     </div>

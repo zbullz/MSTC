@@ -73,13 +73,16 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 		    IsGuest = isGuest;
             EnableGuestUpgrade = isGuest && hasExpired == false;
 			EnableGuestRenewal = isGuest && hasExpired;
-
-			ShowBuySwimSubs1 = EnableMemberRenewal == false && memberType != MembershipType.Guest &&
+            
+            ShowBuySwimSubs1 = EnableMemberRenewal == false && memberType != MembershipType.Guest &&
 			                   string.IsNullOrEmpty(memberData[MemberProperty.swimSubs1] as string) && DateTime.Now.Month < 10 && DateTime.Now.Month > 3;
             ShowBuySwimSubs2 = EnableMemberRenewal == false && memberType != MembershipType.Guest &&
                                string.IsNullOrEmpty(memberData[MemberProperty.swimSubs2] as string);
+            decimal swimSubsCost = MembershipCostCalculator.SwimsSubsCostInPence(memberType) /100;
+            BuySwimSubs1.Text = string.Format("Buy pool swim subs Apr-Sept @ £{0:N2}", swimSubsCost );
+            BuySwimSubs2.Text = string.Format("Buy pool swim subs Oct-Mar  @ £{0:N2}", swimSubsCost );
 
-			membershipOptionalExtras.Text = string.Join("<br/>", OptionalExtras(memberData));
+            membershipOptionalExtras.Text = string.Join("<br/>", OptionalExtras(memberData));
 
 			bool openWaterEnabled = bool.Parse(ConfigurationManager.AppSettings["openWaterEnabled"]);
 
