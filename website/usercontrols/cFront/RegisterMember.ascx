@@ -12,11 +12,15 @@
     <cf:RegistrationDetails ID="registrationDetailsControl" runat="server" />
 
     <!--Membership options-->
-    <cf:MembershipOptions ID="membershipOptionsControl" runat="server" />
+    <cf:MembershipOptions ID="membershipOptionsControl" runat="server" />   
+
 
     <div class="form-group">
-        <div class="col-sm-2"></div>
+        <div class="col-sm-2"></div>        
         <div class="col-sm-10">
+            <asp:ValidationSummary ID="ValidationSummary1" runat="server" HeaderText="<p>Error summary</p>" DisplayMode="BulletList"
+                CssClass="help-block alert-danger" />
+
             <asp:Button ID="RegisterMember" runat="server" Text="Continue to payment" CssClass="btn pull-left btn-yellow" OnClick="RegisterMember_OnClick" />
         </div>
     </div>

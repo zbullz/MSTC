@@ -39,8 +39,7 @@
             <div class="col-sm-10">
                 <asp:CheckBox ID="volunteering" runat="server" CssClass="checkbox" 
                     Text="I agree to give my time to assist in marshalling duties this year at either the Mid Sussex Triathlon or club events." />
-                <asp:CustomValidator runat="server" ID="requiredVolunteering" OnServerValidate="CheckBoxRequired_ServerValidate" CssClass="help-block alert-danger">
-                    Please accept the volunteering agreement to proceed</asp:CustomValidator>
+                <asp:CustomValidator runat="server" ID="requiredVolunteering" OnServerValidate="CheckBoxRequired_ServerValidate" CssClass="help-block alert-danger" ErrorMessage="Please accept the volunteering agreement to proceed" />   
             </div>
         </div>
         <div class="form-group">

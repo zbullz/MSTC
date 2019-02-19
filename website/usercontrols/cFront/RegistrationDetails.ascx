@@ -39,7 +39,7 @@
                 <asp:RequiredFieldValidator ID="requiredPassword" runat="server" ErrorMessage="Please enter your password" 
                     ControlToValidate="tbPassword" CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ControlToValidate="tbPassword" ID="minLengthValidator" ValidationExpression = "^[\s\S]{8,}$" runat="server" 
-                    ErrorMessage="Minimum 8 characters required."></asp:RegularExpressionValidator>
+                    CssClass="help-block alert-danger" ErrorMessage="Enter at least 8 characters"></asp:RegularExpressionValidator>
             </div>
         </div>
         <div class="form-group">
