@@ -42,10 +42,10 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 
 		if (2 < DateTime.Now.Month && DateTime.Now.Month < 10)
 		{
-            string swim1Desc = string.Format("{0} - Standard &pound;30 / Concessions &pound;15", membershipProvider.GetSwimSub1Description(DateTime.Now));
+            string swim1Desc = string.Format("Swim subs {0} - Standard &pound;30 / Concessions &pound;15", membershipProvider.GetSwimSub1Description(DateTime.Now));
             extrasList.Add(new ListItem(swim1Desc, MembershipExtras.SwimSubsAprToSept.ToString()));
 		}
-        string swim2Desc = string.Format("{0} - Standard &pound;30 / Concessions &pound;15", membershipProvider.GetSwimSub2Description(DateTime.Now));
+        string swim2Desc = string.Format("Swim subs {0} - Standard &pound;30 / Concessions &pound;15", membershipProvider.GetSwimSub2Description(DateTime.Now));
 
         extrasList.Add(new ListItem(swim2Desc, MembershipExtras.SwimSubsOctToMar.ToString()));
 		extrasList.Add(new ListItem("England Athletics Membership* - &pound;15", MembershipExtras.EnglandAthletics.ToString()));

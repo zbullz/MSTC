@@ -40,7 +40,9 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 
 		if (memberData != null)
 		{
-			var membershipExpiryDate = memberData[MemberProperty.MembershipExpiry] as DateTime?;
+            var membershipProvider = new MemberProvider();
+
+            var membershipExpiryDate = memberData[MemberProperty.MembershipExpiry] as DateTime?;
 			bool hasExpired = membershipExpiryDate.HasValue == false || membershipExpiryDate.Value < DateTime.Now;
 			membershipExpiry.Text = hasExpired ? "Expired" : membershipExpiryDate.Value.ToString("dd MMM yyyy");
 
@@ -76,12 +78,12 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 			EnableGuestRenewal = isGuest && hasExpired;
             
             ShowBuySwimSubs1 = EnableMemberRenewal == false && memberType != MembershipType.Guest &&
-			                   string.IsNullOrEmpty(memberData[MemberProperty.swimSubs1] as string) && DateTime.Now.Month < 10 && DateTime.Now.Month > 3;
+			                   string.IsNullOrEmpty(memberData[MemberProperty.swimSubs1] as string) && DateTime.Now.Month < 10 && DateTime.Now.Month > 2;
             ShowBuySwimSubs2 = EnableMemberRenewal == false && memberType != MembershipType.Guest &&
                                string.IsNullOrEmpty(memberData[MemberProperty.swimSubs2] as string);
             decimal swimSubsCost = MembershipCostCalculator.SwimsSubsCostInPence(memberType) /100;
-            BuySwimSubs1.Text = string.Format("Buy pool swim subs Apr-Sept @ £{0:N2}", swimSubsCost );
-            BuySwimSubs2.Text = string.Format("Buy pool swim subs Oct-Mar  @ £{0:N2}", swimSubsCost );
+            BuySwimSubs1.Text = string.Format("Buy {0} @ £{1:N2}", membershipProvider.GetSwimSub1Description(DateTime.Now), swimSubsCost );
+            BuySwimSubs2.Text = string.Format("Buy {0} @ £{1:N2}", membershipProvider.GetSwimSub2Description(DateTime.Now), swimSubsCost );
 
             ShowBuy1SwimCredit = !isGuest && DateTime.Now.Month > 8;
 
