@@ -6,6 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using cFront.Umbraco;
 using Mstc.Core.Domain;
+using Newtonsoft.Json;
+using Mstc.Core.Providers;
+using System.Configuration;
 
 public partial class usercontrols_cFront_editMemberDetails : UserControl
 {
@@ -110,8 +113,23 @@ public partial class usercontrols_cFront_editMemberDetails : UserControl
 			newmemdata[MemberProperty.serviceDescription] = tbServiceDescription.Text;
 
 			MemberHelper.Update(newmemdata); // If you don't provide a member, it uses the current. If no current, this will silently fail.
-		}
+
+            SendEmail(currentmemdata, newmemdata);
+        }
 	}
+
+    protected void SendEmail(IDictionary<string, object> oldDetails, IDictionary<string, object> newDetails)
+    {
+        string content = string.Format("<p>A member has updated their details</p><p>Old details: {0}</p> <p>New details: {1}</p>",
+                JsonConvert.SerializeObject(oldDetails, Formatting.Indented),
+                JsonConvert.SerializeObject(newDetails, Formatting.Indented));
+        var passwordObfuscator = new PasswordObfuscator();
+        content = passwordObfuscator.ObfuscateString(content);
+
+        var emailProvider = new EmailProvider();
+        emailProvider.SendEmail(ConfigurationManager.AppSettings["newRegistrationEmailTo"], EmailProvider.SupportEmail,
+            "MSTC member details updated", content);
+    }
 
 	protected void SaveMemberClicked(object sender, EventArgs e)
 	{
