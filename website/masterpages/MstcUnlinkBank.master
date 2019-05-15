@@ -1,0 +1,54 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/MstcSkeleton.master" AutoEventWireup="true" CodeFile="MstcUnlinkBank.master.cs" Inherits="masterpages_MstcUnlinkBank" %>
+
+
+<asp:Content ID="Content3" ContentPlaceHolderID="PageScripts" runat="server">
+
+</asp:Content>
+
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MainContent">
+    <!-- Page Title -->
+    <div class="section section-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>
+                        <umbraco:Item ID="pageName" runat="server" Field="pageName" />
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="section">
+        <form id="Form1" role="form" class="form-horizontal" runat="server">
+            <div class="container edit-member">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <% if (IsUnlinked){ %>
+
+                            <p>Your bank account is now unlinked. You will be prompted to enter new details when you next make a payment.</p> 
+                            <p>You can make new payments from <a href="/members-area/my-details">your details page</a>.</p>
+                        <% }else { %>
+
+                                    <p>Press the button below to confirm you would like to unlink your bank account. <br /> 
+                                        You will then be prompted to enter new details when you next make a payment</p>
+                                    <asp:Button ID="UnlinkBankAccount" runat="server" CssClass="btn btn-yellow pull-left wrap" OnClick="btn_UnlinkBankAccount" Text="Unlink bank account" />
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Secondary content -->
+    <div class="section">
+        <div class="container">
+            <umbraco:Item ID="secondaryContent" runat="server" Field="secondaryContent" />
+        </div>
+    </div>
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="FooterScripts" runat="server">
+</asp:Content>

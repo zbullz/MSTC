@@ -214,6 +214,13 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
         Response.Redirect(Request.RawUrl);
     }
 
+    public void btn_UnlinkBankAccount(object sender, EventArgs e)
+    {
+        string url = string.Format("{0}://{1}{2}/unlink-bank", Request.Url.Scheme, Request.Url.Host,
+            Request.Url.Port == 80 ? string.Empty : ":" + Request.Url.Port);
+        Response.Redirect(url);
+    }
+
     private void MakeSwimSubsPayment(PaymentStates paymentState)
 	{
         RedirectToPaymentPages(paymentState);

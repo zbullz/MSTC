@@ -52,6 +52,16 @@
             <asp:Button ID="BuySwimSubs2" runat="server" CssClass="btn btn-yellow pull-left wrap" OnClick="btn_BuySwimSubs2Click" />
         </div>
     </div>
+    <div class="form-group">
+        <label class="control-label"><b>Payment details</b></label>
+    </div>
+        <div class="form-group">
+        <div>
+            <p>If you need to update your bank account details press the button below.<br /> 
+               You will then be prompted to enter new details when you next make a payment</p>
+            <asp:Button ID="UnlinkBankAccount" runat="server" CssClass="btn btn-yellow pull-left wrap" OnClick="btn_UnlinkBankAccount" Text="Unlink bank account" />
+        </div>
+    </div>
 
 
     <div class="form-group <%=ShowMemberAdminLink ? "" : "hide"%>">
