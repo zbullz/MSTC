@@ -56,7 +56,7 @@ public partial class usercontrols_cFront_RegisterMemberComplete : System.Web.UI.
 
         if (IsRegistered)
         {
-            var member = _memberProvider.CreateMember(regDetails, new string[] { "Member" });
+            var member = _memberProvider.CreateMember(regDetails, new string[] { MSTCRoles.Member });
             _memberProvider.UpdateMemberDetails(member, registrationFullDetails);
 
             //Login the member

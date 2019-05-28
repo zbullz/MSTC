@@ -23,7 +23,7 @@ public partial class masterpages_MstcEventGuestRegistration : System.Web.UI.Mast
 		var regDetails = registrationDetailsControl.GetRegistrationDetails();
 
 		var memberProvider = new MemberProvider();
-		var member = memberProvider.CreateMember(regDetails, new string[] { "Guest" });
+		var member = memberProvider.CreateMember(regDetails, new string[] { MSTCRoles.Guest });
 
 		var registrationFullDetails = new RegistrationFullDetails()
 		{

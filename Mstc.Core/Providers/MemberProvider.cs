@@ -6,6 +6,7 @@ using Mstc.Core.DataAccess;
 using Mstc.Core.Domain;
 using Mstc.Core.Dto;
 using umbraco.cms.businesslogic.property;
+using System.Web.Security;
 
 namespace Mstc.Core.Providers
 {
@@ -85,7 +86,7 @@ namespace Mstc.Core.Providers
 			member.Save();
 		}
 
-		public void UpdateMemberOptions(umbraco.cms.businesslogic.member.Member member, MembershipOptions membershipOptions, bool resetEventEntries)
+		public void UpdateMemberOptions(umbraco.cms.businesslogic.member.Member member, MembershipOptions membershipOptions, bool resetEventEntries, bool isUpgrade)
 		{
 			IDictionary<String, object> currentmemdata = MemberHelper.Get(member);
 
@@ -99,7 +100,15 @@ namespace Mstc.Core.Providers
 				if (currentmemdata.ContainsKey(property.PropertyType.Alias))
 					property.Value = currentmemdata[property.PropertyType.Alias];
 			}
-			member.Save();
+
+            if (isUpgrade)
+            {
+                string username = member.Email;
+                Roles.RemoveUserFromRole(username, MSTCRoles.Guest);
+                Roles.AddUserToRole(username, MSTCRoles.Member);
+            }
+
+            member.Save();
 		}
 
 	    public void AcceptOpenWaterWaiver(umbraco.cms.businesslogic.member.Member member)

@@ -62,8 +62,9 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
         MembershipType membershipType;
         Enum.TryParse(currentmemdata[MemberProperty.membershipType] as string, out membershipType);
         bool hasBTFNumber = string.IsNullOrWhiteSpace(currentmemdata[MemberProperty.BTFNumber] as string) == false;        
-        int costInPence = paymentState == PaymentStates.MemberRenewal ? MembershipCostCalculator.Calculate(_sessionProvider.RenewalOptions, DateTime.Now) : 
-            MembershipCostCalculator.PaymentStateCost(paymentState, hasBTFNumber, membershipType);
+        int costInPence = (paymentState == PaymentStates.MemberRenewal || paymentState == PaymentStates.MemberUpgrade) 
+            ? MembershipCostCalculator.Calculate(_sessionProvider.RenewalOptions, DateTime.Now) 
+            : MembershipCostCalculator.PaymentStateCost(paymentState, hasBTFNumber, membershipType);
 
         Cost = (costInPence / 100m).ToString("N2");
     }
@@ -161,8 +162,9 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
                 break;
             }
             case PaymentStates.MemberRenewal:
-            {
-                RenewMember();
+            case PaymentStates.MemberUpgrade:
+                {
+                RenewOrUpgradeMember(paymentState);
                 break;
             }
         }
@@ -176,7 +178,7 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
         string mandateId = currentmemdata[MemberProperty.directDebitMandateId] as string;
         string email = currentmemdata[MemberProperty.Email] as string;
         bool hasBTFNumber = string.IsNullOrWhiteSpace(currentmemdata[MemberProperty.BTFNumber] as string) == false; 
-        int costInPence = paymentState == PaymentStates.MemberRenewal 
+        int costInPence = (paymentState == PaymentStates.MemberRenewal || paymentState == PaymentStates.MemberUpgrade)
             ? MembershipCostCalculator.Calculate(_sessionProvider.RenewalOptions, DateTime.Now) 
             : MembershipCostCalculator.PaymentStateCost(paymentState, hasBTFNumber, membershipType);
         string description = paymentState.GetAttributeOfType<DescriptionAttribute>().Description;
@@ -260,11 +262,11 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 		MemberHelper.Update(currentmemdata);
 	}
 
-    private void RenewMember()
+    private void RenewOrUpgradeMember(PaymentStates paymentState)
     {
         ShowRenewed = true;
         var member = Member.GetCurrentMember();
-        _memberProvider.UpdateMemberOptions(member, _sessionProvider.RenewalOptions, resetEventEntries: true);
+        _memberProvider.UpdateMemberOptions(member, _sessionProvider.RenewalOptions, resetEventEntries: paymentState == PaymentStates.MemberRenewal, isUpgrade: paymentState == PaymentStates.MemberUpgrade);
     }
 
 }

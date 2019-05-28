@@ -49,7 +49,7 @@ public partial class masterpages_MstcOwsTasterRegComplete : System.Web.UI.Master
 
             if (IsRegistered)
             {
-                var member = _memberProvider.CreateMember(regDetails, new string[] { "Guest" });
+                var member = _memberProvider.CreateMember(regDetails, new string[] { MSTCRoles.Guest });
                 _memberProvider.UpdateMemberDetails(member, registrationFullDetails);
 
                 var currentmemdata = MemberHelper.Get(member);

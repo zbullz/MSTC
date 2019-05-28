@@ -55,7 +55,7 @@ public partial class masterpages_MstcGuestRenewal : System.Web.UI.MasterPage
 		};
         var member = Member.GetCurrentMember();
         bool resetEventEntries = true;
-        _memberProvider.UpdateMemberOptions(member, membershipOptions, resetEventEntries);
+        _memberProvider.UpdateMemberOptions(member, membershipOptions, resetEventEntries, isUpgrade: false);
 
 		RedirectToCompletePage(); //Can use this for local testing
 	}

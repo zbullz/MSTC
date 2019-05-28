@@ -85,6 +85,7 @@
     <Compile Include="Domain\MembershipExtras.cs" />
     <Compile Include="Domain\MembershipOptions.cs" />
     <Compile Include="Domain\MembershipType.cs" />
+    <Compile Include="Domain\MSTCRoles.cs" />
     <Compile Include="Domain\PaymentStates.cs" />
     <Compile Include="Domain\RegistrationDetails.cs" />
     <Compile Include="Domain\RegistrationFullDetails.cs" />
