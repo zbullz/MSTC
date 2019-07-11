@@ -59,7 +59,7 @@ public partial class masterpages_MstcEventGuestRegistration : System.Web.UI.Mast
 		string code = tbSecretCode.Text.ToLower();
 		if (string.IsNullOrWhiteSpace(code) == false)
 		{
-			args.IsValid = (code == "festguest");
+			args.IsValid = (code == "festguest") || (code == "fishyfriend");
 			return;
 		}
 
