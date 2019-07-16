@@ -53,15 +53,22 @@ public partial class masterpages_MstcClubEventEntry : System.Web.UI.MasterPage
 	{
 		var eventTypes = new List<ListItem>()
 		{
-			new ListItem("Sprint Individual - &pound;23", ((int) PaymentStates.E00TRISI205C).ToString()),
-			new ListItem("Olympic Individual - &pound;23", ((int) PaymentStates.E00TRIOI201C).ToString()),
-            new ListItem("Olympic Relay - &pound;13", ((int) PaymentStates.E00TRIOR202C).ToString()),
-			new ListItem("Middle distance Individual - &pound;23", ((int) PaymentStates.E00TRIMI203C).ToString()),
-			new ListItem("Middle distance Relay - &pound;13", ((int) PaymentStates.E00TRIMR204C).ToString()),
-		};
+			new ListItem("Triathlon - Sprint Individual", ((int) PaymentStates.E00TRISI205C).ToString()),
+			new ListItem("Triathlon - Sprint Relay", ((int) PaymentStates.E00TRISR206C).ToString()),
+            new ListItem("Triathlon - Olympic Individual", ((int) PaymentStates.E00TRIOI201C).ToString()),
+            new ListItem("Triathlon - Olympic Relay", ((int) PaymentStates.E00TRIOR202C).ToString()),
+			new ListItem("Triathlon - Middle distance Individual", ((int) PaymentStates.E00TRIMI203C).ToString()),
+			new ListItem("Triathlon - Middle distance Relay", ((int) PaymentStates.E00TRIMR204C).ToString()),
+            new ListItem("Aquathlon - Sprint Individual", ((int) PaymentStates.E00ASI211C).ToString()),
+            new ListItem("Aquathlon - Sprint Relay", ((int) PaymentStates.E00ASR212C).ToString()),
+            new ListItem("Aquathlon - Olympic Individual", ((int) PaymentStates.E00AOI207C).ToString()),
+            new ListItem("Aquathlon - Olympic Relay", ((int) PaymentStates.E00AOR208C).ToString()),
+            new ListItem("Aquathlon - Middle distance Individual", ((int) PaymentStates.E00AMI209C).ToString()),
+            new ListItem("Aquathlon - Middle distance Relay", ((int) PaymentStates.E00AMR210C).ToString()),
+        };
 		triFestEventType.Items.AddRange(eventTypes.ToArray());
 
-		var swimEventTypes = new List<ListItem>()
+        var swimEventTypes = new List<ListItem>()
 		{
 			new ListItem("Charity Swim - 1km", ((int) PaymentStates.E00S1KM301C).ToString()),
 			new ListItem("Charity Swim - 3km", ((int) PaymentStates.E00S3KM302C).ToString()),
@@ -110,11 +117,13 @@ public partial class masterpages_MstcClubEventEntry : System.Web.UI.MasterPage
 		
 		if (string.IsNullOrEmpty(tbTriFestBTFNumber.Text) == false)
 		{
-			currentmemdata[MemberProperty.BTFNumber] = tbTriFestBTFNumber.Text;
-			MemberHelper.Update(currentmemdata);
+			currentmemdata[MemberProperty.BTFNumber] = tbTriFestBTFNumber.Text;	
 		}
-	
-		RedirectToPaymentPages(currentmemdata, entryType.ToString());
+
+        currentmemdata[MemberProperty.RelayTeamName] = tbRelayTeamName.Text;
+        MemberHelper.Update(currentmemdata);
+
+        RedirectToPaymentPages(currentmemdata, entryType.ToString());
 	}
 
 	protected void CharitySwimEnter_OnClick(object sender, EventArgs e)

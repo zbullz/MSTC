@@ -53,8 +53,11 @@
 
                         </div>
                         <div id="trifestEntryForm" class="form-wrapper" runat="server" Visible="false">
-                            <p>Please complete the form below to register for the club triathlon festival.</p>
-                            <div class="member-options">
+                            <p>Please complete the form below to register for the club triathlon festival. <br />
+                                Individual events are priced at £25, relay events are £15. <br />
+                                For relays each team member must register separately.
+                            </p>
+                            <div class="member-options">                                
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><b>Event type*</b></label>
                                     <div class="col-sm-10">
@@ -64,9 +67,17 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label"><b>Please enter your BTF number for a £3 discount:</b></label>
+                                    <label class="col-sm-2 control-label"><b>BTF number:</b></label>
                                     <div class="col-sm-10">
                                         <asp:TextBox ID="tbTriFestBTFNumber" runat="server"></asp:TextBox>
+                                        <span id="helpBlock" class="help-block">Entering your BTF number gives a £5 discount as no race license is required</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><b>Relay team name:</b></label>
+                                    <div class="col-sm-10">
+                                        <asp:TextBox ID="tbRelayTeamName" runat="server"></asp:TextBox>
+                                        <span id="helpBlock" class="help-block">Agree this with your team mates and all enter the same name!</span>
                                     </div>
                                 </div>
 

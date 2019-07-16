@@ -15,8 +15,9 @@
 		public const string Postcode = "postcode";
 		public const string Gender = "gender";
 		public const string BTFNumber = "bTFNumber";
+        public const string RelayTeamName = "relayTeamName";
 
-		public const string medicalConditions = "medicalConditions";
+        public const string medicalConditions = "medicalConditions";
 		public const string emergencyContactName = "emergencyContactName";
 		public const string emergencyContactNumber = "emergencyContactNumber";
 	    public const string directDebitMandateId = "directDebitMandateId";

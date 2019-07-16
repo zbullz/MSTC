@@ -24,8 +24,10 @@ namespace Mstc.Core.Dto
 		public string DuathlonEntry { get; set; }
 		public string TriFestEntry { get; set; }
 		public string CharitySwimEntry { get; set; }
+        public string RelayTeamName { get; set; }
+        public string BtfNumber { get; set; }
 
-	    public bool IsGuest => MembershipType.HasValue && MembershipType.Value == Domain.MembershipType.Guest;
+        public bool IsGuest => MembershipType.HasValue && MembershipType.Value == Domain.MembershipType.Guest;
 
 	}
 }

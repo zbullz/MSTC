@@ -136,6 +136,13 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
             case PaymentStates.E00TRIMI203C:
             case PaymentStates.E00TRIMR204C:
             case PaymentStates.E00TRISI205C:
+            case PaymentStates.E00TRISR206C:
+            case PaymentStates.E00AOI207C:
+            case PaymentStates.E00AOR208C:
+            case PaymentStates.E00AMI209C:
+            case PaymentStates.E00AMR210C:
+            case PaymentStates.E00ASI211C:
+            case PaymentStates.E00ASR212C:
             {
                 EnterMemberInTriFest(currentmemdata, paymentState);
                 DisplayEventEnteredMessage(currentmemdata, paymentState);

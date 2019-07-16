@@ -74,16 +74,22 @@ namespace Mstc.Core.Providers
                     return 1000;
                 }
                 case PaymentStates.E00TRIOI201C:
-                case PaymentStates.E00TRIMI203C:
-                
+                case PaymentStates.E00TRIMI203C:                
                 case PaymentStates.E00TRISI205C:
-                {
-                    return hasBTFNumber ? 2000 : 2300;
+                case PaymentStates.E00AOI207C:
+                case PaymentStates.E00AMI209C:
+                case PaymentStates.E00ASI211C:
+                    {
+                    return hasBTFNumber ? 2000 : 2500;
                 }
                 case PaymentStates.E00TRIOR202C:
                 case PaymentStates.E00TRIMR204C:
-                {
-                    return hasBTFNumber ? 1000 : 1300;
+                case PaymentStates.E00TRISR206C:
+                case PaymentStates.E00AOR208C:
+                case PaymentStates.E00AMR210C:
+                case PaymentStates.E00ASR212C:
+                    {
+                    return hasBTFNumber ? 1000 : 1500;
                 }
                 case PaymentStates.E00S1KM301C:
                 case PaymentStates.E00S3KM302C:

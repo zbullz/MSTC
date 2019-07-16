@@ -86,12 +86,12 @@ namespace Mstc.Core.DataAccess
 		{
 			string query = BaseSelectQuery +
 			               string.Format(@" WHERE	(MemberList.nodeId IS NOT NULL)
-					        and MemberTypes.Alias in ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}')",
+					        and MemberTypes.Alias in ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}')",
 				               MemberProperty.Phone, MemberProperty.membershipType, MemberProperty.swimSubs1,
 				               MemberProperty.swimSubs2, MemberProperty.OpenWaterIndemnityAcceptance,
 				               MemberProperty.Volunteering, MemberProperty.MembershipExpiry, MemberProperty.SwimAuthNumber,
 				               MemberProperty.DuathlonEntry, MemberProperty.SwimCreditsBought, MemberProperty.SwimCreditsUsed,
-				               MemberProperty.TriFestEntry, MemberProperty.CharitySwimEntry, MemberProperty.SwimBalanceLastYear, MemberProperty.EnglandAthleticsMembership);
+				               MemberProperty.TriFestEntry, MemberProperty.CharitySwimEntry, MemberProperty.SwimBalanceLastYear, MemberProperty.EnglandAthleticsMembership, MemberProperty.RelayTeamName, MemberProperty.BTFNumber);
 
 			IEnumerable<MemberData> memberData;
 			using (IDbConnection connection = _dataConnection.SqlConnection)
@@ -193,7 +193,9 @@ namespace Mstc.Core.DataAccess
 					GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.OpenWaterIndemnityAcceptance)),
 				Volunteering = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.Volunteering)),
 				TriFestEntry = GetPropertyValueForAlias(groupedMemberData, MemberProperty.TriFestEntry),
-				CharitySwimEntry = GetPropertyValueForAlias(groupedMemberData, MemberProperty.CharitySwimEntry)
+                RelayTeamName = GetPropertyValueForAlias(groupedMemberData, MemberProperty.RelayTeamName),
+                BtfNumber = GetPropertyValueForAlias(groupedMemberData, MemberProperty.BTFNumber),
+                CharitySwimEntry = GetPropertyValueForAlias(groupedMemberData, MemberProperty.CharitySwimEntry)
 			};
 
 			int balanceLastYear = 0;
