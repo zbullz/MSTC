@@ -7,12 +7,15 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Mstc.Core.Domain;
 using umbraco.providers.members;
+using System.Globalization;
 
 public partial class usercontrols_cFront_RegistrationDetails : System.Web.UI.UserControl
 {
 	protected void Page_Load(object sender, EventArgs e)
     {
-	    if (Page.IsPostBack == false)
+        RangeDateOfBirth.MaximumValue = DateTime.Now.AddYears(-16).ToShortDateString();
+
+        if (Page.IsPostBack == false)
 	    {
 		    BindControls();
 	    }
@@ -36,7 +39,13 @@ public partial class usercontrols_cFront_RegistrationDetails : System.Web.UI.Use
 		args.IsValid = string.IsNullOrWhiteSpace(userName);
 	}
 
-	public RegistrationDetails GetRegistrationDetails()
+    public void dateOfBirthValidator_OnValidate(object source, ServerValidateEventArgs args)
+    {
+        DateTime dt;
+        args.IsValid = DateTime.TryParseExact(args.Value, "dd/MM/yyyy", new CultureInfo("en-GB"), DateTimeStyles.None, out dt);     
+    }    
+
+    public RegistrationDetails GetRegistrationDetails()
 	{
 		return new RegistrationDetails()
 		{

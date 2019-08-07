@@ -56,6 +56,10 @@
                  <asp:TextBox ID="tbdateOfBirth" runat="server" CssClass="form-control"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredDateOfBirth" runat="server" ErrorMessage="Please select your date of birth" 
                     ControlToValidate="tbdateOfBirth" CssClass="help-block alert-danger"></asp:RequiredFieldValidator>
+                <asp:RangeValidator ID="RangeDateOfBirth" runat="server" ControlToValidate="tbdateOfBirth" Type="Date" MinimumValue="01/01/1900"
+                    ErrorMessage="You must be at least 16 years old at the time of registration" CssClass="help-block alert-danger"></asp:RangeValidator>
+                <asp:CustomValidator ID="CustomDateOfBirth" runat="server" ControlToValidate="tbdateOfBirth" CssClass="help-block alert-danger"
+                    ErrorMessage="Your date of birth must be in the format dd/mm/yyyy" OnServerValidate="dateOfBirthValidator_OnValidate"></asp:CustomValidator>
             </div>            
         </div>
         <div class="form-group">
