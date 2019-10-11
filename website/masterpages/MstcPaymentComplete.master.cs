@@ -261,8 +261,8 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 		}
 		if (paymentState == PaymentStates.SS05992)
 		{
-            var octToDec = new List<int>() { 10,11,12};
-            int year1 = octToDec.Any(m => m == DateTime.Now.Month) ? DateTime.Now.Year : DateTime.Now.Year - 1;
+            var janToMarch = new List<int>() { 1,2,3};            
+            int year1 = janToMarch.Any(m => m == DateTime.Now.Month) ? DateTime.Now.Year - 1: DateTime.Now.Year;
             currentmemdata[MemberProperty.swimSubs2] = string.Format("Swim Subs Oct {0} - Mar {1}", year1, year1 + 1);
 		}
 
