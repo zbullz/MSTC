@@ -44,7 +44,7 @@
 
     <div class="section">
         <div class="container">
-            <h2>About the Club</h2>
+            <h2>Our Club</h2>
             <div class="row">
                 <div class="col-xs-12">
                     <umbraco:Item ID="Item1" runat="server" Field="bodyText" />
