@@ -16,10 +16,10 @@
                 <!-- Sliders -->
                 <% if (EventEntryEnabled)
                     { %>
-                    <li class="@cssClass">
+                    <li class="bg4">
                         <div class="transbox">
                             <h2 class="title"><a href="https://midsussextriathlon.com/" target="_blank">Enter the Mid Sussex Triathlon</a></h2>
-                            <h3 class="subtitle">Entries for the 2018 mid sussex triathlon are now open!</h3>
+                            <h3 class="subtitle">Entries for the Mid Sussex Triathlon are now open!</h3>
                         </div>
                     </li>
                 <% } %>
