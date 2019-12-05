@@ -2069,19 +2069,19 @@ ul.footer-navigate-section {
   transition-property: background;
   background-position: -50px 0;
 }
-#sequence > .sequence-canvas > li.bg1 {
+#sequence > .sequence-canvas > li.bg-pool {
+  background-image: url(/images/mstc/homepage-slider/bg-pool1.jpg);
+}
+#sequence > .sequence-canvas > li.bg-ardingly {
   background-image: url(/images/mstc/homepage-slider/bg-531Swim.jpg);
 }
-#sequence > .sequence-canvas > li.bg2 {
-  background-image: url(/images/mstc/homepage-slider/bg-trihub2.jpg);
+#sequence > .sequence-canvas > li.bg-bikes {
+  background-image: url(/images/mstc/homepage-slider/bg-biketraining.jpg);
 }
-#sequence > .sequence-canvas > li.bg3 {
-  background-image: url(/images/mstc/homepage-slider/slider-bg3.jpg);
+#sequence > .sequence-canvas > li.bg-ardingly2 {
+  background-image: url(/images/mstc/homepage-slider/bg-swim1.jpg);
 }
-#sequence > .sequence-canvas > li.bg4 {
-  background-image: url(/images/mstc/homepage-slider/bg-swim1.png);
-}
-#sequence > .sequence-canvas > li.bg5 {
+#sequence > .sequence-canvas > li.bg-transition {
   background-image: url(/images/mstc/homepage-slider/triathlon-biketransition.jpg);
 }
 #sequence > .sequence-canvas > li img {

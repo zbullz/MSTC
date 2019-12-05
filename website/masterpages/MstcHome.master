@@ -16,16 +16,16 @@
                 <!-- Sliders -->
                 <% if (EventEntryEnabled)
                     { %>
-                    <li class="bg4">
+                    <li class="bg-pool">
                         <div class="transbox">
                             <h2 class="title"><a href="https://midsussextriathlon.com/" target="_blank">Enter the Mid Sussex Triathlon</a></h2>
                             <h3 class="subtitle">Entries for the Mid Sussex Triathlon are now open!</h3>
                         </div>
                     </li>
                 <% } %>
-                <umbraco:Macro ID="slider2Macro" runat="server" Language="cshtml">@RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink2", "bg5", "Sign up to the club", "If you want to get more involved with trialthon why not become a member of the club?") 
+                <umbraco:Macro ID="slider2Macro" runat="server" Language="cshtml">@RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink2", "bg-ardingly", "Sign up to the club", "If you want to get more involved with trialthon why not become a member of the club?") 
                 </umbraco:Macro>
-                <umbraco:Macro ID="slider1Macro" runat="server" Language="cshtml">@RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink3", "bg1", "Try our training sessions", "Come down to our weekly group training session on Thursday and have a go!") 
+                <umbraco:Macro ID="slider1Macro" runat="server" Language="cshtml">@RenderPage("~/macroscripts/HomeSlider.cshtml", "sliderPageLink3", "bg-bikes", "Try our training sessions", "Come down to our weekly group training session on Thursday and have a go!") 
                 </umbraco:Macro>
                 <!-- End Sliders -->
             </ul>
