@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Net;
 using GoCardless;
 using GoCardless.Exceptions;
 using GoCardless.Services;
@@ -15,7 +16,8 @@ namespace Mstc.Core.Providers
 
         public GoCardlessProvider()
 		{
-		    var environment = ConfigurationManager.AppSettings["gocardlessEnvironment"] == "Production"
+			System.Net.ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
+			var environment = ConfigurationManager.AppSettings["gocardlessEnvironment"] == "Production"
 		        ? GoCardlessClient.Environment.LIVE
 		        : GoCardlessClient.Environment.SANDBOX;
 
