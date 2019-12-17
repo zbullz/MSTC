@@ -34,6 +34,7 @@
                         <asp:ListItem Text="Sponsorship" Value="Sponsorship"></asp:ListItem>
                         <asp:ListItem Text="Juniors" Value="Juniors"></asp:ListItem>
                         <asp:ListItem Text="Website" Value="Website"></asp:ListItem>
+                        <asp:ListItem Text="Coaching" Value="Coaching"></asp:ListItem>
                     </asp:DropDownList>
                    
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="topicSelect" CssClass="help-block alert-danger"

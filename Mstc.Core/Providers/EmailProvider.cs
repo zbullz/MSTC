@@ -17,6 +17,7 @@ namespace Mstc.Core.Providers
         public const string SponsorsEmail = "sponsorship@midsussextriclub.com";
 		public const string JuniorsEmail = "juniors@midsussextriclub.com";
 		public const string SupportEmail = "support@midsussextriclub.com";
+		public const string CoachingEmail = "coaching@midsussextriclub.com";
 
 
 		public Dictionary<string, string> EmailLookup = new Dictionary<string, string>()
@@ -26,6 +27,7 @@ namespace Mstc.Core.Providers
             {"Sponsorship", SponsorsEmail},
 			{"Juniors", JuniorsEmail},
 			{"Website", SupportEmail},
+			{"Coaching", CoachingEmail},
 		};
 
 		public void SendEmail(string toAddress, string fromAddress, string subject, string htmlContent)
