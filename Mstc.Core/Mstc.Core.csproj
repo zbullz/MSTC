@@ -105,6 +105,7 @@
     <Compile Include="Providers\MembershipCostCalculator.cs" />
     <Compile Include="Providers\PasswordObfuscator.cs" />
     <Compile Include="Providers\SessionProvider.cs" />
+    <Compile Include="WebMethods\MemberAdmin.cs" />
     <Compile Include="WebMethods\SwimAdmin.cs" />
     <Compile Include="WebServices\tagService.asmx.cs">
       <SubType>Component</SubType>

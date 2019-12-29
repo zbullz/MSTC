@@ -98,7 +98,7 @@ namespace Mstc.Core.DataAccess
 			{
 				memberData = connection.Query<MemberData>(query, null);
 			}
-			IEnumerable<MemberOptionsDto> memberOptions = memberData.GroupBy(m => m.Email).Select(g => MapMemberDataToOptions(g));
+			IEnumerable<MemberOptionsDto> memberOptions = memberData.Where(m => string.IsNullOrEmpty(m.Email) == false).GroupBy(m => m.Email).Select(g => MapMemberDataToOptions(g));
 			return memberOptions;
 		}
 
