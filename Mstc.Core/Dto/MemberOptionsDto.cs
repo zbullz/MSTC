@@ -10,6 +10,7 @@ namespace Mstc.Core.Dto
 		public string Email { get; set; }
 		public string Phone { get; set; }
 		public MembershipType? MembershipType { get; set; }
+		public string MembershipTypeString => MembershipType?.ToString();
 		public string SwimSubs1 { get; set; }
 		public string SwimSubs2 { get; set; }
         public bool EnglandAthleticsMembership { get; set; }
