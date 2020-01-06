@@ -21,7 +21,7 @@
 
     <!-- Main content -->
     <div class="section">
-        <div class="container-fluid">
+        <div class="container-member-table">
             <div class="row">
                 <div class="col-sm-12">
                     <umbraco:Item ID="bodyText" runat="server" Field="bodyText" />
@@ -33,6 +33,12 @@
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Gender</th>
+                        <th>Date of Birth</th>
+                        <th>Address 1</th>
+                        <th>Address 2</th>
+                        <th>Address 3</th>
+                        <th>Postcode</th>
                         <th>Membership Type</th>
                         <th>Membership Expiry Date</th>
                         <th>England Athletics Member?</th>
@@ -53,6 +59,12 @@
                 <tbody></tbody> 
                 <tfoot>
                     <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -110,7 +122,21 @@
                 columns: [
                     //{ data: 'EntryDate' },
                     { data: 'Name' },
-                    { data: 'Email' },      
+                    { data: 'Email' },    
+                    { data: 'Gender' },    
+                    {
+                        data: 'DateOfBirth',
+                        render: function (data, type, row) {
+                            if (type === "sort" || type === "type") {
+                                return data;
+                            }
+                            return moment(data).format("DD MMM YYYY");
+                        }
+                    },    
+                    { data: 'Address1', visible: false },    
+                    { data: 'Address2', visible: false },    
+                    { data: 'Address3', visible: false },    
+                    { data: 'Postcode', visible: false },    
                     {
                         name: 'MembershipTypeString',
                         data: 'MembershipTypeString'
@@ -126,18 +152,20 @@
                     },      
                     {
                         name: 'EnglandAthleticsMembership',
-                        data: 'EnglandAthleticsMembership',                     
+                        data: 'EnglandAthleticsMembership',
+                        visible: false
                     },      
                     { data: 'SwimSubs1' },      
                     { data: 'SwimSubs2' },      
                     { data: 'DuathlonEntry' },      
                     { data: 'TriFestEntry' },      
-                    { data: 'RelayTeamName' },      
+                    { data: 'RelayTeamName', visible: false },      
                     { data: 'BtfNumber' },      
                     { data: 'CharitySwimEntry' },      
                     {
                         name: 'OpenWaterIndemnityAcceptance',
-                        data: 'OpenWaterIndemnityAcceptance'
+                        data: 'OpenWaterIndemnityAcceptance',
+                        visible: false
                     },      
                     { data: 'SwimAuthNumber' },  
                     { data: 'SwimBalanceLastYear' },  

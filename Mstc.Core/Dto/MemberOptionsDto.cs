@@ -27,8 +27,15 @@ namespace Mstc.Core.Dto
 		public string CharitySwimEntry { get; set; }
         public string RelayTeamName { get; set; }
         public string BtfNumber { get; set; }
+		public string Gender { get; set; }
+		public DateTime? DateOfBirth { get; set; }
+		public string Address1 { get; set; }
+		public string Address2 { get; set; }
+		public string Address3 { get; set; }
+		public string Postcode { get; set; }
 
-        public bool IsGuest => MembershipType.HasValue && MembershipType.Value == Domain.MembershipType.Guest;
+
+		public bool IsGuest => MembershipType.HasValue && MembershipType.Value == Domain.MembershipType.Guest;
 
 	}
 }
