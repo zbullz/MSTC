@@ -13,7 +13,7 @@ namespace Mstc.Core.Providers
 		{
 			{MembershipType.Individual, 4000},
 			{MembershipType.Couple,3500},
-			{MembershipType.Concession, 3000},
+			{MembershipType.Concession, 2000},
 		};
 
 		public static List<int> DiscountedMonths
