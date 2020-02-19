@@ -10,8 +10,10 @@ namespace Mstc.Core.Domain
 		[Description("Swim Credits GBP44")] S001599C = 44,
         [Description("Swim Credits GBP24")] S002499C = 24,
 
-        [Description("Duathlon")] E00D101C = 101,
-	
+        [Description("Duathlon - Short Individual")] E00D101C = 101,
+        [Description("Duathlon - Standard Individual")] E00D102C = 102,
+        [Description("Duathlon - Relay")] E00D103C = 103,
+
 		[Description("Triathlon - Olympic Individual")] E00TRIOI201C = 201,
 		[Description("Triathlon - Olympic Relay")] E00TRIOR202C = 202,
 		[Description("Triathlon - Middle Individual")] E00TRIMI203C = 203,

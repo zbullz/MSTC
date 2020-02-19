@@ -70,9 +70,14 @@ namespace Mstc.Core.Providers
                     return SwimCreditsCost(state);
                     }
                 case PaymentStates.E00D101C:
-                {
-                    return 1000;
+                case PaymentStates.E00D102C:
+                    {
+                    return 1500;
                 }
+                case PaymentStates.E00D103C:
+                    {
+                        return 1000;
+                    }
                 case PaymentStates.E00TRIOI201C:
                 case PaymentStates.E00TRIMI203C:                
                 case PaymentStates.E00TRISI205C:

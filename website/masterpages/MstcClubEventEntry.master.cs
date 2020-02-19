@@ -57,18 +57,26 @@ public partial class masterpages_MstcClubEventEntry : System.Web.UI.MasterPage
 			new ListItem("Triathlon - Sprint Relay", ((int) PaymentStates.E00TRISR206C).ToString()),
             new ListItem("Triathlon - Olympic Individual", ((int) PaymentStates.E00TRIOI201C).ToString()),
             new ListItem("Triathlon - Olympic Relay", ((int) PaymentStates.E00TRIOR202C).ToString()),
-			new ListItem("Triathlon - Middle distance Individual", ((int) PaymentStates.E00TRIMI203C).ToString()),
-			new ListItem("Triathlon - Middle distance Relay", ((int) PaymentStates.E00TRIMR204C).ToString()),
+			//new ListItem("Triathlon - Middle distance Individual", ((int) PaymentStates.E00TRIMI203C).ToString()),
+			//new ListItem("Triathlon - Middle distance Relay", ((int) PaymentStates.E00TRIMR204C).ToString()),
             new ListItem("Aquathlon - Sprint Individual", ((int) PaymentStates.E00ASI211C).ToString()),
             new ListItem("Aquathlon - Sprint Relay", ((int) PaymentStates.E00ASR212C).ToString()),
             new ListItem("Aquathlon - Olympic Individual", ((int) PaymentStates.E00AOI207C).ToString()),
             new ListItem("Aquathlon - Olympic Relay", ((int) PaymentStates.E00AOR208C).ToString()),
-            new ListItem("Aquathlon - Middle distance Individual", ((int) PaymentStates.E00AMI209C).ToString()),
-            new ListItem("Aquathlon - Middle distance Relay", ((int) PaymentStates.E00AMR210C).ToString()),
+            //new ListItem("Aquathlon - Middle distance Individual", ((int) PaymentStates.E00AMI209C).ToString()),
+            //new ListItem("Aquathlon - Middle distance Relay", ((int) PaymentStates.E00AMR210C).ToString()),
         };
 		triFestEventType.Items.AddRange(eventTypes.ToArray());
 
-        var swimEventTypes = new List<ListItem>()
+		var duathlonEventTypes = new List<ListItem>()
+		{
+			new ListItem("Duathlon - Short Individual", ((int) PaymentStates.E00D101C).ToString()),
+			new ListItem("Duathlon - Standard Individual", ((int) PaymentStates.E00D102C).ToString()),
+			new ListItem("Duathlon - Relay", ((int) PaymentStates.E00D103C).ToString()),			
+		};
+		duathlonEventType.Items.AddRange(duathlonEventTypes.ToArray());
+
+		var swimEventTypes = new List<ListItem>()
 		{
 			new ListItem("Charity Swim - 1km", ((int) PaymentStates.E00S1KM301C).ToString()),
 			new ListItem("Charity Swim - 3km", ((int) PaymentStates.E00S3KM302C).ToString()),
@@ -95,7 +103,9 @@ public partial class masterpages_MstcClubEventEntry : System.Web.UI.MasterPage
 		}
 
 		SessionProvider.CanProcessPaymentCompletion = true;
-		RedirectToPaymentPages(currentmemdata, PaymentStates.E00D101C.ToString()); 
+		PaymentStates entryType = (PaymentStates)Enum.Parse(typeof(PaymentStates), duathlonEventType.SelectedValue);
+
+		RedirectToPaymentPages(currentmemdata, entryType.ToString()); 
 	}
 
 	protected void TriFestEnter_OnClick(object sender, EventArgs e)
@@ -115,10 +125,11 @@ public partial class masterpages_MstcClubEventEntry : System.Web.UI.MasterPage
 
 		PaymentStates entryType = (PaymentStates)Enum.Parse(typeof(PaymentStates), triFestEventType.SelectedValue);
 		
+		/*
 		if (string.IsNullOrEmpty(tbTriFestBTFNumber.Text) == false)
 		{
 			currentmemdata[MemberProperty.BTFNumber] = tbTriFestBTFNumber.Text;	
-		}
+		}*/
 
         currentmemdata[MemberProperty.RelayTeamName] = tbRelayTeamName.Text;
         MemberHelper.Update(currentmemdata);
