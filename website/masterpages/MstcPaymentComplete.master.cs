@@ -61,7 +61,8 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 
         MembershipType membershipType;
         Enum.TryParse(currentmemdata[MemberProperty.membershipType] as string, out membershipType);
-        bool hasBTFNumber = string.IsNullOrWhiteSpace(currentmemdata[MemberProperty.BTFNumber] as string) == false;        
+        //bool hasBTFNumber = string.IsNullOrWhiteSpace(currentmemdata[MemberProperty.BTFNumber] as string) == false;    
+        bool hasBTFNumber = true; //Hardcode this as BTF registration is no longer required
         int costInPence = (paymentState == PaymentStates.MemberRenewal || paymentState == PaymentStates.MemberUpgrade) 
             ? MembershipCostCalculator.Calculate(_sessionProvider.RenewalOptions, DateTime.Now) 
             : MembershipCostCalculator.PaymentStateCost(paymentState, hasBTFNumber, membershipType);
@@ -126,8 +127,10 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
                 break;
             }
             case PaymentStates.E00D101C:
-            {
-                EnterMemberInDuathlon(currentmemdata);
+            case PaymentStates.E00D102C:
+            case PaymentStates.E00D103C:
+                {
+                EnterMemberInDuathlon(currentmemdata, paymentState);
                 DisplayEventEnteredMessage(currentmemdata, paymentState);
                 break;
             }
@@ -235,9 +238,9 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 		MemberHelper.Update(currentmemdata);
 	}
 
-	private void EnterMemberInDuathlon(IDictionary<String, object> currentmemdata)
+	private void EnterMemberInDuathlon(IDictionary<String, object> currentmemdata, PaymentStates paymentState)
 	{	
-		currentmemdata[MemberProperty.DuathlonEntry] = string.Format("Duathlon - {0}", DateTime.Now.Year);
+		currentmemdata[MemberProperty.DuathlonEntry] = string.Format("{0} - {1}", paymentState.GetAttributeOfType<DescriptionAttribute>().Description, DateTime.Now.Year);
         MemberHelper.Update(currentmemdata);
 	}
 

@@ -29,8 +29,20 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div id="duathlonEntryForm" class="form-wrapper" runat="server" Visible="false">
-                            <p>Please complete the form below to register for the club duathlon.</p>
+                            <p>Please complete the form below to register for the club duathlon.<br />
+                                Individual events are priced at £15, relay events are £10. <br />
+                                For relays each team member must register separately.
+                            </p>
                             <div class="member-options">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><b>Event type*</b></label>
+                                    <div class="col-sm-10">
+                                        <asp:RadioButtonList ID="duathlonEventType" runat="server" RepeatLayout="Flow" CssClass="radio"></asp:RadioButtonList>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please select your event type" 
+                                            ControlToValidate="duathlonEventType" CssClass="help-block alert-danger" ValidationGroup="1"></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><b>Waiver agreement*</b></label>
                                     <div class="col-sm-10">
@@ -54,7 +66,7 @@
                         </div>
                         <div id="trifestEntryForm" class="form-wrapper" runat="server" Visible="false">
                             <p>Please complete the form below to register for the club triathlon festival. <br />
-                                Individual events are priced at £25, relay events are £15. <br />
+                                Individual events are priced at £20, relay events are £10. <br />
                                 For relays each team member must register separately.
                             </p>
                             <div class="member-options">                                
@@ -66,6 +78,7 @@
                                             ControlToValidate="triFestEventType" CssClass="help-block alert-danger" ValidationGroup="2"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
+                                <!--
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><b>BTF number:</b></label>
                                     <div class="col-sm-10">
@@ -73,6 +86,7 @@
                                         <span id="helpBlock" class="help-block">Entering your BTF number gives a £5 discount as no race license is required</span>
                                     </div>
                                 </div>
+                                -->
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><b>Relay team name:</b></label>
                                     <div class="col-sm-10">
