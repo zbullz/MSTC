@@ -69,7 +69,7 @@ namespace Mstc.Tests
             },
                 new DateTime(DateTime.Now.Year, 9, 1));
 
-            private It is_11500_Pence = () => cost.ShouldEqual(11500);
+            private It is_11600_Pence = () => cost.ShouldEqual(11600);
 
             private static decimal cost;
         }

@@ -25,7 +25,7 @@ namespace Mstc.Core.Providers
         {
             return type == MembershipType.Concession ? 1500 : 3000;
         }
-	    public static int EnglandAthleticsCostInPence = 1500;
+	    public static int EnglandAthleticsCostInPence = 1600;
 	    public static int OwsTasterCost = 600;
 
 		public static int GetTypeCostPence(MembershipType type, DateTime currentDate)
