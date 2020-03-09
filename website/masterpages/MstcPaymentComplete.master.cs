@@ -153,11 +153,6 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
             }
             case PaymentStates.E00S1KM301C:
             case PaymentStates.E00S3KM302C:
-            case PaymentStates.E00S5KM303C:
-            case PaymentStates.E00S1KM3KM304C:
-            case PaymentStates.E00S1KM5KM305C:
-            case PaymentStates.E00S3KM5KM306C:
-            case PaymentStates.E00S1KM3KM5KM307C:
             {
                 EnterMemberInCharitySwim(currentmemdata, paymentState);
                 DisplayEventEnteredMessage(currentmemdata, paymentState);

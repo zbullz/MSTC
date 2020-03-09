@@ -28,12 +28,7 @@ namespace Mstc.Core.Domain
         [Description("Aquathlon - Sprint Relay")] E00ASR212C = 212,
 
         [Description("Charity Swim - 1km")] E00S1KM301C = 301,
-		[Description("Charity Swim - 3km")] E00S3KM302C = 302,
-		[Description("Charity Swim - 5km")] E00S5KM303C = 303,
-		[Description("Charity Swim - 1km, 3km")] E00S1KM3KM304C = 304,
-		[Description("Charity Swim - 1km, 5km")] E00S1KM5KM305C = 305,
-		[Description("Charity Swim - 3km, 5km")] E00S3KM5KM306C = 306,
-		[Description("Charity Swim - 1km, 3km, 5km")] E00S1KM3KM5KM307C = 307,
+		[Description("Charity Swim - Over 1km")] E00S3KM302C = 302,
 
 		[Description("Swim subs Apr to Sept")] SS05991 = 401,
 		[Description("Swim subs Oct to Mar")] SS05992 = 402,

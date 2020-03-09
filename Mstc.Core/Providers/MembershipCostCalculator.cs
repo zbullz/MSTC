@@ -97,12 +97,10 @@ namespace Mstc.Core.Providers
                     return hasBTFNumber ? 1000 : 1500;
                 }
                 case PaymentStates.E00S1KM301C:
+                    {
+                        return 1000;
+                    }
                 case PaymentStates.E00S3KM302C:
-                case PaymentStates.E00S5KM303C:
-                case PaymentStates.E00S1KM3KM304C:
-                case PaymentStates.E00S1KM5KM305C:
-                case PaymentStates.E00S3KM5KM306C:
-                case PaymentStates.E00S1KM3KM5KM307C:
                     {
                         return 2000;
                     }

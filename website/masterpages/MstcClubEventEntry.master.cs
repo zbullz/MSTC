@@ -79,12 +79,7 @@ public partial class masterpages_MstcClubEventEntry : System.Web.UI.MasterPage
 		var swimEventTypes = new List<ListItem>()
 		{
 			new ListItem("Charity Swim - 1km", ((int) PaymentStates.E00S1KM301C).ToString()),
-			new ListItem("Charity Swim - 3km", ((int) PaymentStates.E00S3KM302C).ToString()),
-			new ListItem("Charity Swim - 5km", ((int) PaymentStates.E00S5KM303C).ToString()),
-			new ListItem("Charity Swim - 1km and 3km", ((int) PaymentStates.E00S1KM3KM304C).ToString()),
-			new ListItem("Charity Swim - 1km and 5km", ((int) PaymentStates.E00S1KM5KM305C).ToString()),
-			new ListItem("Charity Swim - 3km and 5km", ((int) PaymentStates.E00S3KM5KM306C).ToString()),
-			new ListItem("Charity Swim - 1km, 3km and 5km", ((int) PaymentStates.E00S1KM3KM5KM307C).ToString())
+			new ListItem("Charity Swim - Over 1km", ((int) PaymentStates.E00S3KM302C).ToString())		
 		};
 		charitySwimEventType.Items.AddRange(swimEventTypes.ToArray());
 	}
