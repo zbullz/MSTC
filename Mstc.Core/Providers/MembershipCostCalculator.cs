@@ -30,7 +30,10 @@ namespace Mstc.Core.Providers
 
 		public static int GetTypeCostPence(MembershipType type, DateTime currentDate)
 		{
-			return DiscountedMonths.Contains(currentDate.Month) ? TypeCosts[type]/2 : TypeCosts[type];
+			return DiscountedMonths.Contains(currentDate.Month)  
+                || currentDate.Year == 2020 //COVID-19 change 
+                ? TypeCosts[type]/2 
+                : TypeCosts[type];
 		}
 
 		public static int Calculate(MembershipOptions membershipOptions, DateTime currentDate)
