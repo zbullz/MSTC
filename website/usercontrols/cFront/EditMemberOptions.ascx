@@ -88,22 +88,22 @@
             </div>
             <div class="form-group <%=ShowBuy1SwimCredit ? "" : "hide"%>">
                 <div>
-                    <asp:Button ID="btn_1SwimCredits" runat="server" Text="Buy £4 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_1SwimCreditsClick" />
+                    <asp:Button ID="btn_1SwimCredits" runat="server" Text="Buy £6 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_1SwimCreditsClick" />
                 </div>
             </div>
             <div class="form-group <%=IsGuest ? "hide" : ""%>">
                 <div>
-                    <asp:Button ID="btn_5SwimCredits" runat="server" Text="Buy £16 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_5SwimCreditsClick" />
+                    <asp:Button ID="btn_5SwimCredits" runat="server" Text="Buy £18 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_5SwimCreditsClick" />
                 </div>
             </div>
             <div class="form-group <%=IsGuest ? "hide" : ""%>">
                 <div>
-                    <asp:Button ID="btn_10SwimCredits" runat="server" Text="Buy £32 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_10SwimCreditsClick" />
+                    <asp:Button ID="btn_10SwimCredits" runat="server" Text="Buy £30 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_10SwimCreditsClick" />
                 </div>
             </div>
             <div class="form-group <%=IsGuest ? "hide" : ""%>">
                 <div >
-                    <asp:Button ID="btn_15SwimCredits" runat="server" Text="Buy £44 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_15SwimCreditsClick" />
+                    <asp:Button ID="btn_15SwimCredits" runat="server" Text="Buy £42 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_15SwimCreditsClick" />
                 </div>
             </div>
         </div>
