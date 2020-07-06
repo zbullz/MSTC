@@ -71,6 +71,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 			{
 				EnableMemberRenewal = false;
 			}
+			EnableMemberRenewal = false; //COVID-19 change
 
 			bool isGuest = memberType == MembershipType.Guest;
 		    IsGuest = isGuest;
