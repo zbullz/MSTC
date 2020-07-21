@@ -69,16 +69,21 @@
         <p class="form-control-static"><a href="/members-area/members-admin-details.aspx">Members Admin Details</a></p>
     </div>
 
+    <div class="form-group <%=ShowSwimAdminLink ? "" : "hide"%>">
+        <label class="control-label"><b>Swim admin page</b></label>
+        <p class="form-control-static"><a href="/members-area/swim-admin.aspx">Swim Admin</a></p>
+    </div>
+
     <div class="form-group <%=ShowIceLink ? "" : "hide"%>">
         <label class="control-label"><b>In case of Emergency page</b></label>
         <p class="form-control-static"><a href="/members-area/members-ice-details.aspx">Members ICE Details</a></p>
     </div>
 </div>
 
-<div id="open-water-section">
+<div id="open-water-section" class="<%=EnableOpenWater ? "" : "hide"%>">
     <h2>Open Water Swim</h2>
     <div class="contact-form-wrapper col-sm-12">
-        <div class="<%=EnableOpenWater && !IsGuest ? "" : "hide"%>">
+        <div class="<%=OwsIndemnityAccepted ? "" : "hide"%>">
             <div class="form-group">
                 <label class="control-label"><b>O/W swim auth number</b></label>
                     <p class="form-control-static">
@@ -107,7 +112,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group <%=!EnableOpenWater && !IsGuest && EnableMemberRenewal == false ? "" : "hide"%>">
+        <div class="form-group <%=!OwsIndemnityAccepted ? "" : "hide"%>">
             <p>If you would like to take part in open water swimming please read the waiver and indicate your acceptance.</p>
             <p><a href="http://midsussextriclub.com/media/47452/MSTCIndemnityWaiver.pdf" target="_blank">Open water swim indemnity waiver</a></p>
             <asp:Button ID="Button1" runat="server" Text="Accept Open Water Indemnity Waiver" CssClass="btn btn-yellow pull-left" OnClick="btn_openWaterWaiverClick" />
@@ -117,13 +122,7 @@
             <p class="form-control-static">
                     £<asp:Literal ID="litSwimCredits" runat="server"></asp:Literal>
                     <asp:HiddenField ID="hiddenEmail" runat="server" />
-            </p>
-            
-        </div>
-        <div class="form-group <%=ShowSwimAdminLink ? "" : "hide"%>">
-            <label class="control-label"><b>Swim admin page</b></label>
-            <p class="form-control-static"><a href="/members-area/swim-admin.aspx">Swim Admin</a></p>
-      
+            </p>            
         </div>
     </div>
 </div>

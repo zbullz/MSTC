@@ -16,6 +16,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
     public bool IsGuest { get; set; }
 	public bool EnableMemberRenewal { get; set; }
 	public bool EnableOpenWater { get; set; }
+	public bool OwsIndemnityAccepted { get; set; }
 	public bool ShowMemberAdminLink { get; set; }
 	public bool ShowSwimAdminLink { get; set; }
 	public bool ShowBuySwimSubs1 { get; set; }
@@ -95,7 +96,8 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 
 			bool openWaterEnabled = bool.Parse(ConfigurationManager.AppSettings["openWaterEnabled"]);
 
-			EnableOpenWater = GetMemberBool(memberData, MemberProperty.OpenWaterIndemnityAcceptance) && openWaterEnabled;
+			EnableOpenWater = openWaterEnabled && !hasExpired && !IsGuest;
+			OwsIndemnityAccepted = GetMemberBool(memberData, MemberProperty.OpenWaterIndemnityAcceptance);
 			object swimAuthObj = memberData[MemberProperty.SwimAuthNumber];
 			if (swimAuthObj != null && string.IsNullOrEmpty(swimAuthObj.ToString()) == false)
 			{
