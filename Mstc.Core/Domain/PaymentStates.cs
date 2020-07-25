@@ -4,8 +4,9 @@ namespace Mstc.Core.Domain
 {
 	public enum PaymentStates
 	{
+		[Description("Swim Credits GBP2")] S00299C = 2,
 		[Description("Swim Credits GBP6")] S00199C = 6,
-		[Description("Swim Credits GBP18")] S00599C = 18,
+        [Description("Swim Credits GBP18")] S00599C = 18,
         [Description("Swim Credits GBP32")] S001099C = 30,
 		[Description("Swim Credits GBP44")] S001599C = 42,
         [Description("Swim Credits GBP24")] S002499C = 24,

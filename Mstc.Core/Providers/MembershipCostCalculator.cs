@@ -65,6 +65,7 @@ namespace Mstc.Core.Providers
             switch (state)
             {
                 case PaymentStates.S00199C:
+                case PaymentStates.S00299C:
                 case PaymentStates.S00599C:
                 case PaymentStates.S001099C:
                 case PaymentStates.S001599C:
@@ -88,7 +89,7 @@ namespace Mstc.Core.Providers
                 case PaymentStates.E00AMI209C:
                 case PaymentStates.E00ASI211C:
                     {
-                    return hasBTFNumber ? 2000 : 2500;
+                    return hasBTFNumber ? 2000 : 2400;
                 }
                 case PaymentStates.E00TRIOR202C:
                 case PaymentStates.E00TRIMR204C:
@@ -97,7 +98,7 @@ namespace Mstc.Core.Providers
                 case PaymentStates.E00AMR210C:
                 case PaymentStates.E00ASR212C:
                     {
-                    return hasBTFNumber ? 1000 : 1500;
+                    return hasBTFNumber ? 1000 : 1400;
                 }
                 case PaymentStates.E00S1KM301C:
                     {

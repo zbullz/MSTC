@@ -93,7 +93,7 @@
             </div>
             <div class="form-group <%=ShowBuy1SwimCredit ? "" : "hide"%>">
                 <div>
-                    <asp:Button ID="btn_1SwimCredits" runat="server" Text="Buy £6 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_1SwimCreditsClick" />
+                    <asp:Button ID="btn_1SwimCredits" runat="server" Text="Buy £2 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_1SwimCreditsClick" />
                 </div>
             </div>
             <div class="form-group <%=IsGuest ? "hide" : ""%>">

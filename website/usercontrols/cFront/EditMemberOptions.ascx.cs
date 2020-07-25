@@ -90,7 +90,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
             BuySwimSubs1.Text = string.Format("Buy {0} @ £{1:N2}", membershipProvider.GetSwimSub1Description(DateTime.Now), swimSubsCost );
             BuySwimSubs2.Text = string.Format("Buy {0} @ £{1:N2}", membershipProvider.GetSwimSub2Description(DateTime.Now), swimSubsCost );
 
-            ShowBuy1SwimCredit = !isGuest && DateTime.Now.Month > 8;
+            ShowBuy1SwimCredit = !isGuest;
 
             membershipOptionalExtras.Text = string.Join("<br/>", OptionalExtras(memberData));
 
@@ -194,7 +194,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 
     public void btn_1SwimCreditsClick(object sender, EventArgs e)
     {
-        MakeSwimPayment(PaymentStates.S00199C);
+        MakeSwimPayment(PaymentStates.S00299C);
     }
 
     public void btn_5SwimCreditsClick(object sender, EventArgs e)

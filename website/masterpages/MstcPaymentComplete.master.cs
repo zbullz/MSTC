@@ -61,8 +61,7 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 
         MembershipType membershipType;
         Enum.TryParse(currentmemdata[MemberProperty.membershipType] as string, out membershipType);
-        //bool hasBTFNumber = string.IsNullOrWhiteSpace(currentmemdata[MemberProperty.BTFNumber] as string) == false;    
-        bool hasBTFNumber = true; //Hardcode this as BTF registration is no longer required
+        bool hasBTFNumber = string.IsNullOrWhiteSpace(currentmemdata[MemberProperty.BTFNumber] as string) == false;    
         int costInPence = (paymentState == PaymentStates.MemberRenewal || paymentState == PaymentStates.MemberUpgrade) 
             ? MembershipCostCalculator.Calculate(_sessionProvider.RenewalOptions, DateTime.Now) 
             : MembershipCostCalculator.PaymentStateCost(paymentState, hasBTFNumber, membershipType);

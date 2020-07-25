@@ -118,13 +118,12 @@ public partial class masterpages_MstcClubEventEntry : System.Web.UI.MasterPage
 
 		SessionProvider.CanProcessPaymentCompletion = true;
 
-		PaymentStates entryType = (PaymentStates)Enum.Parse(typeof(PaymentStates), triFestEventType.SelectedValue);
+		PaymentStates entryType = (PaymentStates)Enum.Parse(typeof(PaymentStates), triFestEventType.SelectedValue);		
 		
-		/*
 		if (string.IsNullOrEmpty(tbTriFestBTFNumber.Text) == false)
 		{
 			currentmemdata[MemberProperty.BTFNumber] = tbTriFestBTFNumber.Text;	
-		}*/
+		}
 
         currentmemdata[MemberProperty.RelayTeamName] = tbRelayTeamName.Text;
         MemberHelper.Update(currentmemdata);
