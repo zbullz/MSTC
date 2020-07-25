@@ -116,6 +116,7 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
         switch (paymentState)
         {
             case PaymentStates.S00199C:
+            case PaymentStates.S00299C:
             case PaymentStates.S00599C:
             case PaymentStates.S001099C:
             case PaymentStates.S001599C:
