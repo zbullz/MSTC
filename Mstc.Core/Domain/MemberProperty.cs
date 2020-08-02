@@ -32,6 +32,7 @@
 		public const string swimSubs1 = "swimSubs1";
 		public const string swimSubs2 = "swimSubs2";
 		public const string OpenWaterIndemnityAcceptance = "openWaterIndemnityAcceptance";
+		public const string TriathlonIndemnityAcceptance = "triathlonIndemnityAcceptance";
 		public const string Volunteering = "volunteering";
 		public const string MembershipExpiry = "membershipExpiry";
 		public const string SwimAuthNumber = "swimAuthNumber";

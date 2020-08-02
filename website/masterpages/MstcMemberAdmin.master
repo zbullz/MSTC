@@ -33,6 +33,7 @@
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Phone</th>
                         <th>Gender</th>
                         <th>Date of Birth</th>
                         <th>Address 1</th>
@@ -46,6 +47,7 @@
                         <th>Swim Subs 2</th>
                         <th>Duathlon</th>
                         <th>Tri Festival</th>
+                        <th>Tri Festival Accepted indemnity?</th>
                         <th>Relay Team Name</th>
                         <th>BTF Number</th>
                         <th>Charity Swim</th>
@@ -59,6 +61,8 @@
                 <tbody></tbody> 
                 <tfoot>
                     <tr>
+                        <th></th>
+                        <th></th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -123,6 +127,7 @@
                     //{ data: 'EntryDate' },
                     { data: 'Name' },
                     { data: 'Email' },    
+                    { data: 'Phone' },    
                     { data: 'Gender' },    
                     {
                         data: 'DateOfBirth',
@@ -158,7 +163,12 @@
                     { data: 'SwimSubs1' },      
                     { data: 'SwimSubs2' },      
                     { data: 'DuathlonEntry' },      
-                    { data: 'TriFestEntry' },      
+                    { data: 'TriFestEntry' },
+                    {
+                        name: 'TriathlonIndemnityAcceptance',
+                        data: 'TriathlonIndemnityAcceptance',
+                        visible: false
+                    },   
                     { data: 'RelayTeamName', visible: false },      
                     { data: 'BtfNumber' },      
                     { data: 'CharitySwimEntry' },      
@@ -174,7 +184,7 @@
                 ],
                 'order': [[0, 'desc']],
                 initComplete: function () {
-                    this.api().columns(['MembershipTypeString:name', 'EnglandAthleticsMembership:name', 'OpenWaterIndemnityAcceptance:name']).every(function () {
+                    this.api().columns(['MembershipTypeString:name', 'EnglandAthleticsMembership:name', 'TriathlonIndemnityAcceptance:name', 'OpenWaterIndemnityAcceptance:name']).every(function () {
                         var column = this;                       
 
                         var select = $('<select><option value="">Select to filter</option></select>')

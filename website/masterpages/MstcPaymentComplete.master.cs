@@ -241,8 +241,9 @@ public partial class masterpages_MstcPaymentComplete : System.Web.UI.MasterPage
 
 	private void EnterMemberInTriFest(IDictionary<String, object> currentmemdata, PaymentStates paymentState)
 	{
-		currentmemdata[MemberProperty.TriFestEntry] = string.Format("{0} - {1}", paymentState.GetAttributeOfType<DescriptionAttribute>().Description, DateTime.Now.Year);
-		MemberHelper.Update(currentmemdata);
+		currentmemdata[MemberProperty.TriFestEntry] = string.Format("{0} - {1}", paymentState.GetAttributeOfType<DescriptionAttribute>().Description, DateTime.Now.ToString("dd-MMM-yyyy"));
+        currentmemdata[MemberProperty.TriathlonIndemnityAcceptance] = true;
+        MemberHelper.Update(currentmemdata);
 	}
 
 	private void EnterMemberInCharitySwim(IDictionary<String, object> currentmemdata, PaymentStates paymentState)

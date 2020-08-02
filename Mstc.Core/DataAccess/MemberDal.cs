@@ -86,12 +86,12 @@ namespace Mstc.Core.DataAccess
 		{
 			string query = BaseSelectQuery +
 			               string.Format(@" WHERE	(MemberList.nodeId IS NOT NULL)
-					        and MemberTypes.Alias in ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}')",
+					        and MemberTypes.Alias in ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}')",
 				               MemberProperty.Phone, MemberProperty.membershipType, MemberProperty.swimSubs1,
 				               MemberProperty.swimSubs2, MemberProperty.OpenWaterIndemnityAcceptance,
 				               MemberProperty.Volunteering, MemberProperty.MembershipExpiry, MemberProperty.SwimAuthNumber,
 				               MemberProperty.DuathlonEntry, MemberProperty.SwimCreditsBought, MemberProperty.SwimCreditsUsed,
-				               MemberProperty.TriFestEntry, MemberProperty.CharitySwimEntry, MemberProperty.SwimBalanceLastYear, MemberProperty.EnglandAthleticsMembership, MemberProperty.RelayTeamName, 
+				               MemberProperty.TriFestEntry, MemberProperty.TriathlonIndemnityAcceptance, MemberProperty.CharitySwimEntry, MemberProperty.SwimBalanceLastYear, MemberProperty.EnglandAthleticsMembership, MemberProperty.RelayTeamName, 
 							   MemberProperty.BTFNumber, MemberProperty.Gender, MemberProperty.DateOfBirth, MemberProperty.Address1, MemberProperty.Address2, MemberProperty.Address3, MemberProperty.Postcode);
 
 			IEnumerable<MemberData> memberData;
