@@ -194,7 +194,9 @@ namespace Mstc.Core.DataAccess
 					GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.OpenWaterIndemnityAcceptance)),
 				Volunteering = GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.Volunteering)),
 				TriFestEntry = GetPropertyValueForAlias(groupedMemberData, MemberProperty.TriFestEntry),
-                RelayTeamName = GetPropertyValueForAlias(groupedMemberData, MemberProperty.RelayTeamName),
+				TriathlonIndemnityAcceptance =
+					GetBool(GetPropertyValueForAlias(groupedMemberData, MemberProperty.TriathlonIndemnityAcceptance)),
+				RelayTeamName = GetPropertyValueForAlias(groupedMemberData, MemberProperty.RelayTeamName),
                 BtfNumber = GetPropertyValueForAlias(groupedMemberData, MemberProperty.BTFNumber),
                 CharitySwimEntry = GetPropertyValueForAlias(groupedMemberData, MemberProperty.CharitySwimEntry),
 				Gender = GetPropertyValueForAlias(groupedMemberData, MemberProperty.Gender),
