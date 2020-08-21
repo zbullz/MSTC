@@ -30,6 +30,12 @@ public partial class usercontrols_cFront_contacts : System.Web.UI.UserControl
 
 	protected void SendMessage(Object s, EventArgs e)
 	{
+		if (string.IsNullOrEmpty(txtEmail2.Text) == false)
+		{
+			//Must be a spam bot as this field is hidden from view
+			return;
+		}
+
 		if (Page.IsValid)
 		{
 			var emailProvider = new EmailProvider();

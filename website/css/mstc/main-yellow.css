@@ -150,6 +150,9 @@ img.image-left {
 .form-horizontal .form-control {
   font-size: 1.2em;
 }
+.form-controlx {
+    display: none;
+}
 .form-horizontal .btn {
   font-size: 1.2em;
   font-weight: 600;

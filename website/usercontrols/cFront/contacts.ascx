@@ -20,7 +20,8 @@
                     <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" CssClass="help-block alert-danger"
                         ErrorMessage="Please enter your email" Display="Dynamic" />
                     <asp:RegularExpressionValidator CssClass="help-block alert-danger" ID="revEmail" ControlToValidate="txtEmail" runat="server" 
-                        ValidationExpression="^\S+@\S+\.\S+$" ErrorMessage="Invalid email address" Display="Dynamic" />                        
+                        ValidationExpression="^\S+@\S+\.\S+$" ErrorMessage="Invalid email address" Display="Dynamic" />
+                    <asp:TextBox ID="txtEmail2" runat="Server" CssClass="form-controlx" />  
                 </div>
             </div>
             <div class="form-group">
