@@ -90,7 +90,20 @@
                         <asp:HyperLink ID="openWaterAuthNumber" runat="server" data-toggle="tooltip" data-placement="bottom"
                             title="Take this number with you to open water swim sessions. You can't get in the water unless you have your number!"></asp:HyperLink>
                     </p>
-            </div>
+            </div>          
+        </div>
+        <div class="form-group <%=!OwsIndemnityAccepted ? "" : "hide"%>">
+            <p>If you would like to take part in open water swimming please read the waiver and indicate your acceptance.</p>
+            <p><a href="http://midsussextriclub.com/media/47452/MSTCIndemnityWaiver.pdf" target="_blank">Open water swim indemnity waiver</a></p>
+            <asp:Button ID="Button1" runat="server" Text="Accept Open Water Indemnity Waiver" CssClass="btn btn-yellow pull-left" OnClick="btn_openWaterWaiverClick" />
+        </div>
+    </div>
+</div>
+
+<div id="training-credit">
+    <h2>Training Credits</h2>
+    <div class="contact-form-wrapper col-sm-12">
+        <div>           
             <div class="form-group <%=ShowBuy1SwimCredit ? "" : "hide"%>">
                 <div>
                     <asp:Button ID="btn_1SwimCredits" runat="server" Text="Buy £2 credits" CssClass="btn btn-yellow pull-left" OnClick="btn_1SwimCreditsClick" />
@@ -112,13 +125,8 @@
                 </div>
             </div>
         </div>
-        <div class="form-group <%=!OwsIndemnityAccepted ? "" : "hide"%>">
-            <p>If you would like to take part in open water swimming please read the waiver and indicate your acceptance.</p>
-            <p><a href="http://midsussextriclub.com/media/47452/MSTCIndemnityWaiver.pdf" target="_blank">Open water swim indemnity waiver</a></p>
-            <asp:Button ID="Button1" runat="server" Text="Accept Open Water Indemnity Waiver" CssClass="btn btn-yellow pull-left" OnClick="btn_openWaterWaiverClick" />
-        </div>
         <div class="form-group">
-            <label class="control-label"><b>O/W Swim Balance</b></label>
+            <label class="control-label"><b>Balance</b></label>
             <p class="form-control-static">
                     £<asp:Literal ID="litSwimCredits" runat="server"></asp:Literal>
                     <asp:HiddenField ID="hiddenEmail" runat="server" />
