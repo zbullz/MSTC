@@ -9,6 +9,8 @@ using Mstc.Core.Providers;
 
 namespace Mstc.Tests
 {
+    /*
+    //TODO - Rewrite with NUnit, can't run these tests any more
     public class MemberProviderTests
     {
 		[Subject(typeof(MemberProvider))]
@@ -118,4 +120,5 @@ namespace Mstc.Tests
         }
 
     }
+    */
 }

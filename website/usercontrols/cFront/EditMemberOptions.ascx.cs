@@ -71,8 +71,7 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 			else
 			{
 				EnableMemberRenewal = false;
-			}
-			EnableMemberRenewal = false; //COVID-19 change
+			}		
 
 			bool isGuest = memberType == MembershipType.Guest;
 		    IsGuest = isGuest;
@@ -83,8 +82,6 @@ public partial class usercontrols_cFront_EditMemberOptions : System.Web.UI.UserC
 			                   string.IsNullOrEmpty(memberData[MemberProperty.swimSubs1] as string) && DateTime.Now.Month < 10 && DateTime.Now.Month > 2;
             ShowBuySwimSubs2 = EnableMemberRenewal == false && memberType != MembershipType.Guest &&
                                string.IsNullOrEmpty(memberData[MemberProperty.swimSubs2] as string);
-			ShowBuySwimSubs1 = false; //COVID-19 change
-			ShowBuySwimSubs2 = false; //COVID-19 change
 
 			decimal swimSubsCost = MembershipCostCalculator.SwimsSubsCostInPence(memberType) /100;
             BuySwimSubs1.Text = string.Format("Buy {0} @ £{1:N2}", membershipProvider.GetSwimSub1Description(DateTime.Now), swimSubsCost );
