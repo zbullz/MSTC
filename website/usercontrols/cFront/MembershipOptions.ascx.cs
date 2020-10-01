@@ -43,11 +43,11 @@ public partial class usercontrols_cFront_MembershipOptions : System.Web.UI.UserC
 		if (2 < DateTime.Now.Month && DateTime.Now.Month < 10)
 		{
             string swim1Desc = string.Format("Swim subs {0} - Standard &pound;30 / Concessions &pound;15", membershipProvider.GetSwimSub1Description(DateTime.Now));
-            //extrasList.Add(new ListItem(swim1Desc, MembershipExtras.SwimSubsAprToSept.ToString())); //COVID-19 change
+            extrasList.Add(new ListItem(swim1Desc, MembershipExtras.SwimSubsAprToSept.ToString()));
 		}
         string swim2Desc = string.Format("Swim subs {0} - Standard &pound;30 / Concessions &pound;15", membershipProvider.GetSwimSub2Description(DateTime.Now));
 
-		//extrasList.Add(new ListItem(swim2Desc, MembershipExtras.SwimSubsOctToMar.ToString())); //COVID-19 change
+		extrasList.Add(new ListItem(swim2Desc, MembershipExtras.SwimSubsOctToMar.ToString()));
 		extrasList.Add(new ListItem("England Athletics Membership* - &pound;16", MembershipExtras.EnglandAthletics.ToString()));
 
         extras.Items.AddRange(extrasList.ToArray());
